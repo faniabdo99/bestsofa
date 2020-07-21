@@ -1,0 +1,61 @@
+/*font Variables*/
+
+$rob: 'Muli',
+sans-serif;
+$pop: 'Poppins',
+sans-serif;
+/*Color Variables*/
+
+$baseColor: #206fa1;
+$dip: #222222;
+$pfont: #777777;
+$lightgrey : #f7f7f7;
+$danger : #be3a3a;
+$success: #53ad3c;
+/*=================== fonts ====================*/
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700|Muli:300,400,500,700');
+// Mixins
+@mixin transition($property: all,
+$duration: 300ms,
+$animate: linear,
+$delay:0s) {
+    transition: $property $duration $animate $delay;
+}
+
+@mixin transform($transform) {
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -o-transform: $transform;
+    -ms-transform: $transform;
+    transform: $transform;
+}
+
+// Placeholder Mixins
+@mixin placeholder {
+    &.placeholder {
+        @content;
+    }
+    &:-moz-placeholder {
+        @content;
+    }
+    &::-moz-placeholder {
+        @content;
+    }
+    &::-webkit-input-placeholder {
+        @content;
+    }
+}
+
+.col {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    @media(max-width: 480px) {
+        -ms-flex: 0 0 100% !important;
+        flex: 0 0 100% !important;
+    }
+    @media(max-width: 991px) {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+    }
+}

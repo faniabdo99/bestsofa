@@ -1,0 +1,47 @@
+//Social Login Buttons
+.social-login-icons{
+  ul{
+    display: flex;
+    justify-content: flex-start;
+    list-style-type: none;
+    padding-inline-start: 0px;
+    li{
+      width: 15%;
+      height: 50px;
+      margin-right: 15px;
+      border-radius: 50%;
+      transition: all ease .3s;
+      position: relative;
+      a{
+        padding: 15px;
+        margin-top: 0 !important;
+        i{
+          margin-top: 0;
+          color: #fff;
+          font-size: 1.2em;
+        }
+      }
+      &.google{
+        background-color: #DB4437;
+        &:hover{
+          transition: all ease .3s;
+          background-color: #c83e32;
+        }
+      }
+      &.linkedin{
+        background-color: #0077b5;
+        &:hover{
+          transition: all ease .3s;
+          background-color: #0a6a9c;
+        }
+      }
+      &.facebook{
+        background-color: #3b5998;
+        &:hover{
+          transition: all ease .3s;
+          background-color: #31497a;
+        }
+      }
+    }
+  }
+}
