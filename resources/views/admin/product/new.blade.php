@@ -48,20 +48,25 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label>Price in USD</label>
-                                                <input type="text" class="form-control" name="price" value="{{ old('price') ?? ''}}" placeholder="Please Enter The Item Price in USD" required>
+                                                <label>Price in EUR</label>
+                                                <input type="text" class="form-control" name="price" value="{{ old('price') ?? ''}}" placeholder="Please Enter The Item Price in EUR" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>
-                                                    Count in Inventory <small class="text-success">0 Means Infinite</small>
+                                                    Count in Inventory
                                                 </label>
                                                 <input type="number" class="form-control" name="inventory" placeholder="Please Enter a Number" value="{{ old('inventory') ?? '0'}}" required>
                                             </div>
                                             <div class="form-group">
+                                                <label>
+                                                    Minimum Order
+                                                </label>
+                                                <input type="number" class="form-control" name="min_order" placeholder="Please Enter a Number" value="{{ old('min_order') ?? '0'}}">
+                                            </div>
+                                            <div class="form-group">
                                                 <label>Status</label>
                                                 <select class="form-control" name="status" required>
-                                                        <option selected>Choose Status</option>
-                                                        <option value="Available">Available</option>
+                                                        <option selected value="Available">Available</option>
                                                         <option value="Pre-order">Pre-order</option>
                                                         <option value="Sold Out">Sold out</option>
                                                         <option value="Invisible">Invisible</option>
@@ -71,28 +76,31 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Tags</label>
-                                                <select class="form-control" name="tags[]" multiple required>
+                                                <select class="form-control mb-4" name="tags[]" multiple>
                                                     @forelse ($ReadyToUseTagsArray as $TagItem)
-                                                    <option value="{{$TagItem}}">{{$TagItem}}</option>
+                                                        <option value="{{$TagItem}}">{{$TagItem}}</option>
                                                     @empty
+                                                        <option>There is no Categories Yet in The System</option>
                                                     @endforelse
                                                 </select>
+                                                <label>Add New Sub Category: <br><small class="text-danger">please check the list above first , only add custom categories if the list is missing that one</small> </label>
+                                                <input class="form-control" type="text" name="custom_tags" placeholder="Enter New Category Here , Seperate By Commas : category1,category2 ..." value="{{old('custom_tags') ?? ''}}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Product Gallery</label>
                                                 <div id="drop-zone" class="dropzone"></div>
                                             </div>
                                             <div class="form-group">
-                                                <input type="checkbox" name="show_inventory"> Show Inventory Count ?
+                                                <input type="checkbox" name="show_inventory" id="show_inventory"> <label for="show_inventory">Show Inventory Count ?</label>
                                             </div>
                                             <div class="form-group">
-                                                <input type="checkbox" name="is_promoted"> Promote on Homepage ?
+                                                <input type="checkbox" name="is_promoted" id="is_promoted"> <label for="is_promoted">Promote on Homepage ?</label>
                                             </div>
                                             <div class="form-group">
-                                                 <input type="checkbox" name="allow_reviews"> Allow Reviews ?
+                                                 <input type="checkbox" name="allow_reviews" id="allow_reviews" checked> <label for="allow_reviews">Allow Reviews ?</label>
                                             </div>
                                             <div class="form-group">
-                                                <input type="checkbox" name="allow_reservations"> Allow Reservations ?
+                                                <input type="checkbox" name="allow_reservations" id="allow_reservations"> <label for="allow_reservations">Allow Reservations ?</label>
                                             </div>
                                             <h6 class="c-grey-900 mT-40 mB-40">Advanced Data</h6>
                                             <div class="form-group">
@@ -101,18 +109,17 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Height</label>
-                                                <input type="number" class="form-control" value="{{old('height') ?? ''}}" name="height" placeholder="Please Enter a Number in CM" required>
+                                                <input type="number" class="form-control" value="{{old('height') ?? ''}}" name="height" placeholder="Please Enter a Number in CM">
                                             </div>
                                             <div class="form-group">
                                                 <label>Width</label>
-                                                <input type="number" class="form-control" value="{{old('width') ?? ''}}" name="width" placeholder="Please Enter a Number in CM" required>
+                                                <input type="number" class="form-control" value="{{old('width') ?? ''}}" name="width" placeholder="Please Enter a Number in CM">
                                             </div>
                                             <h6 class="c-grey-900 mT-40 mB-40">Taxes</h6>
                                             <div class="form-group">
                                                 <label>Tax Rate</label>
-                                                <select class="form-control" name="tax_rate">
-                                                    <option selected>Choose Tax Rate</option>
-                                                    <option value="21">Tax rate 1: 21%</option>
+                                                <select class="form-control" name="tax_rate" required>
+                                                    <option selected value="21">Tax rate 1: 21%</option>
                                                     <option value="12">Tax rate 2: 12%</option>
                                                     <option value="6">Tax rate 3: 6%</option>
                                                     <option value="1">Tax rate 4: 0%</option>

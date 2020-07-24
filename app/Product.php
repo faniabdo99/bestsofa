@@ -24,4 +24,18 @@ class Product extends Model{
             return $this->inventory;
         }
     }
+    public function getIsActiveAttribute(){
+        if($this->status == 'Available'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function getLocalTitleAttribute(){
+        $SiteLang = \Lang::locale() ?? 'en';
+        return Product_Local::where('product_id' , $this->id)->where('lang_code' , $SiteLang)->first()->title_value;
+    }
+    public function getMainImageAttribute(){
+        return url('storage/app/images/products').'/'.$this->image;
+    }
 }

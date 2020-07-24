@@ -9,5 +9,7 @@ Route::post('/category/localize' , 'CategoriesController@postLocalize')->name('a
 Route::post('delete-product' , 'ProductsController@delete')->name('admin.product.delete');
 Route::post('upload-images' , 'ProductsController@uploadGalleryImages')->name('admin.product.uploadGalleryImages');
 Route::post('/product/localize' , 'ProductsController@postLocalize')->name('admin.products.postLocalize');
-
+//Users
+Route::post('delete-user' , 'UsersController@delete')->name('admin.user.delete');
+Route::post('activate-deactivate-user' , 'UsersController@ToggleActive')->name('admin.user.toggleActive');
 

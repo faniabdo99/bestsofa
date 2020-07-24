@@ -111,9 +111,38 @@ class UsersController extends Controller{
       }
 
     }
-    /*================================== Handmade Logout*/
-    public function logout(){
-      auth()->logout();
-      return redirect()->route('home');
+  /*================================== Handmade Logout*/
+  public function logout(){
+    auth()->logout();
+    return redirect()->route('home');
+  }
+  //Admin Panel Stuff
+  public function getHome(){
+    $Users = User::latest()->get();
+    return view('admin.user.index' , compact('Users'));
+  }
+  public function delete(Request $r){
+    $User = User::findOrFail($r->item_id)->delete();
+    return response("User Deleted Successfully");
+  }
+  public function ToggleActive(Request $r){
+    $User = User::findOrFail($r->item_id)->first();
+    $User->confirmed = !$User->confirmed;
+    $User->save();
+    if($User->confirmed == 1){
+      return response([
+        'successMessage' => 'User Activated',
+        'btnMessage' => 'De Activate'
+      ]);
+    }else{
+      return response([
+        'successMessage' => 'User De Activated',
+        'btnMessage' => 'Activate'
+      ]);
     }
+  }
+
+
+
+
 }

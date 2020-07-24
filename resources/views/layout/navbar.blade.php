@@ -25,6 +25,13 @@
                             {{auth()->user()->name}}
                         </a>
                     </li>
+                    @if (auth()->user()->role == 2)
+                    <li>
+                        <a href="{{route('admin.home')}}">
+                            Admin Panel
+                        </a>
+                    </li>
+                    @endif
                     <li>
                         <a href="{{route('logout')}}">
                             Logout

@@ -20,12 +20,14 @@ class ProductsController extends Controller{
             //Push to the master array 
             array_push($MasterTagsArray , $CleanTag);
         }
+        if(empty($MasterTagsArray)){
+            $MasterTagsArray = [[], []];
+        }
         $ReadyToUseTagsArray = array_unique($FinalMasterTagsArray = call_user_func_array('array_merge', $MasterTagsArray));
         return $ReadyToUseTagsArray;
     }
     public function getHome(){
         $Products = Product::latest()->get();
-
         return view('admin.product.index' , compact('Products'));
     }
     public function getNew(){
@@ -40,15 +42,17 @@ class ProductsController extends Controller{
         return view('admin.product.new' , compact('AllCategories' , 'NextProductId' , 'ReadyToUseTagsArray'));
     }
     public function postNew(Request $r){
+        // dd($r->all());
         //Validate the request
         $Rules = [
             'title' => 'required|min:5|max:255',
             'slug' => 'required|min:5|max:255|unique:products',
             'description' => 'required|min:25',
             'body' => 'required|min:40',
-            'product_id' => 'required|integer',
+            'id' => 'required|integer',
             'price' => 'required|numeric',
             'inventory' => 'required|numeric',
+            'min_order' => 'required|numeric',
             'weight' => 'numeric',
             'height' => 'numeric',
             'width' => 'numeric',
@@ -60,7 +64,7 @@ class ProductsController extends Controller{
             return back()->withErrors($validator->errors()->all())->withInput();
         }else{
             //Prepare The Data For Uploading
-            $ProductData = $r->all();
+            $ProductData = $r->except('custom_tags');
             //Handle The Image
             if($r->has('image')){
                 $ProductData['image'] = $r->slug.'.'.$r->image->getClientOriginalExtension();
@@ -69,7 +73,7 @@ class ProductsController extends Controller{
                 $ProductData['image'] = 'product.png';
             }
             $ProductData['slug'] = strtolower(str_replace(' ' , '-' , $r->slug));
-            $ProductData['tags'] = implode(',' , $r->tags);
+            $ProductData['tags'] = implode(',' , $r->tags) .','. $r->custom_tags;
             $ProductData['show_inventory'] = ($r->show_inventory == 'on') ? 1 : 0;
             $ProductData['is_promoted'] = ($r->is_promoted == 'on') ? 1 : 0;
             $ProductData['allow_reviews'] = ($r->allow_reviews == 'on') ? 1 : 0;
@@ -90,24 +94,25 @@ class ProductsController extends Controller{
         $TheProduct = Product::find($id);
         //Validate the request
         $Rules = [
-        'title' => 'required|min:5|max:255',
-        'description' => 'required|min:25',
-        'body' => 'required|min:40',
-        'product_id' => 'required|integer',
-        'price' => 'required|numeric',
-        'inventory' => 'required|numeric',
-        'weight' => 'numeric',
-        'height' => 'numeric',
-        'width' => 'numeric',
-        'tax_rate' => 'required',
-        'image' => 'image|max:45000000'
+            'title' => 'required|min:5|max:255',
+            'description' => 'required|min:25',
+            'body' => 'required|min:40',
+            'id' => 'required|integer',
+            'price' => 'required|numeric',
+            'inventory' => 'required|numeric',
+            'min_order' => 'required|numeric',
+            'weight' => 'numeric',
+            'height' => 'numeric',
+            'width' => 'numeric',
+            'tax_rate' => 'required',
+            'image' => 'image|max:45000000'
     ];
     $validator = Validator::make($r->all() , $Rules);
     if($validator->fails()){
         return back()->withErrors($validator->errors()->all())->withInput();
     }else{
         //Prepare The Data For Uploading
-        $ProductData = $r->all();
+        $ProductData = $r->except('custom_tags');
         //Handle The Image
         if($r->has('image')){
             $ProductData['image'] = $TheProduct->slug.'.'.$r->image->getClientOriginalExtension();
@@ -115,7 +120,7 @@ class ProductsController extends Controller{
         }else{
             $ProductData['image'] = $TheProduct->image;
         }
-        $ProductData['tags'] = implode(',' , $r->tags);
+        $ProductData['tags'] = implode(',' , $r->tags) .','. $r->custom_tags;
         $ProductData['show_inventory'] = ($r->show_inventory == 'on') ? 1 : 0;
         $ProductData['is_promoted'] = ($r->is_promoted == 'on') ? 1 : 0;
         $ProductData['allow_reviews'] = ($r->allow_reviews == 'on') ? 1 : 0;

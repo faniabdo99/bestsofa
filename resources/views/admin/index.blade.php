@@ -18,7 +18,7 @@
                                         </div>
                                         <div class="layer w-100">
                                             <div class="peers ai-sb fxw-nw">
-                                                <div class="text-success font-weight-bold">255</div>
+                                                <a href="{{route('admin.products.home')}}"><div class="text-success font-weight-bold">{{$TotalProductsCount}}</div></a>
                                             </div>
                                         </div>
                                     </div>
@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="layer w-100">
                                             <div class="peers ai-sb fxw-nw">
-                                                <div class="text-primary font-weight-bold">254</div>
+                                                <div class="text-primary font-weight-bold">{{$TotalUsersCount}}</div>
                                             </div>
                                         </div>
                                     </div>

@@ -11,14 +11,15 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->string('description');
+            $table->text('description');
             $table->text('body');
             $table->string('image');
             $table->integer('category_id');
             $table->integer('price');
             $table->integer('show_inventory')->default(0);
             $table->integer('inventory')->default(0);
-            $table->string('statues');
+            $table->integer('min_order')->default(0);
+            $table->string('status');
             $table->integer('weight')->nullable();
             $table->integer('height')->nullable();
             $table->integer('width')->nullable();
@@ -31,14 +32,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
+    public function down(){
         Schema::dropIfExists('products');
     }
 }

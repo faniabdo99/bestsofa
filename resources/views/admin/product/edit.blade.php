@@ -1,5 +1,4 @@
 @include('admin.layout.header')
-
 <body class="app">
     <div>
         @include('admin.layout.sidebar')
@@ -48,14 +47,20 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label>Price in USD</label>
-                                                <input type="text" class="form-control" name="price" value="{{ old('price') ?? $ProductData->price}}" placeholder="Please Enter The Item Price in USD" required>
+                                                <label>Price in EUR</label>
+                                                <input type="text" class="form-control" name="price" value="{{ old('price') ?? $ProductData->price}}" placeholder="Please Enter The Item Price in EUR" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>
-                                                    Count in Inventory <small class="text-success">0 Means Infinite</small>
+                                                    Count in Inventory
                                                 </label>
                                                 <input type="number" class="form-control" name="inventory" placeholder="Please Enter a Number" value="{{ old('inventory') ?? $ProductData->inventory}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    Minimum Order
+                                                </label>
+                                                <input type="number" class="form-control" name="min_order" placeholder="Please Enter a Number" value="{{ old('min_order') ?? $ProductData->min_order}}" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Status</label>
@@ -71,7 +76,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Tags</label>
-                                                <select class="form-control" name="tags[]" multiple required>
+                                                <select class="form-control mb-4" name="tags[]" multiple required>
                                                     @php
                                                     $CurrentItemTags = explode(',' , $ProductData->tags);
                                                     @endphp
@@ -84,22 +89,24 @@
                                                     @empty
                                                     @endforelse
                                                 </select>
+                                                <label>Add New Sub Category: <br><small class="text-danger">please check the list above first , only add custom categories if the list is missing that one</small> </label>
+                                                <input class="form-control" type="text" name="custom_tags" placeholder="Enter New Category Here , Seperate By Commas : category1,category2 ..." value="{{old('custom_tags') ?? ''}}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Product Gallery</label>
                                                 <div id="drop-zone" class="dropzone"></div>
                                             </div>
                                             <div class="form-group">
-                                                <input type="checkbox" name="show_inventory" @if($ProductData->show_inventory) checked @endif > Show Inventory Count ?
+                                                <input type="checkbox" id="show_inventory" name="show_inventory" @if($ProductData->show_inventory) checked @endif > <label for="show_inventory">Show Inventory Count ?</label>
                                             </div>
                                             <div class="form-group">
-                                                <input type="checkbox" name="is_promoted" @if($ProductData->is_promoted) checked @endif > Promote on Homepage ?
+                                                <input type="checkbox" id="is_promoted" name="is_promoted" @if($ProductData->is_promoted) checked @endif > <label for="is_promoted">Promote on Homepage ?</label>
                                             </div>
                                             <div class="form-group">
-                                                 <input type="checkbox" name="allow_reviews" @if($ProductData->allow_reviews) checked @endif > Allow Reviews ?
+                                                 <input type="checkbox" id="allow_reviews" name="allow_reviews" @if($ProductData->allow_reviews) checked @endif > <label for="allow_reviews">Allow Reviews ?</label>
                                             </div>
                                             <div class="form-group">
-                                                <input type="checkbox" name="allow_reservations" @if($ProductData->allow_reservations) checked @endif > Allow Reservations ?
+                                                <input type="checkbox" id="allow_reservations" name="allow_reservations" @if($ProductData->allow_reservations) checked @endif > <label for="allow_reservations">Allow Reservations ?</label>
                                             </div>
                                             <h6 class="c-grey-900 mT-40 mB-40">Advanced Data</h6>
                                             <div class="form-group">
@@ -108,11 +115,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Height</label>
-                                                <input type="number" class="form-control" value="{{old('height') ?? $ProductData->height}}"  name="height" placeholder="Please Enter a Number in CM" required>
+                                                <input type="number" class="form-control" value="{{old('height') ?? $ProductData->height}}"  name="height" placeholder="Please Enter a Number in CM">
                                             </div>
                                             <div class="form-group">
                                                 <label>Width</label>
-                                                <input type="number" class="form-control" value="{{old('width') ?? $ProductData->width}}"  name="width" placeholder="Please Enter a Number in CM" required>
+                                                <input type="number" class="form-control" value="{{old('width') ?? $ProductData->width}}"  name="width" placeholder="Please Enter a Number in CM">
                                             </div>
                                             <h6 class="c-grey-900 mT-40 mB-40">Taxes</h6>
                                             <div class="form-group">

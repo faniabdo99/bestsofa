@@ -16,5 +16,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    public function getProfileImageAttribute(){
+        return url('storage/app/images/users').'/'.$this->image;
+    }
 }

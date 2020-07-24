@@ -1,11 +1,6 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
-
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/' , 'HomeController@getHome')->name('home');
 //Not Logged In Routes
 Route::middleware('guest')->group(function(){
   Route::get('signup' , 'UsersController@getSignup')->name('signup.get');
@@ -49,6 +44,9 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'] , function () {
     Route::get('/edit/{id}' , 'ProductsController@getEdit')->name('admin.products.getEdit');
     Route::post('/edit/{id}' , 'ProductsController@postEdit')->name('admin.products.postEdit');
     Route::get('/localize/{id}' , 'ProductsController@getLocalize')->name('admin.products.getLocalize');
-
+  });
+  //Users System
+  Route::prefix('users')->group(function(){
+    Route::get('/' , 'UsersController@getHome')->name('admin.users.home');
   });
 });
