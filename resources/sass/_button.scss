@@ -3,21 +3,20 @@
 .main_btn{
 	display: inline-block;
 	background: $baseColor;
-	padding: 0px 30px;
+	padding: 0px 20px;
 	color: #fff;
-	font-family: $rob;
+	font-family: $pop;
 	font-size: 14px;
 	font-weight: 500;
-	line-height: 48px;
+	line-height: 35px;
 	border: 1px solid $baseColor;
-	border-radius: 0px;
 	outline: none !important;
 	box-shadow: none !important;
 	text-align: center;
 	border: 1px solid $baseColor;
 	cursor: pointer;
 	@include transition;
-	border-radius: 5px;
+	border-radius: 3px;
 	&:hover{
 		background: transparent;
 		color: $baseColor;
@@ -28,7 +27,7 @@
 	background: $baseColor;
 	padding: 0px 32px;
 	color: #fff;
-	font-family: $rob;
+	font-family: $pop;
 	font-size: 13px;
 	font-weight: 500;
 	line-height: 38px;
@@ -49,7 +48,7 @@
 	background: $baseColor;
 	padding: 0px 30px;
 	color: #fff;
-	font-family: $rob;
+	font-family: $pop;
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 38px;
@@ -72,7 +71,7 @@
 	background: #f9f9ff;
 	padding: 0px 35px;
 	color: $dip;
-	font-family: $rob;
+	font-family: $pop;
 	font-size: 13px;
 	font-weight: 500;
 	line-height: 34px;

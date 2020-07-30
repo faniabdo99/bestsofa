@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="{{url('public/assets')}}/nice-select/css/nice-select.css">
 	<link rel="stylesheet" href="{{url('public/assets')}}/animate-css/animate.css">
 	<link rel="stylesheet" href="{{url('public/assets')}}/jquery-ui/jquery-ui.css">
+	<link href="https://fonts.googleapis.com/css2?family=Mulish&family=Poppins&display=swap" rel="stylesheet">
 	<!-- main css -->
 	<link rel="stylesheet" href="{{url('public/css')}}/style.css">
 	<link rel="stylesheet" href="{{url('public/css')}}/responsive.css">

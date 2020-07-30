@@ -54,10 +54,10 @@ class ProductsController extends Controller{
             'inventory' => 'required|numeric',
             'min_order' => 'required|numeric',
             'weight' => 'numeric',
-            'height' => 'numeric',
-            'width' => 'numeric',
+            'height' => 'nullable|numeric',
+            'width' => 'nullable|numeric',
             'tax_rate' => 'required',
-            'image' => 'image|max:45000000'
+            'image' => 'nullable|image|max:45000000'
         ];
         $validator = Validator::make($r->all() , $Rules);
         if($validator->fails()){
@@ -73,7 +73,15 @@ class ProductsController extends Controller{
                 $ProductData['image'] = 'product.png';
             }
             $ProductData['slug'] = strtolower(str_replace(' ' , '-' , $r->slug));
-            $ProductData['tags'] = implode(',' , $r->tags) .','. $r->custom_tags;
+            if($r->has('tags') && $r->has('custom_tags')){
+                $ProductData['tags'] = implode(',' , $r->tags) .','. $r->custom_tags;
+            }else{
+                if($r->has('tags') && !$r->has('custom_tags')){
+                    $ProductData['tags'] = implode(',' , $r->tags);
+                }else if($r->has('custom_tags') && !$r->has('tags')){
+                    $ProductData['tags'] = $r->custom_tags;
+                }
+            }
             $ProductData['show_inventory'] = ($r->show_inventory == 'on') ? 1 : 0;
             $ProductData['is_promoted'] = ($r->is_promoted == 'on') ? 1 : 0;
             $ProductData['allow_reviews'] = ($r->allow_reviews == 'on') ? 1 : 0;
@@ -201,5 +209,13 @@ class ProductsController extends Controller{
                 return response($Respone);
             }
         }
+    }
+
+
+
+    //Non-Admin Routes 
+    public function getSingle($id , $slug){
+        $TheProduct = Product::findOrFail($id);
+        return view('products.single' , compact('TheProduct'));
     }
 }

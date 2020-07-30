@@ -1,5 +1,4 @@
 @include('layout.header' , ['PageTitle' => 'Signup'])
-
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')
@@ -34,8 +33,8 @@
                                 <input type="password" class="form-control" id="password-conf" name="password-conf" placeholder="Confirm password" required >
                             </div>
                             <div class="col-md-12 form-group">
-                                <button type="submit" class="btn submit_btn">Sing up</button>
-                                <p class="font-weight-bold text-left mt-4">Login With Social Media</p>
+                                <button type="submit" class="btn submit_btn">Signup</button>
+                                <p class="font-weight-bold text-left mt-4">Signup With Social Media</p>
                                 <div class="social-login-icons">
                                   <ul>
                                     <li class="google"><a href="{{route('login.social' , 'google')}}"><i class="fab fa-google"></i></a></li>

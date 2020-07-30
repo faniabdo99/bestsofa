@@ -1,3 +1,8 @@
+function ShowNoto(className,text){
+    //Create The Element
+    $('body').append('<div class="noto"></div>');
+    $('.noto').html(text).addClass(className).fadeIn('fast').delay(3000).fadeOut('fast');
+}
 ;(function($){
     "use strict"
 	
@@ -429,3 +434,4 @@
 	
 
 })(jQuery)
+

@@ -32,6 +32,9 @@
                                     <label for="f-option2">Keep me logged in</label>
                                 </div>
                             </div>
+                            <div class="col-md-12 text-left">
+                                <p>Frogot Your Password ? <a href="{{route('reset.get')}}" class="forgot_password_link">Click Here</a></p>
+                            </div>
                             <div class="col-md-12 form-group">
                                 <button type="submit" class="btn submit_btn">Login</button>
                                 <p class="font-weight-bold text-left mt-4">Login With Social Media</p>

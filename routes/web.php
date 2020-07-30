@@ -7,17 +7,27 @@ Route::middleware('guest')->group(function(){
   Route::post('signup' , 'UsersController@postSignup')->name('signup.post');
   Route::get('login' , 'UsersController@getLogin')->name('login.get');
   Route::post('login' , 'UsersController@postLogin')->name('login.post');
+  Route::get('reset-password' , 'UsersController@getResetPassword')->name('reset.get');
+  Route::post('reset-password' , 'UsersController@postResetPassword')->name('reset.post');
+  Route::get('change-password/{code}' , 'UsersController@resetFinalStep')->name('reset.finalStep');
+  Route::post('change-password/{code}' , 'UsersController@postResetFinalStep')->name('reset.finalStep.post');
   Route::get('social-login/{provider}' , 'UsersController@redirectToProvider')->name('login.social');
   Route::get('login/{driver}/callback' , 'UsersController@handleProviderCallback')->name('login.social.callback');
 });
 //Logged In Only Routes
 Route::middleware('auth')->group(function(){
   Route::get('logout' , 'UsersController@logout')->name('logout');
+  Route::get('my-account' , 'UsersController@getProfile')->name('profile');
+  Route::post('update-profile' , 'UsersController@updateProfile')->name('profile.update.post');
 });
 //General Routes
 Route::get('contact' , 'ContactUsController@getContact')->name('contact.get');
 Route::post('contact' , 'ContactUsController@postContact')->name('contact.post');
 
+//Products Routes 
+Route::group(['prefix'=>'product'] , function (){
+  Route::get('{id}/{slug}' , 'ProductsController@getSingle')->name('product.single');
+});
 //Admin Only Routes
 Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'] , function () {
   Route::get('/' , 'AdminController@getHome')->name('admin.home');

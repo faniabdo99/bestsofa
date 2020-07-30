@@ -17,6 +17,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     public function getProfileImageAttribute(){
-        return url('storage/app/images/users').'/'.$this->image;
+        $UserImageArray = explode('.' , $this->image);
+        if($UserImageArray[0] == $this->id || $UserImageArray[0] == 'user'){
+            return url('storage/app/images/users').'/'.$this->image;
+        }else{
+            return $this->image;
+        }
     }
 }

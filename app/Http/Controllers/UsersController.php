@@ -11,6 +11,7 @@ use Socialite;
 use App\User;
 use App\Mail\WelcomeNewUser;
 use App\Mail\WelcomeSocialLogin;
+use App\Mail\ResetPasswordMail;
 class UsersController extends Controller{
     /*======================= Handmade Signup*/
     public function getSignup(){
@@ -98,6 +99,7 @@ class UsersController extends Controller{
           'email' => $user->email,
           'image' => $ProfileImage,
           'password' => 'PlaceholderPass',
+          'auth_provider' => $driver,
           'code' =>  rand(0,99999999),
           'confirmed' => 1
         ]);
@@ -115,6 +117,128 @@ class UsersController extends Controller{
   public function logout(){
     auth()->logout();
     return redirect()->route('home');
+  }
+  //Reset Password
+  public function getResetPassword(){
+    return view('users.reset');
+  }
+  public function postResetPassword(Request $r){
+    //Filter the request 
+    $Rules = [
+      'email' => 'required|email'
+    ];
+    $validator = Validator::make($r->all() , $Rules);
+    if($validator->fails()){
+      return back()->withErrors($validator->errors()->all());
+    }else{
+      //Get the account if exists 
+      $TheUser = User::where('email' , $r->email)->first();
+      if($TheUser != null){
+        //Get the code and send it
+        Mail::to($TheUser->email)->send(new ResetPasswordMail($TheUser));
+        return back()->withSuccess('If the email exists , You will recive an email from us shortly');
+      }else{
+        //Do Nothing Basically ...
+        return back()->withSuccess('If the email exists , You will recive an email from us shortly');
+      }
+    }
+  }
+  public function resetFinalStep($code){
+    $TheUser = User::where('code' , $code)->first();
+    if($TheUser != null){
+      return view('users.reset-final' , compact('code'));
+      dd($TheUser);
+      //There is a User with this code
+    }else{
+      abort(404);
+    }
+  }
+  public function postResetFinalStep(Request $r , $code){
+    //Validate the request 
+    $Rules = [
+      'email' => 'required|email',
+      'password' => 'required|min:7',
+      'password' => 'min:6|required_with:password_conf|same:password_conf'
+    ];
+    $validator = Validator::make($r->all() , $Rules);
+    if($validator->fails()){
+      return back()->withErrors($validator->errors()->all());
+    }else{
+      //Actually Reset the password
+      //Get the user by the email and compare the code
+      $TheUser = User::where('email' , $r->email)->first();
+      if($TheUser->code == $code){
+        //Life is good, keep going
+        $TheUser->update(['password' => Hash::make($r->password)]);
+        Auth::loginUsingId($TheUser->id);
+        return redirect()->route('home')->withSuccess('Your Password Has Been Changed !');
+      }else{
+        return back()->withErrors('Please use your registered account email');
+      }
+    }
+  }
+  //Profile Part 
+  public function getProfile(){
+    if(auth()->check()){
+      //Continue ...
+      $TheUser = auth()->user();
+      return view('users.profile' , compact('TheUser'));
+    }else{
+      abort(403);
+    }
+  }
+  public function updateProfile(Request $r){
+     //Validate the Request
+     $Rules = [
+      'name' => 'required|min:4|max:50',
+      'email' => 'required|email',
+      'image' => 'nullable|image|max:5128',
+      'password' => 'required_with:password_current'
+    ];
+    $ErrorMessages = [
+      'name.required' => 'Your name is required',
+      'name.min' => 'Your name can\'t be less than 4 letters',
+      'name.max' => 'Your name can\'t be longer than 50 letters',
+      'email.required' => 'Your email is required',
+      'email.email' => 'Your email is invalid',
+      'email.unique' => 'This email is already taken',
+      'image.image' => 'This image file is invalid',
+      'image.max' => 'The image is too large , 5 MB is the Maximum amount',
+      'password.required' => 'The password is required',
+      'password.min' => 'The password can\'t be less than 7 letters',
+      'password.same' => 'Password confirmation doesn\'t match',
+    ];
+    $validator = Validator::make($r->all() , $Rules , $ErrorMessages);
+    if($validator->fails()){
+      return back()->withErrors($validator->errors()->all());
+    }else{
+      //Check if the logged in use is the same user
+      if(auth()->user()->id == $r->id){
+        //The Current Data
+        $TheUser = User::findOrFail($r->id);
+        //Update the data
+        $UserData = $r->except(['image' , 'password_current']);
+        if($r->has('image')){
+          //Handle the user image
+          $UserData['image'] = $r->id.'.'.$r->image->getClientOriginalExtension();
+          $r->image->storeAs('images/users' , $UserData['image']);
+        }
+        if($r->has('password_current') && $r->has('password')){
+          //Validate the Passwords #The Current Pass is the same ?
+          if(Hash::check($r->password_current,$TheUser->password)){
+            //The Current Pass is True , Update the password
+            $UserData['password'] = Hash::make($r->password);
+          }else{
+            return back()->withErrors("Current Password is not correct");
+          }
+        }
+        $TheUser->update($UserData);
+        return back()->withSuccess('Your Info Has Been Updated');
+      }else{
+        abort(403);
+      }
+
+    }
   }
   //Admin Panel Stuff
   public function getHome(){

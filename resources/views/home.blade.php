@@ -20,7 +20,6 @@
 		</div>
 	</section>
 	<!--================End Home Banner Area =================-->
-
 	<!--================Hot Deals Area =================-->
 	<section class="hot_deals_area section_gap">
 		<div class="container-fluid">
@@ -96,7 +95,7 @@
 									<a href="#"><i class="lnr lnr-cart"></i></a>
 								</div>
 							</div>
-							<a href="#">
+							<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
 								<h4>{{$Product->local_title}}</h4>
 							</a>
 							<h5>€{{$Product->price}}</h5>

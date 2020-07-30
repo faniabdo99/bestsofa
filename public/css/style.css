@@ -35,6 +35,27 @@ Table of Content:
 
 =====================================================================*/
 /*Page Specific*/
+/*font Variables*/
+/*Color Variables*/
+/*=================== fonts ====================*/
+.col {
+  flex: 0 0 20%;
+}
+@media (max-width: 480px) {
+  .col {
+    flex: 0 0 100% !important;
+  }
+}
+@media (max-width: 991px) {
+  .col {
+    flex: 0 0 50%;
+  }
+}
+
+.forgot_password_link {
+  color: #206fa1;
+}
+
 .social-login-icons ul {
   display: flex;
   justify-content: flex-start;
@@ -81,6 +102,91 @@ Table of Content:
   background-color: #31497a;
 }
 
+.user_profile .edit_profile_btn {
+  background-color: #206fa1;
+  color: #fff;
+  padding: 4px 15px;
+  position: absolute;
+  right: 5%;
+  top: -2%;
+  border-radius: 4px;
+}
+.user_profile #update-modal label {
+  font-size: 0.9em;
+  font-weight: bold;
+  display: block;
+  color: #333;
+}
+.user_profile #update-modal input {
+  width: 100%;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: none;
+  background-color: #e9e9e9;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+.user_profile .user_image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid #206fa1;
+}
+.user_profile .user_name {
+  font-size: 2em;
+  color: #206fa1;
+}
+.user_profile .user_data_list {
+  list-style-type: none;
+  padding: 0;
+}
+.user_profile .user_data_list li {
+  margin-bottom: 15px;
+}
+.user_profile .more_info_block {
+  display: none;
+  transition: all ease 0.3s;
+}
+.user_profile .toggle_more_info:hover .more_info_block {
+  display: block;
+  transition: all ease 0.3s;
+}
+.user_profile .progress_bar_badge {
+  background-color: #206fa1;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+}
+.user_profile .orders_list h2 {
+  font-size: 1.2em;
+}
+.user_profile .orders_list .orders_list_element {
+  padding: 0;
+  list-style-type: none;
+}
+.user_profile .orders_list .orders_list_element li.single_order_item {
+  background-color: #e9e9e9;
+  padding: 15px;
+}
+.user_profile .orders_list .orders_list_element li.single_order_item .single_order_image {
+  margin-right: 25px;
+}
+.user_profile .orders_list .orders_list_element li.single_order_item .single_order_image img {
+  width: 100px;
+  height: 100px;
+}
+.user_profile .orders_list .orders_list_element li.single_order_item .single_order_data h3 {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.user_profile .orders_list .orders_list_element li.single_order_item .single_order_data ul {
+  padding: 0;
+  list-style-type: none;
+}
+.user_profile .orders_list .orders_list_element li.single_order_item .single_order_data a {
+  font-weight: bold;
+}
+
 /*----------------------------------------------------*/
 /*font Variables*/
 /*Color Variables*/
@@ -104,13 +210,13 @@ Table of Content:
 body {
   line-height: 24px;
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
   color: #777777;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
 }
 
@@ -222,7 +328,7 @@ a:hover, a:focus {
   }
 }
 .main_title h2 {
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 36px;
   color: #222222;
   margin-bottom: 12px;
@@ -230,7 +336,7 @@ a:hover, a:focus {
 }
 .main_title p {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
   line-height: 24px;
   color: #777777;
@@ -299,7 +405,7 @@ a:hover, a:focus {
   margin-right: 45px;
 }
 .header_area .navbar .nav .nav-item .nav-link {
-  font: 500 12px/80px "Muli", sans-serif;
+  font: 500 12px/80px "Poppins", sans-serif;
   text-transform: uppercase;
   color: #222222;
   padding: 0px;
@@ -449,7 +555,7 @@ a:hover, a:focus {
   line-height: 40px;
   color: #777777;
   font-size: 12px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
   margin: 0px;
   text-transform: uppercase;
@@ -484,7 +590,7 @@ a:hover, a:focus {
   background: #f9f9ff;
   padding: 0px 19px;
   font-size: 12px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   color: #777777;
   transition: all 300ms linear 0s;
@@ -503,7 +609,7 @@ a:hover, a:focus {
   background: #206fa1;
   padding: 0px 19px;
   font-size: 12px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   color: #fff;
   transition: all 300ms linear 0s;
@@ -521,7 +627,7 @@ a:hover, a:focus {
   border-radius: 3px;
   line-height: 28px;
   font-size: 12px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   padding-left: 19px;
   padding-right: 36px;
@@ -577,7 +683,7 @@ a:hover, a:focus {
 }
 .home_banner_area .banner_inner .banner_content h3 {
   font-size: 60px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   line-height: 66px;
   margin-bottom: 20px;
@@ -586,7 +692,7 @@ a:hover, a:focus {
 .home_banner_area .banner_inner .banner_content p {
   font-size: 14px;
   line-height: 24px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
   color: #ffffff;
 }
@@ -637,7 +743,7 @@ a:hover, a:focus {
 .blog_banner .banner_inner .blog_b_text h2 {
   font-size: 60px;
   font-weight: 500;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   line-height: 66px;
   margin-bottom: 15px;
 }
@@ -684,7 +790,7 @@ a:hover, a:focus {
 .banner_area .banner_inner .banner_content h2 {
   color: #ffffff;
   font-size: 48px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-bottom: 12px;
   font-weight: 500;
   margin-top: 120px;
@@ -692,7 +798,7 @@ a:hover, a:focus {
 .banner_area .banner_inner .banner_content .page_link a {
   font-size: 14px;
   color: #ffffff;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-right: 32px;
   position: relative;
 }
@@ -803,7 +909,7 @@ a:hover, a:focus {
 }
 .causes_item .causes_text h4 {
   color: #222222;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 15px;
@@ -827,7 +933,7 @@ a:hover, a:focus {
   line-height: 50px;
   background: #206fa1;
   color: #fff;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 500;
 }
@@ -954,7 +1060,7 @@ a:hover, a:focus {
   padding-bottom: 20px;
 }
 .blog_info .post_tag a {
-  font: 300 14px/21px "Muli", sans-serif;
+  font: 300 14px/21px "Poppins", sans-serif;
   color: #222222;
 }
 .blog_info .post_tag a:hover {
@@ -964,7 +1070,7 @@ a:hover, a:focus {
   color: #206fa1;
 }
 .blog_info .blog_meta li a {
-  font: 300 14px/20px "Muli", sans-serif;
+  font: 300 14px/20px "Poppins", sans-serif;
   color: #777777;
   vertical-align: middle;
   padding-bottom: 12px;
@@ -1570,31 +1676,31 @@ a:hover, a:focus {
   box-shadow: none;
   padding: 0px 15px;
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   color: #999999;
 }
 .reservation_form .form-group input.placeholder {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   color: #999999;
 }
 .reservation_form .form-group input:-moz-placeholder {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   color: #999999;
 }
 .reservation_form .form-group input::-moz-placeholder {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   color: #999999;
 }
 .reservation_form .form-group input::-webkit-input-placeholder {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   color: #999999;
 }
@@ -1608,7 +1714,7 @@ a:hover, a:focus {
 }
 .reservation_form .form-group .res_select .current {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   color: #999999;
 }
@@ -1662,7 +1768,7 @@ a:hover, a:focus {
   background: #206fa1;
   padding: 0px 30px;
   color: #fffdff;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 38px;
@@ -1722,7 +1828,7 @@ a:hover, a:focus {
 .contact_info .info_item h6 {
   font-size: 16px;
   line-height: 24px;
-  color: "Muli", sans-serif;
+  color: "Poppins", sans-serif;
   font-weight: bold;
   margin-bottom: 0px;
   color: #222222;
@@ -1744,7 +1850,7 @@ a:hover, a:focus {
   line-height: 26px;
   color: #999;
   border: 1px solid #eeeeee;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   border-radius: 0px;
   padding-left: 20px;
 }
@@ -1807,7 +1913,7 @@ a:hover, a:focus {
   text-align: center;
   color: #206fa1;
   padding-bottom: 10px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .modal-message .modal-dialog .modal-content .modal-header p {
   display: block;
@@ -1840,7 +1946,7 @@ a:hover, a:focus {
 .h_form_inner h4 {
   color: #fff;
   font-size: 36px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   padding-bottom: 70px;
   padding-top: 120px;
 }
@@ -1860,30 +1966,30 @@ a:hover, a:focus {
   padding: 0px 15px;
   line-height: 50px;
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
 }
 .home_contact_form .form-group input.placeholder {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
   opacity: 0.5;
 }
 .home_contact_form .form-group input:-moz-placeholder {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
   opacity: 0.5;
 }
 .home_contact_form .form-group input::-moz-placeholder {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
   opacity: 0.5;
 }
 .home_contact_form .form-group input::-webkit-input-placeholder {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
   opacity: 0.5;
 }
@@ -1898,31 +2004,31 @@ a:hover, a:focus {
   box-shadow: none;
   padding: 15px 15px;
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
   resize: none;
 }
 .home_contact_form .form-group textarea.placeholder {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
   opacity: 0.5;
 }
 .home_contact_form .form-group textarea:-moz-placeholder {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
   opacity: 0.5;
 }
 .home_contact_form .form-group textarea::-moz-placeholder {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
   opacity: 0.5;
 }
 .home_contact_form .form-group textarea::-webkit-input-placeholder {
   font-size: 13px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
   opacity: 0.5;
 }
@@ -3344,7 +3450,7 @@ h6 {
   width: 40%;
   right: 30%;
   padding: 15px;
-  background-color: #f7f7f7;
+  background-color: #e9e9e9;
   text-align: center;
   font-size: 14px;
   z-index: 99999;
@@ -3366,21 +3472,20 @@ h6 {
 .main_btn {
   display: inline-block;
   background: #206fa1;
-  padding: 0px 30px;
+  padding: 0px 20px;
   color: #fff;
-  font-family: "Muli", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-size: 14px;
   font-weight: 500;
-  line-height: 48px;
+  line-height: 35px;
   border: 1px solid #206fa1;
-  border-radius: 0px;
   outline: none !important;
   box-shadow: none !important;
   text-align: center;
   border: 1px solid #206fa1;
   cursor: pointer;
   transition: all 300ms linear 0s;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 .main_btn:hover {
   background: transparent;
@@ -3392,7 +3497,7 @@ h6 {
   background: #206fa1;
   padding: 0px 32px;
   color: #fff;
-  font-family: "Muli", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-size: 13px;
   font-weight: 500;
   line-height: 38px;
@@ -3414,7 +3519,7 @@ h6 {
   background: #206fa1;
   padding: 0px 30px;
   color: #fff;
-  font-family: "Muli", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 38px;
@@ -3437,7 +3542,7 @@ h6 {
   background: #f9f9ff;
   padding: 0px 35px;
   color: #222222;
-  font-family: "Muli", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-size: 13px;
   font-weight: 500;
   line-height: 34px;
@@ -3467,7 +3572,7 @@ h6 {
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
+  font-family: "Mulish", sans-serif;
   line-height: 50px;
   border-radius: 5px;
 }
@@ -3488,7 +3593,7 @@ h6 {
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
+  font-family: "Mulish", sans-serif;
   line-height: 50px;
   border-radius: 5px;
 }
@@ -3703,7 +3808,7 @@ h6 {
 }
 .cat_widgets .list li a {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #222222;
 }
 .cat_widgets .list li .list {
@@ -3723,7 +3828,7 @@ h6 {
 .p_filter_widgets h4 {
   color: #222222;
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
   margin-bottom: 22px;
   margin-top: 10px;
@@ -3734,7 +3839,7 @@ h6 {
 .p_filter_widgets .list li a {
   padding-left: 30px;
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
   color: #777777;
   position: relative;
@@ -3792,7 +3897,7 @@ h6 {
   font-size: 14px;
   font-weight: normal;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-top: 15px;
 }
 .p_filter_widgets .range_item input {
@@ -3801,29 +3906,29 @@ h6 {
   width: 100px;
   font-size: 14px;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-top: 9px;
   padding-left: 3px;
 }
 .p_filter_widgets .range_item input.placeholder {
   font-size: 14px;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .p_filter_widgets .range_item input:-moz-placeholder {
   font-size: 14px;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .p_filter_widgets .range_item input::-moz-placeholder {
   font-size: 14px;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .p_filter_widgets .range_item input::-webkit-input-placeholder {
   font-size: 14px;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .product_top_bar {
@@ -3843,7 +3948,7 @@ h6 {
 }
 .product_top_bar .left_dorp .sorting span {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #555555;
 }
 .product_top_bar .left_dorp .sorting .list {
@@ -3852,7 +3957,7 @@ h6 {
 }
 .product_top_bar .left_dorp .sorting .list li {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #555555;
 }
 .product_top_bar .left_dorp .sorting:after {
@@ -3877,7 +3982,7 @@ h6 {
 }
 .product_top_bar .left_dorp .show span {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #555555;
 }
 .product_top_bar .left_dorp .show .list {
@@ -3886,7 +3991,7 @@ h6 {
 }
 .product_top_bar .left_dorp .show .list li {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #555555;
 }
 .product_top_bar .left_dorp .show:after {
@@ -3916,7 +4021,7 @@ h6 {
   font-size: 14px;
   color: #222222;
   font-weight: normal;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .cat_page .pagination li.blank a {
   background: transparent;
@@ -3997,7 +4102,7 @@ h6 {
 }
 .s_product_text .list li a {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
   color: #555555;
 }
@@ -4053,7 +4158,7 @@ h6 {
 .product_count label {
   font-size: 14px;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
   padding-right: 10px;
 }
@@ -4155,7 +4260,7 @@ h6 {
 .product_description_area .tab-content .total_rate .rating_list h3 {
   font-size: 18px;
   color: #222222;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   margin-bottom: 10px;
 }
@@ -4180,7 +4285,7 @@ h6 {
 }
 .product_description_area .tab-content .table tbody tr td h5 {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
   color: #777777;
   margin-bottom: 0px;
@@ -4210,7 +4315,7 @@ h6 {
   margin-bottom: 0px;
   font-size: 14px;
   color: #222222;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-bottom: 8px;
 }
 .review_item .media .media-body i {
@@ -4228,7 +4333,7 @@ h6 {
   line-height: 32px;
   border-radius: 16px;
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #222222;
   position: absolute;
   right: 0px;
@@ -4285,7 +4390,7 @@ h6 {
   border-top: 0px;
   font-size: 14px;
   font-weight: 500;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #777777;
   border-bottom: 0px !important;
 }
@@ -4312,7 +4417,7 @@ h6 {
 .cart_inner .table tbody tr td h5 {
   font-size: 14px;
   color: #222222;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-bottom: 0px;
 }
 .cart_inner .table tbody tr td .product_count {
@@ -4374,7 +4479,7 @@ h6 {
   height: 40px;
   font-size: 14px;
   color: #cccccc;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
   margin-right: -3px;
   outline: none;
@@ -4383,25 +4488,25 @@ h6 {
 .cart_inner .table tbody tr.bottom_button td .cupon_text input.placeholder {
   font-size: 14px;
   color: #cccccc;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
 }
 .cart_inner .table tbody tr.bottom_button td .cupon_text input:-moz-placeholder {
   font-size: 14px;
   color: #cccccc;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
 }
 .cart_inner .table tbody tr.bottom_button td .cupon_text input::-moz-placeholder {
   font-size: 14px;
   color: #cccccc;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
 }
 .cart_inner .table tbody tr.bottom_button td .cupon_text input::-webkit-input-placeholder {
   font-size: 14px;
   color: #cccccc;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
 }
 .cart_inner .table tbody tr.bottom_button td .cupon_text .main_btn {
@@ -4465,7 +4570,7 @@ h6 {
   font-size: 14px;
   font-weight: normal;
   color: #222222;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -4528,7 +4633,7 @@ h6 {
 .check_title h2 {
   font-size: 14px;
   font-weight: normal;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   background: #f9f9ff;
   line-height: 40px;
   padding-left: 30px;
@@ -4556,31 +4661,31 @@ h6 {
   height: 40px;
   border-radius: 3px;
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #777777;
   font-weight: normal;
 }
 .returning_customer .contact_form .form-group input.placeholder {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #777777;
   font-weight: normal;
 }
 .returning_customer .contact_form .form-group input:-moz-placeholder {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #777777;
   font-weight: normal;
 }
 .returning_customer .contact_form .form-group input::-moz-placeholder {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #777777;
   font-weight: normal;
 }
 .returning_customer .contact_form .form-group input::-webkit-input-placeholder {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #777777;
   font-weight: normal;
 }
@@ -4599,7 +4704,7 @@ h6 {
   display: block;
   margin-top: 20px;
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #777777;
   font-weight: normal;
 }
@@ -4663,7 +4768,7 @@ h6 {
   padding: 0px 40px;
   color: #222222;
   text-transform: uppercase;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   border-radius: 3px;
 }
@@ -4716,7 +4821,7 @@ h6 {
 }
 .billing_details .contact_form .form-group .country_select .list li {
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
 }
 .billing_details .contact_form .form-group .creat_account #f-option2 {
@@ -4862,7 +4967,7 @@ h6 {
 .order_d_inner .details_item .list li a {
   font-size: 14px;
   color: #222222;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .order_d_inner .details_item .list li a span {
   width: 145px;
@@ -4887,7 +4992,7 @@ h6 {
 .order_details_table .table thead tr th {
   border-bottom: 1px solid #ddd;
   font-size: 14px;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
 }
 .order_details_table .table tbody tr td p {
@@ -4991,7 +5096,7 @@ h6 {
 .login_form .form-group a {
   font-size: 14px;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-top: 20px;
   display: block;
 }
@@ -5017,31 +5122,31 @@ h6 {
   border-radius: 0px;
   font-size: 14px;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
 }
 .tracking_box_area .tracking_box_inner .tracking_form .form-group input.placeholder {
   font-size: 14px;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
 }
 .tracking_box_area .tracking_box_inner .tracking_form .form-group input:-moz-placeholder {
   font-size: 14px;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
 }
 .tracking_box_area .tracking_box_inner .tracking_form .form-group input::-moz-placeholder {
   font-size: 14px;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
 }
 .tracking_box_area .tracking_box_inner .tracking_form .form-group input::-webkit-input-placeholder {
   font-size: 14px;
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: normal;
 }
 .tracking_box_area .tracking_box_inner .tracking_form .form-group:last-child {
@@ -5079,7 +5184,7 @@ h6 {
   z-index: 9;
   cursor: pointer;
   -webkit-transition: all 0.25s linear;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   color: #222222;
   font-size: 13px;
@@ -5184,7 +5289,7 @@ h6 {
 }
 .says_item h5 {
   color: #777777;
-  font-family: "Muli", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 14px;
   margin-bottom: 32px;

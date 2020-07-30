@@ -21,8 +21,8 @@
 
                     @auth
                     <li>
-                        <a href="login.html">
-                            {{auth()->user()->name}}
+                        <a href="{{route('profile')}}">
+                            My Account
                         </a>
                     </li>
                     @if (auth()->user()->role == 2)

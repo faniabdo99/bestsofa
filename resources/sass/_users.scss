@@ -1,3 +1,8 @@
+@import "variables";
+//Login Page
+.forgot_password_link{
+  color : $baseColor;
+}
 //Social Login Buttons
 .social-login-icons{
   ul{
@@ -40,6 +45,104 @@
         &:hover{
           transition: all ease .3s;
           background-color: #31497a;
+        }
+      }
+    }
+  }
+}
+
+//Profile
+.user_profile{
+  .edit_profile_btn{
+    background-color: $baseColor;
+    color: #fff;
+    padding: 4px 15px;
+    position: absolute;
+    right: 5%;
+    top: -2%;
+    border-radius: 4px;
+  }
+  #update-modal{
+    label{
+      font-size: 0.9em;
+      font-weight: bold;
+      display: block;
+      color: #333;
+    }
+    input{
+      width: 100%;
+      padding: 4px 8px;
+      border-radius: 4px;
+      border:none;
+      background-color: $lightgrey;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+  }
+  .user_image{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid $baseColor;
+  }
+  .user_name{
+    font-size: 2em;
+    color:$baseColor;
+  }
+  .user_data_list{
+    list-style-type: none;
+    padding:0;
+    li{
+      margin-bottom: 15px;
+    }
+  }
+  .more_info_block{
+    display: none;
+    transition: all ease 0.3s;
+  }
+  .toggle_more_info:hover{
+    .more_info_block{
+      display: block;
+      transition: all ease 0.3s; 
+    }
+  }
+  .progress_bar_badge{
+    background-color: $baseColor;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+  }
+  //Orders Section 
+  .orders_list{
+    h2{
+      font-size: 1.2em;
+    }
+    .orders_list_element{
+      padding: 0;
+      list-style-type: none;
+      li.single_order_item{
+        background-color: $lightgrey;
+        padding: 15px;
+        .single_order_image{
+          margin-right: 25px;
+          img{
+            width: 100px;
+            height: 100px;
+          }
+        }
+        .single_order_data{
+          h3{
+            font-size: 1.3em;
+            font-weight: bold;
+          }
+          ul{
+            padding: 0;
+            list-style-type: none;
+          }
+          a{
+            font-weight: bold;
+          }
+          
         }
       }
     }
