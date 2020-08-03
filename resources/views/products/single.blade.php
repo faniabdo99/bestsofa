@@ -3,22 +3,7 @@
 	<!--================Header Menu Area =================-->
     @include('layout.navbar')
 	<!--================Header Menu Area =================-->
-	<!--================Home Banner Area =================-->
-	<section class="banner_area">
-		<div class="banner_inner d-flex align-items-center">
-			<div class="container">
-				<div class="banner_content text-center">
-					<h2>Single Product Page</h2>
-					<div class="page_link">
-						<a href="index.html">Home</a>
-						<a href="category.html">Category</a>
-						<a href="single-product.html">Product Details</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--================End Home Banner Area =================-->
+
 
 	<!--================Single Product Area =================-->
 	<div class="product_image_area">
@@ -41,11 +26,11 @@
 							</ol>
 							<div class="carousel-inner">
 								<div class="carousel-item active">
-                                     <img src="{{$TheProduct->main_image}}" alt="{{$TheProduct->local_title}}">
+                                     <img class="w-100" src="{{$TheProduct->main_image}}" alt="{{$TheProduct->local_title}}">
 								</div>
                                 @foreach ($TheProduct->GalleryImages as $GalleryImage)
 								<div class="carousel-item">
-									<img class="d-block w-100" src="{{$GalleryImage->image_path}}" alt="{{$TheProduct->local_title}}">
+									<img class="w-100" src="{{$GalleryImage->image_path}}" alt="{{$TheProduct->local_title}}">
 								</div>
                                 @endforeach
                                     
@@ -53,7 +38,7 @@
 							</div>
 						</div>
                         @else
-                            <img src="{{$TheProduct->main_image}}" alt="{{$TheProduct->local_title}}">
+                            <img class="w-100" src="{{$TheProduct->main_image}}" alt="{{$TheProduct->local_title}}">
                         @endif
 
 					</div>
@@ -137,7 +122,7 @@
 										<h5>Width</h5>
 									</td>
 									<td>
-										<h5>@if($TheProduct->width){{$TheProduct->width}}@else Not Available @endif</h5>
+										<h5>@if($TheProduct->width){{$TheProduct->width}}CM @else Not Available @endif</h5>
 									</td>
 								</tr>
 								<tr>
@@ -146,7 +131,7 @@
 										<h5>Height</h5>
 									</td>
 									<td>
-                                        <h5>@if($TheProduct->height){{$TheProduct->height}}@else Not Available @endif</h5>
+                                        <h5>@if($TheProduct->height){{$TheProduct->height}}CM @else Not Available @endif</h5>
 									</td>
 								</tr>
 								<tr>
@@ -154,7 +139,7 @@
 										<h5>Weight</h5>
 									</td>
 									<td>
-                                        <h5>@if($TheProduct->weight){{$TheProduct->weight}}@else Not Available @endif</h5>
+                                        <h5>@if($TheProduct->weight){{$TheProduct->weight}}KG @else Not Available @endif</h5>
 									</td>
 								</tr>
 							</tbody>

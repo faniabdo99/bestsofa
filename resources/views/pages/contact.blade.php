@@ -24,7 +24,7 @@
     <section class="contact_area p_120">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="contact_info">
                         <div class="info_item">
                             <i class="lnr lnr-home"></i>
@@ -34,7 +34,7 @@
                         <div class="info_item">
                             <i class="lnr lnr-phone-handset"></i>
                             <h6>
-                                <a href="#">+32 522 01018</a>
+                                <a href="tel:+3252201018">+32 522 01018</a>
                             </h6>
                             <p>Mon to Fri 9am to 6 pm</p>
                         </div>
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-lg-8">
                     <form class="row contact_form" action="{{route('contact.post')}}" method="post">
                         @csrf
                         <div class="col-md-6">
@@ -64,7 +64,7 @@
                               <input type="number" class="form-control" name="phone_number" value="{{old('phone_number' ?? '')}}" placeholder="Enter Phone Number" required>
                             </div>
                             <div class="form-group">
-                                <select class="form-control w-100" name="country" required>
+                                <select class="form-control" name="country" required>
                                     <option value="">Choose Your Country</option>
                                     <option value="Afghanistan">Afghanistan</option>
                                     <option value="Åland Islands">Åland Islands</option>

@@ -5,7 +5,6 @@
 <script src="{{url('public/js')}}/bootstrap.min.js"></script>
 <script src="{{url('public/js')}}/stellar.js"></script>
 <script src="{{url('public/assets')}}/lightbox/simpleLightbox.min.js"></script>
-<script src="{{url('public/assets')}}/nice-select/js/jquery.nice-select.min.js"></script>
 <script src="{{url('public/assets')}}/isotope/imagesloaded.pkgd.min.js"></script>
 <script src="{{url('public/assets')}}/isotope/isotope-min.js"></script>
 <script src="{{url('public/assets')}}/owl-carousel/owl.carousel.min.js"></script>

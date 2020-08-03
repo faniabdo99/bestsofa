@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="{{url('public/css')}}/font-awesome.min.css">
 	<link rel="stylesheet" href="{{url('public/assets')}}/owl-carousel/owl.carousel.min.css">
 	<link rel="stylesheet" href="{{url('public/assets')}}/lightbox/simpleLightbox.css">
-	<link rel="stylesheet" href="{{url('public/assets')}}/nice-select/css/nice-select.css">
 	<link rel="stylesheet" href="{{url('public/assets')}}/animate-css/animate.css">
 	<link rel="stylesheet" href="{{url('public/assets')}}/jquery-ui/jquery-ui.css">
 	<link href="https://fonts.googleapis.com/css2?family=Mulish&family=Poppins&display=swap" rel="stylesheet">
