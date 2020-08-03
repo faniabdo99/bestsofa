@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('role')->default(1);
             $table->integer('code');
             $table->integer('confirmed')->default(0);
-            $table->integer('auth_provider')->default('Signup');
+            $table->string('auth_provider')->default('Signup');
             $table->rememberToken();
             $table->timestamps();
         });
