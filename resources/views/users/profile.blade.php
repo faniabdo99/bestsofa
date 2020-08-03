@@ -13,7 +13,7 @@
                     <h1 class="user_name">{{$TheUser->name}}</h1>
                     <ul class="user_data_list">
                         <li><i class="fas fa-envelope"></i> {{$TheUser->email}}</li>
-                        <li>@if($TheUser->confirmed) <span class="text-success"><i class="fas fa-check"></i> Account Active</span> @else <a class="main_btn" href="#">Re Send Activation Link</a>@endif</li>
+                        <li>@if($TheUser->confirmed) <span class="text-success"><i class="fas fa-check"></i> Account Active</span> @else <a id="send_activate_link" action-route="{{route('user.sendActivateLink')}}" user-id="{{$TheUser->id}}" class="main_btn" href="javascript:;">Re Send Activation Link</a>@endif</li>
                     </ul>
                 </div>
                 <div class="col-6">

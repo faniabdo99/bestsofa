@@ -217,13 +217,13 @@ class UsersController extends Controller{
         //The Current Data
         $TheUser = User::findOrFail($r->id);
         //Update the data
-        $UserData = $r->except(['image' , 'password_current']);
+        $UserData = $r->except(['image' , 'password_current' , 'password']);
         if($r->has('image')){
           //Handle the user image
           $UserData['image'] = $r->id.'.'.$r->image->getClientOriginalExtension();
           $r->image->storeAs('images/users' , $UserData['image']);
         }
-        if($r->has('password_current') && $r->has('password')){
+        if($r->password_current != null && $r->password != null){
           //Validate the Passwords #The Current Pass is the same ?
           if(Hash::check($r->password_current,$TheUser->password)){
             //The Current Pass is True , Update the password
@@ -239,6 +239,37 @@ class UsersController extends Controller{
       }
 
     }
+  }
+  public function sendActivateEmail(Request $r){
+    $TheUser = User::findOrFail($r->id);
+    if(!$TheUser->confirmed){
+      //Send The Email
+      Mail::to($TheUser->email)->send(new WelcomeNewUser($TheUser));
+      return "We Sent You Activation Email !";
+    }else{
+      return "Your Account is Active";
+    }
+  }
+  public function activateAccount($code){
+    //Chech if the code exists
+    $TheUser = User::where('code' , $code)->first();
+    if($TheUser != null){
+      //Activate the user
+      if($TheUser->confirmed){
+        $OldState = "Confirmed";
+        $CurrentState = "Confirmed";
+        return view('users.activate' , compact('OldState' , 'CurrentState'));
+      }else{
+        $TheUser->confirmed = 1;
+        $TheUser->save();
+        $OldState = "NotConfirmed";
+        $CurrentState = "Confirmed";
+        return view('users.activate' , compact('OldState' , 'CurrentState'));
+      }
+    }else{
+      abort(404);
+    }
+    
   }
   //Admin Panel Stuff
   public function getHome(){

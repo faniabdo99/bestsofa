@@ -435,3 +435,20 @@ function ShowNoto(className,text){
 
 })(jQuery)
 
+//================== Custom Jquery and Stuff ==========================
+//Send the activation link to the user , this action comes from the profile page in case the use account is not active.
+$('#send_activate_link').click(function(){
+    var ActionRoute = $(this).attr('action-route');
+    var UserId = $(this).attr('user-id');
+    $.ajax({
+        url : ActionRoute,
+        method: 'POST',
+        data : {'id':UserId},
+        success : function(response){
+            ShowNoto('noto-success' , response , 'Success');
+        },
+        error: function(response){
+            ShowNoto('noto-danger' , response , 'Error');
+        },
+    });
+});

@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function(){
   Route::get('logout' , 'UsersController@logout')->name('logout');
   Route::get('my-account' , 'UsersController@getProfile')->name('profile');
   Route::post('update-profile' , 'UsersController@updateProfile')->name('profile.update.post');
+  Route::get('activate-account/{code}' , 'UsersController@activateAccount')->name('account.activate');
 });
 //General Routes
 Route::get('contact' , 'ContactUsController@getContact')->name('contact.get');
