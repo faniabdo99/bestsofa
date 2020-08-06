@@ -5,8 +5,6 @@ function ShowNoto(className,text){
 }
 ;(function($){
     "use strict"
-	
-	
 	var nav_offset_top = $('header').height() + 50; 
     /*-------------------------------------------------------------------------------
 	  Navbar 
@@ -43,52 +41,10 @@ function ShowNoto(className,text){
         return false;
     });
 	
-	/*----------------------------------------------------*/
-    /*  Isotope Fillter js
-    /*----------------------------------------------------*/
-//	function gallery_isotope(){
-//        if ( $('.gallery_f_inner').length ){
-//            // Activate isotope in container
-//			$(".gallery_f_inner").imagesLoaded( function() {
-//                $(".gallery_f_inner").isotope({
-//                    layoutMode: 'fitRows',
-//                    animationOptions: {
-//                        duration: 750,
-//                        easing: 'linear'
-//                    }
-//                }); 
-//            });
-//			
-//            // Add isotope click function
-//            $(".gallery_filter li").on('click',function(){
-//                $(".gallery_filter li").removeClass("active");
-//                $(this).addClass("active");
-//
-//                var selector = $(this).attr("data-filter");
-//                $(".gallery_f_inner").isotope({
-//                    filter: selector,
-//                    animationOptions: {
-//                        duration: 450,
-//                        easing: "linear",
-//                        queue: false,
-//                    }
-//                });
-//                return false;
-//            });
-//        }
-//    }
-//    gallery_isotope();
-//	
-	
-	/*----------------------------------------------------*/
-    /*  MailChimp Slider
-    /*----------------------------------------------------*/
     function mailChimp(){
         $('#mc_embed_signup').find('form').ajaxChimp();
     }
     mailChimp();
-	
-	$('select').niceSelect();
 	
 	/*----------------------------------------------------*/
     /*  Simple LightBox js
@@ -100,43 +56,6 @@ function ShowNoto(className,text){
 		time: 1000
 	});
 	
-	
-	/*----------------------------------------------------*/
-    /*  Members Slider
-    /*----------------------------------------------------*/
-//    function members_slider(){
-//        if ( $('.member_slider').length ){
-//            $('.member_slider').owlCarousel({
-//                loop:true,
-//                margin: 30,
-//                items: 3,
-//                nav: false,
-//                autoplay: false,
-//                smartSpeed: 1500,
-//                dots:true, 
-//				navContainer: '.testimonials_area',
-//                navText: ['<i class="lnr lnr-arrow-up"></i>','<i class="lnr lnr-arrow-down"></i>'],
-//                responsiveClass: true,
-//                responsive: {
-//                    0: {
-//                        items: 1,
-//                    },
-//                    768: {
-//                        items: 2,
-//                    },
-//                    992: {
-//                        items: 3,
-//                    },
-//                }
-//            })
-//        }
-//    }
-//    members_slider();
-	
-	
-	/*----------------------------------------------------*/
-    /*  Members Slider
-    /*----------------------------------------------------*/
     function product_slider(){
         if ( $('.feature_p_slider').length ){
             $('.feature_p_slider').owlCarousel({
@@ -451,4 +370,50 @@ $('#send_activate_link').click(function(){
             ShowNoto('noto-danger' , response , 'Error');
         },
     });
+});
+//Ask Question about a Product 
+$("#submit-ask-question-about-product-form").click(function(e){
+    e.preventDefault();
+    var ActionRoute = $(this).attr('action-route');
+    var FormData = $(this).parent().parent().serialize();
+    $.ajax({
+        url : ActionRoute,
+        method: 'POST',
+        data : FormData,
+        success : function(response){
+            ShowNoto('noto-success' , response , 'Success');
+        },
+        error: function(response){
+            ShowNoto('noto-danger' , response.responseJSON[0] , 'Error');
+        },
+    });
+});
+//Toggle Navbr Sidebar 
+//Open
+$('.open-sidebar').click(function(){
+    $(this).parent().next('.sidebar-item').fadeIn('fast').css('right' , 0);
+})
+//Close 
+$('.close-sidebar').click(function(){
+    $(this).parent().parent().css('right' , '-25%').fadeOut('fast');
+});
+//Like Items 
+$('.like_item').click(function(){
+    $(this).toggleClass('bg-primary').toggleClass('text-white');
+    var ProductId = $(this).attr('product-id');
+    var UserId = $('meta[name=user_id]').attr("content");
+    $.ajax({
+        'method':'post',
+        'url' : $('meta[name=base_url]').attr('content') + '/api/like-item',
+        'data' : {
+            'user_id' : UserId ,
+            'product_id' : ProductId
+        },
+        success: function(response){
+            ShowNoto('noto-success' , response , 'Success');
+        },
+        error: function (response){
+            ShowNoto('noto-danger' , response.responseText , 'Error');
+        }
+    })
 });

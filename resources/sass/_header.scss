@@ -324,3 +324,13 @@
         }
     }
 }
+.navbar-dropdown-menu{
+    a.dropdown-item{
+        color:$pfont;
+    }
+    &:hover{
+        a.dropdown-item{
+            color:$pfont;
+        }   
+    }
+}

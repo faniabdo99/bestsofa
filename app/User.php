@@ -24,4 +24,14 @@ class User extends Authenticatable
             return $this->image;
         }
     }
+    public function AddressCompleted(){
+        if(empty($this->country) || empty($this->zip_code) || empty($this->city) || empty($this->street_address) || empty($this->phone_number)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    public function LikedProducts(){
+        return Favourite::where('user_id' , $this->id)->get();
+    }
 }

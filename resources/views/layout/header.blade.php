@@ -18,4 +18,9 @@
 	<!-- main css -->
 	<link rel="stylesheet" href="{{url('public/css')}}/style.css">
 	<link rel="stylesheet" href="{{url('public/css')}}/responsive.css">
+	<!-- Advanced Meta Tags -->
+	@auth
+	<meta name="user_id" content="{{auth()->user()->id}}">
+	@endauth
+	<meta name="base_url" content="{{url('/')}}" >
 </head>

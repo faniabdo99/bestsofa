@@ -52,10 +52,12 @@
                                                 <input type="text" class="form-control" name="price" value="{{ old('price') ?? ''}}" placeholder="Please Enter The Item Price in EUR" required>
                                             </div>
                                             <div class="form-group">
-                                                <label>
-                                                    Count in Inventory
-                                                </label>
+                                                <label>Count in Inventory</label>
                                                 <input type="number" class="form-control" name="inventory" placeholder="Please Enter a Number" value="{{ old('inventory') ?? '0'}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Fake Inventory</label>
+                                                <input type="number" class="form-control" name="fake_inventory" placeholder="Please Enter a Number" value="{{ old('fake_inventory') ?? '0'}}" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>

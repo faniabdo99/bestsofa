@@ -29,7 +29,7 @@
                                             <tr>
                                                 <td>{{$Single->title}}</td>
                                                 <td>{{$Single->Category->local_title}}</td>
-                                                <td>{{$Single->price}}$</td>
+                                                <td>{{$Single->price}} €</td>
                                                 <td>{{$Single->inventory_value}}</td>
                                                 <td>
                                                     <a href="{{route('admin.products.getEdit' , $Single->id)}}" class="btn btn-primary">Edit</a>

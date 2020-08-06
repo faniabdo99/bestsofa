@@ -12,4 +12,7 @@ Route::post('/product/localize' , 'ProductsController@postLocalize')->name('admi
 //Users
 Route::post('delete-user' , 'UsersController@delete')->name('admin.user.delete');
 Route::post('activate-deactivate-user' , 'UsersController@ToggleActive')->name('admin.user.toggleActive');
+//*********non-Admin API Routes 
 Route::post('send-activate-link' , 'UsersController@sendActivateEmail')->name('user.sendActivateLink');
+Route::post('ask-question-about-product' , 'ProductsController@askQuestion')->name('product.askQuestion');
+Route::post('like-item' , 'FavouriteController@ToggleFavourite')->name('favourite.toggle');

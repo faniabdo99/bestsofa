@@ -26,7 +26,8 @@ Route::get('contact' , 'ContactUsController@getContact')->name('contact.get');
 Route::post('contact' , 'ContactUsController@postContact')->name('contact.post');
 
 //Products Routes 
-Route::group(['prefix'=>'product'] , function (){
+Route::group(['prefix'=>'products'] , function (){
+  Route::get('/' , 'ProductsController@getAll')->name('product.home');
   Route::get('{id}/{slug}' , 'ProductsController@getSingle')->name('product.single');
 });
 //Admin Only Routes

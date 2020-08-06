@@ -266,28 +266,28 @@
                 font-weight: normal;
                 color: $pfont;
                 position: relative;
-                &:before {
-                    content: "";
-                    height: 10px;
-                    width: 10px;
-                    border-radius: 50%;
-                    border: 1px solid $pfont;
-                    position: absolute;
-                    left: 0px;
-                    top: 5px;
-                    @include transition;
-                }
-                &:after {
-                    content: "";
-                    height: 4px;
-                    width: 4px;
-                    background: #fff;
-                    border-radius: 50%;
-                    position: absolute;
-                    left: 3px;
-                    top: 8px;
-                    @include transition;
-                }
+                // &:before {
+                //     content: "";
+                //     height: 10px;
+                //     width: 10px;
+                //     border-radius: 50%;
+                //     border: 1px solid $pfont;
+                //     position: absolute;
+                //     left: 0px;
+                //     top: 5px;
+                //     @include transition;
+                // }
+                // &:after {
+                //     content: "";
+                //     height: 4px;
+                //     width: 4px;
+                //     background: #fff;
+                //     border-radius: 50%;
+                //     position: absolute;
+                //     left: 3px;
+                //     top: 8px;
+                //     @include transition;
+                // }
             }
             &.active,
             &:hover {

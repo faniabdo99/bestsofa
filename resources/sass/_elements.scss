@@ -1453,3 +1453,34 @@ h6 {
 .noto-danger{
 	border-left: 20px solid $danger;
 }
+//Sidebar 
+.sidebar-item{
+  transition: all ease .3s;
+  position: fixed;
+  width: 25%;
+  height: 100vh;
+  right: -25%;
+  top: 0;
+  background: #fff;
+  padding: 15px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  .sidebar-header{
+    margin-bottom: 50px;
+    span.close-sidebar{
+      display: block;
+      width: 40px;
+      height: 40px;
+      background-color: $baseColor;
+      border-radius: 50%;
+      text-align: center;
+      padding-top: 8px;
+      color:#fff;
+      transition: all ease 0.3s;
+      &:hover{
+        background-color: $baseColorHover;
+        transition: all ease 0.3s;
+        cursor:pointer;
+      }
+    }
+  }
+}

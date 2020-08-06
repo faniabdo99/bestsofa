@@ -18,10 +18,14 @@ class Product extends Model{
 
     //Non-Relation Methods
     public function getInventoryValueAttribute(){
-        if($this->inventory == 0){
-            return 9999999999;
-        }else{
+        if($this->fake_inventory == 0){
             return $this->inventory;
+        }else{
+            if($this->inventory > $this->fake_inventory){
+                return $this->fake_inventory;
+            }else{
+                return $this->inventory;
+            }
         }
     }
     public function getIsActiveAttribute(){
@@ -68,5 +72,32 @@ class Product extends Model{
     }
     public function GalleryImages(){
         return $this->hasMany(Product_Image::class);
+    }
+    public function LikedByUser(){
+        if(auth()->check()){
+            $isLiked = Favourite::where('user_id' , auth()->user()->id)->where('product_id' , $this->id)->count();
+            if($isLiked != 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+    public function getStatusClassAttribute(){
+        $StatuesArray = [];
+        if($this->status == 'Sold Out'){
+            $StatuesArray['text'] = 'text-danger';
+            $StatuesArray['background'] = 'bg-danger';
+        }elseif($this->status == 'Available'){
+            $StatuesArray['text'] = 'text-success';
+            $StatuesArray['background'] = 'bg-success';
+        }elseif($this->status == 'Pre-Order'){
+            $StatuesArray['text'] = 'text-warning';
+            $StatuesArray['background'] = 'bg-warning';
+        }else{
+            $StatuesArray['text'] = 'd-none';
+            $StatuesArray['background'] = 'd-none';
+        }
+        return $StatuesArray;
     }
 }

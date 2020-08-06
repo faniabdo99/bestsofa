@@ -86,21 +86,49 @@
 				</div>
 				<div class="row">
 					@forelse($PromotedProducts as $Product)
-					<div class="col col10">
-						<div class="f_p_item">
-							<div class="f_p_img">
-								<img class="img-fluid" src="{{$Product->main_image}}" alt="{{$Product->title}}">
-								<div class="p_icon">
-									<a href="#"><i class="lnr lnr-heart"></i></a>
-									<a href="#"><i class="lnr lnr-cart"></i></a>
+						@if($Product->status == 'Customers only')
+							@auth
+							<div class="col col10">
+								<div class="f_p_item">
+									<div class="f_p_img">
+										<img class="img-fluid" src="{{$Product->main_image}}" alt="{{$Product->title}}">
+										<div class="p_icon">
+											@auth
+											<a class="icon_btn like_item @if($Product->LikedByUser()) bg-primary text-white @endif" product-id="{{$Product->id}}" href="javascript:;">
+												<i class="lnr lnr lnr-heart"></i>
+											</a>
+											@endauth
+											<a href="#"><i class="lnr lnr-cart"></i></a>
+										</div>
+									</div>
+									<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
+										<h4>{{$Product->local_title}}</h4>
+									</a>
+									<h5>€{{$Product->price}}</h5>
 								</div>
 							</div>
-							<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
-								<h4>{{$Product->local_title}}</h4>
-							</a>
-							<h5>€{{$Product->price}}</h5>
+							@endauth
+						@else 
+						<div class="col col10">
+							<div class="f_p_item">
+								<div class="f_p_img">
+									<img class="img-fluid" src="{{$Product->main_image}}" alt="{{$Product->title}}">
+									<div class="p_icon">
+										@auth
+										<a class="icon_btn like_item @if($Product->LikedByUser()) bg-primary text-white @endif" product-id="{{$Product->id}}" href="javascript:;">
+											<i class="lnr lnr lnr-heart"></i>
+										</a>
+										@endauth
+										<a href="#"><i class="lnr lnr-cart"></i></a>
+									</div>
+								</div>
+								<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
+									<h4>{{$Product->local_title}}</h4>
+								</a>
+								<h5>€{{$Product->price}}</h5>
+							</div>
 						</div>
-					</div>
+						@endif
 					@empty 
 					<p>No Promoted Products Yet</p>
 					@endforelse

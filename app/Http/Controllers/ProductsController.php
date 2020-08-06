@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use Mail;
 //Models
 use App\Setting;
 use App\Category;
 use App\Product;
 use App\Product_Image;
 use App\Product_Local;
+//Mails
+use App\Mail\QuestionAboutProduct;
 class ProductsController extends Controller{
     private function getAllTags(){
         $TagsList = Product::all()->pluck('tags');
@@ -110,8 +113,8 @@ class ProductsController extends Controller{
             'inventory' => 'required|numeric',
             'min_order' => 'required|numeric',
             'weight' => 'numeric',
-            'height' => 'numeric',
-            'width' => 'numeric',
+            'height' => 'nullable|numeric',
+            'width' => 'nullable|numeric',
             'tax_rate' => 'required',
             'image' => 'image|max:45000000'
     ];
@@ -214,8 +217,40 @@ class ProductsController extends Controller{
 
 
     //Non-Admin Routes 
+    public function getAll(){
+        $Categories = Category::latest()->get();
+        $FiltersList = $this->getAllTags();
+        $Products = Product::latest()->get();
+        return view('products.index' , compact('Categories' , 'FiltersList' , 'Products'));
+    }
     public function getSingle($id , $slug){
         $TheProduct = Product::findOrFail($id);
         return view('products.single' , compact('TheProduct'));
+    }
+    public function askQuestion(Request $r){
+        //Validate the request 
+        $Rules = [
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required',
+            'country' => 'required',
+            'message' => 'required'
+        ];
+        $Messages = [
+            'name.required' => 'Your name is required !',
+            'email.email' => 'Your Email is invalid !',
+            'email.required' => 'Your email is required !',
+            'phone_number.required' => 'Your number is required !',
+            'country.required' => 'Your country is required !',
+            'message.required' => 'Your message is required !',
+        ];
+        $validator = Validator::make($r->all() , $Rules ,$Messages);
+        if($validator->fails()){
+            return response($validator->errors()->all() , 403);
+        }else{
+            //Send Message to The Admin 
+            Mail::to('admin@ukfashioshop.com')->send(new QuestionAboutProduct($r->all()));
+            return response("Your Question was recived m you'll hear from us soon");
+        }
     }
 }
