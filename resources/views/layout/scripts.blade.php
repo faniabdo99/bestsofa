@@ -12,4 +12,5 @@
 <script src="{{url('public/assets')}}/counter-up/jquery.waypoints.min.js"></script>
 <script src="{{url('public/assets')}}/counter-up/jquery.counterup.js"></script>
 <script src="{{url('public/js')}}/mail-script.js"></script>
+<script src="{{url('public/js')}}/js.cookie.min.js"></script>
 <script src="{{url('public/js')}}/theme.js"></script>

@@ -4,7 +4,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="img/favicon.png" type="image/png">
+	<link rel="icon" href="{{url('public')}}/img/logo.png" type="image/png">
 	<title>UK Fashion Shop - {{$PageTitle ?? 'Home'}}</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="{{url('public/css')}}/bootstrap.css">
@@ -23,4 +23,6 @@
 	<meta name="user_id" content="{{auth()->user()->id}}">
 	@endauth
 	<meta name="base_url" content="{{url('/')}}" >
+	<meta name="csrf_token" content="{{ csrf_token() }}" />
+
 </head>

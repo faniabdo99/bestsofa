@@ -98,13 +98,13 @@
 												<i class="lnr lnr lnr-heart"></i>
 											</a>
 											@endauth
-											<a href="#"><i class="lnr lnr-cart"></i></a>
+											<a href="javascript:;" class="add-to-cart" data-id="{{$Product->id}}"><i class="lnr lnr-cart"></i></a>
 										</div>
 									</div>
 									<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
 										<h4>{{$Product->local_title}}</h4>
 									</a>
-									<h5>€{{$Product->price}}</h5>
+									<h5 class="product-price-before-discount">€{{$Product->price}}</h5>
 								</div>
 							</div>
 							@endauth
@@ -119,13 +119,19 @@
 											<i class="lnr lnr lnr-heart"></i>
 										</a>
 										@endauth
-										<a href="#"><i class="lnr lnr-cart"></i></a>
+										<a href="javascript:;" class="add-to-cart" data-id="{{$Product->id}}"><i class="lnr lnr-cart"></i></a>
 									</div>
 								</div>
 								<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
 									<h4>{{$Product->local_title}}</h4>
 								</a>
-								<h5>€{{$Product->price}}</h5>
+								@if($Product->HasDiscount())							
+									<span class="product-price-before-discount">€{{$Product->price}}</span>
+									<h5 class="text-success">€{{$Product->FinalPrice}}</h5>
+								@else 
+									<h5>{{$Product->FinalPrice}} €</h5>
+								@endif
+						
 							</div>
 						</div>
 						@endif
@@ -138,7 +144,7 @@
 	</section>
 	<!--================End Feature Product Area =================-->
 
-	<!--================ Subscription Area ================-->
+	{{-- <!--================ Subscription Area ================-->
 	<section class="subscription-area section_gap">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -167,7 +173,7 @@
 			</div>
 		</div>
 	</section>
-	<!--================ End Subscription Area ================-->
+	<!--================ End Subscription Area ================--> --}}
 
 	<!--================ start footer Area  =================-->
   @include('layout.footer')

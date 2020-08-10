@@ -80,7 +80,7 @@ class UsersController extends Controller{
         if(auth()->attempt(['email' => $r->email , 'password' => $r->password] , $KeepLogin)){
                  return redirect()->route('home');
          }else{
-                return back()->withErrors('These info don\'t match our records !');
+                return back()->withErrors('These info don\'t match our records !')->withInput();
           }
       }
     }
@@ -269,7 +269,10 @@ class UsersController extends Controller{
     }else{
       abort(404);
     }
-    
+  }
+  public function getWishlist(){
+    $TheUser = auth()->user();
+    return view('users.wishlist' , compact('TheUser'));
   }
   //Admin Panel Stuff
   public function getHome(){
@@ -287,11 +290,11 @@ class UsersController extends Controller{
     if($User->confirmed == 1){
       return response([
         'successMessage' => 'User Activated',
-        'btnMessage' => 'De Activate'
+        'btnMessage' => 'Deactivate'
       ]);
     }else{
       return response([
-        'successMessage' => 'User De Activated',
+        'successMessage' => 'User Deactivated',
         'btnMessage' => 'Activate'
       ]);
     }

@@ -13,6 +13,7 @@
                     <h1 class="user_name">{{$TheUser->name}}</h1>
                     <ul class="user_data_list">
                         <li><i class="fas fa-envelope"></i> {{$TheUser->email}}</li>
+                        @if($TheUser->company_name)<li><i class="fas fa-home"></i> {{$TheUser->company_name}}</li>@endif
                         @if(!$TheUser->AddressCompleted())<li><span class="text-warning"><i class="fas fa-home"></i> Please Add Your Shipping Info</span></li>@endif
                         <li>@if($TheUser->confirmed) <span class="text-success">@else <a id="send_activate_link" action-route="{{route('user.sendActivateLink')}}" user-id="{{$TheUser->id}}" class="main_btn" href="javascript:;">Re Send Activation Link</a>@endif</li>
                     </ul>
@@ -341,7 +342,27 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-6 orders_list">
+                <div class="col-lg-6">
+                    <div class="profile_state_card">
+                            <h3 class="card_title"><i class="fas fa-shopping-basket"></i> My Orders (25)</h3>
+                            <p class="card_description">Click to view you orders list.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="{{route('wishlist')}}">
+                            <div class="profile_state_card">
+                                <h3 class="card_title"><i class="fas fa-heart"></i> My Wishlist ({{$TheUser->LikedProducts()->count()}})</h3>
+                                <p class="card_description">
+                                    @if($TheUser->LikedProducts()->count() == 0)
+                                    You don't have any items in your wishlist
+                                    @else 
+                                    Click to view you wishlist.
+                                    @endif
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                {{-- <div class="col-lg-6 orders_list">
                     <h2 class="text-dark">Orders History (0)</h2>
                     <ul class="orders_list_element">
                         <li class="single_order_item d-flex">
@@ -364,6 +385,29 @@
                         </li>
                     </ul>
                 </div>
+                <div class="col-lg-6 orders_list">
+                    <h2 class="text-dark">Wish List (0)</h2>
+                    <ul class="orders_list_element">
+                        <li class="single_order_item d-flex">
+                            <div class="single_order_image">
+                                <img src="https://placehold.it/200x200" alt="Product Title">
+                            </div>
+                            <div class="single_order_data">
+                                <h3>Item title here </h3>
+                                <div class="d-flex">
+                                    <ul class="mr-5">
+                                        <li>21PCs</li>
+                                        <li>245€</li>
+                                    </ul>
+                                    <ul>
+                                        <li>Week Ago</li>
+                                    </ul>
+                                </div>
+                                <a href="#">View Order</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div> --}}
             </div>
         </div>
     </section>

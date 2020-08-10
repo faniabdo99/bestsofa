@@ -3,6 +3,15 @@ function ShowNoto(className,text){
     $('body').append('<div class="noto"></div>');
     $('.noto').html(text).addClass(className).fadeIn('fast').delay(3000).fadeOut('fast');
 }
+function makeid(length) {
+    var result= '';
+    var characters= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
 ;(function($){
     "use strict"
 	var nav_offset_top = $('header').height() + 50; 
@@ -355,6 +364,10 @@ function ShowNoto(className,text){
 })(jQuery)
 
 //================== Custom Jquery and Stuff ==========================
+$.ajaxSetup({
+    headers:
+    { 'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content') }
+});
 //Send the activation link to the user , this action comes from the profile page in case the use account is not active.
 $('#send_activate_link').click(function(){
     var ActionRoute = $(this).attr('action-route');
@@ -416,4 +429,61 @@ $('.like_item').click(function(){
             ShowNoto('noto-danger' , response.responseText , 'Error');
         }
     })
+});
+//Add to Cart
+//Set the User Global Cookies 
+var GuestId = makeid(10);
+if(Cookies.get('guest_id') == undefined){
+    Cookies.set('guest_id', GuestId, { expires: 365 });
+}
+$('.add-to-cart').click(function(){
+    var ProductId = $(this).data('id');
+    var Quantity = $(this).parent().prev().find('.qty').val();
+    var UserId = $('meta[name=user_id]').attr('content');
+    $.ajax({
+        'method':'get',
+        'url' : $('meta[name=base_url]').attr('content') + '/api/add-item-to-cart',
+        'data' : {
+            '_token' : $('meta[name=csrf_token]').attr('content'),
+            'product_id' : ProductId,
+            'user_id' : UserId,
+            'qty' : Quantity,
+        },
+        success: function(response){
+            ShowNoto('noto-success' , response , 'Success');
+        },
+        error: function (response){
+            ShowNoto('noto-danger' , response.responseText , 'Error');
+        }
+    })
+});
+$('.cart-qty').keydown(function (e) {
+    if(e.keyCode == 38 || e.keyCode == 40){
+        e.preventDefault();
+        return false;
+    }
+});
+$('.cart-qty').change(function(){
+    var ActionRoute = $(this).data('target');
+    var ItemId = $(this).data('id');
+    var UserId = $(this).data('user');
+    var ItemValue = $(this).val();
+    $.ajax({
+        'method':'post',
+        'url' : ActionRoute,
+        'data' : {
+            'item_id' : ItemId,
+            'qty' : ItemValue,
+            'user_id' : UserId,
+        },
+        success: function(response){
+            ShowNoto('noto-success' , response , 'Success');
+            $('.update-cart-btn').html('Update Cart Data <i class="fas fa-circle text-success"></i>');
+        },
+        error: function (response){
+            ShowNoto('noto-danger' , 'Something Went Wrong' , 'Error');
+        }
+    })
+
+
 });

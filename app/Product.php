@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class Product extends Model{
     protected $guarded = [];
     //Relations Methods 
@@ -82,6 +82,41 @@ class Product extends Model{
                 return false;
             }
         }
+    }
+    public function HasDiscount(){
+        if($this->discount_id){
+            $TheDiscount = Discount::find($this->discount_id);
+            if($TheDiscount && Carbon::parse($TheDiscount->valid_until) > Carbon::today()){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+    public function getFinalPriceAttribute(){
+        if($this->discount_id){
+            //Check if there is a discount on this product 
+            $TheDiscount = Discount::find($this->discount_id);
+            if($TheDiscount && Carbon::parse($TheDiscount->valid_until) > Carbon::today()){
+                //Check the type -_-
+                if($TheDiscount->type == 'fixed'){
+                    $ThePrice = $this->price - $TheDiscount->amount;
+                }elseif($TheDiscount->type == 'percent'){
+                    $TheDiscountAmount = ($this->price * $TheDiscount->amount) / 100;
+                    $ThePrice = $this->price - $TheDiscountAmount;
+                }
+                return $ThePrice;
+            }else{
+                return $this->price;
+            }
+        }else{
+            return $this->price;
+        }
+    }
+    public function getTaxAmountAttribute(){
+        return ($this->final_price * $this->tax_rate) / 100;
     }
     public function getStatusClassAttribute(){
         $StatuesArray = [];

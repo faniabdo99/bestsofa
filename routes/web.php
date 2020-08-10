@@ -17,7 +17,8 @@ Route::middleware('guest')->group(function(){
 //Logged In Only Routes
 Route::middleware('auth')->group(function(){
   Route::get('logout' , 'UsersController@logout')->name('logout');
-  Route::get('my-account' , 'UsersController@getProfile')->name('profile');
+  Route::get('profile' , 'UsersController@getProfile')->name('profile');
+  Route::get('wishlist' , 'UsersController@getWishlist')->name('wishlist');
   Route::post('update-profile' , 'UsersController@updateProfile')->name('profile.update.post');
   Route::get('activate-account/{code}' , 'UsersController@activateAccount')->name('account.activate');
 });
@@ -27,7 +28,7 @@ Route::post('contact' , 'ContactUsController@postContact')->name('contact.post')
 
 //Products Routes 
 Route::group(['prefix'=>'products'] , function (){
-  Route::get('/' , 'ProductsController@getAll')->name('product.home');
+  Route::get('/{category?}' , 'ProductsController@getAll')->name('product.home');
   Route::get('{id}/{slug}' , 'ProductsController@getSingle')->name('product.single');
 });
 //Admin Only Routes
@@ -61,4 +62,16 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'] , function () {
   Route::prefix('users')->group(function(){
     Route::get('/' , 'UsersController@getHome')->name('admin.users.home');
   });
+  //Discount System
+  Route::prefix('discount')->group(function(){
+    Route::get('/' , 'DiscountController@getHome')->name('admin.discount.home');
+    Route::get('/new' , 'DiscountController@getNew')->name('admin.discount.getNew');
+    Route::post('/new' , 'DiscountController@postNew')->name('admin.discount.postNew');
+    Route::get('/edit/{id}' , 'DiscountController@getEdit')->name('admin.discount.getEdit');
+    Route::post('/edit/{id}' , 'DiscountController@postEdit')->name('admin.discount.postEdit');
+  });
 });
+//Cart Related Routes
+Route::get('api/add-item-to-cart' ,'CartController@addItem')->name('cart.add');
+Route::get('delete-from-cart/{cartId}/{userId}' ,'CartController@deleteItem')->name('cart.delete');
+Route::get('cart' , 'CartController@getCartPage')->name('cart');

@@ -882,6 +882,8 @@
                             img {
                                 border: 1px solid #eeeeee;
                                 border-radius: 3px;
+                                width: 100px;
+                                height: 100px;
                             }
                         }
                         .media-body {
@@ -984,101 +986,7 @@
                         }
                     }
                 }
-                &.shipping_area {
-                    td {
-                        &:nth-child(3) {
-                            vertical-align: top;
-                        }
-                    }
-                    .shipping_box {
-                        margin-left: -250px;
-                        text-align: right;
-                        .list {
-                            li {
-                                margin-bottom: 12px;
-                                &:last-child {
-                                    margin-bottom: 0px;
-                                }
-                                a {
-                                    padding-right: 30px;
-                                    font-size: 14px;
-                                    color: $pfont;
-                                    position: relative;
-                                    &:before {
-                                        content: "";
-                                        height: 16px;
-                                        width: 16px;
-                                        border: 1px solid #cdcdcd;
-                                        display: inline-block;
-                                        border-radius: 50%;
-                                        position: absolute;
-                                        right: 0px;
-                                        top: 50%;
-                                        transform: translateY(-50%);
-                                    }
-                                    &:after {
-                                        content: "";
-                                        height: 10px;
-                                        width: 10px;
-                                        border-radius: 50%;
-                                        background: $baseColor;
-                                        display: inline-block;
-                                        position: absolute;
-                                        right: 3px;
-                                        top: 50%;
-                                        transform: translateY(-50%);
-                                        opacity: 0;
-                                    }
-                                }
-                                &.active {
-                                    a {
-                                        &:after {
-                                            opacity: 1;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        h6 {
-                            font-size: 14px;
-                            font-weight: normal;
-                            color: $dip;
-                            font-family: $rob;
-                            margin-top: 20px;
-                            margin-bottom: 20px;
-                            i {
-                                color: $pfont;
-                                padding-left: 5px;
-                            }
-                        }
-                        .shipping_select {
-                            display: block;
-                            width: 100%;
-                            background: #f9f9ff;
-                            border: 1px solid #eeeeee;
-                            height: 40px;
-                            margin-bottom: 20px;
-                            .list {
-                                width: 100%;
-                                border-radius: 0px;
-                                li {
-                                    font-size: 14px;
-                                    font-weight: normal;
-                                    color: $pfont;
-                                }
-                            }
-                        }
-                        input {
-                            height: 40px;
-                            outline: none;
-                            border: 1px solid #eeeeee;
-                            background: #f9f9ff;
-                            width: 100%;
-                            padding: 0px 15px;
-                            margin-bottom: 20px;
-                        }
-                    }
-                }
+              
                 &.out_button_area {
                     .checkout_btn_inner {
                         margin-left: -388px;
@@ -1107,13 +1015,55 @@
     font-weight: 500;
 }
 
+.cart-qty::-webkit-outer-spin-button,
+.cart-qty::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.cart-qty[type=number] {
+    -moz-appearance: textfield;
+}
+
+.shipping_area {
+    .shipping_box {
+        h5{
+            color: #000;
+        }
+        .shipping_select {
+            display: block;
+            width: 100%;
+            background: #f9f9ff;
+            border: 1px solid #eeeeee;
+            height: 40px;
+            margin-bottom: 20px;
+            .list {
+                width: 50%;
+                border-radius: 0px;
+                li {
+                    font-size: 14px;
+                    font-weight: normal;
+                    color: $pfont;
+                }
+            }
+        }
+        input {
+            height: 40px;
+            outline: none;
+            border: 1px solid #eeeeee;
+            background: #f9f9ff;
+            width: 100%;
+            padding: 0px 15px;
+            margin-bottom: 20px;
+        }
+    }
+}
 /* End Cart Area css
 ============================================================================================ */
 
 /* End Cart Area css
 ============================================================================================ */
 
-.checkout_area {}
+
 
 .check_title {
     h2 {
@@ -1744,4 +1694,9 @@
 
 .radion_btn input[type=radio]:checked~label {
     color: #000;
+}
+//Discount Stuff 
+.product-price-before-discount{
+    color: $danger !important;
+    text-decoration: line-through;
 }

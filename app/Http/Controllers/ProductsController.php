@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use Mail;
+use Carbon\Carbon;
 //Models
 use App\Setting;
 use App\Category;
 use App\Product;
 use App\Product_Image;
 use App\Product_Local;
+use App\Discount;
 //Mails
 use App\Mail\QuestionAboutProduct;
 class ProductsController extends Controller{
@@ -42,7 +44,8 @@ class ProductsController extends Controller{
             $NextProductId = $NextProductIdQuery->id + 1;
         }
         $ReadyToUseTagsArray = $this->getAllTags();
-        return view('admin.product.new' , compact('AllCategories' , 'NextProductId' , 'ReadyToUseTagsArray'));
+        $DiscountsList = Discount::whereDate('valid_until' , '>' , Carbon::today())->get();
+        return view('admin.product.new' , compact('AllCategories' , 'NextProductId' , 'ReadyToUseTagsArray' , 'DiscountsList'));
     }
     public function postNew(Request $r){
         // dd($r->all());
@@ -99,7 +102,8 @@ class ProductsController extends Controller{
         $ProductData = Product::findOrFail($id);
         $AllCategories = Category::latest()->get();
         $ReadyToUseTagsArray = $this->getAllTags();
-        return view('admin.product.edit' , compact('ProductData' ,'AllCategories' , 'ReadyToUseTagsArray'));
+        $DiscountsList = Discount::whereDate('valid_until' , '>' , Carbon::today())->get();
+        return view('admin.product.edit' , compact('ProductData' ,'AllCategories' , 'ReadyToUseTagsArray' , 'DiscountsList'));
     }
     public function postEdit(Request $r , $id){
         $TheProduct = Product::find($id);
@@ -217,11 +221,41 @@ class ProductsController extends Controller{
 
 
     //Non-Admin Routes 
-    public function getAll(){
+    public function getAll(Request $r , $Category = null){
+        if($Category && !$r->filters){
+            
+            $TheCategory = Category::where('slug' , $Category)->first();   
+            $Products = Product::where('category_id' , $TheCategory->id)->latest()->get();
+        }elseif($r->has('filters') && !$Category){
+            $Products = Product::query();
+            foreach($r->filters as $filter){
+                $Products->orWhere('tags', 'LIKE', '%'.$filter.'%');
+            }
+            $Products = $Products->latest()->get();
+        }elseif($Category && $r->has('filters')){
+            $TheCategory = Category::where('slug' , $Category)->first();   
+            $Products = Product::where('category_id' , $TheCategory->id);
+            foreach($r->filters as $filter){
+                $Products->where('tags', 'LIKE', '%'.$filter.'%');
+            }
+            $Products = $Products->latest()->get();
+        }else{
+            $Products = Product::latest()->get();
+        }
+
+        //Must Use Vars
         $Categories = Category::latest()->get();
         $FiltersList = $this->getAllTags();
-        $Products = Product::latest()->get();
+        return view('products.index' , compact('Categories' , 'FiltersList' , 'Products' ));
+    }
+    public function getWithFilter($Category){
+        $TheCategory = Category::where('slug' , $Category)->first();
+
+        $Categories = Category::latest()->get();
+        $FiltersList = $this->getAllTags();
+        $Products = Product::where('category_id' , $TheCategory->id)->latest()->get();
         return view('products.index' , compact('Categories' , 'FiltersList' , 'Products'));
+        
     }
     public function getSingle($id , $slug){
         $TheProduct = Product::findOrFail($id);

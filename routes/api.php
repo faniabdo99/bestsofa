@@ -11,7 +11,11 @@ Route::post('upload-images' , 'ProductsController@uploadGalleryImages')->name('a
 Route::post('/product/localize' , 'ProductsController@postLocalize')->name('admin.products.postLocalize');
 //Users
 Route::post('delete-user' , 'UsersController@delete')->name('admin.user.delete');
+//Discount 
+Route::post('delete-discount' , 'DiscountController@delete')->name('admin.discount.delete');
 Route::post('activate-deactivate-user' , 'UsersController@ToggleActive')->name('admin.user.toggleActive');
+//Cart 
+Route::post('update-cart' , 'CartController@postUpdate')->name('cart.update');
 //*********non-Admin API Routes 
 Route::post('send-activate-link' , 'UsersController@sendActivateEmail')->name('user.sendActivateLink');
 Route::post('ask-question-about-product' , 'ProductsController@askQuestion')->name('product.askQuestion');

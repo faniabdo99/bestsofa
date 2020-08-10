@@ -2,7 +2,7 @@
     <div class="top_menu row m0">
         <div class="container-fluid">
             <div class="float-left">
-                <p>Call Us: 012 44 5698 7456 896</p>
+                <p>Call Us: 0032 484 82 93 16</p>
             </div>
             <div class="float-right">
                 <ul class="right_side">
@@ -153,10 +153,45 @@
                                 @endauth
 
                                 <li class="nav-item">
-                                    <a href="#" class="icons">
-                                        <i class="lnr lnr lnr-cart"></i>
+                                    <a href="javascript:;" class="icons open-sidebar">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        @php 
+                                        if(auth()->check()){
+                                            $UserId = auth()->user()->id; 
+                                        }else{
+                                            $UserId = Cookie::get('guest_id');
+                                        }
+                                        $CartItems = \App\Cart::where('user_id' , $UserId)->where('status','active')->whereDate('created_at' , Carbon\Carbon::today())->get();
+                                        @endphp
+                                        @if($CartItems->count() != 0 )
+                                           <span class="navbar-cart-badge">{{$CartItems->count()}}</span>
+                                        @endif
                                     </a>
                                 </li>
+                                <div class="sidebar-item">
+                                    <div class="sidebar-header">
+                                        <span class="close-sidebar"><i class="fas fa-chevron-right"></i></span>
+                                    </div>
+                                    <div class="sidebar-body">
+                                        <h3 class="cart-sidebar-title">Your Shopping Cart ({{$CartItems->count()}})</h3>
+                                            @forelse ($CartItems as $CartItem)
+                                                <div class="navbar-cart-item">
+                                                    <div class="img-container">
+                                                        <img src="{{$CartItem->Product->main_image}}" >
+                                                    </div>
+                                                    <div class="data-container">
+                                                        <h4>{{$CartItem->Product->local_title}}</h4>
+                                                        <p class="mb-0">X{{$CartItem->qty}} - {{$CartItem->total_price}}€</p>
+                                                    </div>
+                                                </div>
+                                            @empty 
+                                            <p>No Items in Your Cart Yet!</p>
+                                            @endforelse
+                                            @if($CartItems->count() !=0)
+                                             <a class="main_btn d-block" href="{{route('cart')}}">Porcced With Purchase</a>
+                                            @endif
+                                    </div>
+                                </div>
                                 <hr>
                             </ul>
                         </div>

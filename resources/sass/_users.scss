@@ -119,43 +119,28 @@
     padding: 5px;
     border-radius: 4px;
   }
-  //Orders Section 
-  .orders_list{
-    h2{
-      font-size: 1.2em;
-    }
-    .orders_list_element{
-      padding: 0;
-      list-style-type: none;
-      li.single_order_item{
-        background-color: $lightgrey;
-        padding: 15px;
-        .single_order_image{
-          margin-right: 25px;
-          img{
-            width: 100px;
-            height: 100px;
-          }
-        }
-        .single_order_data{
-          h3{
-            font-size: 1.3em;
-            font-weight: bold;
-          }
-          ul{
-            padding: 0;
-            list-style-type: none;
-          }
-          a{
-            font-weight: bold;
-          }
-          
-        }
-      }
-    }
+}
+//States Card Design
+.profile_state_card{
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 4px;
+  transition: all ease 0.3s;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  .card_title{
+    font-size: 1.2em;
+    color: $baseColor;
+  }
+  .card_description{
+    color: $pfont;
+    font-size: 0.9em;
+    margin-bottom: 0;
+  }
+  &:hover{
+    transition: all ease 0.3s;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
   }
 }
-
 //Users Sidebar in navbar file
 .sidebar-item{
   .sidebar-body{

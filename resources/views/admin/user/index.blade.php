@@ -20,7 +20,7 @@
                                                 <th>Email</th>
                                                 <th>Active</th>
                                                 <th>Code</th>
-                                                <th>Group</th>
+                                                <th>Country</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -29,13 +29,13 @@
                                             <tr>
                                                 <td>{{$Single->name}}</td>
                                                 <td>{{$Single->email}}</td>
-                                                <td>@if($Single->active)Active @else Not Active @endif</td>
+                                                <td>@if($Single->active) Active @else Not Active @endif</td>
                                                 <td>{{$Single->code}}</td>
-                                                <td>Default Users</td>
+                                                <td>{{$Single->country}}</td>
                                                 <td>
-                                                    <a id="activate-btn" href="javascript:;" item-id="{{$Single->id}}" action-route="{{route('admin.user.toggleActive')}}" class="btn btn-primary">@if($Single->active) De-Activate @else Activate @endif</a>
+                                                    <a id="activate-btn" href="javascript:;" item-id="{{$Single->id}}" action-route="{{route('admin.user.toggleActive')}}" class="btn btn-primary">@if($Single->confirmed) Deactivate @else Activate @endif</a>
                                                     <a id="delete-btn" href="javascript:;" item-id="{{$Single->id}}" action-route="{{ route('admin.user.delete') }}" class="btn btn-danger">Delete</a>
-                                                    <a href="{{route('admin.products.getLocalize' , $Single->id)}}" class="btn btn-success">Add to Group</a>
+                                                    {{-- <a href="{{route('admin.products.getLocalize' , $Single->id)}}" class="btn btn-success">Add to Group</a> --}}
                                                 </td>
                                             </tr>
                                             @empty

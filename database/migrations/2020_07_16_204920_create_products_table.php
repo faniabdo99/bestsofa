@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->integer('height')->nullable();
             $table->integer('width')->nullable();
             $table->integer('tax_rate');
+            $table->integer('discount_id')->nullable();
             $table->integer('is_promoted')->default(0);
             $table->integer('allow_reviews')->default(1);
             $table->integer('allow_reservations')->default(1);

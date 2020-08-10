@@ -46,7 +46,12 @@
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
 						<h3>{{$TheProduct->local_title}}</h3>
-						<h2>{{$TheProduct->price}} €</h2>
+						@if($TheProduct->HasDiscount())
+							<h2 class="product-price-before-discount d-inline">{{$TheProduct->price}} €</h2>
+							<h2 class="text-success ml-4 d-inline">{{$TheProduct->FinalPrice}} €</h2>
+						@else 
+						<h2>{{$TheProduct->FinalPrice}} €</h2>
+						@endif
 						<ul class="list">
 							<li>
 								<a class="active" href="#"><span class="font-weight-bold">Category</span> {{$TheProduct->Category->local_title}}</a>
@@ -73,7 +78,7 @@
 							</button>
 						</div>
 						<div class="card_area">
-							<a class="main_btn" href="#">Add to Cart</a>
+							<a class="main_btn add-to-cart" data-id="{{$TheProduct->id}}" href="javascript:;">Add to Cart</a>
 							@auth
 							<a class="icon_btn like_item @if($TheProduct->LikedByUser()) bg-primary text-white @endif" product-id="{{$TheProduct->id}}" href="javascript:;">
 								<i class="lnr lnr lnr-heart"></i>
@@ -544,6 +549,7 @@
 							</div>
 						</div>
 						<div class="col-lg-6">
+							@auth
 							<div class="review_box">
 								<h4>Add a Review</h4>
 								<p>Your Rating:</p>
@@ -601,6 +607,10 @@
 									</div>
 								</form>
 							</div>
+							@endauth
+							@guest 
+							<p>Only The Customers Who Actually Bought This Product Can Review It !</p>
+							@endguest
 						</div>
 					</div>
 				</div>

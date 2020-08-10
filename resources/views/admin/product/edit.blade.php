@@ -77,6 +77,16 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
+                                                <label>Discount</label>
+                                                <select class="form-control" name="discount_id">
+                                                        <option selected value="">No Discount</option>
+                                                        @forelse($DiscountsList as $Discount)
+                                                        <option value="{{$Discount->id}}">{{$Discount->title}} , {{$Discount->amount}} {{$Discount->type}}</option>
+                                                        @empty 
+                                                        @endforelse
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
                                                 <label>Tags</label>
                                                 <select class="form-control mb-4" name="tags[]" multiple required>
                                                     @php

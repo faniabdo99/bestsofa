@@ -8,7 +8,6 @@
 		<div class="container-fluid">
 			<div class="row flex-row-reverse">
 				<div class="col-lg-9">
-
 					<div class="latest_product_inner row">
                         @forelse ($Products as $Product)
                         <div class="col-lg-3 col-md-3 col-sm-6">
@@ -21,7 +20,7 @@
 											<i class="lnr lnr lnr-heart"></i>
 										</a>
 										@endauth
-										<a href="#"><i class="lnr lnr-cart"></i></a>
+										<a href="javascript:;" class="add-to-cart" data-id="{{$Product->id}}"><i class="lnr lnr-cart"></i></a>
 									</div>
 								</div>
                                 <a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
@@ -37,7 +36,7 @@
                         @endforelse
                         
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-12">
                             <nav class="cat_page mx-auto mt-5">
                                 <ul class="pagination">
@@ -69,8 +68,7 @@
                                 </ul>
                             </nav>
                         </div>
-                    </div>
-              
+                    </div> --}}
 				</div>
 				<div class="col-lg-3">
 					<div class="left_sidebar_area">
@@ -81,7 +79,8 @@
 							<div class="widgets_inner">
 								<ul class="list">
                                     @forelse ($Categories as $Category)
-									<li><a href="#">{{$Category->local_title}}</a></li>
+									<li><a href="{{route('product.home')}}">All</a></li>
+									<li><a href="{{route('product.home' , $Category->slug)}}">{{$Category->local_title}}</a></li>
                                     @empty 
                                     <li><a href="#">No Categories Yet</a></li>
                                     @endforelse
@@ -105,7 +104,6 @@
 											</li>
 										</ul>
 									</li> --}}
-
 								</ul>
 							</div>
 						</aside>
@@ -115,10 +113,23 @@
 							</div>
 							<div class="widgets_inner">
 								<ul class="list">
-                                    @forelse ($FiltersList as $Filter)
-								    	<li><a href="#">{{ucwords($Filter)}}</a></li>
-                                    @empty 
-                                    @endforelse
+									<form action="{{url()->current()}}" method="GET">
+										@php 
+											$ActiveFilters = [];
+										@endphp
+										@if(request()->has('filters'))
+											@php $ActiveFilters = request()->filters; @endphp
+										@endif
+										@forelse ($FiltersList as $Filter)
+										@if(in_array($Filter, $ActiveFilters))
+										<li><input name="filters[]" type="checkbox" checked value="{{$Filter}}"> {{ucwords($Filter)}}</li>
+										@else 
+										<li><input name="filters[]" type="checkbox" value="{{$Filter}}"> {{ucwords($Filter)}}</li>
+										@endif
+										@empty 
+										@endforelse
+										<button class="main_btn" type="submit">Filter</button>
+									</form>
 								
 								</ul>
 							</div>

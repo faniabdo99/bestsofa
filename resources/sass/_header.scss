@@ -334,3 +334,37 @@
         }   
     }
 }
+.navbar-cart-badge{
+    background-color: $baseColor;
+    font-size: 0.7em;
+    padding: 5px;
+    border-radius: 4px;
+    color: #fff;
+}
+.cart-sidebar-title{
+    color:$baseColor;
+    font-size: 1.2em;
+    margin-bottom:35px;
+}
+.navbar-cart-item{
+    background:$lightgrey;
+    padding: 15px;
+    border-radius: 4px;
+    display: flex;
+    margin-bottom:10px;
+    .img-container{
+        flex:1;
+        img{
+            width:80px;
+            height:80px;
+            margin-right: 20px;
+        }
+    }
+    .data-container{
+        flex:4;
+        h4{
+            font-size: 0.9em;
+            color: $baseColor;
+        }
+    }
+}
