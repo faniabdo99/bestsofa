@@ -50,7 +50,7 @@
 						
                             @endforeach
 				
-							{{-- <tr class="bottom_button">
+							<tr class="bottom_button">
 								<td>
 								</td>
 								<td></td>
@@ -60,10 +60,9 @@
 									<div class="cupon_text">
 										<input type="text" placeholder="Coupon Code">
 										<a class="main_btn" href="#">Apply</a>
-										<a class="gray_btn" href="#">Close Coupon</a>
 									</div>
 								</td>
-							</tr> --}}
+							</tr>
 							<tr>
 								<td>
                                     <a class="gray_btn update-cart-btn" href="{{route('cart')}}">Update Cart Data</a>
