@@ -78,71 +78,46 @@
 							</div>
 							<div class="widgets_inner">
 								<ul class="list">
+									<form action="{{route('product.home')}}" method="GET">
+									<li><input name="category_filters" type="radio" checked value=""> All</li>
                                     @forelse ($Categories as $Category)
-									<li><a href="{{route('product.home')}}">All</a></li>
-									<li><a href="{{route('product.home' , $Category->slug)}}">{{$Category->local_title}}</a></li>
+										<li><input name="category_filters" type="radio" @if(request()->has('category_filters') && request()->category_filters == $Category->slug) checked @endif value="{{$Category->slug}}"> {{$Category->local_title}}</li>
                                     @empty 
                                     <li><a href="#">No Categories Yet</a></li>
                                     @endforelse
-									{{-- <li>
-										<a href="#">Meat and Fish</a>
-										<ul class="list">
-											<li>
-												<a href="#">Frozen Fish</a>
-											</li>
-											<li>
-												<a href="#">Dried Fish</a>
-											</li>
-											<li>
-												<a href="#">Fresh Fish</a>
-											</li>
-											<li>
-												<a href="#">Meat Alternatives</a>
-											</li>
-											<li>
-												<a href="#">Meat</a>
-											</li>
-										</ul>
-									</li> --}}
 								</ul>
 							</div>
 						</aside>
 						<aside class="left_widgets cat_widgets">
 							<div class="l_w_title">
-								<h3>Product Filters</h3>
+								<h3>Product Season</h3>
 							</div>
 							<div class="widgets_inner">
 								<ul class="list">
-									<form action="{{url()->current()}}" method="GET">
-										@php 
-											$ActiveFilters = [];
-										@endphp
-										@if(request()->has('filters'))
-											@php $ActiveFilters = request()->filters; @endphp
-										@endif
-										@forelse ($FiltersList as $Filter)
-										@if(in_array($Filter, $ActiveFilters))
-										<li><input name="filters[]" type="checkbox" checked value="{{$Filter}}"> {{ucwords($Filter)}}</li>
-										@else 
-										<li><input name="filters[]" type="checkbox" value="{{$Filter}}"> {{ucwords($Filter)}}</li>
-										@endif
-										@empty 
-										@endforelse
-										<button class="main_btn" type="submit">Filter</button>
-									</form>
-								
+									<li><input class="mr-3" name="season_filters" checked type="radio" value="">All</li>
+									<li><input class="mr-3" name="season_filters"  @if(request()->has('season_filters') && request()->season_filters == 'winter') checked @endif type="radio" value="winter">Winter</li>
+									<li><input class="mr-3" name="season_filters"  @if(request()->has('season_filters') && request()->season_filters == 'summer') checked @endif type="radio" value="summer">Summer</li>
+									<li><input class="mr-3" name="season_filters"  @if(request()->has('season_filters') && request()->season_filters == 'fall') checked @endif type="radio" value="fall">Fall</li>
+									<li><input class="mr-3" name="season_filters"  @if(request()->has('season_filters') && request()->season_filters == 'spring') checked @endif type="radio" value="spring">Spring</li>
 								</ul>
 							</div>
-							{{-- <div class="widgets_inner">
-								<h4>Price</h4>
-								<div class="range_item">
-									<div id="slider-range"></div>
-									<div class="row m0">
-										<label for="amount">Price : </label>
-										<input type="text" id="amount" readonly>
-									</div>
-								</div>
-							</div> --}}
+						</aside>
+						<aside class="left_widgets cat_widgets">
+							<div class="l_w_title">
+								<h3>Product For</h3>
+							</div>
+							<div class="widgets_inner">
+								<ul class="list">
+									<li><input class="mr-3" name="gender_filters" checked type="radio" value="">All</li>
+									<li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'men') checked @endif type="radio" value="men">Men</li>
+									<li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'women') checked @endif type="radio" value="women">Women</li>
+								</ul>
+							</div>
+						
+						</aside>
+						<aside class="left_widgets cat_widgets">
+								<button class="main_btn d-block w-100" type="submit">Apply Filters</button>
+							</form>
 						</aside>
 					</div>
 				</div>

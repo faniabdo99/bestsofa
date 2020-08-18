@@ -87,16 +87,22 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label>Tags</label>
-                                                <select class="form-control mb-4" name="tags[]" multiple>
-                                                    @forelse ($ReadyToUseTagsArray as $TagItem)
-                                                        <option value="{{$TagItem}}">{{$TagItem}}</option>
-                                                    @empty
-                                                        <option>There is no Categories Yet in The System</option>
-                                                    @endforelse
+                                                <label>For Season</label>
+                                                <select class="form-control mb-4" name="season" required>
+                                                        <option value="winter">Winter</option>
+                                                        <option value="summer">Summer</option>
+                                                        <option value="fall">Fall</option>
+                                                        <option value="spring">Spring</option>
+                                                        <option value="all">All</option>
                                                 </select>
-                                                <label>Add New Sub Category: <br><small class="text-danger">please check the list above first , only add custom categories if the list is missing that one</small> </label>
-                                                <input class="form-control" type="text" name="custom_tags" placeholder="Enter New Category Here , Seperate By Commas : category1,category2 ..." value="{{old('custom_tags') ?? ''}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>For Gender</label>
+                                                <select class="form-control mb-4" name="gender" required>
+                                                        <option value="men">Men</option>
+                                                        <option value="women">Women</option>
+                                                        <option value="all">All</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label>Product Gallery</label>

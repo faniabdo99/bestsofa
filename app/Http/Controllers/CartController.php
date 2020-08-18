@@ -20,9 +20,13 @@ class CartController extends Controller{
         }
         //Check if the product viable
         $Product = Product::find($r->product_id);
-        if(!$Product || $Product->inventory <= 0 || $Product->status == 'Sold Out' || $Product->status == 'Invisible'){
-            return "This item is not valid for sell right now";
+        
+        if(!$Product || $Product->inventory_value <= 0 || $Product->status == 'Sold Out' || $Product->status == 'Invisible'){
+            return response("This item is not available for sell right now" , 404);
         }else{
+            if($Product->inventory_value < $r->qty){
+                 return response("The Maximum Availabe Amount For Order is " .$Product->inventory_value  , 404);
+            }
             $CartData['qty'] = ($r->qty ? $r->qty : 1);
             $CurrentCart = Cart::where('product_id' , $CartData['product_id'])->where('user_id' , $CartData['user_id'])->whereDate('created_at' , Carbon::today())->where('status' , 'active')->first();
             if($CurrentCart){

@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 Route::get('/' , 'HomeController@getHome')->name('home');
+Route::get('/test' , 'OrdersController@testOrder');
+Route::get('/success' , 'OrdersController@orderSuccess')->name('order.success');
 //Not Logged In Routes
 Route::middleware('guest')->group(function(){
   Route::get('signup' , 'UsersController@getSignup')->name('signup.get');
@@ -28,7 +30,7 @@ Route::post('contact' , 'ContactUsController@postContact')->name('contact.post')
 
 //Products Routes 
 Route::group(['prefix'=>'products'] , function (){
-  Route::get('/{category?}' , 'ProductsController@getAll')->name('product.home');
+  Route::get('/{filter?}' , 'ProductsController@getAll')->name('product.home');
   Route::get('{id}/{slug}' , 'ProductsController@getSingle')->name('product.single');
 });
 //Admin Only Routes
@@ -69,6 +71,14 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'] , function () {
     Route::post('/new' , 'DiscountController@postNew')->name('admin.discount.postNew');
     Route::get('/edit/{id}' , 'DiscountController@getEdit')->name('admin.discount.getEdit');
     Route::post('/edit/{id}' , 'DiscountController@postEdit')->name('admin.discount.postEdit');
+  });
+  //Coupouns System
+  Route::prefix('coupoun')->group(function(){
+    Route::get('/' , 'CoupounsController@getHome')->name('admin.coupoun.home');
+    Route::get('/new' , 'CoupounsController@getNew')->name('admin.coupoun.getNew');
+    Route::post('/new' , 'CoupounsController@postNew')->name('admin.coupoun.postNew');
+    Route::get('/edit/{id}' , 'CoupounsController@getEdit')->name('admin.coupoun.getEdit');
+    Route::post('/edit/{id}' , 'CoupounsController@postEdit')->name('admin.coupoun.postEdit');
   });
 });
 //Cart Related Routes

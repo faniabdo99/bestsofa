@@ -105,7 +105,7 @@
                                         <div class="logged-in-user-data d-flex">
                                             <div class="data-container d-flex flex-column justify-content-center">
                                                 <h4>{{auth()->user()->name}}</h4>
-                                                <p>Normal Customer</p>
+                                                <p>{{auth()->user()->email}}</p>
                                             </div>
                                             <div class="image-container">
                                                 <img src="{{auth()->user()->profile_image}}" alt="{{auth()->user()->name}}">

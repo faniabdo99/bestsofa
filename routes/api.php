@@ -14,6 +14,8 @@ Route::post('delete-user' , 'UsersController@delete')->name('admin.user.delete')
 //Discount 
 Route::post('delete-discount' , 'DiscountController@delete')->name('admin.discount.delete');
 Route::post('activate-deactivate-user' , 'UsersController@ToggleActive')->name('admin.user.toggleActive');
+//Coupon
+Route::post('delete-coupon' , 'CoupounsController@delete')->name('admin.coupoun.delete');
 //Cart 
 Route::post('update-cart' , 'CartController@postUpdate')->name('cart.update');
 //*********non-Admin API Routes 

@@ -87,22 +87,22 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label>Tags</label>
-                                                <select class="form-control mb-4" name="tags[]" multiple required>
-                                                    @php
-                                                    $CurrentItemTags = explode(',' , $ProductData->tags);
-                                                    @endphp
-                                                    @forelse ($ReadyToUseTagsArray as $TagItem)
-                                                    @if(in_array($TagItem ,$CurrentItemTags))
-                                                        <option selected value="{{$TagItem}}">{{$TagItem}}</option>
-                                                    @else
-                                                        <option value="{{$TagItem}}">{{$TagItem}}</option>
-                                                    @endif
-                                                    @empty
-                                                    @endforelse
+                                                <label>For Season</label>
+                                                <select class="form-control mb-4" name="season">
+                                                        <option @if($ProductData->season == 'winter') selected @endif value="winter">Winter</option>
+                                                        <option @if($ProductData->season == 'summer') selected @endif value="summer">Summer</option>
+                                                        <option @if($ProductData->season == 'fall') selected @endif value="fall">Fall</option>
+                                                        <option @if($ProductData->season == 'spring') selected @endif value="spring">Spring</option>
+                                                        <option @if($ProductData->season == 'all') selected @endif value="all">All</option>
                                                 </select>
-                                                <label>Add New Sub Category: <br><small class="text-danger">please check the list above first , only add custom categories if the list is missing that one</small> </label>
-                                                <input class="form-control" type="text" name="custom_tags" placeholder="Enter New Category Here , Seperate By Commas : category1,category2 ..." value="{{old('custom_tags') ?? ''}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>For Gender</label>
+                                                <select class="form-control mb-4" name="gender">
+                                                        <option @if($ProductData->gender == 'men') selected @endif value="men">Men</option>
+                                                        <option @if($ProductData->gender == 'women') selected @endif value="women">Women</option>
+                                                        <option @if($ProductData->gender == 'all') selected @endif value="all">All</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label>Product Gallery</label>

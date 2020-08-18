@@ -412,7 +412,7 @@ $('.close-sidebar').click(function(){
 });
 //Like Items 
 $('.like_item').click(function(){
-    $(this).toggleClass('bg-primary').toggleClass('text-white');
+    $(this).toggleClass('bg-danger').toggleClass('text-white');
     var ProductId = $(this).attr('product-id');
     var UserId = $('meta[name=user_id]').attr("content");
     $.ajax({

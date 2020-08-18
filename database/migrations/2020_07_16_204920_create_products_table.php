@@ -15,7 +15,9 @@ class CreateProductsTable extends Migration
             $table->text('body');
             $table->string('image');
             $table->integer('category_id');
-            $table->integer('price');
+            $table->string('season');
+            $table->string('gender');
+            $table->float('price');
             $table->integer('show_inventory')->default(0);
             $table->integer('inventory')->default(0);
             $table->integer('fake_inventory')->default(0);

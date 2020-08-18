@@ -59,6 +59,8 @@ class ProductsController extends Controller{
             'price' => 'required|numeric',
             'inventory' => 'required|numeric',
             'min_order' => 'required|numeric',
+            'season' => 'required',
+            'gender' => 'required',
             'weight' => 'numeric',
             'height' => 'nullable|numeric',
             'width' => 'nullable|numeric',
@@ -79,19 +81,11 @@ class ProductsController extends Controller{
                 $ProductData['image'] = 'product.png';
             }
             $ProductData['slug'] = strtolower(str_replace(' ' , '-' , $r->slug));
-            if($r->has('tags') && $r->has('custom_tags')){
-                $ProductData['tags'] = implode(',' , $r->tags) .','. $r->custom_tags;
-            }else{
-                if($r->has('tags') && !$r->has('custom_tags')){
-                    $ProductData['tags'] = implode(',' , $r->tags);
-                }else if($r->has('custom_tags') && !$r->has('tags')){
-                    $ProductData['tags'] = $r->custom_tags;
-                }
-            }
             $ProductData['show_inventory'] = ($r->show_inventory == 'on') ? 1 : 0;
             $ProductData['is_promoted'] = ($r->is_promoted == 'on') ? 1 : 0;
             $ProductData['allow_reviews'] = ($r->allow_reviews == 'on') ? 1 : 0;
             $ProductData['allow_reservations'] = ($r->allow_reservations == 'on') ? 1 : 0;
+            $ProductData['price'] = sprintf("%.2f",$r->price);
             $ProductData['user_id'] = auth()->user()->id;
             $NewProduct = Product::create($ProductData);
             return redirect()->route('admin.products.home')->withSuccess('Product Created Successfully !');
@@ -116,6 +110,8 @@ class ProductsController extends Controller{
             'price' => 'required|numeric',
             'inventory' => 'required|numeric',
             'min_order' => 'required|numeric',
+            'season' => 'required',
+            'gender' => 'required',
             'weight' => 'numeric',
             'height' => 'nullable|numeric',
             'width' => 'nullable|numeric',
@@ -135,12 +131,12 @@ class ProductsController extends Controller{
         }else{
             $ProductData['image'] = $TheProduct->image;
         }
-        $ProductData['tags'] = implode(',' , $r->tags) .','. $r->custom_tags;
         $ProductData['show_inventory'] = ($r->show_inventory == 'on') ? 1 : 0;
         $ProductData['is_promoted'] = ($r->is_promoted == 'on') ? 1 : 0;
         $ProductData['allow_reviews'] = ($r->allow_reviews == 'on') ? 1 : 0;
         $ProductData['allow_reservations'] = ($r->allow_reservations == 'on') ? 1 : 0;
         $ProductData['user_id'] = auth()->user()->id;
+        $ProductData['price'] = sprintf("%.2f",$r->price);
         $TheProduct->update($ProductData);
         return redirect()->route('admin.products.home')->withSuccess('Product Updated Successfully !');
     }
@@ -221,28 +217,22 @@ class ProductsController extends Controller{
 
 
     //Non-Admin Routes 
-    public function getAll(Request $r , $Category = null){
-        if($Category && !$r->filters){
-            
-            $TheCategory = Category::where('slug' , $Category)->first();   
-            $Products = Product::where('category_id' , $TheCategory->id)->latest()->get();
-        }elseif($r->has('filters') && !$Category){
-            $Products = Product::query();
-            foreach($r->filters as $filter){
-                $Products->orWhere('tags', 'LIKE', '%'.$filter.'%');
-            }
-            $Products = $Products->latest()->get();
-        }elseif($Category && $r->has('filters')){
-            $TheCategory = Category::where('slug' , $Category)->first();   
-            $Products = Product::where('category_id' , $TheCategory->id);
-            foreach($r->filters as $filter){
-                $Products->where('tags', 'LIKE', '%'.$filter.'%');
-            }
-            $Products = $Products->latest()->get();
-        }else{
-            $Products = Product::latest()->get();
+    public function getAll(Request $r){
+        $FiltersCode = '';
+        if($r->has('category_filters') && !empty($r->category_filters) && $r->category_filters != null){
+            $TheCategory = Category::where('slug' , $r->category_filters)->first();
+            $FiltersCode = "->where('category_id' , \$TheCategory->id)";
         }
-
+        if($r->has('season_filters') && !empty($r->season_filters) && $r->season_filters != null){
+            $Season = $r->season_filters;
+            $FiltersCode = $FiltersCode . "->where('season' , \$Season)";
+        }
+        if($r->has('gender_filters') && !empty($r->gender_filters) && $r->gender_filters != null){
+            $Gender = $r->gender_filters;
+            $FiltersCode = $FiltersCode . "->where('gender' , \$Gender)";
+        }
+        $Query = '$Products = App\Product::orderBy("id" , "desc")'.$FiltersCode.'->get();';
+        eval($Query);
         //Must Use Vars
         $Categories = Category::latest()->get();
         $FiltersList = $this->getAllTags();

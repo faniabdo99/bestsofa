@@ -4,15 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCartsTable extends Migration
+class CreateCoupounUsersTable extends Migration
 {
     public function up(){
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('coupoun__users', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->integer('product_id');
-            $table->string('status')->default('active');
-            $table->integer('qty');
+            $table->integer('user_id');
+            $table->integer('coupoun_id');
             $table->timestamps();
         });
     }
@@ -24,6 +22,6 @@ class CreateCartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('coupoun__users');
     }
 }

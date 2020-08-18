@@ -327,7 +327,7 @@
                           </div>
                         </div>
                       </div>
-                    <p class="font-weight-bold">Purchases <i class="fas fa-question-circle toggle_more_info" title="lorem ipsum stuff"></i></p>
+                    {{-- <p class="font-weight-bold">Purchases <i class="fas fa-question-circle toggle_more_info" title="lorem ipsum stuff"></i></p>
                     <div class="progress mb-4">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 22%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
                             54€ of 500€
@@ -338,7 +338,7 @@
                         <div class="progress-bar bg-success" role="progressbar" style="width: 42%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
                             154€ of 500€
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="row">

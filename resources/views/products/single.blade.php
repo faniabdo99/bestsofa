@@ -17,8 +17,8 @@
 								<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
                                     <img width="60" height="60" src="{{$TheProduct->main_image}}" alt="{{$TheProduct->local_title}}">
 								</li>
-                                @foreach ($TheProduct->GalleryImages as $GalleryImage)
-								<li data-target="#carouselExampleIndicators" data-slide-to="1">
+                                @foreach ($TheProduct->GalleryImages as $i=>$GalleryImage)
+								<li data-target="#carouselExampleIndicators" data-slide-to="{{$i+1}}">
 									<img width="60" height="60" src="{{$GalleryImage->image_path}}" alt="{{$TheProduct->local_title}}">
 								</li>
                                 @endforeach
@@ -54,7 +54,7 @@
 						@endif
 						<ul class="list">
 							<li>
-								<a class="active" href="#"><span class="font-weight-bold">Category</span> {{$TheProduct->Category->local_title}}</a>
+								<a class="active" href="{{route('product.home')}}?category_filters={{$TheProduct->Category->slug}}"><span class="font-weight-bold">Category</span> {{$TheProduct->Category->local_title}}</a>
 							</li>
 							@if($TheProduct->status == 'Available' || $TheProduct->status == 'Sold Out' || $TheProduct->status == 'Pre-Oreder')
 							<li>
@@ -78,9 +78,18 @@
 							</button>
 						</div>
 						<div class="card_area">
-							<a class="main_btn add-to-cart" data-id="{{$TheProduct->id}}" href="javascript:;">Add to Cart</a>
+							@if($TheProduct->inventory > 0 && $TheProduct->status == 'Available')
+								{{-- Allow Add to Cart if The Product is In-Stock --}}
+								<a class="main_btn add-to-cart" data-id="{{$TheProduct->id}}" href="javascript:;">Add to Cart</a>
+							@else 
+								@if($TheProduct->inventory < 1)
+									<p class="text-danger">Out of Stock</p>
+								@else 
+									<p class="text-danger">Not Available For Sale</p>
+								@endif
+							@endif
 							@auth
-							<a class="icon_btn like_item @if($TheProduct->LikedByUser()) bg-primary text-white @endif" product-id="{{$TheProduct->id}}" href="javascript:;">
+							<a class="icon_btn like_item @if($TheProduct->LikedByUser()) bg-danger text-white @endif" product-id="{{$TheProduct->id}}" href="javascript:;">
 								<i class="lnr lnr lnr-heart"></i>
 							</a>
 							@endauth
