@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 Route::get('/' , 'HomeController@getHome')->name('home');
+Route::get('/change-currency/{currency}/{currency_code}' , 'CurrencyController@setCurrency')->name('currency.change');
 Route::get('/test' , 'OrdersController@testOrder');
 Route::get('/success' , 'OrdersController@orderSuccess')->name('order.success');
 //Not Logged In Routes
@@ -28,7 +29,7 @@ Route::middleware('auth')->group(function(){
 Route::get('contact' , 'ContactUsController@getContact')->name('contact.get');
 Route::post('contact' , 'ContactUsController@postContact')->name('contact.post');
 
-//Products Routes 
+//Products Routes
 Route::group(['prefix'=>'products'] , function (){
   Route::get('/{filter?}' , 'ProductsController@getAll')->name('product.home');
   Route::get('{id}/{slug}' , 'ProductsController@getSingle')->name('product.single');
@@ -80,8 +81,17 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'] , function () {
     Route::get('/edit/{id}' , 'CoupounsController@getEdit')->name('admin.coupoun.getEdit');
     Route::post('/edit/{id}' , 'CoupounsController@postEdit')->name('admin.coupoun.postEdit');
   });
+  //Shipping Costs System
+  Route::prefix('shipping-costs')->group(function(){
+    Route::get('/' , 'ShippingCostsController@getHome')->name('admin.shippingCosts.home');
+    Route::get('/new' , 'ShippingCostsController@getNew')->name('admin.shippingCosts.getNew');
+    Route::post('/new' , 'ShippingCostsController@postNew')->name('admin.shippingCosts.postNew');
+    Route::get('/edit/{id}' , 'ShippingCostsController@getEdit')->name('admin.shippingCosts.getEdit');
+    Route::post('/edit/{id}' , 'ShippingCostsController@postEdit')->name('admin.shippingCosts.postEdit');
+  });
 });
 //Cart Related Routes
 Route::get('api/add-item-to-cart' ,'CartController@addItem')->name('cart.add');
 Route::get('delete-from-cart/{cartId}/{userId}' ,'CartController@deleteItem')->name('cart.delete');
 Route::get('cart' , 'CartController@getCartPage')->name('cart');
+Route::post('apply-coupon' , 'CoupounsController@applyCoupon')->name('coupon.apply');

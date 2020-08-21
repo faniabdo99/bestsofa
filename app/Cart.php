@@ -9,4 +9,7 @@ class Cart extends Model{
     public function getTotalPriceAttribute(){
         return $this->Product->final_price * $this->qty;
     }
+    public function getTotalTaxAttribute(){
+      return ($this->Product->final_price * $this->qty) * $this->Product->tax_rate;
+    }
 }

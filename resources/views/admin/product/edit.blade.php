@@ -82,7 +82,7 @@
                                                         <option selected value="">No Discount</option>
                                                         @forelse($DiscountsList as $Discount)
                                                         <option value="{{$Discount->id}}">{{$Discount->title}} , {{$Discount->amount}} {{$Discount->type}}</option>
-                                                        @empty 
+                                                        @empty
                                                         @endforelse
                                                 </select>
                                             </div>
@@ -101,6 +101,9 @@
                                                 <select class="form-control mb-4" name="gender">
                                                         <option @if($ProductData->gender == 'men') selected @endif value="men">Men</option>
                                                         <option @if($ProductData->gender == 'women') selected @endif value="women">Women</option>
+                                                        <option @if($ProductData->gender == 'children') selected @endif  value="children">Children</option>
+                                                        <option @if($ProductData->gender == 'adults') selected @endif  value="adults">Adults</option>
+                                                        <option @if($ProductData->gender == 'young') selected @endif  value="young">Young</option>
                                                         <option @if($ProductData->gender == 'all') selected @endif value="all">All</option>
                                                 </select>
                                             </div>
@@ -165,7 +168,7 @@
             //Assign the value to the input
             $('input[name="slug"]').val(SlugValue);
         });
-        //Dropzone For Images 
+        //Dropzone For Images
         var myDropzone = new Dropzone("div#drop-zone", {
              url: "{{route('admin.product.uploadGalleryImages')}}",
              paramName: "image",

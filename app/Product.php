@@ -1,12 +1,10 @@
 <?php
-
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 class Product extends Model{
     protected $guarded = [];
-    //Relations Methods 
+    //Relations Methods
     public function Category(){
         return $this->belongsTo(Category::class)->withDefault([
             'title' => 'Deleted Category',
@@ -97,7 +95,7 @@ class Product extends Model{
     }
     public function getFinalPriceAttribute(){
         if($this->discount_id){
-            //Check if there is a discount on this product 
+            //Check if there is a discount on this product
             $TheDiscount = Discount::find($this->discount_id);
             if($TheDiscount && Carbon::parse($TheDiscount->valid_until) > Carbon::today()){
                 //Check the type -_-
@@ -107,16 +105,19 @@ class Product extends Model{
                     $TheDiscountAmount = ($this->price * $TheDiscount->amount) / 100;
                     $ThePrice = $this->price - $TheDiscountAmount;
                 }
-                return $ThePrice;
+                $returnPrice = $ThePrice;
             }else{
-                return $this->price;
+                  $returnPrice = $this->price;
             }
         }else{
-            return $this->price;
+              $returnPrice = $this->price;
         }
+        //Convert Currency if Needed
+        $PriceTo = session()->has('currency') ? session()->get('currency') : 'EUR';
+        return convertCurrency($returnPrice , 'EUR' , $PriceTo);
     }
     public function getTaxAmountAttribute(){
-        return ($this->final_price * $this->tax_rate) / 100;
+        return ($this->final_price * $this->tax_rate);
     }
     public function getStatusClassAttribute(){
         $StatuesArray = [];

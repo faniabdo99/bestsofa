@@ -22,7 +22,7 @@ class ProductsController extends Controller{
         foreach($TagsList as $Tag){
             $Tag = explode(',' , $Tag );
             $CleanTag = array_unique($Tag);
-            //Push to the master array 
+            //Push to the master array
             array_push($MasterTagsArray , $CleanTag);
         }
         if(empty($MasterTagsArray)){
@@ -48,7 +48,6 @@ class ProductsController extends Controller{
         return view('admin.product.new' , compact('AllCategories' , 'NextProductId' , 'ReadyToUseTagsArray' , 'DiscountsList'));
     }
     public function postNew(Request $r){
-        // dd($r->all());
         //Validate the request
         $Rules = [
             'title' => 'required|min:5|max:255',
@@ -91,7 +90,7 @@ class ProductsController extends Controller{
             return redirect()->route('admin.products.home')->withSuccess('Product Created Successfully !');
         }
     }
-    //Edit 
+    //Edit
     public function getEdit($id){
         $ProductData = Product::findOrFail($id);
         $AllCategories = Category::latest()->get();
@@ -148,7 +147,7 @@ class ProductsController extends Controller{
     }
     //Upload Gallery Images
     public function uploadGalleryImages(Request $r){
-        //Validate the Request 
+        //Validate the Request
         $Rules = [
             'image' => 'required|image|max:45000000',
             'product_id' => 'required'
@@ -216,7 +215,7 @@ class ProductsController extends Controller{
 
 
 
-    //Non-Admin Routes 
+    //Non-Admin Routes
     public function getAll(Request $r){
         $FiltersCode = '';
         if($r->has('category_filters') && !empty($r->category_filters) && $r->category_filters != null){
@@ -245,14 +244,14 @@ class ProductsController extends Controller{
         $FiltersList = $this->getAllTags();
         $Products = Product::where('category_id' , $TheCategory->id)->latest()->get();
         return view('products.index' , compact('Categories' , 'FiltersList' , 'Products'));
-        
+
     }
     public function getSingle($id , $slug){
         $TheProduct = Product::findOrFail($id);
         return view('products.single' , compact('TheProduct'));
     }
     public function askQuestion(Request $r){
-        //Validate the request 
+        //Validate the request
         $Rules = [
             'name' => 'required',
             'email' => 'required|email',
@@ -272,7 +271,7 @@ class ProductsController extends Controller{
         if($validator->fails()){
             return response($validator->errors()->all() , 403);
         }else{
-            //Send Message to The Admin 
+            //Send Message to The Admin
             Mail::to('admin@ukfashioshop.com')->send(new QuestionAboutProduct($r->all()));
             return response("Your Question was recived m you'll hear from us soon");
         }

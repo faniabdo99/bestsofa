@@ -15,10 +15,10 @@
                           </div>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" id="currencyDropdown" data-toggle="dropdown" >EUR €</a>
+                        <a href="#" class="dropdown-toggle" id="currencyDropdown" data-toggle="dropdown">@if(session()->has('currency')) {{session()->get('currency') .' '. session()->get('currency_code')}} @else EUR € @endif</a>
                         <div class="dropdown-menu navbar-dropdown-menu" aria-labelledby="currencyDropdown">
-                            <a class="dropdown-item" href="#">EUR €</a>
-                            <a class="dropdown-item" href="#">GBP £</a>
+                            <a class="dropdown-item" href="{{route('currency.change' , ['EUR' , '€'])}}">EUR €</a>
+                            <a class="dropdown-item" href="{{route('currency.change' , ['GBP' , '£'])}}">GBP £</a>
                           </div>
                     </li>
                     @auth
@@ -57,7 +57,7 @@
                                 <li class="nav-item @if(str_contains(request()->path() , 'products')) active @endif">
                                     <a href="{{route('product.home')}}" class="nav-link">Shop</a>
                                 </li>
-                                <li class="nav-item submenu dropdown">
+                                {{-- <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                         aria-haspopup="true" aria-expanded="false">Blog</a>
                                     <ul class="dropdown-menu">
@@ -68,7 +68,7 @@
                                             <a class="nav-link" href="single-blog.html">Blog Details</a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item @if(str_contains(request()->path() , 'contact')) active @endif">
                                     <a class="nav-link" href="{{route('contact.get')}}">Contact</a>
                                 </li>
@@ -76,13 +76,8 @@
                         </div>
                         <div class="col-lg-5">
                             <ul class="nav navbar-nav navbar-right right_nav pull-right">
-                                <hr>
-                                <li class="nav-item">
-                                    <a href="#" class="icons">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                
+
+
                                 <hr>
                                 <li class="nav-item">
                                     @auth
@@ -143,10 +138,10 @@
                                                     <img src="{{$LikedItem->Product->main_image}}" alt="{{$LikedItem->Product->local_title}}">
                                                 </div>
                                         </div>
-                                        @empty 
+                                        @empty
                                         <p>You Haven't Liked Any Products Yet !</p>
                                         @endforelse
-                                      
+
                                     </div>
                                 </div>
                                 <hr>
@@ -155,9 +150,9 @@
                                 <li class="nav-item">
                                     <a href="javascript:;" class="icons open-sidebar">
                                         <i class="fas fa-shopping-cart"></i>
-                                        @php 
+                                        @php
                                         if(auth()->check()){
-                                            $UserId = auth()->user()->id; 
+                                            $UserId = auth()->user()->id;
                                         }else{
                                             $UserId = Cookie::get('guest_id');
                                         }
@@ -181,10 +176,10 @@
                                                     </div>
                                                     <div class="data-container">
                                                         <h4>{{$CartItem->Product->local_title}}</h4>
-                                                        <p class="mb-0">X{{$CartItem->qty}} - {{$CartItem->total_price}}€</p>
+                                                        <p class="mb-0">X{{$CartItem->qty}} - {{$CartItem->total_price.getCurrency()['symbole']}}</p>
                                                     </div>
                                                 </div>
-                                            @empty 
+                                            @empty
                                             <p>No Items in Your Cart Yet!</p>
                                             @endforelse
                                             @if($CartItems->count() !=0)

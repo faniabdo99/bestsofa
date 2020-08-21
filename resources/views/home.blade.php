@@ -104,11 +104,11 @@
 									<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
 										<h4>{{$Product->local_title}}</h4>
 									</a>
-									<h5 class="product-price-before-discount">€{{$Product->price}}</h5>
+									<h5 class="product-price-before-discount">{{$Product->price}}</h5>
 								</div>
 							</div>
 							@endauth
-						@else 
+						@else
 						<div class="col col10">
 							<div class="f_p_item">
 								<div class="f_p_img">
@@ -125,17 +125,16 @@
 								<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
 									<h4>{{$Product->local_title}}</h4>
 								</a>
-								@if($Product->HasDiscount())							
-									<span class="product-price-before-discount">€{{$Product->price}}</span>
-									<h5 class="text-success">€{{$Product->FinalPrice}}</h5>
-								@else 
-									<h5>{{$Product->FinalPrice}} €</h5>
+								@if($Product->HasDiscount())
+									<span class="product-price-before-discount">{{$Product->price}}</span>
+									<h5 class="text-success">{{$Product->FinalPrice.getCurrency()['symbole'] }}</h5>
+								@else
+									<h5>{{$Product->FinalPrice.getCurrency()['symbole'] }}</h5>
 								@endif
-						
 							</div>
 						</div>
 						@endif
-					@empty 
+					@empty
 					<p>No Promoted Products Yet</p>
 					@endforelse
 				</div>

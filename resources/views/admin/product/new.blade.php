@@ -60,9 +60,7 @@
                                                 <input type="number" class="form-control" name="fake_inventory" placeholder="Please Enter a Number" value="{{ old('fake_inventory') ?? '0'}}" required>
                                             </div>
                                             <div class="form-group">
-                                                <label>
-                                                    Minimum Order
-                                                </label>
+                                                <label>Minimum Order</label>
                                                 <input type="number" class="form-control" name="min_order" placeholder="Please Enter a Number" value="{{ old('min_order') ?? '0'}}">
                                             </div>
                                             <div class="form-group">
@@ -81,8 +79,8 @@
                                                 <select class="form-control" name="discount_id">
                                                         <option selected value="">No Discount</option>
                                                         @forelse($DiscountsList as $Discount)
-                                                        <option value="{{$Discount->id}}">{{$Discount->title}} , {{$Discount->amount}} {{$Discount->type}}</option>
-                                                        @empty 
+                                                          <option value="{{$Discount->id}}">{{$Discount->title}} , {{$Discount->amount}} {{$Discount->type}}</option>
+                                                        @empty
                                                         @endforelse
                                                 </select>
                                             </div>
@@ -101,6 +99,9 @@
                                                 <select class="form-control mb-4" name="gender" required>
                                                         <option value="men">Men</option>
                                                         <option value="women">Women</option>
+                                                        <option value="children">Children</option>
+                                                        <option value="adults">Adults</option>
+                                                        <option value="young">Young</option>
                                                         <option value="all">All</option>
                                                 </select>
                                             </div>
@@ -137,9 +138,9 @@
                                             <div class="form-group">
                                                 <label>Tax Rate</label>
                                                 <select class="form-control" name="tax_rate" required>
-                                                    <option selected value="21">Tax rate 1: 21%</option>
-                                                    <option value="12">Tax rate 2: 12%</option>
-                                                    <option value="6">Tax rate 3: 6%</option>
+                                                    <option selected value="0.21">Tax rate 1: 21%</option>
+                                                    <option value="0.12">Tax rate 2: 12%</option>
+                                                    <option value="0.06">Tax rate 3: 6%</option>
                                                     <option value="1">Tax rate 4: 0%</option>
                                                 </select>
                                             </div>
@@ -164,7 +165,7 @@
             //Assign the value to the input
             $('input[name="slug"]').val(SlugValue);
         });
-        //Dropzone For Images 
+        //Dropzone For Images
         var myDropzone = new Dropzone("div#drop-zone", {
              url: "{{route('admin.product.uploadGalleryImages')}}",
              paramName: "image",

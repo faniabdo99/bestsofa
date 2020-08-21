@@ -13,6 +13,8 @@ class CreateCartsTable extends Migration
             $table->integer('product_id');
             $table->string('status')->default('active');
             $table->integer('qty');
+            $table->string('applied_coupon')->nullable();
+            $table->string('coupon_amount')->nullable();
             $table->timestamps();
         });
     }

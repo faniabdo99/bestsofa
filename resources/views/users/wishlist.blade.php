@@ -14,50 +14,49 @@
 				</div>
 				<div class="row">
 					@forelse($TheUser->LikedProducts() as $Product)
-						@if($Product->status == 'Customers only')
+						@if($Product->Product->status == 'Customers only')
 							@auth
 							<div class="col col10">
 								<div class="f_p_item">
 									<div class="f_p_img">
-										<img class="img-fluid" src="{{$Product->main_image}}" alt="{{$Product->title}}">
+										<img class="img-fluid" src="{{$Product->Product->main_image}}" alt="{{$Product->Product->title}}">
 										<div class="p_icon">
 											@auth
-											<a class="icon_btn like_item @if($Product->LikedByUser()) bg-primary text-white @endif" product-id="{{$Product->id}}" href="javascript:;">
+											<a class="icon_btn like_item @if($Product->Product->LikedByUser()) bg-primary text-white @endif" product-id="{{$Product->Product->id}}" href="javascript:;">
 												<i class="lnr lnr lnr-heart"></i>
 											</a>
 											@endauth
 											<a href="#"><i class="lnr lnr-cart"></i></a>
 										</div>
 									</div>
-									<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
-										<h4>{{$Product->local_title}}</h4>
+									<a href="{{route('product.single' , [$Product->Product->id , $Product->Product->local_slug])}}">
+										<h4>{{$Product->Product->local_title}}</h4>
 									</a>
-									<h5>€{{$Product->price}}</h5>
+									<h5>{{$Product->Product->FinalPrice}}</h5>
 								</div>
 							</div>
 							@endauth
-						@else 
+						@else
 						<div class="col col10">
 							<div class="f_p_item">
 								<div class="f_p_img">
-									<img class="img-fluid" src="{{$Product->main_image}}" alt="{{$Product->title}}">
+									<img class="img-fluid" src="{{$Product->Product->main_image}}" alt="{{$Product->Product->title}}">
 									<div class="p_icon">
 										@auth
-										<a class="icon_btn like_item @if($Product->LikedByUser()) bg-primary text-white @endif" product-id="{{$Product->id}}" href="javascript:;">
-											<i class="lnr lnr lnr-heart"></i>
-										</a>
+											<a class="icon_btn like_item @if($Product->Product->LikedByUser()) bg-primary text-white @endif" product-id="{{$Product->Product->id}}" href="javascript:;">
+												<i class="lnr lnr lnr-heart"></i>
+											</a>
 										@endauth
-										<a href="#"><i class="lnr lnr-cart"></i></a>
 									</div>
 								</div>
-								<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
-									<h4>{{$Product->local_title}}</h4>
+								<a href="{{route('product.single' , [$Product->Product->id , $Product->Product->local_slug])}}">
+									<h4>{{$Product->Product->local_title}}</h4>
 								</a>
-								<h5>€{{$Product->price}}</h5>
+								<h5>{{$Product->Product->FinalPrice}}</h5>
 							</div>
 						</div>
 						@endif
-                    @empty 
+                    @empty
                     <div class="col-12">
                         <p class="text-center">You didn't add any product to your wishlist yet!</p>
                     </div>
@@ -69,11 +68,7 @@
     <!--================ start footer Area  =================-->
     @include('layout.footer')
     <!--================ End footer Area  =================-->
-
-
-
     <!-- Optional JavaScript -->
     @include('layout.scripts')
 </body>
-
 </html>
