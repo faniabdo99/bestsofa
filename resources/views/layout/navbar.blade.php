@@ -53,10 +53,9 @@
                     <div class="row w-100">
                         <div class="col-lg-7 pr-0">
                             <ul class="nav navbar-nav center_nav pull-right">
-                                <li class="nav-item @if(request()->path() == '/') active @endif"><a class="nav-link" href="{{route('home')}}">Home</a></li>
-                                <li class="nav-item @if(str_contains(request()->path() , 'products')) active @endif">
-                                    <a href="{{route('product.home')}}" class="nav-link">Shop</a>
-                                </li>
+                              <li class="nav-item @if(request()->path() == '/') active @endif"><a class="nav-link" href="{{route('home')}}">Home</a></li>
+                              <li class="nav-item @if(request()->path() == 'about') active @endif"><a class="nav-link" href="{{route('about')}}">About</a></li>
+                              <li class="nav-item @if(str_contains(request()->path() , 'products')) active @endif"><a href="{{route('product.home')}}" class="nav-link">Shop</a></li>
                                 {{-- <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                         aria-haspopup="true" aria-expanded="false">Blog</a>
@@ -69,9 +68,13 @@
                                         </li>
                                     </ul>
                                 </li> --}}
-                                <li class="nav-item @if(str_contains(request()->path() , 'contact')) active @endif">
-                                    <a class="nav-link" href="{{route('contact.get')}}">Contact</a>
-                                </li>
+                                <li class="nav-item @if(str_contains(request()->path() , 'contact')) active @endif"><a class="nav-link" href="{{route('contact.get')}}">Contact</a></li>
+                                  @guest
+                                    <li class="nav-item"><a class="nav-link" href="{{route('login.get')}}">Login</a></li>
+                                  @endguest
+                                  @auth
+                                    <li class="nav-item @if(str_contains(request()->path() , 'profile')) active @endif"><a class="nav-link" href="{{route('profile')}}">My Account</a></li>
+                                  @endauth
                             </ul>
                         </div>
                         <div class="col-lg-5">

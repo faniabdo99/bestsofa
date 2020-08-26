@@ -1,8 +1,7 @@
 /* Home Banner Area css
 ============================================================================================ */
-
 .home_banner_area {
-    background: url(/public/img/banner/banner-bg.jpg) no-repeat center bottom;
+    background: url('/public/img/banner/banner-bg.jpg') no-repeat center bottom;
     position: relative;
     z-index: 1;
     min-height: 900px;
@@ -118,7 +117,7 @@
         overflow: hidden;
         width: 100%;
         min-height: 395px;
-        background: url(/public/img/breadcrumb/checkout-bg.jpg) no-repeat center bottom;
+        background: url('../../public/img/banner/banner.jpg') no-repeat center bottom;
         background-size: cover;
         z-index: 1;
         .overlay {
@@ -132,13 +131,11 @@
         .banner_content {
             position: relative;
             z-index: 10;
-            h2 {
+            h1 {
                 color: #ffffff;
                 font-size: 48px;
                 font-family: $rob;
-                margin-bottom: 12px;
                 font-weight: 500;
-                margin-top: 120px;
             }
             .page_link {
                 a {

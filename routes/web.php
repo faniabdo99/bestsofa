@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function(){
 //General Routes
 Route::get('contact' , 'ContactUsController@getContact')->name('contact.get');
 Route::post('contact' , 'ContactUsController@postContact')->name('contact.post');
-
+Route::get('about' , 'PagesController@getAboutUs')->name('about');
 //Products Routes
 Route::group(['prefix'=>'products'] , function (){
   Route::get('/{filter?}' , 'ProductsController@getAll')->name('product.home');
@@ -94,4 +94,5 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'] , function () {
 Route::get('api/add-item-to-cart' ,'CartController@addItem')->name('cart.add');
 Route::get('delete-from-cart/{cartId}/{userId}' ,'CartController@deleteItem')->name('cart.delete');
 Route::get('cart' , 'CartController@getCartPage')->name('cart');
+Route::get('checkout' , 'OrdersController@getCheckoutPage')->name('checkout');
 Route::post('apply-coupon' , 'CoupounsController@applyCoupon')->name('coupon.apply');

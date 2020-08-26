@@ -32,7 +32,6 @@ class CreateProductsTable extends Migration
             $table->integer('allow_reviews')->default(1);
             $table->integer('allow_reservations')->default(1);
             $table->integer('user_id');
-            $table->string('tags');
             $table->timestamps();
         });
     }

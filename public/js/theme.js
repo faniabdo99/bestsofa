@@ -364,10 +364,9 @@ function makeid(length) {
 })(jQuery)
 
 //================== Custom Jquery and Stuff ==========================
-$.ajaxSetup({
-    headers:
-    { 'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content') }
-});
+// $.ajaxSetup({
+//     headers:{ 'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content') }
+// });
 //Send the activation link to the user , this action comes from the profile page in case the use account is not active.
 $('#send_activate_link').click(function(){
     var ActionRoute = $(this).attr('action-route');
@@ -507,6 +506,21 @@ $('#calculate-shipping-cost').click(function(){
       error: function (response){
         $('#shipping-cost-res').addClass('d-none').html(response);
           ShowNoto('noto-danger' , response.responseText , 'Error');
+      }
+  });
+});
+$('#validate_vat_number').click(function(){
+  var ActionRoute = "http://apilayer.net/api/validate";
+  var VatNumber = $('input[name="vat_number"]').val();
+  var AccessKey  = "c741ee3de22b687def5c1f981131e65e";
+  $.ajax({
+      'method':'get',
+      'url' : ActionRoute+'?access_key='+AccessKey+'&vat_number='+VatNumber+'&format=1',
+      success: function(response){
+          console.log(response);
+      },
+      error: function (response){
+        console.log(response);
       }
   });
 });

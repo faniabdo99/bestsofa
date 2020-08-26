@@ -333,11 +333,11 @@ a:hover, a:focus {
 }
 
 .section_gap {
-  padding: 120px 0px;
+  padding: 80px 0px;
 }
 @media (max-width: 1224px) {
   .section_gap {
-    padding: 60px 0px;
+    padding: 40px 0px;
   }
 }
 
@@ -746,7 +746,7 @@ a:hover, a:focus {
 /* Home Banner Area css
 ============================================================================================ */
 .home_banner_area {
-  background: url(/public/img/banner/banner-bg.jpg) no-repeat center bottom;
+  background: url("/public/img/banner/banner-bg.jpg") no-repeat center bottom;
   position: relative;
   z-index: 1;
   min-height: 900px;
@@ -863,7 +863,7 @@ a:hover, a:focus {
   overflow: hidden;
   width: 100%;
   min-height: 395px;
-  background: url(/public/img/breadcrumb/checkout-bg.jpg) no-repeat center bottom;
+  background: url("../../public/img/banner/banner.jpg") no-repeat center bottom;
   background-size: cover;
   z-index: 1;
 }
@@ -879,13 +879,11 @@ a:hover, a:focus {
   position: relative;
   z-index: 10;
 }
-.banner_area .banner_inner .banner_content h2 {
+.banner_area .banner_inner .banner_content h1 {
   color: #ffffff;
   font-size: 48px;
   font-family: "Poppins", sans-serif;
-  margin-bottom: 12px;
   font-weight: 500;
-  margin-top: 120px;
 }
 .banner_area .banner_inner .banner_content .page_link a {
   font-size: 14px;
@@ -4702,19 +4700,24 @@ h6 {
   text-decoration: underline;
 }
 
-.returning_customer p {
+p {
   margin-top: 15px;
   padding-left: 30px;
   margin-bottom: 25px;
 }
-.returning_customer .contact_form {
+
+.contact_form {
   max-width: 710px;
-  margin-left: 15px;
 }
-.returning_customer .contact_form .form-group {
+.contact_form .form-group {
   margin-bottom: 20px;
 }
-.returning_customer .contact_form .form-group input {
+.contact_form .form-group label {
+  font-weight: bold;
+  color: #222222;
+  font-size: 0.9em;
+}
+.contact_form .form-group input {
   border: 1px solid #eeeeee;
   height: 40px;
   border-radius: 3px;
@@ -4723,42 +4726,41 @@ h6 {
   color: #777777;
   font-weight: normal;
 }
-.returning_customer .contact_form .form-group input.placeholder {
+.contact_form .form-group input.placeholder {
   font-size: 14px;
   font-family: "Poppins", sans-serif;
   color: #777777;
   font-weight: normal;
 }
-.returning_customer .contact_form .form-group input:-moz-placeholder {
+.contact_form .form-group input:-moz-placeholder {
   font-size: 14px;
   font-family: "Poppins", sans-serif;
   color: #777777;
   font-weight: normal;
 }
-.returning_customer .contact_form .form-group input::-moz-placeholder {
+.contact_form .form-group input::-moz-placeholder {
   font-size: 14px;
   font-family: "Poppins", sans-serif;
   color: #777777;
   font-weight: normal;
 }
-.returning_customer .contact_form .form-group input::-webkit-input-placeholder {
+.contact_form .form-group input::-webkit-input-placeholder {
   font-size: 14px;
   font-family: "Poppins", sans-serif;
   color: #777777;
   font-weight: normal;
 }
-.returning_customer .contact_form .form-group .submit_btn {
+.contact_form .form-group .submit_btn {
   margin-top: 0px;
 }
-.returning_customer .contact_form .form-group .creat_account {
+.contact_form .form-group .creat_account {
   display: inline-block;
-  margin-left: 15px;
 }
-.returning_customer .contact_form .form-group .creat_account input {
+.contact_form .form-group .creat_account input {
   height: auto;
   margin-right: 10px;
 }
-.returning_customer .contact_form .form-group .lost_pass {
+.contact_form .form-group .lost_pass {
   display: block;
   margin-top: 20px;
   font-size: 14px;
@@ -4802,7 +4804,6 @@ h6 {
   margin-bottom: 40px;
 }
 .cupon_area input {
-  margin-left: 30px;
   max-width: 730px;
   width: 100%;
   display: block;
@@ -4814,9 +4815,6 @@ h6 {
   box-shadow: none;
   margin-top: 20px;
   margin-bottom: 20px;
-}
-.cupon_area .tp_btn {
-  margin-left: 30px;
 }
 
 .tp_btn {
@@ -5143,7 +5141,9 @@ h6 {
 }
 .login_form .form-group .creat_account input {
   height: auto;
-  margin-right: 10px;
+}
+.login_form .form-group .creat_account label {
+  font-weight: normal;
 }
 .login_form .form-group .submit_btn {
   display: block;
@@ -5501,3 +5501,14 @@ h6 {
 }
 
 /*---------------------------------------------------- */
+.about_us_content_section .contact_info {
+  list-style-type: none;
+  -webkit-padding-start: 0;
+          padding-inline-start: 0;
+}
+.about_us_content_section .contact_info li {
+  margin-bottom: 15px;
+}
+.about_us_content_section .contact_info li b {
+  color: #206fa1;
+}

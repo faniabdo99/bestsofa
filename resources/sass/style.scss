@@ -79,3 +79,16 @@ Table of Content:
 /*----------------------------------------------------*/
 @import "footer";
 /*---------------------------------------------------- */
+//About Us Page
+.about_us_content_section{
+  .contact_info{
+    list-style-type: none;
+    padding-inline-start:0;
+    li{
+      margin-bottom: 15px;
+      b{
+        color: $baseColor;
+      }
+    }
+  }
+}

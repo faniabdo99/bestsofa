@@ -117,14 +117,13 @@
 								</select>
 								<a class="gray_btn mr-5" href="javascript:;" id="calculate-shipping-cost">Calculate</a>
 							</div>
-							<p class="bg-success p-2 text-white mt-4 text-center d-none" id="shipping-cost-res">The Shipping Cost to BE is 20$</p>
-
+							<p class="bg-success p-2 text-white mt-4 text-center d-none" id="shipping-cost-res"></p>
 						</div>
 
 						<!-- End Shipping -->
 						<div class="checkout_btn_inner">
 							<a class="gray_btn" href="{{route('product.home')}}">Continue Shopping</a>
-							<a class="main_btn" href="#">Proceed to checkout</a>
+							<a class="main_btn" href="{{route('checkout')}}">Proceed to checkout</a>
 						</div>
 
 					</div>

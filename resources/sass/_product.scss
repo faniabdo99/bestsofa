@@ -986,7 +986,7 @@
                         }
                     }
                 }
-              
+
                 &.out_button_area {
                     .checkout_btn_inner {
                         margin-left: -388px;
@@ -1081,7 +1081,6 @@
     }
 }
 
-.returning_customer {
     p {
         margin-top: 15px;
         padding-left: 30px;
@@ -1089,9 +1088,13 @@
     }
     .contact_form {
         max-width: 710px;
-        margin-left: 15px;
         .form-group {
             margin-bottom: 20px;
+            label{
+              font-weight: bold;
+              color: $dip;
+              font-size: 0.9em;
+            }
             input {
                 border: 1px solid #eeeeee;
                 height: 40px;
@@ -1112,7 +1115,6 @@
             }
             .creat_account {
                 display: inline-block;
-                margin-left: 15px;
                 input {
                     height: auto;
                     margin-right: 10px;
@@ -1128,7 +1130,7 @@
             }
         }
     }
-}
+
 
 .p_star {
     display: inline-block;
@@ -1167,7 +1169,6 @@
 .cupon_area {
     margin-bottom: 40px;
     input {
-        margin-left: 30px;
         max-width: 730px;
         width: 100%;
         display: block;
@@ -1179,9 +1180,6 @@
         box-shadow: none;
         margin-top: 20px;
         margin-bottom: 20px;
-    }
-    .tp_btn {
-        margin-left: 30px;
     }
 }
 
@@ -1553,7 +1551,9 @@
             text-align: left;
             input {
                 height: auto;
-                margin-right: 10px;
+            }
+            label{
+              font-weight:normal;
             }
         }
         .submit_btn {
@@ -1695,7 +1695,7 @@
 .radion_btn input[type=radio]:checked~label {
     color: #000;
 }
-//Discount Stuff 
+//Discount Stuff
 .product-price-before-discount{
     color: $danger !important;
     text-decoration: line-through;
