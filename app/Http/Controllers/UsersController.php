@@ -9,6 +9,7 @@ use Mail;
 use Socialite;
 //Models
 use App\User;
+use App\Order;
 use App\Mail\WelcomeNewUser;
 use App\Mail\WelcomeSocialLogin;
 use App\Mail\ResetPasswordMail;
@@ -21,15 +22,15 @@ class UsersController extends Controller{
     public function postSignup(Request $r){
       //Validate the Request
       $Rules = [
-        'name' => 'required|min:4|max:50',
+        'first_name' => 'required|min:4|max:50',
         'email' => 'required|email|unique:users',
         'password' => 'required|min:7',
         'password' => 'min:6|required_with:password-conf|same:password-conf'
       ];
       $ErrorMessages = [
-        'name.required' => 'Your name is required',
-        'name.min' => 'Your name can\'t be less than 4 letters',
-        'name.max' => 'Your name can\'t be longer than 50 letters',
+        'first_name.required' => 'Your name is required',
+        'first_name.min' => 'Your name can\'t be less than 4 letters',
+        'first_name.max' => 'Your name can\'t be longer than 50 letters',
         'email.required' => 'Your email is required',
         'email.email' => 'Your email is invalid',
         'email.unique' => 'This email is already taken',
@@ -54,8 +55,6 @@ class UsersController extends Controller{
         return back()->withSuccess('User Has Been Created Successfully');
       }
     }
-
-
     /*============================ Handmade Login*/
     public function getLogin(){
       return view('users.login');
@@ -95,7 +94,7 @@ class UsersController extends Controller{
         //Signup
         $ProfileImage = (isset($user->avatar)) ? $user->avatar : 'user.png';
         $NewUser = User::create([
-          'name' => $user->name ,
+          'first_name' => $user->name ,
           'email' => $user->email,
           'image' => $ProfileImage,
           'password' => 'PlaceholderPass',
@@ -147,7 +146,6 @@ class UsersController extends Controller{
     $TheUser = User::where('code' , $code)->first();
     if($TheUser != null){
       return view('users.reset-final' , compact('code'));
-      dd($TheUser);
       //There is a User with this code
     }else{
       abort(404);
@@ -181,8 +179,10 @@ class UsersController extends Controller{
   public function getProfile(){
     if(auth()->check()){
       //Continue ...
+      //Grab the User Orders if Any
+      $UserOrders = Order::where('user_id' , auth()->user()->id)->get();
       $TheUser = auth()->user();
-      return view('users.profile' , compact('TheUser'));
+      return view('users.profile' , compact('TheUser','UserOrders'));
     }else{
       abort(403);
     }
@@ -190,15 +190,15 @@ class UsersController extends Controller{
   public function updateProfile(Request $r){
      //Validate the Request
      $Rules = [
-      'name' => 'required|min:4|max:50',
+      'first_name' => 'required|min:4|max:50',
       'email' => 'required|email',
       'image' => 'nullable|image|max:5128',
       'password' => 'required_with:password_current'
     ];
     $ErrorMessages = [
-      'name.required' => 'Your name is required',
-      'name.min' => 'Your name can\'t be less than 4 letters',
-      'name.max' => 'Your name can\'t be longer than 50 letters',
+      'first_name.required' => 'Your name is required',
+      'first_name.min' => 'Your name can\'t be less than 4 letters',
+      'first_name.max' => 'Your name can\'t be longer than 50 letters',
       'email.required' => 'Your email is required',
       'email.email' => 'Your email is invalid',
       'email.unique' => 'This email is already taken',
@@ -273,6 +273,10 @@ class UsersController extends Controller{
   public function getWishlist(){
     $TheUser = auth()->user();
     return view('users.wishlist' , compact('TheUser'));
+  }
+  public function getOrdersList(){
+    $TheUser = auth()->user();
+    return view('users.user-orders' , compact('TheUser'));
   }
   //Admin Panel Stuff
   public function getHome(){

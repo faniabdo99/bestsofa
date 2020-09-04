@@ -1,5 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Cookie;
+function formatPrice($amount){
+  return  sprintf("%.2f",$amount);
+}
 function getCountryNameFromISO($ISO){
     $CountrCodeName= ["GB" =>' United Kingdom',"AL" => 'Albania',"AD" => 'Andorra',"AT" => 'Austria',"BY" => 'Belarus',"BE" => 'Belgium',"BA" => 'Bosnia and Herzegovina',"BG" => 'Bulgaria',"HR" => 'Croatia',"CY" => 'Cyprus',"CZ" => 'Czech Republic',"FR" => 'France',"GI" => 'Gibraltar',"DE" => 'Germany',"GR" => 'Greece',"VA" => 'Holy See (Vatican City State)',"HU" => 'Hungary',"IT" => 'Italy',"LI" => 'Liechtenstein',"LU" => 'Luxembourg',"MK" => 'Macedonia',"MT" => 'Malta',"MD" => 'Moldova',"MC" => 'Monaco',"ME" => 'Montenegro',"NL" => 'Netherlands',"PL" => 'Poland',"PT" => 'Portugal',"RO" => 'Romania',"SM" => 'San Marino',"RS" => 'Serbia',"SK" => 'Slovakia',"SI" => 'Slovenia',"ES" => "Spain","UA" => "Ukraine","DK" => "Denmark","EE" => "Estonia","FO" => "Faroe Islands","FI" => "Finland","GL" => "Greenland","IS" => "Iceland","IE" => "Ireland","LV" => "Latvia","LT" => "Lithuania","NO" => "Norway","SJ" => "Svalbard and Jan Mayen Islands","SE" => "Sweden","CH" => "Switzerland","TR" => "Turkey"];
     return $CountrCodeName[$ISO];
@@ -28,16 +31,14 @@ function convertCurrency($amount , $from , $to){
     return sprintf("%.2f",$amount * Cookie::get('exchange_rate'));
   }else{
     $client = new GuzzleHttp\Client();
-    $res = $client->get('https://free.currconv.com/api/v7/convert?q='.$from.'_'.$to.'&compact=ultra&apiKey=2a09d42c2cd34f077b6e');
+    $res = $client->get('http://data.fixer.io/api/latest?access_key=c7e1f33c4184fbb2083a1ae5364f9da6&base='.$from.'&symbols='.$to);
     if($res->getStatusCode() != 200){
       return "Error !" . $res->getStatusCode();
     }
     $ResponseAsArray = json_decode($res->getBody(), true);
-    cookie()->queue(cookie()->make('exchange_rate', reset($ResponseAsArray) , 60));
-    return sprintf("%.2f",$amount *  reset($ResponseAsArray));
+    cookie()->queue(cookie()->make('exchange_rate', $ResponseAsArray['rates']['GBP'] , 60));
+    return sprintf("%.2f",$amount *  $ResponseAsArray['rates']['GBP']);
   }
-
-
 }
 function changeDateFormate($date,$date_format){
     return \Carbon\Carbon::createFromFormat('Y-m-d', $date)->format($date_format);

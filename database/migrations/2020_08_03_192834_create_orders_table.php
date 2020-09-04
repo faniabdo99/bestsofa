@@ -9,14 +9,34 @@ class CreateOrdersTable extends Migration
     public function up(){
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('serial-number');
-            $table->string('user_id');
-            $table->string('lang');
-            $table->string('total_amount');
-            $table->string('status');
-            $table->string('is_paid');
-            $table->string('payment_method');
-            $table->string('tax_rate');
+            //Order Main Data
+            $table->string('serial_number')->default('ABCD');
+            $table->string('lang')->default('en');
+            $table->string('status')->default('Blueprint');
+            $table->string('order_weight')->default('0');
+            //Order Money Part
+            $table->string('total_amount')->default('0');
+            $table->string('is_paid')->default('no');
+            $table->string('payment_method')->default('0');
+            $table->string('order_tax_rate')->default('0');
+            $table->string('total_tax_amount')->default('0');
+            $table->string('total_shipping_cost')->default('0');
+            $table->string('total_shipping_tax')->default('0');
+            //Order User Data
+            $table->string('user_id')->default('1');
+            $table->string('first_name')->default('Default');
+            $table->string('last_name')->default('Name');
+            $table->string('company_name')->default('Company Default Name');
+            $table->string('phone_number')->default('Company Phone Number');
+            $table->string('email')->default('Default User Email');
+            $table->string('address')->default('Default Address');
+            $table->string('address_2')->nullable();
+            $table->string('country')->default('Default Shipping Country');
+            $table->string('city')->default('Default City');
+            $table->string('zip_code')->default('Default Zip Code');
+            $table->string('vat_number')->default('Default VAT Number');
+            $table->string('is_vat_valid')->default('no');
+            $table->text('order_notes')->nullable();
             $table->timestamps();
         });
     }

@@ -21,12 +21,13 @@ class CartController extends Controller{
         }
         //Check if the product viable
         $Product = Product::find($r->product_id);
-
         if(!$Product || $Product->inventory_value <= 0 || $Product->status == 'Sold Out' || $Product->status == 'Invisible'){
             return response("This item is not available for sell right now" , 404);
         }else{
             if($Product->inventory_value < $r->qty){
                  return response("The Maximum Availabe Amount For This Product is " .$Product->inventory_value  , 404);
+            }elseif($Product->min_order > $r->qty){
+                return response('The Minimum Order of This Product is '.$Product->min_order  , 404);
             }
             $CartData['qty'] = ($r->qty ? $r->qty : 1);
             $CurrentCart = Cart::where('product_id' , $CartData['product_id'])->where('user_id' , $CartData['user_id'])->whereDate('created_at' , Carbon::today())->where('status' , 'active')->first();
@@ -72,7 +73,7 @@ class CartController extends Controller{
         if(auth()->check()){$UserId = auth()->user()->id;}else{$UserId = Cookie::get('guest_id');}
         $CartItems = Cart::where('user_id' , $UserId)->where('status' , 'active')->whereDate('created_at' , Carbon::today())->get();
         $CartSubTotalArray = $CartItems->map(function($item) {
-            return (str_replace(['€' , '£'] , '' ,$item->Product->final_price) * $item->qty);
+            return $item->Product->final_price * $item->qty;
         });
         $CartTaxArray = $CartItems->map(function($item) {
             return ($item->Product->tax_amount * $item->qty);

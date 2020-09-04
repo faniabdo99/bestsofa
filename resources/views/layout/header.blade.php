@@ -17,6 +17,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Mulish&family=Poppins&display=swap" rel="stylesheet">
 	<!-- main css -->
 	<link rel="stylesheet" href="{{url('public/css')}}/style.css">
+	<link rel="stylesheet" href="{{url('public/css')}}/print.css">
 	<link rel="stylesheet" href="{{url('public/css')}}/responsive.css">
 	<!-- Advanced Meta Tags -->
 	@auth

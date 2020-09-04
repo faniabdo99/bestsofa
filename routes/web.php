@@ -2,8 +2,11 @@
 use Illuminate\Support\Facades\Route;
 Route::get('/' , 'HomeController@getHome')->name('home');
 Route::get('/change-currency/{currency}/{currency_code}' , 'CurrencyController@setCurrency')->name('currency.change');
-Route::get('/test' , 'OrdersController@testOrder');
 Route::get('/success' , 'OrdersController@orderSuccess')->name('order.success');
+Route::get('/paypal-success' , 'OrdersController@paypalSuccess')->name('order.paypal.success');
+Route::get('/paypal-failed' , 'OrdersController@paypalFailed')->name('order.paypal.failed');
+Route::get('privay-policy' , 'PagesController@getPrivacyPolicy')->name('privacyPolicy');
+Route::get('terms-and-conditions' , 'PagesController@getTOC')->name('toc');
 //Not Logged In Routes
 Route::middleware('guest')->group(function(){
   Route::get('signup' , 'UsersController@getSignup')->name('signup.get');
@@ -22,6 +25,7 @@ Route::middleware('auth')->group(function(){
   Route::get('logout' , 'UsersController@logout')->name('logout');
   Route::get('profile' , 'UsersController@getProfile')->name('profile');
   Route::get('wishlist' , 'UsersController@getWishlist')->name('wishlist');
+  Route::get('my-orders' , 'UsersController@getOrdersList')->name('myOrders');
   Route::post('update-profile' , 'UsersController@updateProfile')->name('profile.update.post');
   Route::get('activate-account/{code}' , 'UsersController@activateAccount')->name('account.activate');
 });
@@ -89,10 +93,25 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'] , function () {
     Route::get('/edit/{id}' , 'ShippingCostsController@getEdit')->name('admin.shippingCosts.getEdit');
     Route::post('/edit/{id}' , 'ShippingCostsController@postEdit')->name('admin.shippingCosts.postEdit');
   });
+    //Orders System
+    Route::prefix('orders')->group(function(){
+      Route::get('/' , 'OrdersController@getHome')->name('admin.orders.home');
+      Route::get('/single/{id}' , 'OrdersController@getSingleOrder')->name('admin.orders.single');
+      Route::post('/update-status/{id}' , 'OrdersController@updateOrderStatus')->name('admin.orders.updateStatus');
+      Route::get('/new' , 'ProductsController@getNew')->name('admin.products.getNew');
+      Route::post('/new' , 'ProductsController@postNew')->name('admin.products.postNew');
+      Route::get('/edit/{id}' , 'ProductsController@getEdit')->name('admin.products.getEdit');
+      Route::post('/edit/{id}' , 'ProductsController@postEdit')->name('admin.products.postEdit');
+      Route::get('/localize/{id}' , 'ProductsController@getLocalize')->name('admin.products.getLocalize');
+    });
 });
 //Cart Related Routes
 Route::get('api/add-item-to-cart' ,'CartController@addItem')->name('cart.add');
 Route::get('delete-from-cart/{cartId}/{userId}' ,'CartController@deleteItem')->name('cart.delete');
 Route::get('cart' , 'CartController@getCartPage')->name('cart');
 Route::get('checkout' , 'OrdersController@getCheckoutPage')->name('checkout');
+Route::post('checkout', 'OrdersController@postOrder')->name('checkout.post');
+Route::get('order-summary/{id}', 'OrdersController@getSummaryPage')->name('checkout.summary');
+Route::get('order-payment/{id}', 'OrdersController@getPaymentPage')->name('checkout.payment');
+Route::post('order-payment/{id}', 'OrdersController@postPaymentPage')->name('checkout.payment.post');
 Route::post('apply-coupon' , 'CoupounsController@applyCoupon')->name('coupon.apply');

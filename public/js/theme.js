@@ -509,18 +509,3 @@ $('#calculate-shipping-cost').click(function(){
       }
   });
 });
-$('#validate_vat_number').click(function(){
-  var ActionRoute = "http://apilayer.net/api/validate";
-  var VatNumber = $('input[name="vat_number"]').val();
-  var AccessKey  = "c741ee3de22b687def5c1f981131e65e";
-  $.ajax({
-      'method':'get',
-      'url' : ActionRoute+'?access_key='+AccessKey+'&vat_number='+VatNumber+'&format=1',
-      success: function(response){
-          console.log(response);
-      },
-      error: function (response){
-        console.log(response);
-      }
-  });
-});

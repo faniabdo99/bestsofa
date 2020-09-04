@@ -21,6 +21,8 @@ Route::post('delete-shipping-cost' , 'ShippingCostsController@delete')->name('ad
 Route::post('calculate-shipping-cost' , 'ShippingCostsController@calculateShippingCost')->name('admin.shippingCosts.calculate');
 //Cart
 Route::post('update-cart' , 'CartController@postUpdate')->name('cart.update');
+//Order VAT Number
+Route::post('update-order-vat/{id}' , 'OrdersController@updateVatNumber')->name('order.updateVat');
 //*********non-Admin API Routes
 Route::post('send-activate-link' , 'UsersController@sendActivateEmail')->name('user.sendActivateLink');
 Route::post('ask-question-about-product' , 'ProductsController@askQuestion')->name('product.askQuestion');

@@ -5,5 +5,5 @@ mix.options({
   ],
   processCssUrls: false
 });
-mix.sass('resources/sass/style.scss', 'public/css');
+mix.sass('resources/sass/style.scss', 'public/css').sass('resources/sass/print.scss', 'public/css');
 mix.browserSync('localhost/ukfashionshop');

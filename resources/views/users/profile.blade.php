@@ -35,8 +35,10 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-12">
                                         <h4>Main Info</h4>
-                                        <label>Name: </label>
-                                        <input name="name" type="text" placeholder="Enter Your Name Here" value="{{$TheUser->name}}" required>
+                                        <label>First Name: </label>
+                                        <input name="first_name" type="text" placeholder="Enter Your First Name Here" value="{{$TheUser->first_name}}" required>
+                                        <label>Last Name: </label>
+                                        <input name="last_name" type="text" placeholder="Enter Your Last Name Here" value="{{$TheUser->last_name}}" required>
                                         <label>Company Name: </label>
                                         <input name="company_name" type="text" placeholder="Enter Your Company Name Here" value="{{$TheUser->company_name}}">
                                         <label>Email: </label>
@@ -343,10 +345,12 @@
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="profile_state_card">
-                            <h3 class="card_title"><i class="fas fa-shopping-basket"></i> My Orders (25)</h3>
+                    <a href="{{route('myOrders')}}">
+                        <div class="profile_state_card">
+                            <h3 class="card_title"><i class="fas fa-shopping-basket"></i> My Orders ({{$UserOrders->count()}})</h3>
                             <p class="card_description">Click to view you orders list.</p>
                         </div>
+                    </a>
                     </div>
                     <div class="col-lg-6">
                         <a href="{{route('wishlist')}}">

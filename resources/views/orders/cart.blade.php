@@ -16,8 +16,8 @@
 									<th style="width:15%">Price</th>
 									<th style="width:15%">Quantity</th>
 									<th style="width:10%">Action</th>
-									<th style="width:10%">Total</th>
-									<th style="width:15%">Tax Included</th>
+									<th style="width:10%">Unit Price</th>
+									<th style="width:15%">Total</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -34,7 +34,7 @@
 										</div>
 									</td>
 									<td>
-										<h5>{{$Item->Product->final_price.getCurrency()['symbole']}}</h5>
+										<h5>{{formatPrice($Item->Product->final_price).getCurrency()['symbole']}}</h5>
 									</td>
 									<td>
 										<div class="product_count">
@@ -45,8 +45,8 @@
 										<a href="{{route('cart.delete' ,[$Item->id , $Item->user_id])}}" class="text-danger mr-4" title="Remove From Cart"><i class="fas fa-trash"></i></a>
 										<a href="{{route('cart')}}" class="text-success update-cart-icon d-none" title="Update Cart"><i class="fas fa-refresh"></i></a>
 									</td>
-									<td><h5>{{$Item->total_price.getCurrency()['symbole']}}</h5></td>
-									<td><h5>{{$Item->total_price + $Item->total_tax.getCurrency()['symbole'] }}</h5></td>
+									<td><h5>{{formatPrice($Item->Product->final_price).getCurrency()['symbole']}}</h5></td>
+									<td><h5>{{formatPrice($Item->total_price).getCurrency()['symbole'] }}</h5></td>
 								</tr>
 								@endforeach
 								<tr class="bottom_button">
@@ -76,7 +76,6 @@
 									<td style="width:0%"></td>
 									<td style="width:0%"></td>
 									<td style="width:50%;">
-										<h5 class="mb-4">Tax</h5>
 										@if($CouponDiscount)
 										<h5 class="mb-4">Total</h5>
 										<h5 class="mb-4 text-success">Coupon : {{$CartItems->first()->applied_coupon}}</h5>
@@ -84,12 +83,11 @@
 										<h5>Subtotal</h5>
 									</td>
 									<td style="width:35%;">
-										<h5 class="mb-4">{{$CartTax.getCurrency()['symbole']}}</h5>
 										@if($CouponDiscount)
 										<h5 class="mb-4">{{$Total.getCurrency()['symbole']}}</h5>
 										<h5 class="mb-4 text-success">-{{$CouponDiscount.getCurrency()['symbole']}}</h5>
 										@endif
-										<h5>{{$SubTotal.getCurrency()['symbole']}}</h5>
+										<h5>{{formatPrice($SubTotal).getCurrency()['symbole']}}</h5>
 									</td>
 								</tr>
 							</tbody>

@@ -75,7 +75,16 @@ class ShippingCostsController extends Controller{
       if($ShippingCost){
         //Calculate Cost
         $ShippingTax = $ShippingCost->FinalCost * $r->cart_tax_avg;
-        return response("This Order Shipping Cost to ".getCountryNameFromISO($ShippingCost->country_name)." is ".($ShippingCost->FinalCost+$ShippingTax).getCurrency()['symbole']);
+        $ResponseArray = [
+          'country' => $ShippingCost->country_name,
+          'actual_cost_euro' => $ShippingCost->FinalCost,
+          'shipping_tax_euro' => $ShippingTax,
+          'final_cost_euro' => $ShippingCost->FinalCost+$ShippingTax,
+          'actual_cost_gbp' => convertCurrency($ShippingCost->FinalCost,'EUR','GBP'),
+          'shipping_tax_gbp' => convertCurrency($ShippingTax,'EUR','GBP'),
+          'final_cost_gbp' => convertCurrency($ShippingCost->FinalCost+$ShippingTax,'EUR','GBP')
+        ];
+        return response($ResponseArray , 200);
       }else{
         return response("We Don\'t Have a Record For That Yet , Sorry" , 404);
       }

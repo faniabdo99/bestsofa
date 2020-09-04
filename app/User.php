@@ -34,4 +34,10 @@ class User extends Authenticatable
     public function LikedProducts(){
         return Favourite::where('user_id' , $this->id)->get();
     }
+    public function Orders(){
+        return Order::where('user_id' , $this->id)->get();
+    }
+    public function getNameAttribute(){
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }
