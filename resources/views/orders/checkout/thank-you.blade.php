@@ -11,8 +11,8 @@
                     <tr>
                         <th>Item</th>
                         <th>Quantity</th>
-                        <th>Total Price</th>
-                        <th>Total Tax</th>
+                        <th>Unit Price</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,9 +20,9 @@
                     <tr>
                         <td>{{$OrderItem->Product->local_title}}</td>
                         <td>{{$OrderItem->qty}}</td>
-                        <td>{{$OrderItem->qty*$OrderItem->Product->final_price.getCurrency()['symbole']}}
+                        <td>{{formatPrice($OrderItem->Product->final_price).getCurrency()['symbole']}}
                         </td>
-                        <td>{{$OrderItem->qty*$OrderItem->Product->tax_amount.getCurrency()['symbole']}}
+                        <td>{{formatPrice($OrderItem->qty*$OrderItem->Product->final_price).getCurrency()['symbole']}}
                         </td>
                     </tr>
                     @empty
@@ -31,25 +31,25 @@
                         <td></td>
                         <td></td>
                         <th>Order Total</th>
-                        <td>{{$TheOrder->total.getCurrency()['symbole']}}</td>
+                        <td>{{formatPrice($TheOrder->total).getCurrency()['symbole']}}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <th>Order Tax</th>
-                        <td>{{$TheOrder->total_tax.getCurrency()['symbole']}}</td>
+                        <td>{{formatPrice($TheOrder->total_tax).getCurrency()['symbole']}}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <th>Order Shipping Cost</th>
-                        <td>{{$TheOrder->total_shipping.getCurrency()['symbole']}}</td>
+                        <td>{{formatPrice($TheOrder->total_shipping).getCurrency()['symbole']}}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <th>Total</th>
-                        <td>{{$TheOrder->final_total.getCurrency()['symbole']}}</td>
+                        <td>{{formatPrice($TheOrder->final_total).getCurrency()['symbole']}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -75,6 +75,10 @@
                 </tbody>
             </table>
             <h3>Shipping Details</h3>
+            @if($TheOrder->pickup_at_store == 'yes')
+            <p class="pl-0">Collect From Warehouse (Be Sure to call one day ahead)</p>
+            <p class="pl-0">Globale trading Zone 5 Mollem 13 1730 Asse , Belgium +32 487 24 45 99</p>
+            @else
             <table class="table mb-5">
                 <tbody>
                   <tr>
@@ -95,12 +99,13 @@
                 </tr>
                 </tbody>
             </table>
+            @endif
             <h3>Payments Details</h3>
             <table class="table mb-5">
                 <tbody>
                   <tr>
                       <th>Payment Method</th>
-                      <td>{{$TheOrder->payment_method}}</td>
+                      <td>{{$TheOrder->PaymentMethodData['name']}}</td>
                   </tr>
                   <tr>
                     <th>Payment Status</th>
@@ -120,12 +125,15 @@
                 </tr>
                 <tr>
                     <th>Order Total</th>
-                    <td>{{$TheOrder->final_total.getCurrency()['symbole']}}</td>
+                    <td>{{formatPrice($TheOrder->final_total).getCurrency()['symbole']}}</td>
                 </tr>
                 </tbody>
             </table>
             <button id="print_page" class="main_btn no-print" href="#">Print This Page</button>
-		</div>
+            @auth
+                <a href="{{route('myOrders')}}" class="main_btn no-print" href="#">Veiw Your Orders</a>
+            @endauth
+        </div>
 	</section>
 	@include('layout.footer')
     @include('layout.scripts')

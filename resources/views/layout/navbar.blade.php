@@ -2,7 +2,7 @@
     <div class="top_menu row m0">
         <div class="container-fluid">
             <div class="float-left">
-                <p>Call Us: 0032 484 82 93 16</p>
+                <p>Call Us: <a href="tel:+3252201018">+32 52 20 10 18</a></p>
             </div>
             <div class="float-right">
                 <ul class="right_side">

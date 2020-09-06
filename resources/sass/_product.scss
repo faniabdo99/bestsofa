@@ -190,7 +190,6 @@
     }
 }
 
-.left_sidebar_area {}
 
 .left_widgets {
     margin-bottom: 30px;
@@ -477,7 +476,6 @@
     padding-top: 120px;
 }
 
-.s_product_inner {}
 
 .s_product_img {
     .carousel {
@@ -754,8 +752,6 @@
     }
 }
 
-.review_list {}
-
 .review_item {
     margin-bottom: 15px;
     &:last-child {
@@ -840,9 +836,7 @@
     }
 }
 
-.comment_list {
-    .review_item {}
-}
+
 
 /* End Single Product Area css
 ============================================================================================ */
@@ -1082,8 +1076,6 @@
 }
 
     p {
-        margin-top: 15px;
-        padding-left: 30px;
         margin-bottom: 25px;
     }
     .contact_form {
@@ -1524,7 +1516,6 @@
     .login_form {
         max-width: 385px;
         margin: auto;
-        .form-group {}
     }
     &.reg_form {
         padding-top: 60px;
@@ -1646,6 +1637,7 @@
     z-index: 9;
     cursor: pointer;
     -webkit-transition: all 0.25s linear;
+    transition: all 0.25s linear;
     font-family: $rob;
     font-weight: 500;
     color: $dip;

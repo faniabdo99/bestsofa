@@ -4701,8 +4701,6 @@ h6 {
 }
 
 p {
-  margin-top: 15px;
-  padding-left: 30px;
   margin-bottom: 25px;
 }
 
@@ -5241,7 +5239,7 @@ p {
   height: 14px;
   z-index: 9;
   cursor: pointer;
-  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   color: #222222;

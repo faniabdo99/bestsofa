@@ -92,38 +92,10 @@
 								</tr>
 							</tbody>
 						</table>
-						@php
-						//Calculate Order Weight
-						$Weight = $CartItems->map(function($item){
-							return ($item->Product->weight * $item->qty);
-						});
-						$CartTax =  $CartItems->map(function($item){
-							return ($item->Product->tax_rate);
-						});
-						@endphp
-						<div class="shipping_area mb-5">
-							<div class="shipping_box text-left">
-								<h5 class="mb-3">Calculate Shipping Fees</h5>
-								<input hidden name="order_weight" value="{{$Weight->sum()}}">
-								<input hidden name="cart_tax_avg" value="{{$CartTax->avg()}}">
-								<select class="shipping_select" name="country_name">
-									<option value="">Choose Your Country</option>
-									@forelse ($ShippingCostCountries as $Country)
-										<option value="{{$Country}}">{{getCountryNameFromISO($Country)}}</option>
-									@empty
-									@endforelse
-								</select>
-								<a class="gray_btn mr-5" href="javascript:;" id="calculate-shipping-cost">Calculate</a>
-							</div>
-							<p class="bg-success p-2 text-white mt-4 text-center d-none" id="shipping-cost-res"></p>
-						</div>
-
-						<!-- End Shipping -->
 						<div class="checkout_btn_inner">
 							<a class="gray_btn" href="{{route('product.home')}}">Continue Shopping</a>
 							<a class="main_btn" href="{{route('checkout')}}">Proceed to checkout</a>
 						</div>
-
 					</div>
 					@else
 					<p class="text-center">Your Shopping Cart is Empty</p>

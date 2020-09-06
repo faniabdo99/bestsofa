@@ -15,6 +15,7 @@ use App\ShippingCost;
 use App\Order;
 use App\Order_Product;
 use App\User;
+use App\Payment_Method;
 //Mails
 use App\Mail\OrderSignupPassword;
 class OrdersController extends Controller{
@@ -156,6 +157,10 @@ class OrdersController extends Controller{
           }
         }
       }
+      if($r->pickup_at_store == 'yes'){
+        $OrderData['total_shipping_cost'] = '0.00';
+        $OrderData['total_shipping_tax'] = '0.00';
+      }
       $OrderData['serial_number'] = '20200-29051-'.str_replace('.' , '-' , substr( microtime(true),-11));
       $OrderData['status'] = 'Pre-Payments';
       $OrderData['order_currency'] = getCurrency()['code'];
@@ -242,33 +247,8 @@ class OrdersController extends Controller{
             return redirect()->route('home')->withErrors('Order Already Paid, You Track the Order Progress in the Tracking Page');
           }
           if($r->payment_method == 'banktransfer'){
+            //TODO: Send Mail to User About Bank Transfer Data
             dd("Payment Method is Bank Transfer , Waiting For Email Layout From M");
-          }elseif($r->payment_method == 'paypal'){
-            //Prepare the Order Data
-            $ProductsListObject = Order_Product::where('order_id' , $TheOrder->id)->get();
-            $ProductsListArray = $ProductsListObject->map(function($Item){
-              $ItemPrice = ($Item->Product->final_price * $Item->qty) + (($Item->Product->final_price * $Item->qty) * 3.5) / 100;
-              return [
-                'name' => $Item->Product->title,
-                'qty' => $Item->qty,
-                'price' => sprintf("%.2f",$ItemPrice)
-              ];
-            }); 
-            $OrderTotalAddition = ($TheOrder->final_total * 3.5) / 100;
-            $OrderFinalTotal = $TheOrder->final_total + $OrderTotalAddition;
-            $Order = [
-              'items' => $ProductsListArray,
-              'invoice_id' => $TheOrder->serial_number,
-              'invoice_description' => 'Order #'.$TheOrder->serial_number.' From UK Fashion Shop',
-              'return_url' => route('order.paypal.success'),
-              'cancel_url' => route('order.paypal.failed'),
-              'total' => sprintf("%.2f",$OrderFinalTotal)
-            ];
-            $provider = new ExpressCheckout;
-            $provider->setCurrency($TheOrder->order_currency)->setExpressCheckout($Order);
-            $response = $provider->setExpressCheckout($Order);
-            $response = $provider->setExpressCheckout($Order, true);
-            return redirect($response['paypal_link']);
           }elseif($r->payment_method == 'paymentoncollection'){
             //Payment on Collection 
             if($TheOrder){
@@ -282,7 +262,7 @@ class OrdersController extends Controller{
                 });
                 //Update the order to the new information
                 $TheOrder->update([
-                  'status' => 'In Proccess',
+                  'status' => 'Processing',
                   'is_paid' => 'no',
                   'payment_method' => 'Payment On Collection'
                 ]);
@@ -292,16 +272,15 @@ class OrdersController extends Controller{
               }
             }
           }
+          //Normal Payment Here
           $ProductsListObject = Order_Product::where('order_id' , $TheOrder->id)->get();
           $ProductsListArray = $ProductsListObject->map(function($item){
             return "Title: ".$item->Product->title." | ID: ".$item->product_id." | Quantity: ".$item->qty;
           });
-          if($r->payment_method == 'creditcard'){
-            $OrderTotalAddition = ($TheOrder->final_total * 3.5) / 100;
-            $OrderFinalTotal = $TheOrder->final_total + $OrderTotalAddition;
-          }else{
-            $OrderFinalTotal = $TheOrder->final_total;
-          }
+            $GetPaymentMethod = Payment_Method::where('code_name' , $r->payment_method)->first();
+            $OrderTotalAddition = ($TheOrder->final_total * $GetPaymentMethod->percentage_fee) / 100;
+            $OrderFixedFee = $GetPaymentMethod->fixed_fee;
+            $OrderFinalTotal = $TheOrder->final_total + $OrderTotalAddition + $OrderFixedFee;
             $payment = Mollie::api()->payments->create([
               "amount" => [
                   "currency" => "$TheOrder->order_currency",
@@ -321,7 +300,7 @@ class OrdersController extends Controller{
               //Update the order with mollie id and status
               $TheOrder->update([
                 'payment_method' => $payment->method,
-                'status' => 'In Proccess',
+                'status' => 'Processing',
                 'payment_id' => $payment->id,
                 'is_paid' => $payment->status
               ]);

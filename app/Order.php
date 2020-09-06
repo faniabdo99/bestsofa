@@ -29,4 +29,18 @@ class Order extends Model{
     public function Items(){
         return Order_Product::where('order_id' , $this->id)->get();
     }
+    public function getPaymentMethodDataAttribute(){
+        $PaymentMethod = Payment_Method::where('code_name' , $this->payment_method)->first();
+        if($PaymentMethod){
+            return [
+            'code_name' => $PaymentMethod->code_name,
+            'name' => $PaymentMethod->name
+        ];
+        }else{
+            return [
+                'code_name' => 'N/A',
+                'name' => 'N/A'
+            ];
+        }
+    }
 }

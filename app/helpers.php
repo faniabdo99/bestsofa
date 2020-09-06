@@ -46,3 +46,15 @@ function changeDateFormate($date,$date_format){
 function productImagePath($image_name){
     return public_path('images/products/'.$image_name);
 }
+function getPaymentMethods($PickUpStore = null){
+  if($PickUpStore == 'yes'){
+    $PaymentMethods = App\Payment_Method::where('code_name' ,'!=' , 'paymentoncollection')->latest()->get();
+  }else{
+    $PaymentMethods = App\Payment_Method::latest()->get();
+  }
+  foreach($PaymentMethods as $Single){
+    $PercentagFee = ($Single->percentage_fee == 1) ? '-' : $Single->percentage_fee;
+    $FixedFee = ($Single->fixed_fee == 0) ? '-' : $Single->fixed_fee;
+    echo '<option value="'.$Single->code_name.'">'.$Single->name.' ('.$PercentagFee.'%) + ('.$FixedFee.'€)</option>';
+  }
+}

@@ -22,6 +22,7 @@
 									<th style="width:15%">Weight</th>
 									<th style="width:10%">Payment Method</th>
 									<th style="width:10%">Total Price</th>
+									<th style="width:10%">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -31,9 +32,9 @@
                                     <td>{{$Order->status}}</td>
                                     <td>@if($Order->pickup_at_store == 'yes') Pickup at Warehouse @else Shipping To {{getCountryNameFromISO($Order->country).', '.$Order->shipping_city}} @endif</td>
                                     <td>{{$Order->order_weight}} KG</td>
-                                    <td>@if($Order->payment_method == '0') N/A @else {{$Order->payment_method }} @endif</td>
+                                    <td>{{$Order->PaymentMethodData['name']}}</td>
                                     <td>{{formatPrice($Order->final_total).getCurrency()['symbole']}}</td>
-                   
+                                    <td><a href="{{route('checkout.summary' , $Order->id)}}">Summary</a></td>
                                 </tr>
                                 @empty
                                 @endforelse

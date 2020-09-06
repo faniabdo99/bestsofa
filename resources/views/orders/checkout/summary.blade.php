@@ -115,11 +115,10 @@
 							</tr>
                             </tbody>
                         </table>
-                        
                         <h3>Shipping Details</h3>
                         @if($TheOrder->pickup_at_store == 'yes')
-                        <p class="pl-0">Collect From Warehouse</p>
-                        <p class="pl-0">Add Warehouse Location Here</p>
+                            <p class="pl-0">Collect From Warehouse (Be Sure to call one day ahead)</p>
+                            <p class="pl-0">Globale trading Zone 5 Mollem 13 1730 Asse , Belgium +32 487 24 45 99</p>
                         @else
 						<table class="table mb-5">
                             <tbody>

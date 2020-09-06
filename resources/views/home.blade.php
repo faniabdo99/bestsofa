@@ -11,9 +11,8 @@
 				<div class="banner_content row">
 					<div class="offset-lg-2 col-lg-8">
 						<h3>Fashion for<br>Upcoming Winter</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-						<a class="white_bg_btn" href="#">View Collection</a>
+						<p>Are Your Ready For The New Year Sales ?</p>
+						<a class="white_bg_btn" href="{{route('product.home')}}">Visit Our Shop</a>
 					</div>
 				</div>
 			</div>
@@ -28,10 +27,10 @@
 					<div class="hot_deal_box">
 						<img class="img-fluid" src="{{url('public/img')}}/product/hot_deals/deal1.jpg" alt="">
 						<div class="content">
-							<h2>Hot Deals of this Month</h2>
-							<p>shop now</p>
+							<h2>20% Off For New Users</h2>
+							<p>Signup NOW</p>
 						</div>
-						<a class="hot_deal_link" href="#"></a>
+						<a class="hot_deal_link" href="{{route('signup.get')}}"></a>
 					</div>
 				</div>
 
@@ -39,10 +38,10 @@
 					<div class="hot_deal_box">
 						<img class="img-fluid" src="{{url('public/img')}}/product/hot_deals/deal1.jpg" alt="">
 						<div class="content">
-							<h2>Hot Deals of this Month</h2>
+							<h2>New Website Offers</h2>
 							<p>shop now</p>
 						</div>
-						<a class="hot_deal_link" href="#"></a>
+						<a class="hot_deal_link" href="{{route('product.home')}}"></a>
 					</div>
 				</div>
 			</div>
@@ -81,7 +80,7 @@
 				<div class="row">
 					<div class="main_title">
 						<h2>Featured Products</h2>
-						<p>Who are in extremely love with eco friendly system.</p>
+						<p>Get Your Goods of These Hot Products.</p>
 					</div>
 				</div>
 				<div class="row">

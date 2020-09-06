@@ -78,15 +78,7 @@
                                     <label for="pm">Choose Payment Method</label>
                                     <select class="form-control" name="payment_method" id="pm" required>
                                         <option value="">Select...</option>
-                                        <option value="banktransfer">Bank transfer</option>
-                                        <option value="bancontact">Bancontact / MisterCash</option>
-                                        <option value="ideal">iDEAL</option>
-                                        @if($TheOrder->pickup_at_store == 'yes')
-                                          <option value="paymentoncollection">Payment on collection</option>
-                                        @endif
-                                        <option value="paypal">PayPal (3.5%)</option>
-                                        <option value="sofort">Sofortbanking</option>
-                                        <option value="creditcard">Credit card (3.5%)</option>
+                                        {{getPaymentMethods($TheOrder->pickup_at_store)}}
                                     </select>
                                 </div>
                                 <div class="form-group">
