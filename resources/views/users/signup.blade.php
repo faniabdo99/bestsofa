@@ -21,7 +21,7 @@
                         <form class="row login_form" action="{{route('signup.post')}}" method="post" id="contactForm">
                           @csrf
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="name" name="name" value="{{old('name') ?? ''}}" placeholder="Name" required maxlength="50" >
+                                <input type="text" class="form-control" id="name" name="first_name" value="{{old('first_name') ?? ''}}" placeholder="Name" required maxlength="50" >
                             </div>
                             <div class="col-md-12 form-group">
                                 <input type="email" class="form-control" id="email" name="email" value="{{old('email') ?? ''}}"  placeholder="Email Address" required >
