@@ -43,4 +43,10 @@ class Order extends Model{
             ];
         }
     }
+    public function Customer(){
+        return $this->belongsTo(User::class ,'user_id')->withDefault([
+            'name' => 'Not Registered',
+            'email' => 'noemain@test.com'
+        ]);
+    }
 }

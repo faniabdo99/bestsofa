@@ -18,6 +18,7 @@ use App\User;
 use App\Payment_Method;
 //Mails
 use App\Mail\OrderSignupPassword;
+use App\Mail\BankTransferMail;
 class OrdersController extends Controller{
   public function getCheckoutPage(){
     //***************** Get Cart Items
@@ -147,7 +148,7 @@ class OrdersController extends Controller{
       if($r->has('vat_number') && $r->vat_number != null && $r->vat_number != ''){
         //Validate VAT Number
         $HttpClient = new Client();
-        $response = $HttpClient->get('http://apilayer.net/api/validate?access_key=c741ee3de22b687def5c1f981131e65e&vat_number='.$r->vat_number);
+        $response = @$HttpClient->get('http://apilayer.net/api/validate?access_key=c741ee3de22b687def5c1f981131e65e&vat_number='.$r->vat_number);
         if($response->getStatusCode() != 200){
           $OrderData['is_vat_valid'] = 'no';
         }else{
@@ -247,8 +248,20 @@ class OrdersController extends Controller{
             return redirect()->route('home')->withErrors('Order Already Paid, You Track the Order Progress in the Tracking Page');
           }
           if($r->payment_method == 'banktransfer'){
-            //TODO: Send Mail to User About Bank Transfer Data
-            dd("Payment Method is Bank Transfer , Waiting For Email Layout From M");
+            //Send the Email to User
+            $SendTheMessage = Mail::to($TheOrder->email)->send(new BankTransferMail($TheOrder));
+            $OrderItems = Order_Product::where('order_id' , $TheOrder->id)->get();
+            //Check the Payment Status
+            $TheOrder->update([
+              'is_paid' => 'Pending',
+              'payment_method' => 'banktransfer',
+              'status' => 'Waiting for payment'
+              ]);
+            $TheCart = Cart::where('user_id' , $TheOrder->user_id)->where('status' , 'active')->whereDate('created_at' , Carbon::today())->get();
+            $TheCart->map(function($item){
+              $item->update(['status' => 'purchased']);
+            });
+           return view('orders.checkout.thank-you' , compact('TheOrder' , 'OrderItems'));
           }elseif($r->payment_method == 'paymentoncollection'){
             //Payment on Collection 
             if($TheOrder){
@@ -262,7 +275,7 @@ class OrdersController extends Controller{
                 });
                 //Update the order to the new information
                 $TheOrder->update([
-                  'status' => 'Processing',
+                  'status' => 'Order received',
                   'is_paid' => 'no',
                   'payment_method' => 'Payment On Collection'
                 ]);
@@ -300,7 +313,7 @@ class OrdersController extends Controller{
               //Update the order with mollie id and status
               $TheOrder->update([
                 'payment_method' => $payment->method,
-                'status' => 'Processing',
+                'status' => 'Order received',
                 'payment_id' => $payment->id,
                 'is_paid' => $payment->status
               ]);
@@ -347,12 +360,7 @@ class OrdersController extends Controller{
     }
 
   }
-  public function paypalSuccess(Request $r){
-    dd($r->all());
-  }
-  public function paypalFailed(Request $r){
-      return view('orders.checkout.paypal-failed');
-  }
+
 
 
 

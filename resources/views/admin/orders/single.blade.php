@@ -97,7 +97,7 @@
                                     </div>
                                     <button type="submit" class="btn btn-success">Update Order Status</button>
                                 </form>
-                                <a href="#" class="btn btn-primary">Print Invoice</a>
+                                <a href="{{route('invoice.generate.get' , $TheOrder->id)}}" class="btn btn-primary">Generate Invoice</a>
                             </div>
                         </div>
                     </div>

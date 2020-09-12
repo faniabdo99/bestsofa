@@ -104,6 +104,11 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'] , function () {
       Route::post('/edit/{id}' , 'ProductsController@postEdit')->name('admin.products.postEdit');
       Route::get('/localize/{id}' , 'ProductsController@getLocalize')->name('admin.products.getLocalize');
     });
+    Route::prefix('invoice')->group(function(){
+      Route::get('generate/{id}' , 'InvoiceController@generateInvoice')->name('invoice.generate.get');
+      Route::post('update/{id}' , 'InvoiceController@postUpdate')->name('admin.invoice.update');
+      Route::get('download/{id}' , 'InvoiceController@downloadInvoice')->name('invoice.download.get');
+    });
 });
 //Cart Related Routes
 Route::get('api/add-item-to-cart' ,'CartController@addItem')->name('cart.add');

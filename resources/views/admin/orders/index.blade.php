@@ -16,8 +16,9 @@
                                         width="100%">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
+                                                <th>Serial Number</th>
                                                 <th>Status</th>
+                                                <th>Customer</th>
                                                 <th>Is Paid</th>
                                                 <th>Payment Method</th>
                                                 <th>Total</th>
@@ -29,8 +30,9 @@
                                             <tr>
                                                 <td>{{$Single->serial_number}}</td>
                                                 <td>{{$Single->status}}</td>
+                                                <td>{{$Single->Customer->name}}</td>
                                                 <td>{{$Single->is_paid}}</td>
-                                                <td>{{$Single->payment_method}}</td>
+                                                <td>{{$Single->PaymentMethodData['name']}}</td>
                                                 <td>{{formatPrice($Single->final_total).getCurrency()['symbole']}}</td>
                                                 <td>
                                                     <a href="{{route('admin.orders.single' , $Single->id)}}" class="btn btn-primary">View</a>

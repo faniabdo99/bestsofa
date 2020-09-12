@@ -46,7 +46,7 @@ function changeDateFormate($date,$date_format){
 function productImagePath($image_name){
     return public_path('images/products/'.$image_name);
 }
-function getPaymentMethods($PickUpStore = null){
+function getPaymentMethods($PickUpStore = null , $order_payment = null){
   if($PickUpStore == 'yes'){
     $PaymentMethods = App\Payment_Method::where('code_name' ,'!=' , 'paymentoncollection')->latest()->get();
   }else{
@@ -55,6 +55,6 @@ function getPaymentMethods($PickUpStore = null){
   foreach($PaymentMethods as $Single){
     $PercentagFee = ($Single->percentage_fee == 1) ? '-' : $Single->percentage_fee;
     $FixedFee = ($Single->fixed_fee == 0) ? '-' : $Single->fixed_fee;
-    echo '<option value="'.$Single->code_name.'">'.$Single->name.' ('.$PercentagFee.'%) + ('.$FixedFee.'€)</option>';
+    echo '<option'; ?> <?php if($order_payment == $Single->code_name){echo 'selected';} echo' value="'.$Single->code_name.'">'.$Single->name.' ('.$PercentagFee.'%) + ('.$FixedFee.'€)</option>';
   }
 }
