@@ -18,7 +18,7 @@
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Email</th>
-                                                <th>Active</th>
+                                                <th>Confirmed</th>
                                                 <th>Code</th>
                                                 <th>Country</th>
                                                 <th>Actions</th>
@@ -29,7 +29,7 @@
                                             <tr>
                                                 <td>{{$Single->name}}</td>
                                                 <td>{{$Single->email}}</td>
-                                                <td>@if($Single->active) Active @else Not Active @endif</td>
+                                                <td>@if($Single->confirmed) Yes @else No @endif</td>
                                                 <td>{{$Single->code}}</td>
                                                 <td>{{$Single->country}}</td>
                                                 <td>

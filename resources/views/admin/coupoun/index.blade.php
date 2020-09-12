@@ -19,7 +19,6 @@
                                             <tr>
                                                 <th>Coupoun Code</th>
                                                 <th>Discount Amount</th>
-                                                <th>Active on # Products</th>
                                                 <th>Available Coupons Left</th>
                                                 <th>Actions</th>
                                             </tr>
@@ -29,7 +28,6 @@
                                             <tr>
                                                 <td>{{$Single->coupoun_code}}</td>
                                                 <td>{{$Single->discount_amount}} @if($Single->discount_type == 'percent') % @else ‏€ @endif</td>
-                                                <td>25</td>
                                                 <td>@if($Single->amount == 0) Infinite @else {{$Single->amount}} @endif</td>
                                                 <td>
                                                     <a href="{{route('admin.coupoun.getEdit' , $Single->id)}}" class="btn btn-primary">Edit</a>

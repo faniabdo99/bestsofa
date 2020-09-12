@@ -110,10 +110,10 @@
                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Ask a Question</a>
                 </li>
                 @if($TheProduct->allow_reviews)
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews</a>
-                    </li>
-                    @endif
+                    </li> --}}
+                @endif
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade text-dark show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -444,7 +444,7 @@
                     </div>
                 </div>
                 @if($TheProduct->allow_reviews)
-                    <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                    {{-- <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="row total_rate">
@@ -622,15 +622,15 @@
                                 @endguest
                             </div>
                         </div>
-                    </div>
-                    @endif
+                    </div> --}}
+                @endif
             </div>
         </div>
     </section>
     <!--================End Product Description Area =================-->
 
     <!--================ Subscription Area ================-->
-    <section class="subscription-area section_gap">
+    {{-- <section class="subscription-area section_gap">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -655,7 +655,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--================ End Subscription Area ================-->
 
     <!--================ start footer Area  =================-->

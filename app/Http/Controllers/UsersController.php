@@ -195,10 +195,14 @@ class UsersController extends Controller{
       'image' => 'nullable|image|max:5128',
       'password' => 'required_with:password_current'
     ];
+    if($r->email != auth()->user()->email){
+      $Rules['email'] = 'required|email|unique:users'; 
+    }
     $ErrorMessages = [
       'first_name.required' => 'Your name is required',
       'first_name.min' => 'Your name can\'t be less than 4 letters',
       'first_name.max' => 'Your name can\'t be longer than 50 letters',
+      'email.required' => 'Your email is required',
       'email.required' => 'Your email is required',
       'email.email' => 'Your email is invalid',
       'email.unique' => 'This email is already taken',
@@ -275,8 +279,12 @@ class UsersController extends Controller{
     return view('users.wishlist' , compact('TheUser'));
   }
   public function getOrdersList(){
-    $TheUser = auth()->user();
-    return view('users.user-orders' , compact('TheUser'));
+    if(auth()->check()){
+      $TheUser = auth()->user();
+      return view('users.user-orders' , compact('TheUser'));
+    }else{
+      abort(403);
+    }
   }
   //Admin Panel Stuff
   public function getHome(){

@@ -9,7 +9,7 @@
         <div class="banner_inner d-flex align-items-center">
             <div class="container">
                 <div class="banner_content text-center">
-                    <h2>Contact Us</h2>
+                    <h1>Contact Us</h1>
                     <div class="page_link">
                         <a href="{{route('home')}}">Home</a>
                         <a href="{{route('contact.get')}}">Contact Us</a>

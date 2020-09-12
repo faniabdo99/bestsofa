@@ -77,12 +77,12 @@ class ShippingCostsController extends Controller{
         $ShippingTax = $ShippingCost->FinalCost * $r->cart_tax_avg;
         $ResponseArray = [
           'country' => $ShippingCost->country_name,
-          'actual_cost_euro' => $ShippingCost->FinalCost,
-          'shipping_tax_euro' => $ShippingTax,
-          'final_cost_euro' => $ShippingCost->FinalCost+$ShippingTax,
-          'actual_cost_gbp' => convertCurrency($ShippingCost->FinalCost,'EUR','GBP'),
-          'shipping_tax_gbp' => convertCurrency($ShippingTax,'EUR','GBP'),
-          'final_cost_gbp' => convertCurrency($ShippingCost->FinalCost+$ShippingTax,'EUR','GBP')
+          'actual_cost_euro' => formatPrice($ShippingCost->FinalCost),
+          'shipping_tax_euro' => formatPrice($ShippingTax),
+          'final_cost_euro' =>formatPrice( $ShippingCost->FinalCost+$ShippingTax),
+          'actual_cost_gbp' => convertCurrency(formatPrice($ShippingCost->FinalCost),'EUR','GBP'),
+          'shipping_tax_gbp' => convertCurrency(formatPrice($ShippingTax),'EUR','GBP'),
+          'final_cost_gbp' => convertCurrency(formatPrice($ShippingCost->FinalCost+$ShippingTax),'EUR','GBP')
         ];
         return response($ResponseArray , 200);
       }else{

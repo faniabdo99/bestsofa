@@ -32,7 +32,12 @@
 									<a href="{{route('product.single' , [$Product->Product->id , $Product->Product->local_slug])}}">
 										<h4>{{$Product->Product->local_title}}</h4>
 									</a>
-									<h5>{{$Product->Product->FinalPrice}}</h5>
+									@if($Product->Product->HasDiscount())
+									<span class="product-price-before-discount">{{$Product->Product->price}}</span>
+									<h5 class="text-success">{{$Product->Product->FinalPrice.getCurrency()['symbole'] }}</h5>
+									@else
+										<h5>{{$Product->Product->FinalPrice.getCurrency()['symbole'] }}</h5>
+									@endif
 								</div>
 							</div>
 							@endauth
@@ -52,7 +57,12 @@
 								<a href="{{route('product.single' , [$Product->Product->id , $Product->Product->local_slug])}}">
 									<h4>{{$Product->Product->local_title}}</h4>
 								</a>
-								<h5>{{$Product->Product->FinalPrice}}</h5>
+								@if($Product->Product->HasDiscount())
+								<span class="product-price-before-discount">{{$Product->Product->price}}</span>
+								<h5 class="text-success">{{$Product->Product->FinalPrice.getCurrency()['symbole'] }}</h5>
+								@else
+									<h5>{{$Product->Product->FinalPrice.getCurrency()['symbole'] }}</h5>
+								@endif
 							</div>
 						</div>
 						@endif

@@ -9,7 +9,7 @@
                 <div class="col-lg-12 text-center">
                     <h1>Account @if($OldState == "Confirmed") Already @endif Activated ! </h1>
                     <p >Congratulations! Your Account is @if($OldState == "NotConfirmed")Now @endif Active , You Have Access to All UK Fashion Shop Feauters ! </p>
-                    <a class="main_btn" href="#">Browse Products</a>
+                    <a class="main_btn" href="{{route('product.home')}}">Browse Products</a>
                 </div>
             </div>
         </div>

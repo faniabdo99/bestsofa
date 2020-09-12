@@ -114,10 +114,10 @@ class Product extends Model{
         }
         //Convert Currency if Needed
         $PriceTo = session()->has('currency') ? session()->get('currency') : 'EUR';
-        return convertCurrency($returnPrice , 'EUR' , $PriceTo);
+        return convertCurrency(formatPrice($returnPrice) , 'EUR' , $PriceTo);
     }
     public function getTaxAmountAttribute(){
-        return ($this->final_price * $this->tax_rate);
+        return formatPrice($this->final_price * $this->tax_rate);
     }
     public function getStatusClassAttribute(){
         $StatuesArray = [];

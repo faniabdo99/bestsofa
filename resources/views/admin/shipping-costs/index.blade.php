@@ -28,10 +28,10 @@
                                             @forelse ($SCData as $Single)
                                             <tr>
                                                 <td>{{$Single->shipping_method}}</td>
-                                                <td>{{$Single->country_name}}</td>
-                                                <td>{{$Single->weight_from}}</td>
-                                                <td>{{$Single->weight_to}}</td>
-                                                <td>{{$Single->cost}}</td>
+                                                <td>{{getCountryNameFromISO($Single->country_name)}}</td>
+                                                <td>{{$Single->weight_from}} KG</td>
+                                                <td>{{$Single->weight_to}} KG</td>
+                                                <td>{{$Single->cost}} €</td>
                                                 <td>
                                                     <a href="{{route('admin.shippingCosts.getEdit' , $Single->id)}}" class="btn btn-primary">Edit</a>
                                                     <a id="delete-btn" href="javascript:;" item-id="{{$Single->id}}" action-route="{{ route('admin.shippingCosts.delete') }}" class="btn btn-danger">Delete</a>

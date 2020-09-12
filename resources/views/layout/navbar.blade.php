@@ -111,7 +111,7 @@
                                         </div>
                                         <div class="logged-in-user-actions-list">
                                             <a class="stretched-link" href="{{route('profile')}}">My Account</a>
-                                            <a class="stretched-link" href="{{route('profile')}}">My Orders</a>
+                                            <a class="stretched-link" href="{{route('myOrders')}}">My Orders</a>
                                             <a class="stretched-link" href="{{route('logout')}}">Logout</a>
                                         </div>
                                     </div>

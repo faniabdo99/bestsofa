@@ -24,6 +24,13 @@ class CartController extends Controller{
         if(!$Product || $Product->inventory_value <= 0 || $Product->status == 'Sold Out' || $Product->status == 'Invisible'){
             return response("This item is not available for sell right now" , 404);
         }else{
+            //Check the current cart
+            $UserCart = Cart::where('user_id' , $CartData['user_id'])->where('product_id' , $r->product_id)->where('status','active')->whereDate('created_at' , Carbon::today())->first();
+            if($UserCart){
+                if($UserCart->qty >= $Product->inventory_value){
+                      return response("The Maximum Availabe Amount For This Product is " .$Product->inventory_value  , 404);
+                }
+            }
             if($Product->inventory_value < $r->qty){
                  return response("The Maximum Availabe Amount For This Product is " .$Product->inventory_value  , 404);
             }elseif($Product->min_order > $r->qty){
@@ -94,7 +101,7 @@ class CartController extends Controller{
                 $CouponDiscount = $CouponData[0];
             }
         }
-        $SubTotal = ($CartSubTotalArray->sum() + $CartTax) - $CouponDiscount;
+        $SubTotal = ($CartSubTotalArray->sum()) - $CouponDiscount;
         $ShippingCostCountries = ShippingCost::pluck('country_name')->unique();
         return view('orders.cart' , compact('CartItems' , 'CartTax' , 'Total' ,'SubTotal','CouponDiscount' , 'ShippingCostCountries'));
     }

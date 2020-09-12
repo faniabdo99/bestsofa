@@ -27,7 +27,12 @@
                                 <a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
                                     <h4>{{$Product->local_title}}</h4>
                                 </a>
-                                <h5>{{$Product->FinalPrice.getCurrency()['symbole']}}</h5>
+                                @if($Product->HasDiscount())
+                                    <span class="product-price-before-discount">{{$Product->price}}</span>
+                                    <h5 class="text-success">{{$Product->FinalPrice.getCurrency()['symbole'] }}</h5>
+                                @else
+                                    <h5>{{$Product->FinalPrice.getCurrency()['symbole'] }}</h5>
+                                @endif
                             </div>
                         </div>
                         @empty
@@ -133,9 +138,8 @@
         </div>
     </section>
     <!--================End Category Product Area =================-->
-
     <!--================ Subscription Area ================-->
-    <section class="subscription-area section_gap">
+    {{-- <section class="subscription-area section_gap">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -160,13 +164,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--================ End Subscription Area ================-->
-
-
-
-
-
     @include('layout.footer')
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
