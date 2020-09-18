@@ -33,7 +33,7 @@
                                                 <td>{{$Single->valid_until->format('Y-m-d')}}</td>
                                                 <td>
                                                     <a href="{{route('admin.discount.getEdit' , $Single->id)}}" class="btn btn-primary">Edit</a>
-                                                    <a id="delete-btn" href="javascript:;" item-id="{{$Single->id}}" action-route="{{ route('admin.discount.delete') }}" class="btn btn-danger">Delete</a>
+                                                    <a href="javascript:;" item-id="{{$Single->id}}" action-route="{{ route('admin.discount.delete') }}" class="btn btn-danger delete-btn">Delete</a>
                                                 </td>
                                             </tr>
                                             @empty
@@ -50,7 +50,7 @@
     </div>
     @include('admin.layout.scripts')
     <script>
-        $('#delete-btn').dblclick(function(){
+        $('.delete-btn').dblclick(function(){
             var Elem = $(this);
             var ItemId = $(this).attr('item-id');
             var ActionRoute = $(this).attr('action-route');

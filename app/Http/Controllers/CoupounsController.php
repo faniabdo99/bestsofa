@@ -18,7 +18,7 @@ class CoupounsController extends Controller{
     public function postNew(Request $r){
         //Validate request
         $Rules = [
-            'coupoun_code' => 'required',
+            'coupoun_code' => 'required|unique:coupouns',
             'discount_type' => 'required',
             'discount_amount' => 'required|numeric',
             'amount' => 'required|numeric'
@@ -27,6 +27,9 @@ class CoupounsController extends Controller{
         if($validator->fails()){
             return back()->withErrors($validator->errors()->all());
         }else{
+            if($r->discount_type == 'percent' && $r->discount_amount > 100){
+                return back()->withErrors("The Coupon Discount is More Than 100% !");
+            }
             $CouponData = $r->all();
             Coupoun::create($CouponData);
             return redirect()->route('admin.coupoun.home')->withSuccess('Coupon Added Successfully');
@@ -48,6 +51,9 @@ class CoupounsController extends Controller{
         if($validator->fails()){
             return back()->withErrors($validator->errors()->all());
         }else{
+            if($r->discount_type == 'percent' && $r->discount_amount > 100){
+                return back()->withErrors("The Coupon Discount is More Than 100% !");
+            }
             $CouponData = $r->all();
             Coupoun::findOrFail($id)->update($CouponData);
             return redirect()->route('admin.coupoun.home')->withSuccess('Coupon Updated Successfully');

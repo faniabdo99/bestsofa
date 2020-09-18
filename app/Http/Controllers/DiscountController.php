@@ -24,8 +24,15 @@ class DiscountController extends Controller{
         if($validator->fails()){
             return back()->withErrors($validator->errors()->all());
         }else{
+            //Check if Discount More Than 100%
+            if($r->type == 'percent' && $r->amount > 100){
+                return back()->withErrors("The Discount is More Than 100% !");
+            }
             $DiscountData = $r->all();
             $DiscountData['valid_until'] = Carbon::createFromFormat('Y-m-d', $r->valid_until)->toDateTimeString();
+            if($DiscountData['valid_until'] < Carbon::today()){
+                return back()->withErrors("The Validaty Date Has Already Passed");
+            }
             Discount::create($DiscountData);
             return redirect()->route('admin.discount.home')->withSuccess('Discount Added Successfully');
         }
@@ -46,8 +53,15 @@ class DiscountController extends Controller{
         if($validator->fails()){
             return back()->withErrors($validator->errors()->all());
         }else{
+            //Check if Discount More Than 100%
+            if($r->type == 'percent' && $r->amount > 100){
+                return back()->withErrors("The Discount is More Than 100% !");
+            }
             $DiscountData = $r->all();
             $DiscountData['valid_until'] = Carbon::createFromFormat('Y-m-d', $r->valid_until)->toDateTimeString();
+            if($DiscountData['valid_until'] < Carbon::today()){
+                return back()->withErrors("The Validaty Date Has Already Passed");
+            }
             Discount::findOrFail($id)->update($DiscountData);
             return redirect()->route('admin.discount.home')->withSuccess('Discount Updated Successfully');
         }
