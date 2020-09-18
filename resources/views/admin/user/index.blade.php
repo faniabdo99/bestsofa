@@ -33,8 +33,8 @@
                                                 <td>{{$Single->code}}</td>
                                                 <td>{{$Single->country}}</td>
                                                 <td>
-                                                    <a id="activate-btn" href="javascript:;" item-id="{{$Single->id}}" action-route="{{route('admin.user.toggleActive')}}" class="btn btn-primary">@if($Single->confirmed) Deactivate @else Activate @endif</a>
-                                                    <a id="delete-btn" href="javascript:;" item-id="{{$Single->id}}" action-route="{{ route('admin.user.delete') }}" class="btn btn-danger">Delete</a>
+                                                    <a href="javascript:;" item-id="{{$Single->id}}" action-route="{{route('admin.user.toggleActive')}}" class="btn btn-primary activate-btn">@if($Single->confirmed) Deactivate @else Activate @endif</a>
+                                                    <a href="javascript:;" item-id="{{$Single->id}}" action-route="{{ route('admin.user.delete') }}" class="btn btn-danger delete-btn">Delete</a>
                                                     {{-- <a href="{{route('admin.products.getLocalize' , $Single->id)}}" class="btn btn-success">Add to Group</a> --}}
                                                 </td>
                                             </tr>
@@ -52,7 +52,7 @@
     </div>
     @include('admin.layout.scripts')
     <script>
-        $('#delete-btn').dblclick(function(){
+        $('.delete-btn').dblclick(function(){
             var Elem = $(this);
             var ItemId = $(this).attr('item-id');
             var ActionRoute = $(this).attr('action-route');
@@ -72,7 +72,7 @@
             });
         });
 
-        $('#activate-btn').click(function(){
+        $('.activate-btn').click(function(){
             var Elem = $(this);
             var ItemId = $(this).attr('item-id');
             var ActionRoute = $(this).attr('action-route');

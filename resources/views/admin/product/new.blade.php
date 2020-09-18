@@ -124,7 +124,7 @@
                                             <h6 class="c-grey-900 mT-40 mB-40">Advanced Data</h6>
                                             <div class="form-group">
                                                 <label>Weight</label>
-                                                <input type="number" class="form-control" value="{{old('weight') ?? ''}}" name="weight" placeholder="Please Enter a Number in KG" required>
+                                                <input type="number" step="0.1" class="form-control" value="{{old('weight') ?? ''}}" name="weight" placeholder="Please Enter a Number in KG" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Height</label>
