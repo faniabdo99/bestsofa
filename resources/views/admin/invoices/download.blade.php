@@ -134,7 +134,7 @@
                 <p>The customer agrees to the terms and conditions on page 2 of this invoice.</p>
             </div>
             <div style="width:25%;display:block;float: right;">
-                @if($TheOrder->is_paid == 'paid')
+                @if($TheOrder->is_paid == 'paid' || $TheInvoice->is_paid)
                 <h2 class="mb-0" style="color:#4ec74e;">Paid</h2>
                 <p class="mb-0">{{$TheOrder->payment_method_data['name']}}</p>
                 @else
