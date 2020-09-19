@@ -72,6 +72,16 @@ class ProductsController extends Controller{
         }else{
             //Prepare The Data For Uploading
             $ProductData = $r->except('custom_tags');
+            //Check the Discount
+            if($r->has('discount_id') && $r->discount_id != null){
+                //Get the discount
+                $TheDiscount = Discount::find($r->discount_id);
+                if($TheDiscount->type == 'fixed'){
+                    if($TheDiscount->amount >= $r->price){
+                        return back()->withErrors('The Discount is Bigger Than The Item Price')->withInput();
+                    }
+                }
+            }
             //Handle The Image
             if($r->has('image')){
                 $ProductData['image'] = $r->slug.'.'.$r->image->getClientOriginalExtension();
@@ -123,6 +133,16 @@ class ProductsController extends Controller{
     }else{
         //Prepare The Data For Uploading
         $ProductData = $r->except('custom_tags');
+        //Check the Discount
+        if($r->has('discount_id') && $r->discount_id != null){
+            //Get the discount
+            $TheDiscount = Discount::find($r->discount_id);
+            if($TheDiscount->type == 'fixed'){
+                if($TheDiscount->amount >= $r->price){
+                    return back()->withErrors('The Discount is Bigger Than The Item Price')->withInput();
+                }
+            }
+        }
         //Handle The Image
         if($r->has('image')){
             $ProductData['image'] = $TheProduct->slug.'.'.$r->image->getClientOriginalExtension();
@@ -242,12 +262,19 @@ class ProductsController extends Controller{
 
         $Categories = Category::latest()->get();
         $FiltersList = $this->getAllTags();
-        $Products = Product::where('category_id' , $TheCategory->id)->latest()->get();
+        $Products = Product::where('category_id' , $TheCategory->id)->where('status','!=','Invisible')->latest()->get();
         return view('products.index' , compact('Categories' , 'FiltersList' , 'Products'));
 
     }
     public function getSingle($id , $slug){
         $TheProduct = Product::findOrFail($id);
+        if($TheProduct->status == 'Invisible'){
+            abort(404);
+        }elseif($TheProduct->status == 'Customers only'){
+            if(!auth()->check()){
+               abort(404);
+            }
+        }
         return view('products.single' , compact('TheProduct'));
     }
     public function askQuestion(Request $r){

@@ -59,7 +59,9 @@
                                             <span class="font-weight-bold">Status</span> <span class=" @if($TheProduct->status != 'Available') {{$TheProduct->status_class['text']}} @endif ">{{$TheProduct->status}}</span></a>
                                     </li>
                                     @endif
-                                    <li><a href="#"><span class="font-weight-bold">In Stock</span> {{$TheProduct->inventory_value}}</a></li>
+                                    @if($TheProduct->show_inventory)
+                                        <li><a href="#"><span class="font-weight-bold">In Stock</span> {{$TheProduct->inventory_value}}</a></li>
+                                    @endif
                             </ul>
                             <p>{{$TheProduct->local_description}}</p>
                             <div class="product_count">

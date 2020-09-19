@@ -24,6 +24,9 @@ class ShippingCostsController extends Controller{
       if($validator->fails()){
           return back()->withErrors($validator->errors()->all());
       }else{
+          if($r->weight_from >= $r->weight_to){
+            return back()->withErrors("The Weight From Can Only be Less Than Weight to");
+          }
           $SCData = $r->all();
           ShippingCost::create($SCData);
           return redirect()->route('admin.shippingCosts.home')->withSuccess('Data Added Successfully');
@@ -46,6 +49,9 @@ class ShippingCostsController extends Controller{
       if($validator->fails()){
           return back()->withErrors($validator->errors()->all());
       }else{
+          if($r->weight_from >= $r->weight_to){
+            return back()->withErrors("The Weight From Can Only be Less Than Weight to");
+          }
           $SCData = $r->all();
           ShippingCost::findOrFail($id)->update($SCData);
           return redirect()->route('admin.shippingCosts.home')->withSuccess('Data Updated Successfully');
