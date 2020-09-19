@@ -4,7 +4,11 @@
 	<!--================Order Details Area =================-->
 	<section class="billing_details p_120 mt-5">
 		<div class="container">
+      @if($TheOrder->AlreadyPaid())
             <h4 class="text-success text-center mb-5">Thank you. Your order has been received.</h4>
+          @else
+            <h4 class="text-danger text-center mb-5">Sorry, Payment Failed !</h4>
+          @endif
             <h3>Order Summary</h3>
             <table class="table mb-5">
                 <thead>

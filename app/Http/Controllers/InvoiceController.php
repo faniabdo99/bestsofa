@@ -27,7 +27,7 @@ class InvoiceController extends Controller{
     }
 
     public function postUpdate(Request $r , $id){
-        //Validate the Request 
+        //Validate the Request
         $Rules = [
             'invoice_prefix' => 'required',
             'customer_name' => 'required',
@@ -60,13 +60,14 @@ class InvoiceController extends Controller{
         }
     }
     public function downloadInvoice($id){
-        //Get Invoice Data 
+        //Get Invoice Data
         $TheInvoice = Invoice::findOrFail($id);
         if($TheInvoice){
             $TheOrder = Order::findOrFail($TheInvoice->order_id);
+            $InvoinceFileName = $TheInvoice->invoice_prefix.$TheInvoice->id;
         }
         $pdf = PDF::loadView('admin.invoices.download' , ['TheOrder' => $TheOrder , 'TheInvoice' => $TheInvoice]);
-        return $pdf->download('pdf_file.pdf');
+        return $pdf->download($InvoinceFileName.'.pdf');
         // return view('admin.invoices.download' , compact('TheInvoice' , 'TheOrder'));
     }
 }

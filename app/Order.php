@@ -49,4 +49,11 @@ class Order extends Model{
             'email' => 'noemain@test.com'
         ]);
     }
+    public function AlreadyPaid(){
+      if($this->is_paid == 'failed' || $this->is_paid == 'no'){
+        return false;
+      }else{
+        return true;
+      }
+    }
 }

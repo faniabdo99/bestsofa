@@ -5,9 +5,7 @@
         padding: 10px;
         margin-bottom: 15px;
     }
-
 </style>
-
 <body class="app">
     <div>
         @include('admin.layout.sidebar')
@@ -23,7 +21,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label>Invoice Prefix Number*</label>
-                                        <input required class="form-control" type="text" name="invoice_prefix" value="{{$TheInvoice->invoice_prefix}}">
+                                        <input required class="form-control" type="text" name="invoice_prefix" value="{{$TheInvoice->invoice_prefix ?? '2020-01005'}}">
                                     </div>
                                     <div class="form-group">
                                         <label>Invoice Number*</label>
@@ -55,7 +53,7 @@
                                         <label>Due Date</label>
                                         @if($TheInvoice->due_date)
                                            <input class="form-control" type="date" name="due_date" value="{{$TheInvoice->due_date->format('Y-m-d')}}">
-                                        @else 
+                                        @else
                                            <input class="form-control" type="date" name="due_date">
                                         @endif
                                     </div>

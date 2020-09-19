@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
@@ -80,6 +79,9 @@ class CoupounsController extends Controller{
             if($isUsed->count() == 0 ){ //User Never Used This Coupon
                 //Apply The Discount
                 $UserCart = Cart::where('user_id' , $UserId)->where('status' ,'active')->whereDate('created_at' , Carbon::today())->get();
+                if(isset($UserCart->first()->applied_coupon)){
+                  return back()->withErrors('You Already Using a Coupon!');
+                }
                 $CartSubTotalArray = $UserCart->map(function($item) {
                     return ($item->Product->final_price * $item->qty);
                 });
@@ -90,7 +92,6 @@ class CoupounsController extends Controller{
                     }
                 }
                 if($UserCart){
-
                     $UserCart->map(function($item) use ($TheCoupon){
                         $item->update([
                             'applied_coupon' => $TheCoupon->coupoun_code,
@@ -102,6 +103,9 @@ class CoupounsController extends Controller{
                         'user_id' => $UserId,
                         'coupoun_id' => $TheCoupon->id
                     ]);
+                    //Decrease The Coupon Amount By One
+                    $TheCoupon->amount = $TheCoupon->amount - 1;
+                    $TheCoupon->save();
                     return back()->withSuccess('Coupon ' .$TheCoupon->coupoun_code.' Has Been Applied !');
                 }else{
                     return back()->withErrors('You Don\'t Have Any Products in Your Cart !');

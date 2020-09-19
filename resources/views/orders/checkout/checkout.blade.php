@@ -1,5 +1,4 @@
 @include('layout.header')
-
 <body>
 	@include('layout.navbar')
 	<!--================Home Banner Area =================-->

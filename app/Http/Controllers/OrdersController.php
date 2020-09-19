@@ -11,6 +11,8 @@ use GuzzleHttp\Client;
 use Srmklive\PayPal\Services\ExpressCheckout;
 //Models
 use App\Cart;
+use App\Coupoun;
+use App\Coupoun_User;
 use App\ShippingCost;
 use App\Order;
 use App\Order_Product;
@@ -19,6 +21,9 @@ use App\Payment_Method;
 //Mails
 use App\Mail\OrderSignupPassword;
 use App\Mail\BankTransferMail;
+use App\Mail\NewOrderMail;
+use App\Mail\OrderReceiptMail;
+use App\Mail\OrderFailedMail;
 class OrdersController extends Controller{
   public function getCheckoutPage(){
     //***************** Get Cart Items
@@ -42,17 +47,17 @@ class OrdersController extends Controller{
     //Check id there is a coupon code applied
     $CouponDiscount = null;
     $TotalWithoutTax = $Total;
+
     if(isset($CartItems->first()->applied_coupon)){//There is an applied coupon
         $CouponData = explode('-',$CartItems->first()->coupon_amount );
         if($CouponData[1] == 'fixed'){
             $CouponDiscount = $CouponData[0];
         }elseif($CouponData[1] == 'percent'){
             $CouponDiscount = ($Total * $CouponData[0]) / 100;
-            $TotalWithoutTax = $Total - $CouponDiscount;
         }else{
             $CouponDiscount = $CouponData[0];
-            $TotalWithoutTax = $Total - $CouponDiscount;
         }
+        $TotalWithoutTax = $Total - $CouponDiscount;
     }
     $SubTotal = ($CartSubTotalArray->sum() + $CartTax) - $CouponDiscount;
     $ShippingCostCountries = ShippingCost::pluck('country_name')->unique();
@@ -93,13 +98,13 @@ class OrdersController extends Controller{
       //Check if there is any old orders related to this user
       $OldOrders = Order::where('user_id' , $UserId)->where('status' , 'Pre-Payments')->first();
       if($OldOrders){
-        //Delete the Old Order 
+        //Delete the Old Order
         $OldOrders->delete();
       }
       //Create a User Account if Requested
       if($r->has('create_account') && $r->create_account == 'on'){
         //Create an Account and Log the User in
-        //Check if User Existed 
+        //Check if User Existed
         $CheckUser = User::where('email' , $r->email)->first();
         if($CheckUser){
           //Update Cart Items to the new Owner ID
@@ -185,6 +190,7 @@ class OrdersController extends Controller{
           'qty' => $item->qty
         ]);
       });
+      Mail::to('admin@ukfashionshop.be')->send(New NewOrderMail);
       return redirect()->route('checkout.summary' , $TheNewOrder->id);
     }
   }
@@ -212,7 +218,7 @@ class OrdersController extends Controller{
         ]);
         return response("Order Updated" , 200);
       }else{
-        return response("This is Not Your Order !" , 403); 
+        return response("This is Not Your Order !" , 403);
       }
     }else{
       return response("The Order Can't be Found !" , 404);
@@ -230,7 +236,7 @@ class OrdersController extends Controller{
     return view('orders.checkout.payment' , compact('TheOrder' , 'OrderItems'));
   }
   public function postPaymentPage(Request $r , $id){
-    //Validate the Request 
+    //Validate the Request
     $Rules = [
       'user_id' => 'required',
       'payment_method' => 'required'
@@ -244,8 +250,8 @@ class OrdersController extends Controller{
       if($TheOrder){
         if($TheOrder->user_id == $r->user_id){
          //Check if the order already paid
-          if($TheOrder->is_paid == 'paid'){
-            return redirect()->route('home')->withErrors('Order Already Paid, You Track the Order Progress in the Tracking Page');
+          if($TheOrder->AlreadyPaid()){
+            return redirect()->route('home')->withErrors('Order Already Paid, You Track the Order Progress in Your Orders Page');
           }
           if($r->payment_method == 'banktransfer'){
             //Send the Email to User
@@ -263,7 +269,7 @@ class OrdersController extends Controller{
             });
            return view('orders.checkout.thank-you' , compact('TheOrder' , 'OrderItems'));
           }elseif($r->payment_method == 'paymentoncollection'){
-            //Payment on Collection 
+            //Payment on Collection
             if($TheOrder){
               if($TheOrder->pickup_at_store == 'yes'){
                 //Get the order items
@@ -328,7 +334,7 @@ class OrdersController extends Controller{
   }
   public function orderSuccess(Request $r){
     if(auth()->check()){$UserId = auth()->user()->id;}else{$UserId = Cookie::get('guest_id');}
-    //Get the Payment ID 
+    //Get the Payment ID
     $TheOrder = Order::where('id',$r->id)->first();
     if($TheOrder){
       if($TheOrder->user_id == $UserId){
@@ -338,17 +344,31 @@ class OrdersController extends Controller{
         $TheOrder->update(['is_paid' => $ThePayment->status]);
         $TheCart = Cart::where('user_id' , $TheOrder->user_id)->where('status' , 'active')->whereDate('created_at' , Carbon::today())->get();
         if($ThePayment->status != 'failed'){
-            //Clear the cart 
+            //Clear the cart
           $TheCart->map(function($item){
             $item->update(['status' => 'purchased']);
           });
+          //Mail The User
+          Mail::to($TheOrder->email)->send(new OrderReceiptMail($TheOrder));
         }else{
+          $TheOrder->update(['status' => 'Waiting for payment']);
+          //Add The Items Back to inventory
           $TheCart->map(function($item){
             $item->Product->update([
               'inventory' => ($item->Product->inventory - $item->qty),
               'fake_inventory' => ($item->Product->fake_inventory - $item->qty),
             ]);
           });
+          //Add The Coupon Back
+          if(isset($TheCart->first()->applied_coupon)){
+            $TheCoupon = Coupoun::where('coupoun_code' , $TheCart->first()->applied_coupon)->first();
+            $TheCoupon->amount = $TheCoupon->amount + 1;
+            $TheCoupon->save();
+            //Delete The Usage Record
+            Coupoun_User::where('user_id' , auth()->user()->id)->where('coupoun_id' , $TheCoupon->id)->delete();
+          }
+          Mail::to($TheOrder->email)->send(new OrderFailedMail);
+
         }
       return view('orders.checkout.thank-you' , compact('TheOrder' , 'OrderItems'));
       }else{
@@ -377,7 +397,7 @@ class OrdersController extends Controller{
     //Find The Order
     $TheOrder = Order::findOrFail($id);
     if($TheOrder){
-        //Vlidate the Request 
+        //Vlidate the Request
         $Rules = [
           'order_status' => 'required'
         ];
@@ -394,6 +414,6 @@ class OrdersController extends Controller{
     }else{
       return back()->withErrors('Order is Not Available');
     }
- 
+
   }
 }
