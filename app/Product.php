@@ -34,35 +34,45 @@ class Product extends Model{
         }
     }
     public function getLocalTitleAttribute(){
-        $SiteLang = \Lang::locale() ?? 'en';
+        $SiteLang = app()->getLocale() ?? 'en';
         if($SiteLang == 'en'){
             return $this->title;
         }else{
-            return Product_Local::where('product_id' , $this->id)->where('lang_code' , $SiteLang)->first()->title_value;
+            $GetLocalTitle = Product_Local::where('product_id' , $this->id)->where('lang_code' , $SiteLang)->first();
+            if($GetLocalTitle){
+              return $GetLocalTitle->title_value;
+            }else{
+              return $this->title;
+            }
         }
     }
     public function getLocalSlugAttribute(){
-        $SiteLang = \Lang::locale() ?? 'en';
-        if($SiteLang == 'en'){
-            return $this->slug;
-        }else{
-            return Product_Local::where('product_id' , $this->id)->where('lang_code' , $SiteLang)->first()->slug_value;
-        }
+          return $this->slug;
     }
     public function getLocalDescriptionAttribute(){
-        $SiteLang = \Lang::locale() ?? 'en';
+        $SiteLang = app()->getLocale() ?? 'en';
         if($SiteLang == 'en'){
             return $this->description;
         }else{
-            return Product_Local::where('product_id' , $this->id)->where('lang_code' , $SiteLang)->first()->description_value;
+            $GetLocaleDesc =  Product_Local::where('product_id' , $this->id)->where('lang_code' , $SiteLang)->first();
+            if($GetLocaleDesc){
+              return $GetLocaleDesc->description_value;
+            }else{
+              return $this->description;
+            }
         }
     }
     public function getLocalBodyAttribute(){
-        $SiteLang = \Lang::locale() ?? 'en';
+        $SiteLang = app()->getLocale() ?? 'en';
         if($SiteLang == 'en'){
             return $this->body;
         }else{
-            return Product_Local::where('product_id' , $this->id)->where('lang_code' , $SiteLang)->first()->body_value;
+            $GetLocaleBody = Product_Local::where('product_id' , $this->id)->where('lang_code' , $SiteLang)->first();
+            if($GetLocaleBody){
+              return $GetLocaleBody->body_value;
+            }else{
+              return $this->body;
+            }
         }
     }
     public function getMainImageAttribute(){

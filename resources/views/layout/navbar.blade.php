@@ -7,11 +7,11 @@
             <div class="float-right">
                 <ul class="right_side">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" id="languagesDropdown" data-toggle="dropdown" >English</a>
+                        <a href="#" class="dropdown-toggle" id="languagesDropdown" data-toggle="dropdown" >{{app()->getLocale()}}</a>
                         <div class="dropdown-menu navbar-dropdown-menu" aria-labelledby="languagesDropdown">
-                            <a class="dropdown-item" href="#">English</a>
-                            <a class="dropdown-item" href="#">French</a>
-                            <a class="dropdown-item" href="#">Dutch</a>
+                            <a class="dropdown-item" href="{{route('changeLang' ,'en')}}">EN</a>
+                            <a class="dropdown-item" href="{{route('changeLang' ,'fr')}}">FR</a>
+                            <a class="dropdown-item" href="{{route('changeLang' ,'nl')}}">NL</a>
                           </div>
                     </li>
                     <li class="dropdown">
