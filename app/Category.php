@@ -10,7 +10,7 @@ class Category extends Model{
         return Str::limit($this->description , 60);
     }
     public function getLocalTitleAttribute(){
-        $CurrentLang = '';
+        $CurrentLang = app()->getLocal() ?? 'en';
         //Get The Title From Localized Table
         $LocalizedRow = Category_local::where('category_id' , $this->id)->where('lang_code' , $CurrentLang)->first();
         if($LocalizedRow != null){
