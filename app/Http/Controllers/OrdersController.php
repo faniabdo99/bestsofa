@@ -135,7 +135,8 @@ class OrdersController extends Controller{
             $Item->update(['user_id' => $TheUser->id]);
           });
           //Send Password Creation Email
-          Mail::to($r->email)->send(new OrderSignupPassword($r->all()));
+
+          Mail::to($r->email)->send(new OrderSignupPassword($TheUser));
           //Log the User in
           Auth::loginUsingId($TheUser->id);
         }

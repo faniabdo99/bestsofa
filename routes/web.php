@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function(){
   Route::get('my-orders' , 'UsersController@getOrdersList')->name('myOrders');
   Route::post('update-profile' , 'UsersController@updateProfile')->name('profile.update.post');
   Route::get('activate-account/{code}' , 'UsersController@activateAccount')->name('account.activate');
+  Route::get('set-password/{id}' , 'UsersController@getSetPassword')->name('setPassword.get');
+  Route::post('set-password/{id}' , 'UsersController@postSetPassword')->name('setPassword.post');
 });
 //General Routes
 Route::get('contact' , 'ContactUsController@getContact')->name('contact.get');

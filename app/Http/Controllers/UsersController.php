@@ -48,7 +48,7 @@ class UsersController extends Controller{
         $UserData['password'] = Hash::make($r->password);
         //Create the new user
         $NewUser = User::create($UserData);
-        //Log the user in 
+        //Log the user in
         Auth::loginUsingId($NewUser->id);
         //Send Confirmation Email to the user
         Mail::to($r->email)->send(new WelcomeNewUser($UserData));
@@ -122,7 +122,7 @@ class UsersController extends Controller{
     return view('users.reset');
   }
   public function postResetPassword(Request $r){
-    //Filter the request 
+    //Filter the request
     $Rules = [
       'email' => 'required|email'
     ];
@@ -130,7 +130,7 @@ class UsersController extends Controller{
     if($validator->fails()){
       return back()->withErrors($validator->errors()->all());
     }else{
-      //Get the account if exists 
+      //Get the account if exists
       $TheUser = User::where('email' , $r->email)->first();
       if($TheUser != null){
         //Get the code and send it
@@ -140,6 +140,31 @@ class UsersController extends Controller{
         //Do Nothing Basically ...
         return back()->withSuccess('If the email exists , You will recive an email from us shortly');
       }
+    }
+  }
+  public function getSetPassword($id){
+    $TheUser = User::findOrFail($id);
+    if($TheUser->code == auth()->user()->code){
+      $UserId =  $TheUser->id;
+      return view('users.set-password' , compact('UserId'));
+    }else{
+      abort(403);
+    }
+  }
+  public function postSetPassword(Request $r , $id){
+    //Validation
+    $Rules = [
+      'password' => 'required|min:5|confirmed',
+    ];
+    $validator = Validator::make($r->all(),$Rules);
+    if($validator->fails()){
+      return back()->withErrors($validator->errors()->all());
+    }else{
+      $TheUser = User::findOrFail($id);
+      $TheUser->update([
+        'password' => Hash::make($r->password),
+      ]);
+      return redirect()->route('home')->withSuccess('Your Password Has Been Updated');
     }
   }
   public function resetFinalStep($code){
@@ -152,7 +177,7 @@ class UsersController extends Controller{
     }
   }
   public function postResetFinalStep(Request $r , $code){
-    //Validate the request 
+    //Validate the request
     $Rules = [
       'email' => 'required|email',
       'password' => 'required|min:7',
@@ -175,7 +200,7 @@ class UsersController extends Controller{
       }
     }
   }
-  //Profile Part 
+  //Profile Part
   public function getProfile(){
     if(auth()->check()){
       //Continue ...
@@ -196,7 +221,7 @@ class UsersController extends Controller{
       'password' => 'required_with:password_current'
     ];
     if($r->email != auth()->user()->email){
-      $Rules['email'] = 'required|email|unique:users'; 
+      $Rules['email'] = 'required|email|unique:users';
     }
     $ErrorMessages = [
       'first_name.required' => 'Your name is required',
