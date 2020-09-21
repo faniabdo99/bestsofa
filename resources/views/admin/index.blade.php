@@ -1,5 +1,4 @@
 @include('admin.layout.header' , ['PageTitle' => 'Dashboard'])
-
 <body class="app">
     <div>
         @include('admin.layout.sidebar')
@@ -26,11 +25,11 @@
                                 <div class="col-md-3">
                                     <div class="layers bd bgc-white p-20">
                                         <div class="layer w-100 mB-10">
-                                            <h6 class="lh-1"><i class="fas fa-dollar-sign"></i> Life Time Sales</h6>
+                                            <h6 class="lh-1"><i class="fas fa-dollar-sign"></i> Lifetime Orders</h6>
                                         </div>
                                         <div class="layer w-100">
                                             <div class="peers ai-sb fxw-nw">
-                                                <div class="font-weight-bold">250,000 $</div>
+                                                <div class="font-weight-bold">{{$TotalOrdersCount}}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -50,11 +49,11 @@
                                 <div class="col-md-3">
                                     <div class="layers bd bgc-white p-20">
                                         <div class="layer w-100 mB-10">
-                                            <h6 class="lh-1"><i class="fas fa-users"></i> Today's Visitors</h6>
+                                            <h6 class="lh-1"><i class="fas fa-users"></i> This Month Sales</h6>
                                         </div>
                                         <div class="layer w-100">
                                             <div class="peers ai-sb fxw-nw">
-                                                <div>450</div>
+                                                <div>{{$ThisMonthSales}}€</div>
                                             </div>
                                         </div>
                                     </div>
@@ -92,7 +91,7 @@
                                                         <td>{{formatPrice($Order->final_total).getCurrency()['symbole']}}</td>
                                                         <td><a href="{{route('admin.orders.single' , $Order->id)}}" class="text-success">Order Details</a></td>
                                                     </tr>
-                                                    @empty 
+                                                    @empty
 
                                                     @endforelse
                                                 </tbody>

@@ -4,8 +4,6 @@ Route::get('change-lang/{locale}', 'HomeController@changeLang')->name('changeLan
 Route::get('/' , 'HomeController@getHome')->name('home');
 Route::get('/change-currency/{currency}/{currency_code}' , 'CurrencyController@setCurrency')->name('currency.change');
 Route::get('/success' , 'OrdersController@orderSuccess')->name('order.success');
-Route::get('/paypal-success' , 'OrdersController@paypalSuccess')->name('order.paypal.success');
-Route::get('/paypal-failed' , 'OrdersController@paypalFailed')->name('order.paypal.failed');
 Route::get('privay-policy' , 'PagesController@getPrivacyPolicy')->name('privacyPolicy');
 Route::get('terms-and-conditions' , 'PagesController@getTOC')->name('toc');
 //Not Logged In Routes
@@ -123,3 +121,8 @@ Route::get('order-summary/{id}/{processed?}', 'OrdersController@getSummaryPage')
 Route::get('order-payment/{id}', 'OrdersController@getPaymentPage')->name('checkout.payment');
 Route::post('order-payment/{id}', 'OrdersController@postPaymentPage')->name('checkout.payment.post');
 Route::post('apply-coupon' , 'CoupounsController@applyCoupon')->name('coupon.apply');
+
+
+Route::get('test' , function(){
+
+});

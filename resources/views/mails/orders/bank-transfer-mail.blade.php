@@ -8,7 +8,7 @@
     <p><b style="margin-right:40px;">AMOUNT</b> {{formatPrice($EmailData->total + $EmailData->total_tax + $EmailData->total_shipping).getCurrency()['symbole']}}</p>
     <p><b style="margin-right:40px;">REFERENCE</b> <span style="border:1px solid green;padding:4px;border-radius:4px;">{{$EmailData->serial_number}}</span></p>
     <p>Enter this reference as the <b>Payment Reference</b> of the bank transfer. Or simply include it in the description.</p>
-    <p><b>Please note:</b> Your order will be processed only after we have received the payment.</p>
+    <p><b>Please note:</b> Your order will be processed only after we have received the payment and you have limit of 10 days to make the transaction or you order will be automatically deleted</p>
     Thanks,<br>
     UK Fashion Shop LLC
   </div>

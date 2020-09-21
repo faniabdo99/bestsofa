@@ -1,19 +1,43 @@
 @include('admin.layout.header')
-<style>
-    .single-item-in-list {
-        background: #ececec;
-        padding: 10px;
-        margin-bottom: 15px;
-    }
-
+<style media="screen">
+.print-table{display: none;}
 </style>
-
+<style media="print">
+  .print-table{display: block; width: 100%;}
+  .page-container,.sidebar{display: none;}
+</style>
 <body class="app">
-    <div>
+        <div class="print-table p-5">
+          <p class="mb-0"><b>Order Id :</b> {{$TheOrder->serial_number}}</p>
+          <p class="mb-0"><b>Total Products :</b> {{$TheOrder->Items()->sum('qty')}}</p>
+          
+          <table class="table table-striped">
+              <thead>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Product Link</th>
+              </thead>
+              <tbody>
+                @forelse($TheOrder->Items() as $Item)
+                  <tr>
+                    <td><img src="{{$Item->Product->MainImage}}" width="50" height="50"></td>
+                    <td>{{$Item->Product->title}}</td>
+                    <td>{{$Item->qty}}</td>
+                    <td><a href="{{route('product.single' , [$Item->Product->id , $Item->Product->slug])}}" target="_blank">Click Here</a></td>
+                  </tr>
+                @empty
+                <p>There is no items in this order</p>
+                @endforelse
+
+              </tbody>
+            </table>
+        </div>
         @include('admin.layout.sidebar')
         <div class="page-container">
             @include('admin.layout.navbar')
             <main class="main-content bgc-grey-100 mb-5">
+
                 <div id="mainContent">
                     <div class="container">
                         <div class="row">
@@ -21,18 +45,29 @@
                                 <h2>Order Details: <b>{{$TheOrder->serial_number}}</b></h2>
                                 <div class="bgc-white p-20 bd mb-5">
                                     <h6>Order Items ({{$TheOrder->Items()->count()}})</h6>
-                                    @forelse($TheOrder->Items() as $Item)
-                                    <div class="single-item-in-list">
-                                        <p class="mb-0"><b>Product Title :</b> {{$Item->Product->title}}</p>
-                                        <p class="mb-0"><b>Quantity :</b> {{$Item->qty}}</p>
-                                        <p class="mb-0"><b>Product Link :</b> <a
-                                                href="{{route('product.single' , [$Item->Product->id , $Item->Product->slug])}}"
-                                                target="_blank">Click Here</a></p>
-                                    </div>
 
-                                    @empty
-                                    <p>There is no items in this order</p>
-                                    @endforelse
+                                    <table class="table table-striped">
+                                      <thead>
+                                        <th>Image</th>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Product Link</th>
+                                      </thead>
+                                      <tbody>
+                                        @forelse($TheOrder->Items() as $Item)
+                                          <tr>
+                                            <td><img src="{{$Item->Product->MainImage}}" width="50" height="50"></td>
+                                            <td>{{$Item->Product->title}}</td>
+                                            <td>{{$Item->qty}}</td>
+                                            <td><a href="{{route('product.single' , [$Item->Product->id , $Item->Product->slug])}}" target="_blank">Click Here</a></td>
+                                          </tr>
+                                        @empty
+                                        <p>There is no items in this order</p>
+                                        @endforelse
+
+                                      </tbody>
+                                    </table>
+                                    <button onclick="window.print();">Print The List</button>
                                 </div>
                                 <div class="bgc-white p-20 bd mb-5">
                                     <h6>Customer Data</h6>
@@ -63,13 +98,9 @@
                                     <p class="mb-0"><b>Transaction ID :</b> {{$TheOrder->payment_id ?? 'N/A'}}</p>
                                     <p class="mb-0"><b>Status :</b> {{$TheOrder->is_paid}}</p>
                                     <p class="mb-0"><b>Method :</b> {{$TheOrder->payment_method}}</p>
-                                    <p class="mb-0"><b>Total Paid :</b>
-                                        {{formatPrice($TheOrder->final_total).getCurrency()['symbole']}}</p>
-                                    <p class="mb-0"><b>Order Tax :</b>
-                                        {{formatPrice($TheOrder->total_tax_amount).getCurrency()['symbole']}}</p>
-                                    <p class="mb-0"><b>Order Shipping Cost :</b>
-                                        {{formatPrice($TheOrder->total_shipping_cost + $TheOrder->total_shipping_tax).getCurrency()['symbole']}}
-                                    </p>
+                                    <p class="mb-0"><b>Total Paid :</b>{{formatPrice($TheOrder->final_total).getCurrency()['symbole']}}</p>
+                                    <p class="mb-0"><b>Order Tax :</b>{{formatPrice($TheOrder->total_tax_amount).getCurrency()['symbole']}}</p>
+                                    <p class="mb-0"><b>Order Shipping Cost :</b>{{formatPrice($TheOrder->total_shipping_cost + $TheOrder->total_shipping_tax).getCurrency()['symbole']}}</p>
                                 </div>
                                 <div class="bgc-white p-20 bd mb-5">
                                     <h6>Additional Data</h6>
@@ -92,9 +123,14 @@
                                             <option value="Complete">Complete</option>
                                             <option value="Cancelled">Cancelled</option>
                                             <option value="custom0">Waiting information for shipping</option>
-                                            <option value="custom1">No delivery for this designation</option>                     
+                                            <option value="custom1">No delivery for this designation</option>
                                         </select>
                                     </div>
+                                    <div class="form-group">
+                                      <label>Tracink Link *</label>
+                                      <input name="tracking_link" type="url" class="form-control" placeholder="Enter The Tracink Link Here" />
+                                    </div>
+                                    <p>Take Note, After Updating the Status an Email Will Be Sent to {{$TheOrder->email}}</p>
                                     <button type="submit" class="btn btn-success">Update Order Status</button>
                                 </form>
                                 <a href="{{route('invoice.generate.get' , $TheOrder->id)}}" class="btn btn-primary">Generate Invoice</a>
@@ -104,7 +140,6 @@
                 </div>
             </main>
         </div>
-    </div>
     @include('admin.layout.scripts')
 </body>
 

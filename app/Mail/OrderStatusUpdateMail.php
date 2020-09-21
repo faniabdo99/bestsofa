@@ -7,14 +7,15 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderFailedMail extends Mailable{
+class OrderStatusUpdateMail extends Mailable{
     use Queueable, SerializesModels;
     public $TheOrder;
     public function __construct($TheOrder){
         $this->TheOrder = $TheOrder;
     }
+
     public function build()
     {
-        return $this->markdown('mails/orders/order-failed-mail')->subject("Order Failed - UK Fashion Shop");
+        return $this->markdown('mails\orders\order-status-update-mail')->subject("Order Status Updated - UKFashion Shop");
     }
 }

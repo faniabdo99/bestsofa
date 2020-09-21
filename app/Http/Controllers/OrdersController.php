@@ -24,6 +24,7 @@ use App\Mail\BankTransferMail;
 use App\Mail\NewOrderMail;
 use App\Mail\OrderReceiptMail;
 use App\Mail\OrderFailedMail;
+use App\Mail\OrderStatusUpdateMail;
 class OrdersController extends Controller{
   public function getCheckoutPage(){
     //***************** Get Cart Items
@@ -103,98 +104,99 @@ class OrdersController extends Controller{
       }
       //Create a User Account if Requested
       if($r->has('create_account') && $r->create_account == 'on'){
-        //Create an Account and Log the User in
-        //Check if User Existed
-        $CheckUser = User::where('email' , $r->email)->first();
-        if($CheckUser){
-          //Update Cart Items to the new Owner ID
-          if(auth()->check()){$UserId = auth()->user()->id;}else{$UserId = Cookie::get('guest_id');}
-          $CartItems = Cart::where('user_id' , $UserId)->where('status' , 'active')->whereDate('created_at' , Carbon::today())->get();
-          $CartItems->map(function($Item) use ($CheckUser) {
-            $Item->update(['user_id' => $CheckUser->id]);
-          });
-          //Login
-          Auth::loginUsingId($CheckUser->id);
-        }else{
-          $TheUser = User::create([
-            'first_name' => $r->first_name,
-            'last_name' => $r->last_name,
-            'phone_number' => $r->phone_number,
-            'email' => $r->email,
-            'country' => getCountryNameFromISO($r->country),
-            'street_address' => $r->address,
-            'city' => $r->city,
-            'zip_code' => $r->zip_code,
-            'password' => 'Placeholder Password',
-            'code' =>  rand(0,99999999),
-            'vat_number' => $r->vat_number,
-            'auth_provider' => 'Order Signup',
-          ]);
-          $CartItems = Cart::where('user_id' , $UserId)->where('status' , 'active')->whereDate('created_at' , Carbon::today())->get();
-          $CartItems->map(function($Item) use ($TheUser) {
-            $Item->update(['user_id' => $TheUser->id]);
-          });
-          //Send Password Creation Email
+      //Create an Account and Log the User in
+      //Check if User Existed
+      $CheckUser = User::where('email' , $r->email)->first();
+      if($CheckUser){
+        //Update Cart Items to the new Owner ID
+        if(auth()->check()){$UserId = auth()->user()->id;}else{$UserId = Cookie::get('guest_id');}
+        $CartItems = Cart::where('user_id' , $UserId)->where('status' , 'active')->whereDate('created_at' , Carbon::today())->get();
+        $CartItems->map(function($Item) use ($CheckUser) {
+          $Item->update(['user_id' => $CheckUser->id]);
+        });
+        //Login
+        Auth::loginUsingId($CheckUser->id);
+      }else{
+        $TheUser = User::create([
+          'first_name' => $r->first_name,
+          'last_name' => $r->last_name,
+          'phone_number' => $r->phone_number,
+          'email' => $r->email,
+          'country' => getCountryNameFromISO($r->country),
+          'street_address' => $r->address,
+          'city' => $r->city,
+          'zip_code' => $r->zip_code,
+          'password' => 'Placeholder Password',
+          'code' =>  rand(0,99999999),
+          'vat_number' => $r->vat_number,
+          'auth_provider' => 'Order Signup',
+        ]);
+        $CartItems = Cart::where('user_id' , $UserId)->where('status' , 'active')->whereDate('created_at' , Carbon::today())->get();
+        $CartItems->map(function($Item) use ($TheUser) {
+          $Item->update(['user_id' => $TheUser->id]);
+        });
+        //Send Password Creation Email
 
-          Mail::to($r->email)->send(new OrderSignupPassword($TheUser));
-          //Log the User in
-          Auth::loginUsingId($TheUser->id);
-        }
+        Mail::to($r->email)->send(new OrderSignupPassword($TheUser));
+        //Log the User in
+        Auth::loginUsingId($TheUser->id);
       }
-      //Grab the User
-      if(auth()->check()){$UserId = auth()->user()->id;}else{$UserId = Cookie::get('guest_id');}
-      //Create the Order
-      $OrderData = $r->except(['_token' , 'create_account' , 'accepted_toc' , 'diff_shipping_address' , 'email_confirmation']);
-      if($r->has('diff_shipping_address') && $r->diff_shipping_address == 'no'){
-        $OrderData['shipping_address'] = $r->address;
-        $OrderData['shipping_address_2'] = $r->address_2;
-        $OrderData['shipping_city'] = $r->city;
-        $OrderData['shipping_zip_code'] = $r->zip_code;
-      }
-      if($r->has('vat_number') && $r->vat_number != null && $r->vat_number != ''){
-        //Validate VAT Number
-        $HttpClient = new Client();
-        $response = @$HttpClient->get('http://apilayer.net/api/validate?access_key=c741ee3de22b687def5c1f981131e65e&vat_number='.$r->vat_number);
-        if($response->getStatusCode() != 200){
-          $OrderData['is_vat_valid'] = 'no';
-        }else{
-          $ResponseAsArray = json_decode($response->getBody(), true);
-          if($ResponseAsArray['valid']){
-            $OrderData['is_vat_valid'] = 'yes';
-          }
-        }
-      }
-      if($r->pickup_at_store == 'yes'){
-        $OrderData['total_shipping_cost'] = '0.00';
-        $OrderData['total_shipping_tax'] = '0.00';
-      }
-      $OrderData['serial_number'] = '20200-29051-'.str_replace('.' , '-' , substr( microtime(true),-11));
-      $OrderData['status'] = 'Pre-Payments';
-      $OrderData['order_currency'] = getCurrency()['code'];
-      $OrderData['user_id'] = $UserId;
-      $TheNewOrder = Order::create($OrderData);
-      //Add the Cart Items to the table
-      //2- Get the cart items
-      $CartItems = Cart::where('user_id' , $UserId)->where('status','active')->whereDate('created_at' , Carbon::today())->get();
-      //Generate the total price without a tax
-      $CartSubTotalArray = $CartItems->map(function($item) use($TheNewOrder) {
-        //Decrease Cart Items Inventory
-        $item->Product->update([
-          'inventory' => ($item->Product->inventory - $item->qty),
-          'fake_inventory' => ($item->Product->fake_inventory - $item->qty),
-        ]);
-        //Add Cart Item to Order
-        Order_Product::create([
-          'order_id' => $TheNewOrder->id,
-          'product_id' => $item->product_id,
-          'is_free_shipping' => false,
-          'qty' => $item->qty
-        ]);
-      });
-      Mail::to('admin@ukfashionshop.be')->send(New NewOrderMail);
-      return redirect()->route('checkout.summary' , $TheNewOrder->id);
     }
+    //Grab the User
+    if(auth()->check()){$UserId = auth()->user()->id;}else{$UserId = Cookie::get('guest_id');}
+    //Create the Order
+    $OrderData = $r->except(['_token' , 'create_account' , 'accepted_toc' , 'diff_shipping_address' , 'email_confirmation']);
+    if($r->has('diff_shipping_address') && $r->diff_shipping_address == 'no'){
+      $OrderData['shipping_address'] = $r->address;
+      $OrderData['shipping_address_2'] = $r->address_2;
+      $OrderData['shipping_city'] = $r->city;
+      $OrderData['shipping_zip_code'] = $r->zip_code;
+    }
+    if($r->has('vat_number') && $r->vat_number != null && $r->vat_number != ''){
+      //Validate VAT Number
+      $HttpClient = new Client();
+      $response = @$HttpClient->get('http://apilayer.net/api/validate?access_key=c741ee3de22b687def5c1f981131e65e&vat_number='.$r->vat_number);
+      if($response->getStatusCode() != 200){
+        $OrderData['is_vat_valid'] = 'no';
+      }else{
+        $ResponseAsArray = json_decode($response->getBody(), true);
+        if($ResponseAsArray['valid']){
+          $OrderData['is_vat_valid'] = 'yes';
+        }
+      }
+    }
+    if($r->pickup_at_store == 'yes'){
+      $OrderData['total_shipping_cost'] = '0.00';
+      $OrderData['total_shipping_tax'] = '0.00';
+    }
+    $TheCodeNumber = "2020029051".str_replace('.' ,'', microtime(true).rand(1,9));
+    $OrderData['serial_number'] = wordwrap($TheCodeNumber,5,'-',true);
+    $OrderData['status'] = 'Pre-Payments';
+    $OrderData['order_currency'] = getCurrency()['code'];
+    $OrderData['user_id'] = $UserId;
+    $TheNewOrder = Order::create($OrderData);
+    //Add the Cart Items to the table
+    //2- Get the cart items
+    $CartItems = Cart::where('user_id' , $UserId)->where('status','active')->whereDate('created_at' , Carbon::today())->get();
+    //Generate the total price without a tax
+    $CartSubTotalArray = $CartItems->map(function($item) use($TheNewOrder) {
+      //Decrease Cart Items Inventory
+      $item->Product->update([
+        'inventory' => ($item->Product->inventory - $item->qty),
+        'fake_inventory' => ($item->Product->fake_inventory - $item->qty),
+      ]);
+      //Add Cart Item to Order
+      Order_Product::create([
+        'order_id' => $TheNewOrder->id,
+        'product_id' => $item->product_id,
+        'is_free_shipping' => false,
+        'qty' => $item->qty
+      ]);
+    });
+    Mail::to('admin@ukfashionshop.be')->send(New NewOrderMail);
+    return redirect()->route('checkout.summary' , $TheNewOrder->id);
   }
+}
   public function getSummaryPage($id){
     //Get the Order and Compare it to User ID
     if(auth()->check()){$UserId = auth()->user()->id;}else{$UserId = Cookie::get('guest_id');}
@@ -368,7 +370,7 @@ class OrdersController extends Controller{
             //Delete The Usage Record
             Coupoun_User::where('user_id' , auth()->user()->id)->where('coupoun_id' , $TheCoupon->id)->delete();
           }
-          Mail::to($TheOrder->email)->send(new OrderFailedMail);
+          Mail::to($TheOrder->email)->send(new OrderFailedMail($TheOrder));
 
         }
       return view('orders.checkout.thank-you' , compact('TheOrder' , 'OrderItems'));
@@ -400,7 +402,8 @@ class OrdersController extends Controller{
     if($TheOrder){
         //Vlidate the Request
         $Rules = [
-          'order_status' => 'required'
+          'order_status' => 'required',
+          'tracking_link' => 'nullable|url'
         ];
         $validator = Validator::make($r->all() , $Rules);
         if($validator->fails()){
@@ -408,9 +411,12 @@ class OrdersController extends Controller{
         }else{
           //Updat the Order
           $TheOrder->update([
-            'status' => $r->order_status
+            'status' => $r->order_status,
+            'tracking_link' => $r->tracking_link
           ]);
-          return redirect()->route('admin.orders.home')->withSuccess('Order Updated Successfully');
+          //Send an Email to The User
+          Mail::to($TheOrder->email)->send(new OrderStatusUpdateMail($TheOrder));
+          return back()->withSuccess('Order Updated Successfully');
         }
     }else{
       return back()->withErrors('Order is Not Available');

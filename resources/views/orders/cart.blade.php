@@ -84,8 +84,8 @@
 									</td>
 									<td style="width:35%;">
 										@if($CouponDiscount)
-										<h5 class="mb-4">{{$Total.getCurrency()['symbole']}}</h5>
-										<h5 class="mb-4 text-success">-{{$CouponDiscount.getCurrency()['symbole']}}</h5>
+										<h5 class="mb-4">{{formatPrice($Total).getCurrency()['symbole']}}</h5>
+										<h5 class="mb-4 text-success">-{{formatPrice($CouponDiscount).getCurrency()['symbole']}}</h5>
 										@endif
 										<h5>{{formatPrice($SubTotal).getCurrency()['symbole']}}</h5>
 									</td>
