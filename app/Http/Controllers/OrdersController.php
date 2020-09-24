@@ -188,6 +188,7 @@ class OrdersController extends Controller{
       //Add Cart Item to Order
       Order_Product::create([
         'order_id' => $TheNewOrder->id,
+        'user_id' => $TheNewOrder->user_id,
         'product_id' => $item->product_id,
         'is_free_shipping' => false,
         'qty' => $item->qty

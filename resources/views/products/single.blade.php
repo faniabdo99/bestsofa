@@ -1,5 +1,4 @@
 @include('layout.header')
-
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')
@@ -112,9 +111,9 @@
                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Ask a Question</a>
                 </li>
                 @if($TheProduct->allow_reviews)
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews</a>
-                    </li> --}}
+                    </li>
                 @endif
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -446,171 +445,56 @@
                     </div>
                 </div>
                 @if($TheProduct->allow_reviews)
-                    {{-- <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+
+                    <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="row total_rate">
-                                    <div class="col-6">
+                                    <div class="col-12 mb-5">
                                         <div class="box_total">
                                             <h5>Overall</h5>
-                                            <h4>4.0</h4>
-                                            <h6>(03 Reviews)</h6>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="rating_list">
-                                            <h3>Based on 3 Reviews</h3>
-                                            <ul class="list">
-                                                <li>
-                                                    <a href="#">5 Star
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i> 01</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">4 Star
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i> 01</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">3 Star
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i> 01</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">2 Star
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i> 01</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">1 Star
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i> 01</a>
-                                                </li>
-                                            </ul>
+                                            <h4>{{$TheProduct->Reviews()->avg('rate')}}</h4>
+                                            <h6>({{$TheProduct->Reviews()->count()}} Reviews)</h6>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="review_list">
-                                    <div class="review_item">
+                                  @foreach ($TheProduct->Reviews() as $Review)
+                                    <div class="review_item bg-light p-3 mb-5">
                                         <div class="media">
-                                            <div class="d-flex">
-                                                <img src="img/product/single-product/review-1.png" alt="">
-                                            </div>
                                             <div class="media-body">
-                                                <h4>Blake Ruiz</h4>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                                <h4>{{$Review->User->name}}</h4>
+                                                @for ($i = 0; $i < $Review->rate; $i++)
+                                                  <i class="fa fa-star"></i>
+                                                @endfor
                                             </div>
                                         </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                                        <p class="text-dark">{{$Review->review}}</p>
                                     </div>
-                                    <div class="review_item">
-                                        <div class="media">
-                                            <div class="d-flex">
-                                                <img src="img/product/single-product/review-2.png" alt="">
-                                            </div>
-                                            <div class="media-body">
-                                                <h4>Blake Ruiz</h4>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-                                    </div>
-                                    <div class="review_item">
-                                        <div class="media">
-                                            <div class="d-flex">
-                                                <img src="img/product/single-product/review-3.png" alt="">
-                                            </div>
-                                            <div class="media-body">
-                                                <h4>Blake Ruiz</h4>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-                                    </div>
+                                  @endforeach
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
                                 @auth
-                                <div class="review_box">
+                                  @if(auth()->user()->Bought($TheProduct->id))
+                                      <div class="review_box">
                                     <h4>Add a Review</h4>
                                     <p>Your Rating:</p>
-                                    <ul class="list">
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-star"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-star"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-star"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-star"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-star"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <p>Outstanding</p>
-                                    <form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+
+                                    <form class="row contact_form" action="{{route('review.post')}}" method="post">
+                                        @csrf
+                                        <input hidden name="product_id" value="{{$TheProduct->id}}">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name">
+                                              <select required class="form-control" name="rate">
+                                                <option value="">Choose a Rate</option>
+                                                <option value="1">1 Star</option>
+                                                <option value="2">2 Stars</option>
+                                                <option value="3">3 Stars</option>
+                                                <option value="4">4 Stars</option>
+                                                <option value="5">5 Stars</option>
+                                              </select>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
                                             <div class="form-group">
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="number" name="number" placeholder="Phone Number">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Review"></textarea>
+                                                <textarea class="form-control" name="review" rows="1" placeholder="What Do You Think About This Product?"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12 text-right">
@@ -618,13 +502,16 @@
                                         </div>
                                     </form>
                                 </div>
+                                    @else
+                                      <p>You can review this product after you buy it</p>
+                                    @endif
                                 @endauth
                                 @guest
-                                <p>Only The Customers Who Actually Bought This Product Can Review It !</p>
+                                <p>Please Login to Add a Review</p>
                                 @endguest
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                 @endif
             </div>
         </div>

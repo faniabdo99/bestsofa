@@ -146,4 +146,7 @@ class Product extends Model{
         }
         return $StatuesArray;
     }
+    public function Reviews(){
+      return Review::where('product_id' , $this->id)->get();
+    }
 }

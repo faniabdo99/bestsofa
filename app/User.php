@@ -6,8 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable{
     use Notifiable;
     protected $guarded = [];
     protected $hidden = [
@@ -39,5 +38,13 @@ class User extends Authenticatable
     }
     public function getNameAttribute(){
         return $this->first_name . ' ' . $this->last_name;
+    }
+    public function Bought($ProductId){
+      $UserOrders = Order_Product::where('user_id' , $this->id)->where('product_id' , $ProductId)->count();
+      if($UserOrders >= 1){
+        return true;
+      }else{
+        return false;
+      }
     }
 }

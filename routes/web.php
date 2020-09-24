@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function(){
   Route::get('activate-account/{code}' , 'UsersController@activateAccount')->name('account.activate');
   Route::get('set-password/{id}' , 'UsersController@getSetPassword')->name('setPassword.get');
   Route::post('set-password/{id}' , 'UsersController@postSetPassword')->name('setPassword.post');
+  Route::post('review' , 'ReviewsController@postReview')->name('review.post');
 });
 //General Routes
 Route::get('contact' , 'ContactUsController@getContact')->name('contact.get');
