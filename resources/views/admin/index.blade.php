@@ -53,7 +53,7 @@
                                         </div>
                                         <div class="layer w-100">
                                             <div class="peers ai-sb fxw-nw">
-                                                <div>{{$ThisMonthSales}}€</div>
+                                                <div>{{formatPrice($ThisMonthSales)}}€</div>
                                             </div>
                                         </div>
                                     </div>
