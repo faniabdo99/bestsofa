@@ -6,24 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductReviewsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('product__reviews', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+
+		$table->id();
+    $table->timestamps();
+
+
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('product__reviews');

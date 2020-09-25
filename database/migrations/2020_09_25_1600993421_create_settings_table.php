@@ -9,18 +9,14 @@ class CreateSettingsTable extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('value');
-            $table->timestamps();
+    		$table->id();
+    		$table->string('title');
+    		$table->string('value');
+        $table->timestamps();
+
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('settings');
