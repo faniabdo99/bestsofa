@@ -208,6 +208,11 @@
                     impossible that these conditions are still binding on the
                     part of the customer.
                 </p>
+                @if($TheInvoice->customer_desc)
+                  <p><b class="text-dark">ADDITIONAL NOTES</b><br>
+                      {{$TheInvoice->customer_desc}}
+                  </p>
+                @endif
             </div>
           </div>
 

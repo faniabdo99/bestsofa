@@ -110,6 +110,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'] , function () {
       Route::get('generate/{id}' , 'InvoiceController@generateInvoice')->name('invoice.generate.get');
       Route::post('update/{id}' , 'InvoiceController@postUpdate')->name('admin.invoice.update');
       Route::get('download/{id}' , 'InvoiceController@downloadInvoice')->name('invoice.download.get');
+      Route::get('send-to-user/{id}' , 'InvoiceController@sendToUser')->name('invoice.sendToUser.get');
     });
 });
 //Cart Related Routes

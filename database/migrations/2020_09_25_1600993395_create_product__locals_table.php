@@ -9,17 +9,13 @@ class CreateProductLocalsTable extends Migration
     public function up()
     {
         Schema::create('product__locals', function (Blueprint $table) {
-
-		$table->id();
-		$table->integer('product_id');
-		$table->string('lang_code');
-		$table->string('title_value');
-		$table->string('slug_value');
-		$table->text('description_value');
-		$table->text('body_value');
-    $table->timestamps();
-
-
+      		$table->id();
+      		$table->integer('product_id');
+      		$table->string('lang_code');
+      		$table->string('title_value');
+      		$table->text('description_value');
+      		$table->text('body_value');
+          $table->timestamps();
         });
     }
 

@@ -14,13 +14,16 @@ use App\Order;
 use App\Mail\WelcomeNewUser;
 use App\Mail\WelcomeSocialLogin;
 use App\Mail\ResetPasswordMail;
-use App\Imports\UsersImport;
-use App\Imports\ProductsImport;
+// use App\Imports\UsersImport;
+// use App\Imports\ProductsImport;
+use App\Imports\ShippingCosts;
 class UsersController extends Controller{
     public function test(){
-      Excel::import(new UsersImport, 'users.xlsx');
-      Excel::import(new ProductsImport, 'products.xlsx');
-      dd("Import Done");
+      // Excel::import(new UsersImport, 'users.xlsx');
+      // Excel::import(new ProductsImport, 'products.xlsx');
+      // Excel::import(new ShippingCosts, 'shipping_costs.xlsx');
+
+
     }
     /*======================= Handmade Signup*/
     public function getSignup(){

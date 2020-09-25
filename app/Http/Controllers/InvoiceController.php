@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Validator;
 use Carbon\Carbon;
 use PDF;
+use Mail;
+//Mails
+use App\Mail\OrderInvoiceMail;
 //Models
 use App\Order;
 use App\Invoice;
@@ -70,10 +73,24 @@ class InvoiceController extends Controller{
         $TheInvoice = Invoice::findOrFail($id);
         if($TheInvoice){
             $TheOrder = Order::findOrFail($TheInvoice->order_id);
-            $InvoinceFileName = $TheInvoice->invoice_prefix.$TheInvoice->id;
         }
         $pdf = PDF::loadView('admin.invoices.download' , ['TheOrder' => $TheOrder , 'TheInvoice' => $TheInvoice]);
-        return $pdf->download($InvoinceFileName.'.pdf');
+        return $pdf->download($TheOrder->serial_number.'.pdf');
         // return view('admin.invoices.download' , compact('TheInvoice' , 'TheOrder'));
+    }
+    public function sendToUser($id){
+        //Get Invoice Data
+        $TheInvoice = Invoice::findOrFail($id);
+        if($TheInvoice){
+            $TheOrder = Order::findOrFail($TheInvoice->order_id);
+           $EmailData = Order::findOrFail($TheInvoice->order_id);
+        }
+        $pdf = PDF::loadView('admin.invoices.download' , ['TheOrder' => $TheOrder , 'TheInvoice' => $TheInvoice]);
+        Mail::to($TheOrder->email)->send(new OrderInvoiceMail($EmailData,$pdf->output()));
+        if (Mail::failures()) {
+          return redirect()->route('invoice.generate.get', $TheOrder->id)->withSuccess("Sending Mail Failed");
+        }else{
+          return redirect()->route('invoice.generate.get', $TheOrder->id)->withSuccess("Invoice Has Been Mailed to ".$TheOrder->email);
+        }
     }
 }

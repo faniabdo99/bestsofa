@@ -197,7 +197,6 @@ class ProductsController extends Controller{
     public function postLocalize(Request $r){
         $Rules = [
             'title_value' => 'required|min:5|max:255',
-            'slug_value' => 'required|min:5|max:255',
             'description_value' => 'required|min:25',
             'body_value' => 'required|min:25',
             'lang_code' => 'required',
@@ -213,9 +212,10 @@ class ProductsController extends Controller{
         }else{
             //Check if this is existing and update it accordingly
             $LocalizedData = Product_Local::where('lang_code' , $r->lang_code)->where('product_id' , $r->product_id)->first();
+            $LocalizedDataFromRequest = $r->all();
             if($LocalizedData != null){
                 //Update
-                $LocalizedData->update($r->all());
+                $LocalizedData->update($LocalizedDataFromRequest);
                 $Respone = [
                     'error' => false,
                     'list' => 'Translation Updated'
@@ -223,7 +223,7 @@ class ProductsController extends Controller{
                 return response($Respone);
             }else{
                 //Create
-                $NewLocalizedData = Product_Local::create($r->all());
+                $NewLocalizedData = Product_Local::create($LocalizedDataFromRequest);
                 $Respone = [
                     'error' => false,
                     'list' => 'Translation Created'
@@ -259,12 +259,10 @@ class ProductsController extends Controller{
     }
     public function getWithFilter($Category){
         $TheCategory = Category::where('slug' , $Category)->first();
-
         $Categories = Category::latest()->get();
         $FiltersList = $this->getAllTags();
         $Products = Product::where('category_id' , $TheCategory->id)->where('status','!=','Invisible')->latest()->get();
         return view('products.index' , compact('Categories' , 'FiltersList' , 'Products'));
-
     }
     public function getSingle($id , $slug){
         $TheProduct = Product::findOrFail($id);

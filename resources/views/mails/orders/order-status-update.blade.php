@@ -6,7 +6,7 @@ Your Current Order Status is <b>{{$TheOrder->status}}</b>
   <br>
   You Can Track Your Order Shipping From This Link
 @component('mail::button', ['url' => $TheOrder->tracking_link])
-Track Order
+Track & Trace
 @endcomponent
 @endif
 

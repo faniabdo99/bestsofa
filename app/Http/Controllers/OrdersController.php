@@ -169,8 +169,11 @@ class OrdersController extends Controller{
       $OrderData['total_shipping_cost'] = '0.00';
       $OrderData['total_shipping_tax'] = '0.00';
     }
-    $TheCodeNumber = "2020029051".str_replace('.' ,'', microtime(true).rand(1,9));
+    $TheCodeNumber = "20200".str_replace('.' ,'', microtime(true).rand(1,9));
     $OrderData['serial_number'] = wordwrap($TheCodeNumber,5,'-',true);
+    if(strlen($OrderData['serial_number']) != 23){
+      $OrderData['serial_number'] = $OrderData['serial_number'].rand(pow(10, (23 - strlen($OrderData['serial_number']))-1), pow(10, (23 - strlen($OrderData['serial_number'])))-1);;
+    }
     $OrderData['status'] = 'Pre-Payments';
     $OrderData['order_currency'] = getCurrency()['code'];
     $OrderData['user_id'] = $UserId;

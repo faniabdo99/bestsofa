@@ -11,7 +11,7 @@
                             <div class="col-12">
                                 <h2>Edit Localized Data</h2>
                                 @foreach ($SystemLangs as $Single)
-                                @php 
+                                @php
                                 //Current Item Local Values (if exists)
                                 $CurrentLocalValues = \App\Product_Local::where('product_id' , $Product->id)->where('lang_code' , $Single)->first();
                                 @endphp
@@ -27,11 +27,6 @@
                                                 <label>{{$Single}} Title</label>
                                                 <input type="text" class="form-control" name="title_value"
                                                     value="{{$CurrentLocalValues->title_value ?? ''}}" placeholder="{{$Product->title}}">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>{{$Single}} Slug</label>
-                                                <input type="text" class="form-control" name="slug_value"
-                                                    value="{{$CurrentLocalValues->slug_value ?? ''}}" placeholder="{{$Product->slug}}">
                                             </div>
                                             <div class="form-group">
                                                 <label>{{$Single}} Description</label>
