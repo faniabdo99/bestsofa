@@ -1,7 +1,7 @@
 <footer class="footer-area section_gap">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="single-footer-widget">
                     <h6 class="footer_title">About Us</h6>
                     <p>We are a company that has more than 25 years experience in import & export of second-hand clothing & shoes.</p>
@@ -24,38 +24,7 @@
                     </div>
                 </div>
             </div> --}}
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-footer-widget instafeed">
-                    <h6 class="footer_title">Instagram Feed</h6>
-                    <ul class="list instafeed d-flex flex-wrap">
-                        <li>
-                            <img src="{{url('public/img')}}/instagram/Image-01.jpg" alt="">
-                        </li>
-                        <li>
-                            <img src="{{url('public/img')}}/instagram/Image-02.jpg" alt="">
-                        </li>
-                        <li>
-                            <img src="{{url('public/img')}}/instagram/Image-03.jpg" alt="">
-                        </li>
-                        <li>
-                            <img src="{{url('public/img')}}/instagram/Image-04.jpg" alt="">
-                        </li>
-                        <li>
-                            <img src="{{url('public/img')}}/instagram/Image-05.jpg" alt="">
-                        </li>
-                        <li>
-                            <img src="{{url('public/img')}}/instagram/Image-06.jpg" alt="">
-                        </li>
-                        <li>
-                            <img src="{{url('public/img')}}/instagram/Image-07.jpg" alt="">
-                        </li>
-                        <li>
-                            <img src="{{url('public/img')}}/instagram/Image-08.jpg" alt="">
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="single-footer-widget f_social_wd">
                     <h6 class="footer_title">Follow Us</h6>
                     <p>Let us be social</p>
@@ -78,9 +47,7 @@
         </div>
         <div class="row footer-bottom d-flex justify-content-between align-items-center">
             <p class="col-lg-12 footer-text text-center">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 Copyright &copy; <script>document.write(new Date().getFullYear());</script> Global Trading Co All rights reserved</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
         </div>
     </div>
