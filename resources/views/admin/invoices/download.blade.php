@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css2?family=Mulish&family=Poppins&display=swap" rel="stylesheet">
@@ -11,7 +10,7 @@
         }
         .full-width-container{
             width: 100%;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
         }
         .half-width{
             width: 50%;
@@ -31,7 +30,12 @@
             padding:5px;
             text-align: center;
         }
-
+        td.item-name{
+          text-align: left;
+        }
+        .invoice-data td{
+          text-align: left;
+        }
     </style>
 </head>
 
@@ -41,7 +45,7 @@
                 <img width="170" height="100" src="{{url('public/img/logo.png')}}" />
             </div>
             <div class="half-width">
-                <table class="table border" cellspacing="0">
+                <table class="table border invoice-data" cellspacing="0">
                     <tbody>
                         <tr class="bg-secondary text-white">
                             <td>Invoice:</td>
@@ -65,23 +69,25 @@
         </div>
         <div class="full-width-container smaller-font">
             <div class="half-width">
-                <h4>UK Fashion Shop</h4>
+                <h4>GLOBALE TRADING</h4>
                 <p class="mb-0">CHAUSSÉE DE JETTE 324</p>
                 <p class="mb-0">1081 KOEKELBERG</p>
                 <p class="mb-0">België</p>
+                <p class="mb-0">BE0827774244</p>
                 <p class="mb-0">+32 52 20 10 18</p>
                 <p class="mb-0">www.ukfashionshop.be</p>
             </div>
             <div class="half-width">
                 <h4>{{$TheInvoice->customer_name}}</h4>
-                <p class="mb-0">{{$TheOrder->address}}</p>
-                <p class="mb-0">{{$TheOrder->city}}</p>
-                <p class="mb-0">{{getCountryNameFromISO($TheOrder->country)}}</p>
-                <p class="mb-0">{{$TheOrder->phone_number}}</p>
-                <p class="mb-0">{{$TheOrder->email}}</p>
+                <p class="mb-0">{{$TheInvoice->address}}</p>
+                <p class="mb-0">{{$TheInvoice->city}}</p>
+                <p class="mb-0">{{getCountryNameFromISO($TheInvoice->country)}}</p>
+                <p class="mb-0">{{$TheInvoice->vat_number}}</p>
+                <p class="mb-0">{{$TheInvoice->phone_number}}</p>
+                <p class="mb-0">{{$TheInvoice->email}}</p>
             </div>
         </div>
-        <div class="row mt-5">
+        <div class="row mt-5" style="height:1200px;">
             <div class="col-12 mb-5">
                 <table class="table" cellspacing="0">
                     <tr class="table-head">
@@ -95,7 +101,7 @@
                     <tbody>
                         @foreach ($TheOrder->Items() as $Item)
                         <tr>
-                            <td>{{$Item->Product->title}}</td>
+                            <td class="item-name">{{$Item->Product->title}}</td>
                             <td>{{formatPrice($Item->Product->price)}} €</td>
                             <td>{{$Item->qty}}</td>
                             <td>{{$Item->qty * $Item->Product->weight}} KG</td>
@@ -115,14 +121,12 @@
                             <td style="color:#333;padding:10px;font-weight:bold;">Discounts</td>
                             <td style="color:#333;padding:10px;font-weight:bold;">Shipping Cost</td>
                             <td style="color:#333;padding:10px;font-weight:bold;">Tax Excluded</td>
-                            <td style="color:#333;padding:10px;font-weight:bold;">Tax %</td>
                             <td style="color:#333;padding:10px;font-weight:bold;">Tax</td>
                         </tr>
                         <tr>
                             <td>120.00€</td>
                             <td>{{formatPrice($TheOrder->totalShipping)}} €</td>
                             <td>{{formatPrice($TheOrder->total)}} €</td>
-                            <td>{{formatPrice($TheOrder->order_tax_rate * 100)}} %</td>
                             <td>{{formatPrice($TheOrder->total_tax)}} €</td>
                         </tr>
                     </tbody>
@@ -136,12 +140,14 @@
             <div style="width:25%;display:block;float: right;">
                 @if($TheOrder->is_paid == 'paid' || $TheInvoice->is_paid)
                 <h2 class="mb-0" style="color:#4ec74e;">Paid</h2>
-                <p class="mb-0">{{$TheOrder->payment_method_data['name']}}</p>
+                <p class="mb-0">{{$TheInvoice->payment_method_data['name']}}</p>
                 @else
                 <h2 class="mb-0" style="color:#a53131;">Not Paid</h2>
                 @endif
                 <div class="border p-2">Total : {{formatPrice($TheOrder->final_total)}} €</div>
             </div>
+          </div>
+          <div class="row">
             <div class="col-12 mt-5" style="width: 100%;">
                 <p><b class="text-dark">GENERAL</b><br>
                     Art.1 These terms and conditions apply to any sale agreement by a visitor to this site, hereinafter
@@ -176,6 +182,10 @@
                     immediately at the time of concluding the
                     contract. When paying by bank transfer you will receive the ordered products only after receipt of
                     the sum due.
+                    <br>
+                    <b style="margin-right:40px;">BENEFICIARY</b> Globale trading<br>
+                    <b style="margin-right:40px;">IBAN</b> BE76 1431 0026 8395<br>
+                    <b style="margin-right:40px;">BIC</b> GEBABEBB<br>
                 </p>
                 <p><b class="text-dark">IMPLEMENTATION</b><br>
                     Art.6 The implementation of the agreement normally occurs almost immediately after payment via
@@ -199,6 +209,7 @@
                     part of the customer.
                 </p>
             </div>
-        </div>
+          </div>
+
 </body>
 </html>

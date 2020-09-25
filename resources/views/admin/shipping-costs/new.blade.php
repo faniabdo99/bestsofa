@@ -1,5 +1,4 @@
 @include('admin.layout.header')
-
 <body class="app">
     <div>
         @include('admin.layout.sidebar')

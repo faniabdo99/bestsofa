@@ -17,6 +17,11 @@ class InvoiceController extends Controller{
                 'order_id' => $TheOrder->id,
                 'user_id' => $TheOrder->user_id,
                 'customer_name' => $TheOrder->first_name . ' ' . $TheOrder->last_name,
+                'address' => $TheOrder->shipping_address,
+                'city' => $TheOrder->shipping_city,
+                'phone_number' => $TheOrder->phone_number,
+                'email' => $TheOrder->email,
+                'country' => $TheOrder->country,
                 'vat_number' => $TheOrder->vat_number,
                 'payment_method' => $TheOrder->payment_method,
                 'order_serial_number' => $TheOrder->serial_number,
@@ -47,6 +52,7 @@ class InvoiceController extends Controller{
             //Grab the Invoice
             $TheInvoice = Invoice::findOrFail($id);
             $InvoiceData = $r->except('_token');
+            $InvoiceData['customer_desc'] = nl2br($r->customer_desc);
             $InvoiceData['is_paid'] = 0;
             $InvoiceData['created_at'] = Carbon::create($r->created_at.date('H:i:s'));
             if($r->has('due_date')){
@@ -67,7 +73,7 @@ class InvoiceController extends Controller{
             $InvoinceFileName = $TheInvoice->invoice_prefix.$TheInvoice->id;
         }
         $pdf = PDF::loadView('admin.invoices.download' , ['TheOrder' => $TheOrder , 'TheInvoice' => $TheInvoice]);
-        return $pdf->download($InvoinceFileName.'.pdf');
+        return $pdf->stream($InvoinceFileName.'.pdf');
         // return view('admin.invoices.download' , compact('TheInvoice' , 'TheOrder'));
     }
 }
