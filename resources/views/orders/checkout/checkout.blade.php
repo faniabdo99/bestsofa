@@ -1,4 +1,4 @@
-@include('layout.header')
+@include('layout.header', ['PageTitle' => __('titles.checkout')])
 <body>
 	@include('layout.navbar')
 	<!--================Home Banner Area =================-->

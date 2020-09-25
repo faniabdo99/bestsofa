@@ -2,7 +2,7 @@
     <div class="top_menu row m0">
         <div class="container-fluid">
             <div class="float-left">
-                <p>Call Us: <a href="tel:+3252201018">+32 52 20 10 18</a></p>
+                <p>@lang('layout.call-us'): <a href="tel:+3252201018">+32 52 20 10 18</a></p>
             </div>
             <div class="float-right">
                 <ul class="right_side">
@@ -25,7 +25,7 @@
                     @if (auth()->user()->role == 2)
                     <li>
                         <a href="{{route('admin.home')}}">
-                            Admin Panel
+                            @lang('layout.admin-panel')
                         </a>
                     </li>
                     @endif
@@ -53,9 +53,9 @@
                     <div class="row w-100">
                         <div class="col-lg-7 pr-0">
                             <ul class="nav navbar-nav center_nav pull-right">
-                              <li class="nav-item @if(request()->path() == '/') active @endif"><a class="nav-link" href="{{route('home')}}">Home</a></li>
-                              <li class="nav-item @if(request()->path() == 'about') active @endif"><a class="nav-link" href="{{route('about')}}">About</a></li>
-                              <li class="nav-item @if(str_contains(request()->path() , 'products')) active @endif"><a href="{{route('product.home')}}" class="nav-link">Shop</a></li>
+                              <li class="nav-item @if(request()->path() == '/') active @endif"><a class="nav-link" href="{{route('home')}}">@lang('layout.home')</a></li>
+                              <li class="nav-item @if(request()->path() == 'about') active @endif"><a class="nav-link" href="{{route('about')}}">@lang('layout.about-us')</a></li>
+                              <li class="nav-item @if(str_contains(request()->path() , 'products')) active @endif"><a href="{{route('product.home')}}" class="nav-link">@lang('layout.shop')</a></li>
                                 {{-- <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                         aria-haspopup="true" aria-expanded="false">Blog</a>
@@ -68,19 +68,17 @@
                                         </li>
                                     </ul>
                                 </li> --}}
-                                <li class="nav-item @if(str_contains(request()->path() , 'contact')) active @endif"><a class="nav-link" href="{{route('contact.get')}}">Contact</a></li>
+                                <li class="nav-item @if(str_contains(request()->path() , 'contact')) active @endif"><a class="nav-link" href="{{route('contact.get')}}">@lang('layout.contact')</a></li>
                                   @guest
-                                    <li class="nav-item"><a class="nav-link" href="{{route('login.get')}}">Login</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{route('login.get')}}">@lang('layout.login')</a></li>
                                   @endguest
                                   @auth
-                                    <li class="nav-item @if(str_contains(request()->path() , 'profile')) active @endif"><a class="nav-link" href="{{route('profile')}}">My Account</a></li>
+                                    <li class="nav-item @if(str_contains(request()->path() , 'profile')) active @endif"><a class="nav-link" href="{{route('profile')}}">@lang('layout.my-account')</a></li>
                                   @endauth
                             </ul>
                         </div>
                         <div class="col-lg-5">
                             <ul class="nav navbar-nav navbar-right right_nav pull-right">
-
-
                                 <hr>
                                 <li class="nav-item">
                                     @auth
@@ -110,9 +108,9 @@
                                             </div>
                                         </div>
                                         <div class="logged-in-user-actions-list">
-                                            <a class="stretched-link" href="{{route('profile')}}">My Account</a>
-                                            <a class="stretched-link" href="{{route('myOrders')}}">My Orders</a>
-                                            <a class="stretched-link" href="{{route('logout')}}">Logout</a>
+                                            <a class="stretched-link" href="{{route('profile')}}">@lang('layout.my-account')</a>
+                                            <a class="stretched-link" href="{{route('myOrders')}}">@lang('layout.my-orders')</a>
+                                            <a class="stretched-link" href="{{route('logout')}}">@lang('layout.logout')</a>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +140,7 @@
                                                 </div>
                                         </div>
                                         @empty
-                                        <p>You Haven't Liked Any Products Yet !</p>
+                                        <p>@lang('layout.no-liked-items')</p>
                                         @endforelse
 
                                     </div>
@@ -171,7 +169,7 @@
                                         <span class="close-sidebar"><i class="fas fa-chevron-right"></i></span>
                                     </div>
                                     <div class="sidebar-body">
-                                        <h3 class="cart-sidebar-title">Your Shopping Cart ({{$CartItems->count()}})</h3>
+                                        <h3 class="cart-sidebar-title">@lang('layout.your-shopping-cart') ({{$CartItems->count()}})</h3>
                                             @forelse ($CartItems as $CartItem)
                                                 <div class="navbar-cart-item">
                                                     <div class="img-container">
@@ -183,10 +181,10 @@
                                                     </div>
                                                 </div>
                                             @empty
-                                            <p>No Items in Your Cart Yet!</p>
+                                            <p>@lang('layout.no-items-in-cart')</p>
                                             @endforelse
                                             @if($CartItems->count() !=0)
-                                             <a class="main_btn d-block" href="{{route('cart')}}">Porcced With Purchase</a>
+                                             <a class="main_btn d-block" href="{{route('cart')}}">@lang('layout.proceed-with-purchase')</a>
                                             @endif
                                     </div>
                                 </div>

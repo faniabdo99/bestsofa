@@ -1,4 +1,4 @@
-@include('layout.header' , ['PageTitle' => 'Signup'])
+@include('layout.header', ['PageTitle' => __('titles.signup')])
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')

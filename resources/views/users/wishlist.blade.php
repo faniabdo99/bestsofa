@@ -1,4 +1,4 @@
-@include('layout.header' , ['PageTitle' => 'My Account'])
+@include('layout.header' , ['PageTitle' => __('titles.whishlist')])
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')

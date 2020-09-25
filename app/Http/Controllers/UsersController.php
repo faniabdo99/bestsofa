@@ -21,7 +21,7 @@ class UsersController extends Controller{
     public function test(){
       // Excel::import(new UsersImport, 'users.xlsx');
       // Excel::import(new ProductsImport, 'products.xlsx');
-      Excel::import(new ShippingCosts, 'shipping_costs.xlsx');
+      // Excel::import(new ShippingCosts, 'shipping_costs.xlsx');
     }
     /*======================= Handmade Signup*/
     public function getSignup(){

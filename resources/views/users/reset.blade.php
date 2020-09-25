@@ -1,4 +1,4 @@
-@include('layout.header' , ['PageTitle' => 'Login'])
+@include('layout.header' , ['PageTitle' => __('titles.reset')])
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')

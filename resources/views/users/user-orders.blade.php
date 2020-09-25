@@ -1,4 +1,4 @@
-@include('layout.header' , ['PageTitle' => 'My Orders'])
+@include('layout.header' , ['PageTitle' => __('titles.user-orders')])
 
 <body>
     <!--================Header Menu Area =================-->

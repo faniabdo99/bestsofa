@@ -1,4 +1,4 @@
-@include('layout.header')
+@include('layout.header', ['PageTitle' => __('titles.privacy-policy')])
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')

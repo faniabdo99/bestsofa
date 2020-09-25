@@ -1,4 +1,4 @@
-@include('layout.header' , ['PageTitle' => 'Contact Us'])
+@include('layout.header', ['PageTitle' => __('titles.contact-us')])
 
 <body>
     <!--================Header Menu Area =================-->

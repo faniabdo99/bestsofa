@@ -1,4 +1,4 @@
-@include('layout.header' , ['PageTitle' => 'My Account'])
+@include('layout.header' , ['PageTitle' => __('titles.profile')])
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')
@@ -61,7 +61,7 @@
                                         <select name="country" required>
                                             @if($TheUser->country)
                                             <option value="{{$TheUser->country}}">{{$TheUser->country}}</option>
-                                            @else 
+                                            @else
                                             <option value="">Choose Your Country</option>
                                             @endif
                                             <option value="Afghanistan">Afghanistan</option>
@@ -359,7 +359,7 @@
                                 <p class="card_description">
                                     @if($TheUser->LikedProducts()->count() == 0)
                                     You don't have any items in your wishlist
-                                    @else 
+                                    @else
                                     Click to view you wishlist.
                                     @endif
                                 </p>

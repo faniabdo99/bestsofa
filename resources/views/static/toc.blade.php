@@ -1,4 +1,4 @@
-@include('layout.header')
+@include('layout.header', ['PageTitle' => __('titles.toc')])
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')
@@ -19,16 +19,16 @@
           <div class="col-12">
             <p>
                 <h3>GENERAL</h3>
-                Art. 1 
-                These terms and conditions apply to any sale agreement by a visitor to this site, hereinafter "customer", concluded with UK Fashion Shop, GLOBALE TRADING private company with limited liability. Company number: BE0827774244. These terms and conditions take precedence over all other terms and conditions of the customer. Additional conditions are excluded from the customer, unless the prior, written and expressly accepted by us. 
+                Art. 1
+                These terms and conditions apply to any sale agreement by a visitor to this site, hereinafter "customer", concluded with UK Fashion Shop, GLOBALE TRADING private company with limited liability. Company number: BE0827774244. These terms and conditions take precedence over all other terms and conditions of the customer. Additional conditions are excluded from the customer, unless the prior, written and expressly accepted by us.
                 <br><br>
                 <h3>ORDER</h3>
                 Art. 2
-                An agreement is validly established by the electronic transmission of the order by clicking the hyperlink "agreement for this order", or by sending an email which implies an order. 
+                An agreement is validly established by the electronic transmission of the order by clicking the hyperlink "agreement for this order", or by sending an email which implies an order.
                 <br><br>
                 <h3>LIABILITY</h3>
                 Art. 3
-                Despite our model contracts are carefully edited by us, it is possible that, because of the nature of the product, a standard contract purchased by you not completely meet your needs or is not specifically tailored to your situation. In this case we disclaim any liability to us and please note that you bear full responsibility for the use of these model contracts. 
+                Despite our model contracts are carefully edited by us, it is possible that, because of the nature of the product, a standard contract purchased by you not completely meet your needs or is not specifically tailored to your situation. In this case we disclaim any liability to us and please note that you bear full responsibility for the use of these model contracts.
                 <br><br>
                 <h3>RIGHT OF WITHDRAWAL</h3>
                 Art. 4
@@ -36,7 +36,7 @@
                 <br><br>
                 <h3>PAYMENT</h3>
                 Art. 5
-                Payment is always done electronically via credit card or bank transfer. Each order is payable immediately at the time of concluding the contract. When paying by bank transfer you will receive the ordered products only after receipt of the sum due.    
+                Payment is always done electronically via credit card or bank transfer. Each order is payable immediately at the time of concluding the contract. When paying by bank transfer you will receive the ordered products only after receipt of the sum due.
                 <br><br>
                 <h3>IMPLEMENTATION</h3>
                 Art. 6

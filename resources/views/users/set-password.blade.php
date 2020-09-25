@@ -1,4 +1,4 @@
-@include('layout.header' , ['PageTitle' => 'Create New Password'])
+@include('layout.header' , ['PageTitle' => __('titles.set-password')])
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')

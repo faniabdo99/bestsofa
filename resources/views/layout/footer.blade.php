@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="single-footer-widget">
-                    <h6 class="footer_title">About Us</h6>
-                    <p>We are a company that has more than 25 years experience in import & export of second-hand clothing & shoes.</p>
+                    <h6 class="footer_title">@lang('layout.about-us')</h6>
+                    <p>@lang('layout.about-us-text')</p>
                 </div>
             </div>
             {{-- <div class="col-lg-4 col-md-6 col-sm-6">
@@ -26,8 +26,8 @@
             </div> --}}
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="single-footer-widget f_social_wd">
-                    <h6 class="footer_title">Follow Us</h6>
-                    <p>Let us be social</p>
+                  <h6 class="footer_title">@lang('layout.follow-us')</h6>
+                    <p>@lang('layout.follow-us-sub-text')</p>
                     <div class="f_social">
                         <a href="#">
                             <i class="fa fa-facebook"></i>
@@ -47,7 +47,7 @@
         </div>
         <div class="row footer-bottom d-flex justify-content-between align-items-center">
             <p class="col-lg-12 footer-text text-center">
-                Copyright &copy; <script>document.write(new Date().getFullYear());</script> Global Trading Co All rights reserved</a>
+                @lang('layout.copyright') &copy; <script>document.write(new Date().getFullYear());</script> @lang('layout.copyright-2')</a>
             </p>
         </div>
     </div>

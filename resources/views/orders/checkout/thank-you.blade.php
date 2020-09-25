@@ -1,4 +1,4 @@
-@include('layout.header')
+@include('layout.header',['PageTitle' => __('titles.thank-you')])
 <body>
     @include('layout.navbar')
 	<!--================Order Details Area =================-->

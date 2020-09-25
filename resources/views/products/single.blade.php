@@ -1,4 +1,4 @@
-@include('layout.header')
+@include('layout.header',['PageTitle' => $TheProduct->local_title])
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')
