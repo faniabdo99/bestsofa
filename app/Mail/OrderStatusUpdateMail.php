@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Mail;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,6 +14,6 @@ class OrderStatusUpdateMail extends Mailable{
 
     public function build()
     {
-        return $this->markdown('mails\orders\order-status-update')->subject("Order Status Updated - UKFashion Shop");
+        return $this->markdown('mails/orders/order-status-update')->subject("Order Status Updated - UKFashion Shop");
     }
 }
