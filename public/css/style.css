@@ -235,6 +235,11 @@ Table of Content:
   height: 140px;
 }
 
+.about_us_section iframe {
+  width: 100%;
+  height: 350px;
+}
+
 /*----------------------------------------------------*/
 /*font Variables*/
 /*Color Variables*/

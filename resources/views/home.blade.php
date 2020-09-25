@@ -1,7 +1,8 @@
 @include('layout.header', ['PageTitle' => __('titles.home')])
+
 <body>
 	<!--================Header Menu Area =================-->
-@include('layout.navbar')
+	@include('layout.navbar')
 	<!--================Header Menu Area =================-->
 	<!--================Home Banner Area =================-->
 	<section class="home_banner_area">
@@ -19,6 +20,74 @@
 		</div>
 	</section>
 	<!--================End Home Banner Area =================-->
+	<!--================Feature Product Area =================-->
+	<section class="feature_product_area section_gap">
+		<div class="main_box">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="main_title">
+						<h2>Featured Products</h2>
+						<p>Get Your Goods of These Hot Products.</p>
+					</div>
+				</div>
+				<div class="row">
+					@forelse($PromotedProducts as $Product)
+					@if($Product->status == 'Customers only')
+						@auth
+						<div class="col col10">
+							<div class="f_p_item">
+								<div class="f_p_img">
+									<img class="img-fluid" src="{{$Product->main_image}}" alt="{{$Product->title}}">
+									<div class="p_icon">
+										@auth
+										<a class="icon_btn like_item @if($Product->LikedByUser()) bg-primary text-white @endif" product-id="{{$Product->id}}" href="javascript:;">
+										<i class="lnr lnr lnr-heart"></i>
+										</a>
+										@endauth
+										<a href="javascript:;" class="add-to-cart" data-id="{{$Product->id}}"><i class="lnr lnr-cart"></i></a>
+									</div>
+								</div>
+								<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
+									<h4>{{$Product->local_title}}</h4>
+								</a>
+								<h5 class="product-price-before-discount">{{$Product->price}}</h5>
+							</div>
+						</div>
+						@endauth
+						@else
+						<div class="col col10">
+							<div class="f_p_item">
+								<div class="f_p_img">
+									<img class="img-fluid" src="{{$Product->main_image}}" alt="{{$Product->title}}">
+									<div class="p_icon">
+										@auth
+										<a class="icon_btn like_item @if($Product->LikedByUser()) bg-primary text-white @endif" product-id="{{$Product->id}}" href="javascript:;">
+										<i class="lnr lnr lnr-heart"></i>
+										</a>
+										@endauth
+										<a href="javascript:;" class="add-to-cart" data-id="{{$Product->id}}"><i class="lnr lnr-cart"></i></a>
+									</div>
+								</div>
+								<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
+									<h4>{{$Product->local_title}}</h4>
+								</a>
+								@if($Product->HasDiscount())
+									<span class="product-price-before-discount">{{$Product->price}}</span>
+									<h5 class="text-success">{{$Product->FinalPrice.getCurrency()['symbole'] }}</h5>
+									@else
+									<h5>{{$Product->FinalPrice.getCurrency()['symbole'] }}</h5>
+									@endif
+							</div>
+						</div>
+						@endif
+						@empty
+						<p>No Promoted Products Yet</p>
+						@endforelse
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Feature Product Area =================-->
 	<!--================Hot Deals Area =================-->
 	<section class="hot_deals_area section_gap">
 		<div class="container-fluid">
@@ -48,6 +117,26 @@
 		</div>
 	</section>
 	<!--================End Hot Deals Area =================-->
+	<!--================About Us Section =================-->
+	<section class="about_us_section section_gap">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 col-lg-6">
+					<h2 class="text-dark">UK Fashion Shop</h2>
+					<p class="text-muted">a <a class="font-weight-bold" href="https://www.globale-trading.be" target="_blank">Globale Trading</a> Company</p>
+					<p>We are a company that has more than 25 years experience in import & export of second-hand clothing & shoes.<br>
+						We are wholesale specialized, one of the major leaders in this sector and the only company that  works with high quality UK C4C original in Belgium.<br>
+						We share our worldwide experience through business relationships with our regular customers. We have created this webshop to be able to easily and efficiently fulfill the needs of the  customer based in Europe. (for other countries please contact us for more information)<br>
+						All our goods are the best cash 4 clothes collections from in/around London area.<br>
+						We wish you a lot of shopping pleasure.</p>
+				</div>
+				<div class="col-12 col-lg-6">
+					<iframe src="//www.youtube.com/embed/rRFIoI1sBMw" frameborder="0" allowfullscreen=""></iframe>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End About Us Section =================-->
 
 	<!--================Clients Logo Area =================-->
 	<section class="clients_logo_area">
@@ -73,74 +162,7 @@
 	</section>
 	<!--================End Clients Logo Area =================-->
 
-	<!--================Feature Product Area =================-->
-	<section class="feature_product_area section_gap">
-		<div class="main_box">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="main_title">
-						<h2>Featured Products</h2>
-						<p>Get Your Goods of These Hot Products.</p>
-					</div>
-				</div>
-				<div class="row">
-					@forelse($PromotedProducts as $Product)
-						@if($Product->status == 'Customers only')
-							@auth
-							<div class="col col10">
-								<div class="f_p_item">
-									<div class="f_p_img">
-										<img class="img-fluid" src="{{$Product->main_image}}" alt="{{$Product->title}}">
-										<div class="p_icon">
-											@auth
-											<a class="icon_btn like_item @if($Product->LikedByUser()) bg-primary text-white @endif" product-id="{{$Product->id}}" href="javascript:;">
-												<i class="lnr lnr lnr-heart"></i>
-											</a>
-											@endauth
-											<a href="javascript:;" class="add-to-cart" data-id="{{$Product->id}}"><i class="lnr lnr-cart"></i></a>
-										</div>
-									</div>
-									<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
-										<h4>{{$Product->local_title}}</h4>
-									</a>
-									<h5 class="product-price-before-discount">{{$Product->price}}</h5>
-								</div>
-							</div>
-							@endauth
-						@else
-						<div class="col col10">
-							<div class="f_p_item">
-								<div class="f_p_img">
-									<img class="img-fluid" src="{{$Product->main_image}}" alt="{{$Product->title}}">
-									<div class="p_icon">
-										@auth
-										<a class="icon_btn like_item @if($Product->LikedByUser()) bg-primary text-white @endif" product-id="{{$Product->id}}" href="javascript:;">
-											<i class="lnr lnr lnr-heart"></i>
-										</a>
-										@endauth
-										<a href="javascript:;" class="add-to-cart" data-id="{{$Product->id}}"><i class="lnr lnr-cart"></i></a>
-									</div>
-								</div>
-								<a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
-									<h4>{{$Product->local_title}}</h4>
-								</a>
-								@if($Product->HasDiscount())
-									<span class="product-price-before-discount">{{$Product->price}}</span>
-									<h5 class="text-success">{{$Product->FinalPrice.getCurrency()['symbole'] }}</h5>
-								@else
-									<h5>{{$Product->FinalPrice.getCurrency()['symbole'] }}</h5>
-								@endif
-							</div>
-						</div>
-						@endif
-					@empty
-					<p>No Promoted Products Yet</p>
-					@endforelse
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--================End Feature Product Area =================-->
+
 
 	{{-- <!--================ Subscription Area ================-->
 	<section class="subscription-area section_gap">
@@ -174,14 +196,14 @@
 	<!--================ End Subscription Area ================--> --}}
 
 	<!--================ start footer Area  =================-->
-  @include('layout.footer')
+	@include('layout.footer')
 	<!--================ End footer Area  =================-->
 
 
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  @include('layout.scripts')
+	@include('layout.scripts')
 </body>
 
 </html>
