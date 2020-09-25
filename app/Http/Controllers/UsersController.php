@@ -18,7 +18,7 @@ use App\Imports\UsersImport;
 use App\Imports\ProductsImport;
 class UsersController extends Controller{
     public function test(){
-      // Excel::import(new UsersImport, 'users.xlsx');
+      Excel::import(new UsersImport, 'users.xlsx');
       Excel::import(new ProductsImport, 'products.xlsx');
       dd("Import Done");
     }
