@@ -139,7 +139,6 @@
                                     <button type="submit" class="btn btn-success">Update Invoice Data</button>
                                 </form>
                                 <a href="{{route('invoice.download.get' , $TheInvoice->id)}}" class="btn btn-primary">Download PDF</a>
-                                <a href="{{route('invoice.generate.get' , $TheOrder->id)}}" class="btn btn-primary">Email to Customer</a>
                             </div>
                         </div>
                     </div>

@@ -73,7 +73,7 @@ class InvoiceController extends Controller{
             $InvoinceFileName = $TheInvoice->invoice_prefix.$TheInvoice->id;
         }
         $pdf = PDF::loadView('admin.invoices.download' , ['TheOrder' => $TheOrder , 'TheInvoice' => $TheInvoice]);
-        return $pdf->stream($InvoinceFileName.'.pdf');
+        return $pdf->download($InvoinceFileName.'.pdf');
         // return view('admin.invoices.download' , compact('TheInvoice' , 'TheOrder'));
     }
 }
