@@ -1,5 +1,4 @@
 @include('layout.header')
-
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')

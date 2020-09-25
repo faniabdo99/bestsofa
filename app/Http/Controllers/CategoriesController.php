@@ -18,7 +18,6 @@ class CategoriesController extends Controller{
             'title' => 'required|min:5|max:255',
             'slug' => 'required|min:5|max:255|unique:categories',
             'image' => 'image',
-            'description' => 'required|min:25',
         ];
         $validator = Validator::make($r->all() , $Rules);
         if($validator->fails()){
@@ -49,7 +48,6 @@ class CategoriesController extends Controller{
             $Rules = [
                 'title' => 'required|min:5|max:255',
                 'image' => 'image',
-                'description' => 'required|min:25',
             ];
             $validator = Validator::make($r->all() , $Rules);
             if($validator->fails()){
@@ -86,8 +84,6 @@ class CategoriesController extends Controller{
     public function postLocalize(Request $r){
         $Rules = [
             'title_value' => 'required|min:5|max:255',
-            'slug_value' => 'required|min:5|max:255',
-            'description_value' => 'required|min:25',
             'lang_code' => 'required',
             'category_id' => 'required'
         ];

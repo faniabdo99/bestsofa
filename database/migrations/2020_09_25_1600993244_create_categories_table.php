@@ -4,20 +4,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
-{
-    public function up()
-    {
+class CreateCategoriesTable extends Migration{
+    public function up(){
         Schema::create('categories', function (Blueprint $table) {
-
-		$table->id();
-		$table->string('title');
-		$table->string('slug');
-		$table->string('image');
-		$table->text('description');
-    $table->timestamps();
-
-
+        		$table->id();
+        		$table->string('title');
+        		$table->string('slug');
+        		$table->string('image')->nullable();
+        		$table->text('description')->nullable();
+            $table->timestamps();
         });
     }
 

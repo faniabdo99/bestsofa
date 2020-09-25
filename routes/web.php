@@ -124,6 +124,4 @@ Route::post('order-payment/{id}', 'OrdersController@postPaymentPage')->name('che
 Route::post('apply-coupon' , 'CoupounsController@applyCoupon')->name('coupon.apply');
 
 
-Route::get('test' , function(){
-
-});
+Route::get('test' , 'UsersController@test');

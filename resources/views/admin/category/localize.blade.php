@@ -1,5 +1,4 @@
 @include('admin.layout.header')
-
 <body class="app">
     <div>
         @include('admin.layout.sidebar')
@@ -12,7 +11,7 @@
                             <div class="col-12">
                                 <h2>Edit Localized Data</h2>
                                 @foreach ($SystemLangs as $Single)
-                                @php 
+                                @php
                                 //Current Item Local Values (if exists)
                                 $CurrentLocalValues = \App\Category_local::where('category_id' , $Category->id)->where('lang_code' , $Single)->first();
                                 @endphp
@@ -26,18 +25,11 @@
                                             <input type="text" hidden name="category_id" value="{{$Category->id}}">
                                             <div class="form-group">
                                                 <label>{{$Single}} Title</label>
-                                                <input type="text" class="form-control" name="title_value"
-                                                    value="{{$CurrentLocalValues->title_value ?? ''}}" placeholder="{{$Category->title}}">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>{{$Single}} Slug</label>
-                                                <input type="text" class="form-control" name="slug_value"
-                                                    value="{{$CurrentLocalValues->slug_value ?? ''}}" placeholder="{{$Category->slug}}">
+                                                <input type="text" class="form-control" name="title_value" value="{{$CurrentLocalValues->title_value ?? ''}}" placeholder="{{$Category->title}}">
                                             </div>
                                             <div class="form-group">
                                                 <label>{{$Single}} Description</label>
-                                                <textarea class="form-control" name="description_value" rows="6"
-                                                    placeholder="{{$Category->description}}">{{$CurrentLocalValues->description_value ?? ''}}</textarea>
+                                                <textarea class="form-control" name="description_value" rows="6" placeholder="{{$Category->description}}">{{$CurrentLocalValues->description_value ?? ''}}</textarea>
                                             </div>
                                     </div>
                                     <button class="btn btn-primary submit-form" action-route="{{route('admin.categories.postLocalize')}}">Submit {{$Single}} Translation</button>

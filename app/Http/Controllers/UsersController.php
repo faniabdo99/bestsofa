@@ -7,13 +7,21 @@ use Auth;
 use Hash;
 use Mail;
 use Socialite;
+use Maatwebsite\Excel\Facades\Excel;
 //Models
 use App\User;
 use App\Order;
 use App\Mail\WelcomeNewUser;
 use App\Mail\WelcomeSocialLogin;
 use App\Mail\ResetPasswordMail;
+use App\Imports\UsersImport;
+use App\Imports\ProductsImport;
 class UsersController extends Controller{
+    public function test(){
+      // Excel::import(new UsersImport, 'users.xlsx');
+      Excel::import(new ProductsImport, 'products.xlsx');
+      dd("Import Done");
+    }
     /*======================= Handmade Signup*/
     public function getSignup(){
       //Get the signup page
