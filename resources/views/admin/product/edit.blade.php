@@ -54,10 +54,7 @@
                                                 <label>Count in Inventory</label>
                                                 <input type="number" class="form-control" name="inventory" placeholder="Please Enter a Number" value="{{ old('inventory') ?? $ProductData->inventory}}" required>
                                             </div>
-                                            <div class="form-group">
-                                                <label>Fake Inventory</label>
-                                                <input type="number" class="form-control" name="fake_inventory" placeholder="Please Enter a Number" value="{{ old('fake_inventory') ?? $ProductData->fake_inventory}}" required>
-                                            </div>
+                                    
                                             <div class="form-group">
                                                 <label>
                                                     Minimum Order
@@ -141,9 +138,9 @@
                                                 <label>Tax Rate</label>
                                                 <select class="form-control" name="tax_rate">
                                                     <option value="{{$ProductData->tax_rate}}" selected>Tax Rate : {{$ProductData->tax_rate}}%</option>
-                                                    <option value="21">Tax rate 1: 21%</option>
-                                                    <option value="12">Tax rate 2: 12%</option>
-                                                    <option value="6">Tax rate 3: 6%</option>
+                                                    <option value="0.21">Tax rate 1: 21%</option>
+                                                    <option value="0.12">Tax rate 2: 12%</option>
+                                                    <option value="0.6">Tax rate 3: 6%</option>
                                                     <option value="1">Tax rate 4: 0%</option>
                                                 </select>
                                             </div>

@@ -56,10 +56,6 @@
                                                 <input type="number" class="form-control" name="inventory" placeholder="Please Enter a Number" value="{{ old('inventory') ?? '0'}}" required>
                                             </div>
                                             <div class="form-group">
-                                                <label>Fake Inventory</label>
-                                                <input type="number" class="form-control" name="fake_inventory" placeholder="Please Enter a Number" value="{{ old('fake_inventory') ?? '0'}}" required>
-                                            </div>
-                                            <div class="form-group">
                                                 <label>Minimum Order</label>
                                                 <input type="number" class="form-control" name="min_order" placeholder="Please Enter a Number" value="{{ old('min_order') ?? '0'}}">
                                             </div>

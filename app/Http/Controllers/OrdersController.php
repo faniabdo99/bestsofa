@@ -183,7 +183,6 @@ class OrdersController extends Controller{
       //Decrease Cart Items Inventory
       $item->Product->update([
         'inventory' => ($item->Product->inventory - $item->qty),
-        'fake_inventory' => ($item->Product->fake_inventory - $item->qty),
       ]);
       //Add Cart Item to Order
       Order_Product::create([
@@ -360,7 +359,6 @@ class OrdersController extends Controller{
           $TheCart->map(function($item){
             $item->Product->update([
               'inventory' => ($item->Product->inventory - $item->qty),
-              'fake_inventory' => ($item->Product->fake_inventory - $item->qty),
             ]);
           });
           //Add The Coupon Back

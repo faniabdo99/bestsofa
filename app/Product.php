@@ -16,15 +16,20 @@ class Product extends Model{
 
     //Non-Relation Methods
     public function getInventoryValueAttribute(){
-        if($this->fake_inventory == 0){
-            return $this->inventory;
-        }else{
-            if($this->inventory > $this->fake_inventory){
-                return $this->fake_inventory;
-            }else{
-                return $this->inventory;
-            }
-        }
+      if($this->inventory < 5){
+        return $this->inventory;
+      }else{
+        return intval($this->inventory/2);
+      }
+        // if($this->fake_inventory == 0){
+        //     return $this->inventory;
+        // }else{
+        //     if($this->inventory > $this->fake_inventory){
+        //         return $this->fake_inventory;
+        //     }else{
+        //         return $this->inventory;
+        //     }
+        // }
     }
     public function getIsActiveAttribute(){
         if($this->status == 'Available'){
