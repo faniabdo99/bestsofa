@@ -48,22 +48,22 @@
                             @endif
                             <ul class="list">
                                 <li>
-                                    <a class="active" href="{{route('product.home')}}?category_filters={{$TheProduct->Category->slug}}"><span class="font-weight-bold">Category</span> {{$TheProduct->Category->local_title}}</a>
+                                    <a class="active" href="{{route('product.home')}}?category_filters={{$TheProduct->Category->slug}}"><span class="font-weight-bold">@lang('products.category')</span> {{$TheProduct->Category->local_title}}</a>
                                 </li>
                                 @if($TheProduct->status == 'Available' || $TheProduct->status == 'Sold Out' || $TheProduct->status == 'Pre-Oreder')
                                     <li>
                                         <a href="#">
-                                            <span class="font-weight-bold">Status</span> <span class=" @if($TheProduct->status != 'Available') {{$TheProduct->status_class['text']}} @endif ">{{$TheProduct->status}}</span></a>
+                                            <span class="font-weight-bold">@lang('products.status')</span> <span class=" @if($TheProduct->status != 'Available') {{$TheProduct->status_class['text']}} @endif ">{{$TheProduct->status}}</span></a>
                                     </li>
                                     @endif
                                     @if($TheProduct->show_inventory)
-                                        <li><a href="#"><span class="font-weight-bold">In Stock</span> {{$TheProduct->inventory_value}}</a></li>
+                                        <li><a href="#"><span class="font-weight-bold">@lang('products.in_stock')</span> {{$TheProduct->inventory_value}}</a></li>
                                     @endif
                             </ul>
                             <p>{!! $TheProduct->local_description !!}</p>
                             <div class="product_count">
-                                <label for="qty">Quantity:</label>
-                                <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                                <label for="qty">@lang('products.quantity'):</label>
+                                <input type="text" name="qty" id="sst" maxlength="12" value="1" title="@lang('products.quantity'):" class="input-text qty">
                                 <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button">
                                     <i class="lnr lnr-chevron-up"></i>
                                 </button>
@@ -74,11 +74,11 @@
                             <div class="card_area">
                                 @if($TheProduct->inventory > 0 && $TheProduct->status == 'Available')
                                     {{-- Allow Add to Cart if The Product is In-Stock --}}
-                                    <a class="main_btn add-to-cart" data-id="{{$TheProduct->id}}" href="javascript:;">Add to Cart</a>
+                                    <a class="main_btn add-to-cart" data-id="{{$TheProduct->id}}" href="javascript:;">@lang('products.add_cart')</a>
                                     @else
-                                    @if($TheProduct->inventory < 1) <p class="text-danger">Out of Stock</p>
+                                    @if($TheProduct->inventory < 1) <p class="text-danger">@lang('products.out_stock')</p>
                                             @else
-                                            <p class="text-danger">Not Available For Sale</p>
+                                            <p class="text-danger">@lang('products.not_available_sale')</p>
                                             @endif
                                             @endif
                                             @auth
@@ -100,17 +100,17 @@
         <div class="container">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">@lang('products.description')</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Specification</a>
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">@lang('products.specification')</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Ask a Question</a>
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">@lang('products.question')</a>
                 </li>
                 @if($TheProduct->allow_reviews)
                     <li class="nav-item">
-                        <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews</a>
+                        <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">@lang('products.reviews')</a>
                     </li>
                 @endif
             </ul>
@@ -124,32 +124,32 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <h5>Width</h5>
+                                        <h5>@lang('products.width')</h5>
                                     </td>
                                     <td>
                                         <h5>
                                             @if($TheProduct->width){{$TheProduct->width}}CM
-                                                @else Not Available @endif</h5>
+                                                @else @lang('products.not_available') @endif</h5>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h5>Height</h5>
+                                        <h5>@lang('products.height')</h5>
                                     </td>
                                     <td>
                                         <h5>
                                             @if($TheProduct->height){{$TheProduct->height}}CM
-                                                @else Not Available @endif</h5>
+                                                @else @lang('products.not_available') @endif</h5>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h5>Weight</h5>
+                                        <h5>@lang('products.weight')</h5>
                                     </td>
                                     <td>
                                         <h5>
                                             @if($TheProduct->weight){{$TheProduct->weight}}KG
-                                                @else Not Available @endif</h5>
+                                                @else @lang('products.not_available') @endif</h5>
                                     </td>
                                 </tr>
                             </tbody>
@@ -160,29 +160,29 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="review_box">
-                                <h4>Ask us a Question</h4>
+                                <h4>@lang('products.question_us')</h4>
                                 <form class="row contact_form">
                                     <input hidden name="product_id" value="{{$TheProduct->id}}">
                                     <input hidden name="product_slug" value="{{$TheProduct->slug}}">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" required>
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="@lang('products.name')" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="@lang('products.email')" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="number" name="phone_number" placeholder="Phone Number" required>
+                                            <input type="text" class="form-control" id="number" name="phone_number" placeholder="@lang('products.phone')" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <select class="form-control" name="country" required>
-                                                <option value="">Choose Your Country</option>
+                                                <option value="">@lang('products.country_choose')</option>
                                                 <option value="Afghanistan">Afghanistan</option>
                                                 <option value="Åland Islands">Åland Islands</option>
                                                 <option value="Albania">Albania</option>
@@ -431,11 +431,11 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <textarea class="form-control" name="message" id="message" rows="1" placeholder="Message" required></textarea>
+                                            <textarea class="form-control" name="message" id="message" rows="1" placeholder="@lang('products.message')" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-right">
-                                        <button id="submit-ask-question-about-product-form" action-route="{{route('product.askQuestion')}}" type="submit" class="btn submit_btn">Send</button>
+                                        <button id="submit-ask-question-about-product-form" action-route="{{route('product.askQuestion')}}" type="submit" class="btn submit_btn">@lang('products.send')</button>
                                     </div>
                                 </form>
                             </div>
@@ -450,9 +450,9 @@
                                 <div class="row total_rate">
                                     <div class="col-12 mb-5">
                                         <div class="box_total">
-                                            <h5>Overall</h5>
+                                            <h5>@lang('products.overall')</h5>
                                             <h4>{{$TheProduct->Reviews()->avg('rate')}}</h4>
-                                            <h6>({{$TheProduct->Reviews()->count()}} Reviews)</h6>
+                                            <h6>({{$TheProduct->Reviews()->count()}} @lang('products.reviews'))</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -474,8 +474,8 @@
                                 @auth
                                   @if(auth()->user()->Bought($TheProduct->id))
                                       <div class="review_box">
-                                    <h4>Add a Review</h4>
-                                    <p>Your Rating:</p>
+                                    <h4>@lang('products.add_review')</h4>
+                                    <p>@lang('products.rating'):</p>
 
                                     <form class="row contact_form" action="{{route('review.post')}}" method="post">
                                         @csrf
@@ -483,29 +483,29 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                               <select required class="form-control" name="rate">
-                                                <option value="">Choose a Rate</option>
-                                                <option value="1">1 Star</option>
-                                                <option value="2">2 Stars</option>
-                                                <option value="3">3 Stars</option>
-                                                <option value="4">4 Stars</option>
-                                                <option value="5">5 Stars</option>
+                                                <option value="">@lang('products.rate_choose')</option>
+                                                <option value="1">1 @lang('products.star')</option>
+                                                <option value="2">2 @lang('products.star')s</option>
+                                                <option value="3">3 @lang('products.star')s</option>
+                                                <option value="4">4 @lang('products.star')s</option>
+                                                <option value="5">5 @lang('products.star')s</option>
                                               </select>
                                             </div>
                                             <div class="form-group">
-                                                <textarea class="form-control" name="review" rows="1" placeholder="What Do You Think About This Product?"></textarea>
+                                                <textarea class="form-control" name="review" rows="1" placeholder="@lang('products.review_placeholder')"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12 text-right">
-                                            <button type="submit" value="submit" class="btn submit_btn">Submit Now</button>
+                                            <button type="submit" value="submit" class="btn submit_btn">@lang('products.submit')</button>
                                         </div>
                                     </form>
                                 </div>
                                     @else
-                                      <p>You can review this product after you buy it</p>
+                                      <p>@lang('products.buy_to_review')</p>
                                     @endif
                                 @endauth
                                 @guest
-                                <p>Please Login to Add a Review</p>
+                                <p>@lang('products.login_to_review')</p>
                                 @endguest
                             </div>
                         </div>

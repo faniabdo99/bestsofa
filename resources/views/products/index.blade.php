@@ -36,7 +36,7 @@
                         </div>
                         @empty
                         <div class="col-12 text-center">
-                            No Products in this search term
+                            @lang('products.no_products')
                         </div>
                         @endforelse
                     </div>
@@ -78,36 +78,36 @@
                     <div class="left_sidebar_area">
                         <aside class="left_widgets cat_widgets">
                             <div class="l_w_title">
-                                <h3>Browse Categories</h3>
+                                <h3>@lang('products.browse_categories')</h3>
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
                                     <form action="{{route('product.home')}}" method="GET">
-                                        <li><input name="category_filters" type="radio" checked value=""> All</li>
+                                        <li><input name="category_filters" type="radio" checked value=""> @lang('products.all')</li>
                                         @forelse ($Categories as $Category)
                                         <li><input name="category_filters" type="radio" @if(request()->has('category_filters') && request()->category_filters == $Category->slug) checked
                                             @endif value="{{$Category->slug}}"> {{$Category->local_title}}</li>
                                         @empty
-                                        <li><a href="#">No Categories Yet</a></li>
+                                        <li><a href="#">@lang('products.no_categories')</a></li>
                                         @endforelse
                                 </ul>
                             </div>
                         </aside>
                         <aside class="left_widgets cat_widgets">
                             <div class="l_w_title">
-                                <h3>Product Season</h3>
+                                <h3>@lang('products.product_season')</h3>
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
-                                    <li><input class="mr-3" name="season_filters" checked type="radio" value="">All</li>
+                                    <li><input class="mr-3" name="season_filters" checked type="radio" value="">@lang('products.all')</li>
                                     <li><input class="mr-3" name="season_filters" @if(request()->has('season_filters') && request()->season_filters == 'winter') checked
-                                        @endif type="radio" value="winter">Winter</li>
+                                        @endif type="radio" value="winter">@lang('products.winter')</li>
                                     <li><input class="mr-3" name="season_filters" @if(request()->has('season_filters') && request()->season_filters == 'summer') checked
-                                        @endif type="radio" value="summer">Summer</li>
+                                        @endif type="radio" value="summer">@lang('products.summer')</li>
                                     <li><input class="mr-3" name="season_filters" @if(request()->has('season_filters') && request()->season_filters == 'fall') checked
-                                        @endif type="radio" value="fall">Fall</li>
+                                        @endif type="radio" value="fall">@lang('products.fall')</li>
                                     <li><input class="mr-3" name="season_filters" @if(request()->has('season_filters') && request()->season_filters == 'spring') checked
-                                        @endif type="radio" value="spring">Spring</li>
+                                        @endif type="radio" value="spring">@lang('products.spring')</li>
                                 </ul>
                             </div>
                         </aside>
@@ -118,17 +118,17 @@
                             <div class="widgets_inner">
                                 <ul class="list">
                                     <li><input class="mr-3" name="gender_filters" checked type="radio" value="">All</li>
-                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'men') checked @endif type="radio" value="men">Men</li>
-                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'women') checked @endif type="radio" value="women">Women</li>
-                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'children') checked @endif type="radio" value="children">Children</li>
-                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'adults') checked @endif type="radio" value="adults">Adults</li>
-                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'young') checked @endif type="radio" value="young">Young</li>
+                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'men') checked @endif type="radio" value="men">@lang('products.men')</li>
+                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'women') checked @endif type="radio" value="women">@lang('products.women')</li>
+                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'children') checked @endif type="radio" value="children">@lang('products.children')</li>
+                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'adults') checked @endif type="radio" value="adults">@lang('products.adults')</li>
+                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'young') checked @endif type="radio" value="young">@lang('products.young')</li>
                                 </ul>
                             </div>
 
                         </aside>
                         <aside class="left_widgets cat_widgets">
-                            <button class="main_btn d-block w-100" type="submit">Apply Filters</button>
+                            <button class="main_btn d-block w-100" type="submit">@lang('products.apply_filters')</button>
                             </form>
                         </aside>
                     </div>
