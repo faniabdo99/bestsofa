@@ -177,7 +177,7 @@ class ProductsController extends Controller{
             return response($validator->errors()->first());
         }else{
             //Store the image in the file system
-            $ImageName = $r->product_id.'-'.rand(1,999).'.'.$r->image->getClientOriginalExtension();
+            $ImageName = $r->slug.'-'.rand(1,999).'-'.$r->product_id.'.'.$r->image->getClientOriginalExtension();
             $r->image->storeAs('images/products/gallery' , $ImageName);
             //Upload to the database
             Product_Image::create([
@@ -186,6 +186,10 @@ class ProductsController extends Controller{
             ]);
             return response('Image Uploaded');
         }
+    }
+    public function deleteGalleryImages($product_id){
+      Product_Image::where('product_id' , $product_id)->delete();
+      return back()->withSuccess('Product Gallery Images Deleted');
     }
     //Localize
     public function getLocalize($id){

@@ -54,7 +54,6 @@
                                                 <label>Count in Inventory</label>
                                                 <input type="number" class="form-control" name="inventory" placeholder="Please Enter a Number" value="{{ old('inventory') ?? $ProductData->inventory}}" required>
                                             </div>
-                                    
                                             <div class="form-group">
                                                 <label>
                                                     Minimum Order
@@ -107,6 +106,7 @@
                                             <div class="form-group">
                                                 <label>Product Gallery</label>
                                                 <div id="drop-zone" class="dropzone"></div>
+                                                <a class="btn btn-danger" href="{{route('admin.galleryImages.delete' , $ProductData->id)}}">Delete Current Gallery Images ({{$ProductData->GalleryImages->count()}})</a>
                                             </div>
                                             <div class="form-group">
                                                 <input type="checkbox" id="show_inventory" name="show_inventory" @if($ProductData->show_inventory) checked @endif > <label for="show_inventory">Show Inventory Count ?</label>

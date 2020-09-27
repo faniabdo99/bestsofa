@@ -1,5 +1,4 @@
 @include('layout.header', ['PageTitle' => __('titles.contact-us')])
-
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')
@@ -9,17 +8,12 @@
         <div class="banner_inner d-flex align-items-center">
             <div class="container">
                 <div class="banner_content text-center">
-                    <h1>Contact Us</h1>
-                    <div class="page_link">
-                        <a href="{{route('home')}}">Home</a>
-                        <a href="{{route('contact.get')}}">Contact Us</a>
-                    </div>
+                    <h1>@lang('pages.contact-us-header')</h1>
                 </div>
             </div>
         </div>
     </section>
     <!--================End Home Banner Area =================-->
-
     <!--================Contact Area =================-->
     <section class="contact_area p_120">
         <div class="container">
@@ -28,22 +22,22 @@
                     <div class="contact_info">
                         <div class="info_item">
                             <i class="lnr lnr-home"></i>
-                            <h6>Brussels, Belgium</h6>
-                            <p>Chaussée de Jette 324 , 1081 Koekelberg</p>
+                            <h6>@lang('pages.location-1')</h6>
+                            <p>@lang('pages.location-2')</p>
                         </div>
                         <div class="info_item">
                             <i class="lnr lnr-phone-handset"></i>
                             <h6>
                                 <a href="tel:+3252201018">+32 52 20 10 18</a>
                         </h6>
-                            <p>Mon to Fri 8 am to 6 pm</p>
+                            <p>@lang('pages.working-hours')</p>
                         </div>
                         <div class="info_item">
                             <i class="lnr lnr-envelope"></i>
                             <h6>
                                 <a href="mailto:webshop@ukfashionshop.com">webshop@ukfashionshop.be</a>
                             </h6>
-                            <p>Send us your query anytime!</p>
+                            <p>@lang('pages.email-subheader')</p>
                         </div>
                     </div>
                 </div>
@@ -52,20 +46,20 @@
                         @csrf
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="name" name="name" value="{{old('name' ?? '')}}" placeholder="Enter your name" required>
+                                <input type="text" class="form-control" id="name" name="name" value="{{old('name' ?? '')}}" placeholder="@lang('pages.name-placeholder')" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" id="email" name="email" value="{{old('email' ?? '')}}" placeholder="Enter email address" required>
+                                <input type="email" class="form-control" id="email" name="email" value="{{old('email' ?? '')}}" placeholder="@lang('pages.email-placeholder')" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="subject" name="subject" value="{{old('subject' ?? '')}}" placeholder="Enter Subject" required>
+                                <input type="text" class="form-control" id="subject" name="subject" value="{{old('subject' ?? '')}}" placeholder="@lang('pages.subject-placeholder')" required>
                             </div>
                             <div class="form-group">
-                              <input type="number" class="form-control" name="phone_number" value="{{old('phone_number' ?? '')}}" placeholder="Enter Phone Number" required>
+                              <input type="number" class="form-control" name="phone_number" value="{{old('phone_number' ?? '')}}" placeholder="@lang('pages.phone-number-placeholder')" required>
                             </div>
                             <div class="form-group">
                                 <select class="form-control" name="country" required>
-                                    <option value="">Choose Your Country</option>
+                                    <option value="">@lang('pages.country-placeholder')</option>
                                     <option value="Afghanistan">Afghanistan</option>
                                     <option value="Åland Islands">Åland Islands</option>
                                     <option value="Albania">Albania</option>
@@ -314,11 +308,11 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <textarea class="form-control" name="message" id="message" rows="8" placeholder="Enter Message" required>{{old('message' ?? '')}}</textarea>
+                                <textarea class="form-control" name="message" id="message" rows="8" placeholder="@lang('pages.message-placeholder')" required>{{old('message' ?? '')}}</textarea>
                             </div>
                         </div>
                         <div class="col-md-12 text-right">
-                            <button type="submit" class="btn submit_btn">Send Message</button>
+                            <button type="submit" class="btn submit_btn">@lang('pages.send-message')</button>
                         </div>
                     </form>
                 </div>

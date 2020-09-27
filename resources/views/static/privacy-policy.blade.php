@@ -7,8 +7,8 @@
         <div class="banner_inner d-flex align-items-center">
             <div class="container">
                 <div class="banner_content text-center">
-                    <h1>Privacy Policy</h1>
-                    <p class="text-white">Last Update on 9/2/2020</p>
+                    <h1>@lang('static.privacy-policy-header')</h1>
+                    <p class="text-white">@lang('static.privacy-policy-subheader')</p>
                 </div>
             </div>
         </div>
@@ -17,9 +17,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <p>
-                From 25 May 2018, any organization that processes or controls personally identifiable material about EU citizens must have implemented rigorous organizational and technical measures to comply with the General Data Protection Regulation (GDPR) or also known as the General Data Protection Regulation (AVG). Failure to comply with the GDPR entails high fines. Fines can amount to 4 percent of sales or to 20 million euros.
-            </p>
+            <p>@lang('static.privacy-policy-body')</p>
           </div>
         </div>
       </div>

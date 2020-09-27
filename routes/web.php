@@ -65,6 +65,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'] , function () {
     Route::post('/new' , 'ProductsController@postNew')->name('admin.products.postNew');
     Route::get('/edit/{id}' , 'ProductsController@getEdit')->name('admin.products.getEdit');
     Route::post('/edit/{id}' , 'ProductsController@postEdit')->name('admin.products.postEdit');
+    Route::get('/delete-gallery/{id}' , 'ProductsController@deleteGalleryImages')->name('admin.galleryImages.delete');
     Route::get('/localize/{id}' , 'ProductsController@getLocalize')->name('admin.products.getLocalize');
   });
   //Users System
