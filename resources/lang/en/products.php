@@ -27,7 +27,7 @@ return [
     'submit' => 'Submit Now',
     'quantity' => 'Quantity',
     'description' => 'Description',
-    'specification' => 'Specification', 
+    'specification' => 'Specification',
     'question' => 'Ask a Question',
     'question_us' => 'Ask Us a Question',
     'reviews' => 'Reviews',
@@ -43,11 +43,11 @@ return [
     'height' => 'Height',
     'country_choose' => 'Choose Your Country',
     'rate_choose' => 'Choose a Rate',
-    // Place Holders 
+    // Place Holders
     'name' => 'Your Full Name',
     'email' => 'Email Address',
     'phone' => 'Phone Number',
     'message' => 'Message',
-    'review_placeholder' => 'What Do You Think About This Product?'
-    
+    'review_placeholder' => 'What Do You Think About This Product?' //Bad Product, BAAAAAAD PRODUUUUUUUCT.
+
 ];
