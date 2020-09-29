@@ -8,26 +8,26 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="login_box_img">
-                        <img class="img-fluid h-100" src="{{url('public/img')}}/login.jpg" alt="Login to UK Fashion Shop">
+                        <img class="img-fluid h-100" src="{{url('public/img')}}/login.jpg" alt="@lang('users.login_image')">
                         <div class="hover">
-                            <h4>Don't have an account yet ? </h4>
-                            <a class="main_btn" href="{{route('signup.get')}}">Signup</a>
+                            <h4>@lang('users.no_account') </h4>
+                            <a class="main_btn" href="{{route('signup.get')}}">@lang('users.signup')</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="login_form_inner reg_form">
-                        <h3>Create New Password</h3>
+                        <h3>@lang('users.create_pass')</h3>
                         <form class="row login_form" action="{{route('setPassword.post' , $UserId)}}" method="post" id="contactForm">
                           @csrf
                             <div class="col-md-12 form-group">
-                                <input type="password" class="form-control" name="password" placeholder="Enter Your New Password" required >
+                                <input type="password" class="form-control" name="password" placeholder="@lang('users.new_pass_ph')" required >
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="password" class="form-control" name="password_confirmation"  placeholder="Enter Your New Password Again" required >
+                                <input type="password" class="form-control" name="password_confirmation"  placeholder="@lang('users.new_pass_again_ph')" required >
                             </div>
                             <div class="col-md-12 form-group">
-                                <button type="submit" class="btn submit_btn">Create Password</button>
+                                <button type="submit" class="btn submit_btn">@lang('users.create_pass')</button>
                             </div>
                         </form>
                     </div>

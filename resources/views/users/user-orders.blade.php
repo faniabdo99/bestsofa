@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="main_title">
-                        <h2>My Orders</h2>
+                        <h2>@lang('users.my_orders')</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -17,13 +17,13 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th style="width:20%">Order ID</th>
-                                    <th style="width:15%">Status</th>
-                                    <th style="width:15%">Collection</th>
-                                    <th style="width:10%">Weight</th>
-                                    <th style="width:15%">Payment Method</th>
-                                    <th style="width:10%">Total Price</th>
-                                    <th style="width:15%">Actions</th>
+                                    <th style="width:20%">@lang('users.order_id')</th>
+                                    <th style="width:15%">@lang('users.status')</th>
+                                    <th style="width:15%">@lang('users.collection')</th>
+                                    <th style="width:10%">@lang('users.weight')</th>
+                                    <th style="width:15%">@lang('users.method')</th>
+                                    <th style="width:10%">@lang('users.total')</th>
+                                    <th style="width:15%">@lang('users.act')</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,13 +32,13 @@
                                         <td style="width:20%">{{$Order->serial_number}}</td>
                                         <td style="width:15%">{{$Order->status}}</td>
                                         <td style="width:15%">
-                                            @if($Order->pickup_at_store == 'yes') Pickup at Warehouse
-                                                @else Shipping To {{getCountryNameFromISO($Order->country).', '.$Order->shipping_city}}
+                                            @if($Order->pickup_at_store == 'yes') @lang('users.pickup')
+                                                @else @lang('users.ship') {{getCountryNameFromISO($Order->country).', '.$Order->shipping_city}}
                                                 @endif</td>
                                         <td style="width:10%">{{$Order->order_weight}} KG</td>
                                         <td style="width:15%">{{$Order->PaymentMethodData['name']}}</td>
                                         <td style="width:10%">{{formatPrice($Order->final_total).getCurrency()['symbole']}}</td>
-                                        <td style="width:15%"><a href="{{route('checkout.summary' , [$Order->id , true])}}">Summary</a> @if(!$Order->AlreadyPaid()) - <a href="{{route('checkout.payment' , $Order->id)}}">Pay</a>@endif</td>
+                                        <td style="width:15%"><a href="{{route('checkout.summary' , [$Order->id , true])}}">@lang('users.summary')</a> @if(!$Order->AlreadyPaid()) - <a href="{{route('checkout.payment' , $Order->id)}}">@lang('users.pay')</a>@endif</td>
                                     </tr>
                                     @empty
                                     @endforelse

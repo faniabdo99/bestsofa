@@ -8,8 +8,8 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="main_title">
-						<h2>My WishList</h2>
-						<p>All The Products You Loved !</p>
+						<h2>@lang('users.wish')</h2>
+						<p>@lang('users.prod_love')</p>
 					</div>
 				</div>
 				<div class="row">
@@ -68,7 +68,7 @@
 						@endif
                     @empty
                     <div class="col-12">
-                        <p class="text-center">You didn't add any product to your wishlist yet!</p>
+                        <p class="text-center">@lang('users.no_prod_love')</p>
                     </div>
 					@endforelse
 				</div>

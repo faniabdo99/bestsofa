@@ -14,17 +14,17 @@
                     <ul class="user_data_list">
                         <li><i class="fas fa-envelope"></i> {{$TheUser->email}}</li>
                         @if($TheUser->company_name)<li><i class="fas fa-home"></i> {{$TheUser->company_name}}</li>@endif
-                        @if(!$TheUser->AddressCompleted())<li><span class="text-warning"><i class="fas fa-home"></i> Please Add Your Shipping Info</span></li>@endif
-                        <li>@if($TheUser->confirmed) <span class="text-success">@else <a id="send_activate_link" action-route="{{route('user.sendActivateLink')}}" user-id="{{$TheUser->id}}" class="main_btn" href="javascript:;">Re Send Activation Link</a>@endif</li>
+                        @if(!$TheUser->AddressCompleted())<li><span class="text-warning"><i class="fas fa-home"></i> @lang('users.add_shipping')</span></li>@endif
+                        <li>@if($TheUser->confirmed) <span class="text-success">@else <a id="send_activate_link" action-route="{{route('user.sendActivateLink')}}" user-id="{{$TheUser->id}}" class="main_btn" href="javascript:;">@lang('users.resend_activation')</a>@endif</li>
                     </ul>
                 </div>
                 <div class="col-6">
-                    <a class="edit_profile_btn" href="javascript:;" data-toggle="modal" data-target="#update-modal"><i class="fas fa-edit"></i> Update Info</a>
+                    <a class="edit_profile_btn" href="javascript:;" data-toggle="modal" data-target="#update-modal"><i class="fas fa-edit"></i> @lang('users.update_info')</a>
                     <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="update-modal" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="update-modal">Update Profile</h5>
+                              <h5 class="modal-title" id="update-modal">@lang('users.update_profile')</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
@@ -34,35 +34,35 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6 col-12">
-                                        <h4>Main Info</h4>
-                                        <label>First Name: </label>
-                                        <input name="first_name" type="text" placeholder="Enter Your First Name Here" value="{{$TheUser->first_name}}" required>
-                                        <label>Last Name: </label>
-                                        <input name="last_name" type="text" placeholder="Enter Your Last Name Here" value="{{$TheUser->last_name}}" required>
-                                        <label>Company Name: </label>
-                                        <input name="company_name" type="text" placeholder="Enter Your Company Name Here" value="{{$TheUser->company_name}}">
-                                        <label>Email: </label>
-                                        <input name="email" type="email" placeholder="Enter Your Name Here" value="{{$TheUser->email}}" required>
+                                        <h4>@lang('users.main_info')</h4>
+                                        <label>@lang('users.first_name'): </label>
+                                        <input name="first_name" type="text" placeholder="@lang('users.first_name_ph')" value="{{$TheUser->first_name}}" required>
+                                        <label>@lang('users.last_name'): </label>
+                                        <input name="last_name" type="text" placeholder="@lang('users.last_name_ph')" value="{{$TheUser->last_name}}" required>
+                                        <label>@lang('users.company_name'): </label>
+                                        <input name="company_name" type="text" placeholder="@lang('users.company_name_ph')" value="{{$TheUser->company_name}}">
+                                        <label>@lang('users.email'): </label>
+                                        <input name="email" type="email" placeholder="@lang('users.email_ph')" value="{{$TheUser->email}}" required>
                                         @if($TheUser->auth_provider == 'Signup')
-                                        <label>Current Password: </label>
-                                        <input name="password_current" type="password" placeholder="Enter Your Current Password">
-                                        <label>Password: </label>
-                                        <input name="password" type="password" placeholder="Enter The New Password">
+                                        <label>@lang('users.current_pass'): </label>
+                                        <input name="password_current" type="password" placeholder="@lang('users.current_pass_ph')">
+                                        <label>@lang('users.password'): </label>
+                                        <input name="password" type="password" placeholder="@lang('users.new_pass_ph')">
                                         @endif
-                                        <label>Profile Image: </label>
+                                        <label>@lang('users.profile_img'): </label>
                                         <input name="image" type="file">
                                         <input hidden name="id" value="{{$TheUser->id}}">
                                     </div>
                                     <div class="col-lg-6 col-12">
-                                        <h4>Shipping Info</h4>
-                                        <label>Phone Number: </label>
-                                        <input name="phone_number" type="text" placeholder="Enter Your Phone Number Here" value="{{$TheUser->phone_number}}" required>
-                                        <label>Country: </label>
+                                        <h4>@lang('users.shipping_info')</h4>
+                                        <label>@lang('users.phone'): </label>
+                                        <input name="phone_number" type="text" placeholder="@lang('users.phone_ph')" value="{{$TheUser->phone_number}}" required>
+                                        <label>@lang('users.country'): </label>
                                         <select name="country" required>
                                             @if($TheUser->country)
                                             <option value="{{$TheUser->country}}">{{$TheUser->country}}</option>
                                             @else
-                                            <option value="">Choose Your Country</option>
+                                            <option value="">@lang('users.country_choose')</option>
                                             @endif
                                             <option value="Afghanistan">Afghanistan</option>
                                             <option value="Åland Islands">Åland Islands</option>
@@ -308,22 +308,22 @@
                                             <option value="Zambia">Zambia</option>
                                             <option value="Zimbabwe">Zimbabwe</option>
                                         </select>
-                                        <label>City: </label>
-                                        <input name="city" type="text" placeholder="Enter Your City Here" value="{{$TheUser->city}}" required>
-                                        <label>Street Address: </label>
-                                        <input name="street_address" type="text" placeholder="Enter Your Street Address Here" value="{{$TheUser->street_address}}" required>
-                                        <label>ZIP Code: </label>
-                                        <input name="zip_code" type="text" placeholder="Enter Your ZIP Code Here" value="{{$TheUser->zip_code}}" required>
+                                        <label>@lang('users.city'): </label>
+                                        <input name="city" type="text" placeholder="@lang('users.city_ph')" value="{{$TheUser->city}}" required>
+                                        <label>@lang('users.address'): </label>
+                                        <input name="street_address" type="text" placeholder="@lang('users.address_ph')" value="{{$TheUser->street_address}}" required>
+                                        <label>@lang('users.z_code'): </label>
+                                        <input name="zip_code" type="text" placeholder="@lang('users.z_code_ph')" value="{{$TheUser->zip_code}}" required>
                                     </div>
                                 </div>
                                 <div class="row mt-5">
                                     <div class="col-12">
-                                        <h4>Payment Info</h4>
-                                        <label>VAT Number: </label>
-                                        <input name="vat_number" type="text" placeholder="Enter Your VAT Number Here" value="{{$TheUser->vat_number}}">
+                                        <h4>@lang('users.pay_info')</h4>
+                                        <label>@lang('users.vat_num'): </label>
+                                        <input name="vat_number" type="text" placeholder="@lang('users.vat_num_ph')" value="{{$TheUser->vat_number}}">
                                     </div>
                                 </div>
-                                  <button type="submit" class="mt-5 main_btn">Save changes</button>
+                                  <button type="submit" class="mt-5 main_btn">@lang('users.save')</button>
                               </form>
                             </div>
                           </div>
@@ -347,20 +347,20 @@
                 <div class="col-lg-6">
                     <a href="{{route('myOrders')}}">
                         <div class="profile_state_card">
-                            <h3 class="card_title"><i class="fas fa-shopping-basket"></i> My Orders ({{$UserOrders->count()}})</h3>
-                            <p class="card_description">Click to view you orders list.</p>
+                            <h3 class="card_title"><i class="fas fa-shopping-basket"></i> @lang('users.my_orders') ({{$UserOrders->count()}})</h3>
+                            <p class="card_description">@lang('users.view_orders')</p>
                         </div>
                     </a>
                     </div>
                     <div class="col-lg-6">
                         <a href="{{route('wishlist')}}">
                             <div class="profile_state_card">
-                                <h3 class="card_title"><i class="fas fa-heart"></i> My Wishlist ({{$TheUser->LikedProducts()->count()}})</h3>
+                                <h3 class="card_title"><i class="fas fa-heart"></i> @lang('users.wish') ({{$TheUser->LikedProducts()->count()}})</h3>
                                 <p class="card_description">
                                     @if($TheUser->LikedProducts()->count() == 0)
-                                    You don't have any items in your wishlist
+                                    @lang('users.no_wish')
                                     @else
-                                    Click to view you wishlist.
+                                    @lang('users.view_wish')
                                     @endif
                                 </p>
                             </div>
