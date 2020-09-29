@@ -10,34 +10,34 @@
                     <div class="login_box_img">
                         <img class="img-fluid h-100" src="{{url('public/img')}}/login.jpg" alt="Login to UK Fashion Shop">
                         <div class="hover">
-                            <h4>Don't have an account yet ? </h4>
-                            <a class="main_btn" href="{{route('signup.get')}}">Signup</a>
+                            <h4>@lang('users.no_account') </h4>
+                            <a class="main_btn" href="{{route('signup.get')}}">@lang('users.signup')</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="login_form_inner reg_form">
-                        <h3>Login</h3>
+                        <h3>@lang('users.login')</h3>
                         <form class="row login_form" action="{{route('login.post')}}" method="post" id="contactForm">
                           @csrf
                             <div class="col-md-12 form-group">
-                                <input type="email" class="form-control" id="email" name="email" value="{{old('email') ?? ''}}"  placeholder="Email Address" required >
+                                <input type="email" class="form-control" id="email" name="email" value="{{old('email') ?? ''}}"  placeholder="@lang('users.email')" required >
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required >
+                                <input type="password" class="form-control" id="password" name="password" placeholder="@lang('users.password')" required >
                             </div>
                             <div class="col-md-12 form-group">
                                 <div class="creat_account">
                                     <input type="checkbox" id="f-option2" name="keep_login">
-                                    <label for="f-option2">Keep me logged in</label>
+                                    <label for="f-option2">@lang('users.keep_logged')</label>
                                 </div>
                             </div>
                             <div class="col-md-12 text-left">
-                                <p>Frogot Your Password ? <a href="{{route('reset.get')}}" class="forgot_password_link">Click Here</a></p>
+                                <p>@lang('users.forgot_password') <a href="{{route('reset.get')}}" class="forgot_password_link">@lang('users.click')</a></p>
                             </div>
                             <div class="col-md-12 form-group">
-                                <button type="submit" class="btn submit_btn">Login</button>
-                                <p class="font-weight-bold text-left mt-4">Login With Social Media</p>
+                                <button type="submit" class="btn submit_btn">@lang('users.login')</button>
+                                <p class="font-weight-bold text-left mt-4">@lang('users.social_login')</p>
                                 <div class="social-login-icons">
                                   <ul>
                                     <li class="google"><a href="{{route('login.social' , 'google')}}"><i class="fab fa-google"></i></a></li>

@@ -7,9 +7,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1>Account @if($OldState == "Confirmed") Already @endif Activated ! </h1>
-                    <p >Congratulations! Your Account is @if($OldState == "NotConfirmed")Now @endif Active , You Have Access to All UK Fashion Shop Feauters ! </p>
-                    <a class="main_btn" href="{{route('product.home')}}">Browse Products</a>
+                    <h1>
+                        @if($OldState == "Confirmed")
+                            @lang('users.already_activated')
+                        @else
+                            @lang('users.activated')
+                        @endif
+                    </h1>
+                    <p >
+                        @if ($OldState == "NotConfirmed")
+                            @lang('users.now_active')
+                        @else
+                            @lang('users.active')
+                        @endif
+                        
+                    </p>
+                    <a class="main_btn" href="{{route('product.home')}}">@lang('users.browse_products')</a>
                 </div>
             </div>
         </div>
