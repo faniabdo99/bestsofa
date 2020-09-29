@@ -60,6 +60,7 @@
 									@empty
 									@endforelse
 								</select>
+								<p class="mt-3 mb-0">Can't See Your Country in the List? Discard this Page & <a href="{{route('contact.get')}}">Contact Us</a></p>
 							</div>
 							<div class="col-md-12 form-group p_star">
 								<label for="add1">Address: <span class="text-danger">*</span></label>
@@ -92,8 +93,7 @@
                                     <p class="pl-0">Do You Have Diffrent Shipping Address ?</p>
                                     <input type="radio" id="yes" name="diff_shipping_address" value="yes"> <label for="yes" class="mr-5">Yes</label>
 									<input type="radio" id="no" selected name="diff_shipping_address" value="no"> <label for="no">No</label>
-								</div>
-                            </div>
+								</div></div>
 							<div id="shipping_details" class="d-none">
 							<div class="col-md-12">
 								<h3>Shipping Details</h3>
@@ -140,12 +140,12 @@
 							<input hidden name="total_shipping_cost" value="0">
 							<input hidden name="total_shipping_tax" value="0">
 							<div class="col-md-12 form-group">
-								<button class="main_btn" type="submit">Porcced to Summary</button>
+								<button class="main_btn" type="submit" disabled title="Please Choose Country First">Porcced to Summary</button>
 							</div>
 						</form>
 					</div>
 					<div class="col-lg-5">
-						<div class="order_box p-0">
+						<div class="order_box p-3 mb-4">
 							<h2>Your Order</h2>
 							<ul class="list">
 								@forelse ($CartItems as $CartItem)
@@ -166,10 +166,10 @@
 									<li><a href="#">Subtotal<span>{{formatPrice($TotalWithoutTax).getCurrency()['symbole']}}</span></a></li>
 							</ul>
 						</div>
-						<div class="order_box p-0">
+						<div class="shipping-box order_box p-3">
 							<h2>Order Shpping</h2>
 							<p class="pl-0">Select the country you want us to ship the order to</p>
-							<ul class="list list_2 mb-5">
+							<ul class="list list_2">
 								<li><a href="#">Shipping Total<span id="order_shipping_total">Select Country First</span></a></li>
 							</ul>
 						</div>
@@ -183,6 +183,7 @@
 	@include('layout.scripts')
 	<script type="text/javascript">
 		$('.shipping-country').change(function() {
+			$('#order_shipping_total').html('<i class="fas fa-spinner fa-spin"></i>');
 			var ActionRoute = $('meta[name=base_url]').attr('content') + '/api/calculate-shipping-cost';
 			var CountryName = $(this).val();
 			var Weight = $('input[name="order_weight"]').val();
@@ -214,9 +215,10 @@
 						$('input[name="total_shipping_tax"]').val(response.shipping_tax_euro);
 						$('#order_shipping_total').html(response.final_cost_euro + '{{getCurrency()['symbole']}}');
 					}
+					$('button[type="submit"]').removeAttr('disabled').removeAttr('title');
 				},
 				error: function(response) {
-					console.log(response);
+					$('#order_shipping_total').html('Select Country First');
 				}
 			});
 		});
