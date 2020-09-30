@@ -3,14 +3,14 @@
     <!--================Header Menu Area =================-->
     @include('layout.navbar')
     <!--================Header Menu Area =================-->
-    <section class="banner_area section_gap">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content text-center">
-                    <h1>@lang('static.about-us-header')</h1>
-                    <p class="text-white">@lang('static.about-us-subheader')</p>
-                </div>
-            </div>
+    <section class="banner_area" id="about-us-hero">
+      <div class="banner_inner">
+          <div class="container">
+              <div class="banner_content text-center">
+                  <h1>@lang('static.about-us-header')</h1>
+                  <p class="text-white">@lang('static.about-us-subheader')</p>
+              </div>
+          </div>
         </div>
     </section>
     <section class="about_us_content_section">

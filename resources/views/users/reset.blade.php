@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="login_box_img">
-                        <img class="img-fluid h-100" src="{{url('public/img')}}/login.jpg" alt="@lang('users.login_image')">
+                        <img class="img-fluid" src="{{url('public/img')}}/login.jpg" alt="@lang('users.login_image')">
                         <div class="hover">
                             <h4>@lang('users.no_account') </h4>
                             <a class="main_btn" href="{{route('signup.get')}}">@lang('users.signup')</a>

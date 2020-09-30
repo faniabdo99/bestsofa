@@ -4,11 +4,12 @@
     @include('layout.navbar')
     <!--================Header Menu Area =================-->
     <!--================Home Banner Area =================-->
-    <section class="banner_area contact_banner">
-        <div class="banner_inner d-flex align-items-center">
+    <section class="banner_area" id="contact-us-hero">
+        <div class="banner_inner">
             <div class="container">
                 <div class="banner_content text-center">
                     <h1>@lang('pages.contact-us-header')</h1>
+                    <p>@lang('pages.contact-us-subheader')</p>
                 </div>
             </div>
         </div>
