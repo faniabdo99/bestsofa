@@ -9,9 +9,9 @@
             <div class="container">
                 <div class="banner_content text-center">
                     @if(isset(request()->route()->parameters()['processed']) && request()->route()->parameters()['processed'])
-                        <h1>Order Details</h1>
+                        <h1>@lang('orders.order_details')</h1>
                         @else
-                        <h1>Checkout</h1>
+                        <h1>@lang('orders.checkout')</h1>
                         @endif
                 </div>
             </div>
@@ -25,14 +25,14 @@
             <div class="billing_details">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3>Order Summary</h3>
+                        <h3>@lang('orders.order_summary')</h3>
                         <table class="table mb-5">
                             <thead>
                                 <tr>
-                                    <th>Item</th>
-                                    <th>Quantity</th>
-                                    <th>Unit Price</th>
-                                    <th>Total</th>
+                                    <th>@lang('orders.product')</th>
+                                    <th>@lang('orders.qty')</th>
+                                    <th>@lang('orders.unit_price')</th>
+                                    <th>@lang('orders.total')</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,19 +49,19 @@
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <th>Order Total</th>
+                                    <th>@lang('orders.order_total')</th>
                                     <td>{{formatPrice($TheOrder->total).getCurrency()['symbole']}}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <th>Order Tax</th>
+                                    <th>@lang('orders.order_tax')</th>
                                     <td>{{formatPrice($TheOrder->total_tax).getCurrency()['symbole']}}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <th>Order Shipping Cost</th>
+                                    <th>@lang('orders.order_shipping_cost')</th>
                                     <td>{{formatPrice($TheOrder->total_shipping).getCurrency()['symbole']}}</td>
                                 </tr>
                                 <tr>
@@ -72,85 +72,85 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <h3>Order Details</h3>
+                        <h3>@lang('orders.order_details')</h3>
                         <table class="table mb-5">
                             <tbody>
                               <tr>
-                                  <th>Order ID</th>
+                                  <th>@lang('orders.order_ID')</th>
                                   <td>{{$TheOrder->serial_number}}</td>
                               </tr>
                                 <tr>
-                                    <th>Order Status</th>
+                                    <th>@lang('orders.order_status')</th>
                                     <td>{{$TheOrder->status}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Payment Status</th>
+                                    <th>@lang('orders.payment_status')</th>
                                     <td>{{$TheOrder->is_paid}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Payment Method</th>
+                                    <th>@lang('orders.payment_method')</th>
                                     <td>{{$TheOrder->PaymentMethodData['name']}}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <h3>Your Details</h3>
+                        <h3>@lang('orders.your_details')</h3>
                         <table class="table mb-5">
                             <tbody>
                                 <tr>
-                                    <th>First Name</th>
+                                    <th>@lang('users.first_name')</th>
                                     <td>{{$TheOrder->first_name}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Last Name</th>
+                                    <th>@lang('users.last_name')</th>
                                     <td>{{$TheOrder->last_name}}</td>
                                 </tr>
                                 @if($TheOrder->company_name)
                                     <tr>
-                                        <th>Company Name</th>
+                                        <th>@lang('users.company_name')</th>
                                         <td>{{$TheOrder->company_name}}</td>
                                     </tr>
                                     @endif
                                     @if($TheOrder->vat_number)
                                         <tr>
-                                            <th>VAT Number</th>
+                                            <th>@lang('users.vat_num')</th>
                                             <td>{{$TheOrder->vat_number}}</td>
                                         </tr>
                                         <tr>
-                                            <th>is VAT Number Valid ?</th>
+                                            <th>@lang('orders.is_vat_valid')</th>
                                             <td>{{$TheOrder->is_vat_valid}}</td>
                                         </tr>
                                         @endif
                                         <tr>
-                                            <th>Phone Number</th>
+                                            <th>@lang('users.phone')</th>
                                             <td>{{$TheOrder->phone_number}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Email Address</th>
+                                            <th>@lang('users.email')</th>
                                             <td>{{$TheOrder->email}}</td>
                                         </tr>
                             </tbody>
                         </table>
-                        <h3>Shipping Details</h3>
+                        <h3>@lang('orders.ship_details')</h3>
                         @if($TheOrder->pickup_at_store == 'yes')
-                            <p class="pl-0">Collect From Warehouse (Be Sure to call one day ahead)</p>
-                            <p class="pl-0">Globale trading Zone 5 Mollem 13 1730 Asse , Belgium +32 487 24 45 99</p>
+                            <p class="pl-0">@lang('orders.collect_from_warehouse')</p>
+                            <p class="pl-0">@lang('orders.warehouse_address')</p>
                             @else
                             <table class="table mb-5">
                                 <tbody>
                                     <tr>
-                                        <th>Country</th>
+                                        <th>@lang('users.country')</th>
                                         <td>{{getCountryNameFromISO($TheOrder->country)}}</td>
                                     </tr>
                                     <tr>
-                                        <th>City</th>
+                                        <th>@lang('users.city')</th>
                                         <td>{{$TheOrder->shipping_city}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Address</th>
+                                        <th>@lang('orders.address')</th>
                                         <td>{{$TheOrder->shipping_address}}</td>
                                     </tr>
                                     <tr>
-                                        <th>ZIP / Postal Code</th>
+                                        <th>@lang('users.z_code')</th>
                                         <td>{{$TheOrder->shipping_zip_code}}</td>
                                     </tr>
                                 </tbody>
@@ -161,7 +161,7 @@
                 @if(!isset(request()->route()->parameters()['processed']))
                     <div class="row">
                         <div class="col-12">
-                            <a href="{{route('checkout.payment' , $TheOrder->id)}}" class="btn btn-primary" id="next_step">Looks Good , Next Step</a>
+                            <a href="{{route('checkout.payment' , $TheOrder->id)}}" class="btn btn-primary" id="next_step">@lang('users.next_step')</a>
                         </div>
                     </div>
                     @endif

@@ -5,18 +5,18 @@
 	<section class="billing_details p_120 mt-5">
 		<div class="container">
       @if($TheOrder->AlreadyPaid())
-            <h4 class="text-success text-center mb-5">Thank you. Your order has been received.</h4>
+            <h4 class="text-success text-center mb-5">@lang('orders.order_received')</h4>
           @else
-            <h4 class="text-danger text-center mb-5">Sorry, Payment Failed !</h4>
+            <h4 class="text-danger text-center mb-5">@lang('orders.payment_failed')</h4>
           @endif
-            <h3>Order Summary</h3>
+            <h3>@lang('orders.order_summary')</h3>
             <table class="table mb-5">
                 <thead>
                     <tr>
-                        <th>Item</th>
-                        <th>Quantity</th>
-                        <th>Unit Price</th>
-                        <th>Total</th>
+                        <th>@lang('orders.product')</th>
+                        <th>@lang('orders.qty')</th>
+                        <th>@lang('orders.unit_price')</th>
+                        <th>@lang('orders.total')</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,108 +34,108 @@
                     <tr>
                         <td></td>
                         <td></td>
-                        <th>Order Total</th>
+                        <th>@lang('orders.order_total')</th>
                         <td>{{formatPrice($TheOrder->total).getCurrency()['symbole']}}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
-                        <th>Order Tax</th>
+                        <th>@lang('orders.order_tax')</th>
                         <td>{{formatPrice($TheOrder->total_tax).getCurrency()['symbole']}}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
-                        <th>Order Shipping Cost</th>
+                        <th>@lang('orders.order_shipping_cost')</th>
                         <td>{{formatPrice($TheOrder->total_shipping).getCurrency()['symbole']}}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
-                        <th>Total</th>
+                        <th>@lang('orders.total')</th>
                         <td>{{formatPrice($TheOrder->final_total).getCurrency()['symbole']}}</td>
                     </tr>
                 </tbody>
             </table>
-            <h3>Your Details</h3>
+            <h3>@lang('orders.your_details')</h3>
             <table class="table mb-5">
                 <tbody>
                   <tr>
-                      <th>First Name</th>
+                      <th>@lang('users.first_name')</th>
                       <td>{{$TheOrder->first_name}}</td>
                   </tr>
                   <tr>
-                    <th>Last Name</th>
+                    <th>@lang('users.last_name')</th>
                     <td>{{$TheOrder->last_name}}</td>
                 </tr>
                 <tr>
-                    <th>Phone Number</th>
+                    <th>@lang('users.phone')</th>
                     <td>{{$TheOrder->phone_number}}</td>
                 </tr>
                 <tr>
-                    <th>Email Address</th>
+                    <th>@lang('users.email')</th>
                     <td>{{$TheOrder->email}}</td>
                 </tr>
                 </tbody>
             </table>
-            <h3>Shipping Details</h3>
+            <h3>@lang('orders.shipping_details')</h3>
             @if($TheOrder->pickup_at_store == 'yes')
-            <p class="pl-0">Collect From Warehouse (Be Sure to call one day ahead)</p>
-            <p class="pl-0">Globale trading Zone 5 Mollem 13 1730 Asse , Belgium +32 487 24 45 99</p>
+            <p class="pl-0">@lang('orders.collect_from_warehouse')</p>
+            <p class="pl-0">@lang('orders.warehouse_address')</p>
             @else
             <table class="table mb-5">
                 <tbody>
                   <tr>
-                      <th>Country</th>
+                      <th>@lang('users.country')</th>
                       <td>{{getCountryNameFromISO($TheOrder->country)}}</td>
                   </tr>
                   <tr>
-                    <th>City</th>
+                    <th>@lang('users.city')</th>
                     <td>{{$TheOrder->city}}</td>
                 </tr>
                   <tr>
-                    <th>Address</th>
+                    <th>@lang('orders.address')</th>
                     <td>{{$TheOrder->address}}</td>
                 </tr>
                 <tr>
-                    <th>ZIP / Postal Code</th>
+                    <th>@lang('users.z_code')</th>
                     <td>{{$TheOrder->zip_code}}</td>
                 </tr>
                 </tbody>
             </table>
             @endif
-            <h3>Payments Details</h3>
+            <h3>@lang('orders.payments_details')</h3>
             <table class="table mb-5">
                 <tbody>
                   <tr>
-                      <th>Payment Method</th>
+                      <th>@lang('orders.payments_details')</th>
                       <td>{{$TheOrder->PaymentMethodData['name']}}</td>
                   </tr>
                   <tr>
-                    <th>Payment Status</th>
+                    <th>@lang('orders.payment_status')</th>
                     <td>{{$TheOrder->is_paid}}</td>
                 </tr>
                   <tr>
-                    <th>Order Status</th>
+                    <th>@lang('orders.order_status')</th>
                     <td>{{$TheOrder->status}}</td>
                 </tr>
                 <tr>
-                    <th>Order ID</th>
+                    <th>@lang('orders.order_ID')</th>
                     <td>{{$TheOrder->serial_number}}</td>
                 </tr>
                 <tr>
-                    <th>Transaction ID</th>
+                    <th>@lang('orders.trans_ID')</th>
                     <td>{{$TheOrder->payment_id}}</td>
                 </tr>
                 <tr>
-                    <th>Order Total</th>
+                    <th>@lang('orders.order_total')</th>
                     <td>{{formatPrice($TheOrder->final_total).getCurrency()['symbole']}}</td>
                 </tr>
                 </tbody>
             </table>
-            <button id="print_page" class="main_btn no-print" href="#">Print This Page</button>
+            <button id="print_page" class="main_btn no-print" href="#">@lang('orders.print')</button>
             @auth
-                <a href="{{route('myOrders')}}" class="main_btn no-print" href="#">Veiw Your Orders</a>
+                <a href="{{route('myOrders')}}" class="main_btn no-print" href="#">@lang('orders.view_orders')</a>
             @endauth
         </div>
 	</section>
