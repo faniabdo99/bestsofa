@@ -1,5 +1,4 @@
 @include('layout.header', ['PageTitle' => __('titles.home')])
-
 <body>
 	<!--================Header Menu Area =================-->
 	@include('layout.navbar')
@@ -9,9 +8,9 @@
 		<div class="banner_inner">
 				<div class="container">
 						<div class="banner_content text-center">
-							<h1>Fashion for Upcoming Winter</h1>
-							<p>Are Your Ready For The New Year Sales ?</p>
-							<a class="white_bg_btn" href="{{route('product.home')}}">Visit Our Shop</a>
+							<h1>@lang('homepage.header')</h1>
+							<p>@lang('homepage.subheader')</p>
+							<a class="white_bg_btn" href="{{route('product.home')}}">@lang('homepage.cta')</a>
 						</div>
 				</div>
 			</div>
@@ -23,8 +22,8 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="main_title">
-						<h2>Featured Products</h2>
-						<p>Get Your Goods of These Hot Products.</p>
+						<h2>@lang('homepage.featured-products-header')</h2>
+						<p>@lang('homepage.featured-products-subheader')</p>
 					</div>
 				</div>
 				<div class="row">
@@ -78,7 +77,7 @@
 						</div>
 						@endif
 						@empty
-						<p>No Promoted Products Yet</p>
+						<p>@lang('homepage.featured-products-no-items')</p>
 						@endforelse
 				</div>
 			</div>
@@ -93,8 +92,8 @@
 					<div class="hot_deal_box">
 						<img class="img-fluid" src="{{url('public/img')}}/product/hot_deals/deal1.jpg" alt="">
 						<div class="content">
-							<h2>20% Off For New Users</h2>
-							<p>Signup NOW</p>
+							<h2>@lang('homepage.deal-1-header')</h2>
+							<p>@lang('homepage.deal-1-subheader')</p>
 						</div>
 						<a class="hot_deal_link" href="{{route('signup.get')}}"></a>
 					</div>
@@ -104,8 +103,8 @@
 					<div class="hot_deal_box">
 						<img class="img-fluid" src="{{url('public/img')}}/product/hot_deals/deal1.jpg" alt="">
 						<div class="content">
-							<h2>New Website Offers</h2>
-							<p>shop now</p>
+							<h2>@lang('homepage.deal-2-header')</h2>
+							<p>@lang('homepage.deal-2-subheader')</p>
 						</div>
 						<a class="hot_deal_link" href="{{route('product.home')}}"></a>
 					</div>
@@ -119,13 +118,9 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12 col-lg-6">
-					<h2 class="text-dark">UK Fashion Shop</h2>
-					<p class="text-muted">a <a class="font-weight-bold" href="https://www.globale-trading.be" target="_blank">Globale Trading</a> Company</p>
-					<p>We are a company that has more than 25 years experience in import & export of second-hand clothing & shoes.<br>
-						We are wholesale specialized, one of the major leaders in this sector and the only company that  works with high quality UK C4C original in Belgium.<br>
-						We share our worldwide experience through business relationships with our regular customers. We have created this webshop to be able to easily and efficiently fulfill the needs of the  customer based in Europe. (for other countries please contact us for more information)<br>
-						All our goods are the best cash 4 clothes collections from in/around London area.<br>
-						We wish you a lot of shopping pleasure.</p>
+					<h2 class="text-dark">@lang('homepage.about-us-header')</h2>
+					<p class="text-muted">@lang('homepage.about-us-subheader')</p>
+					<p>@lang('homepage.about-us-content')</p>
 				</div>
 				<div class="col-12 col-lg-6">
 					<iframe src="//www.youtube.com/embed/rRFIoI1sBMw" frameborder="0" allowfullscreen=""></iframe>
