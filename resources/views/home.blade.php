@@ -5,19 +5,16 @@
 	@include('layout.navbar')
 	<!--================Header Menu Area =================-->
 	<!--================Home Banner Area =================-->
-	<section class="home_banner_area">
-		<div class="overlay"></div>
-		<div class="banner_inner d-flex align-items-center">
-			<div class="container">
-				<div class="banner_content row">
-					<div class="offset-lg-2 col-lg-8">
-						<h3>Fashion for<br>Upcoming Winter</h3>
-						<p>Are Your Ready For The New Year Sales ?</p>
-						<a class="white_bg_btn" href="{{route('product.home')}}">Visit Our Shop</a>
-					</div>
+	<section class="banner_area" id="homepage-hero">
+		<div class="banner_inner">
+				<div class="container">
+						<div class="banner_content text-center">
+							<h1>Fashion for Upcoming Winter</h1>
+							<p>Are Your Ready For The New Year Sales ?</p>
+							<a class="white_bg_btn" href="{{route('product.home')}}">Visit Our Shop</a>
+						</div>
 				</div>
 			</div>
-		</div>
 	</section>
 	<!--================End Home Banner Area =================-->
 	<!--================Feature Product Area =================-->

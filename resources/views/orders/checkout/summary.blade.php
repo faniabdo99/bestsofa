@@ -3,22 +3,22 @@
 <body>
     @include('layout.navbar')
     <!--================Home Banner Area =================-->
-    <section class="banner_area section_gap">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="overlay"></div>
+    <!--================Home Banner Area =================-->
+    <section class="banner_area" id="orders-hero">
+        <div class="banner_inner">
             <div class="container">
                 <div class="banner_content text-center">
                     @if(isset(request()->route()->parameters()['processed']) && request()->route()->parameters()['processed'])
                         <h1>@lang('orders.order_details')</h1>
+                        <p>@lang('orders.your_order_data')</p>
                         @else
                         <h1>@lang('orders.checkout')</h1>
+                        <p>@lang('orders.one_more_step') ...</p>
                         @endif
                 </div>
             </div>
         </div>
     </section>
-    <!--================End Home Banner Area =================-->
-
     <!--================Checkout Area =================-->
     <section class="checkout_area">
         <div class="container">

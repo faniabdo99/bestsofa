@@ -200,9 +200,25 @@
   height: 140px;
 }
 
+#homepage-hero {
+  background: url("../img/banner/homepage.jpg") no-repeat center top;
+}
+
 .about_us_section iframe {
   width: 100%;
   height: 350px;
+}
+
+#about-us-hero {
+  background: url("../img/banner/about-us.jpg") no-repeat center top;
+}
+
+#contact-us-hero {
+  background: url("../img/banner/contact-us.jpg") no-repeat center top;
+}
+
+#orders-hero {
+  background: url("../img/banner/order-payment.jpg") no-repeat center top;
 }
 
 /*----------------------------------------------------*/
@@ -363,6 +379,38 @@ a:hover, a:focus {
 
 /* End Main Title Area css
 ============================================================================================ */
+/*---------------------------------------------------- */
+/*----------------------------------------------------*/
+.error-page .error-illustration {
+  padding: 200px 30px;
+  height: 100vh;
+}
+.error-page .error-illustration .error-icon {
+  height: 300px;
+  width: 300px;
+  background: #be3a3a;
+  padding-top: 50px;
+  border-radius: 50%;
+  margin: 0 auto 35px auto;
+  text-align: center;
+}
+.error-page .error-illustration .error-icon img {
+  width: 200px;
+  height: 200px;
+}
+.error-page .error-illustration h2 {
+  text-align: center;
+  font-size: 80px;
+}
+.error-page .error-content {
+  background: #fff;
+  padding: 200px 30px;
+}
+.error-page .error-content h1 {
+  font-size: 90px;
+  color: #206fa1;
+}
+
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 .active {
@@ -713,37 +761,26 @@ a:hover, a:focus {
 
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
-/* Home Banner Area css
-============================================================================================ */
-.home_banner_area {
-  background: url("/public/img/banner/banner-bg.jpg") no-repeat center bottom;
+.banner_area {
   position: relative;
   z-index: 1;
-  min-height: 900px;
+  height: 700px;
+  margin-bottom: 80px;
 }
-.home_banner_area .overlay {
-  background: rgba(0, 0, 0, 0.33);
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 100%;
-  bottom: 0;
-  z-index: -1;
-}
-.home_banner_area .banner_inner {
+.banner_area .banner_inner {
+  padding-top: 300px;
   position: relative;
   width: 100%;
-  min-height: 900px;
+  height: 700px;
+  background: rgba(0, 0, 0, 0.3);
 }
-.home_banner_area .banner_inner .banner_content {
+.banner_area .banner_inner .banner_content {
   color: #222222;
-  padding-top: 110px;
   align-self: center;
   vertical-align: middle;
   text-align: center;
 }
-.home_banner_area .banner_inner .banner_content h3 {
+.banner_area .banner_inner .banner_content h1 {
   font-size: 60px;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
@@ -751,14 +788,14 @@ a:hover, a:focus {
   margin-bottom: 20px;
   color: #ffffff;
 }
-.home_banner_area .banner_inner .banner_content p {
+.banner_area .banner_inner .banner_content p {
   font-size: 14px;
   line-height: 24px;
   font-family: "Poppins", sans-serif;
   font-weight: normal;
   color: #ffffff;
 }
-.home_banner_area .banner_inner .banner_content .white_bg_btn {
+.banner_area .banner_inner .banner_content .white_bg_btn {
   margin-top: 45px;
   line-height: 50px;
   border-radius: 5px;
@@ -767,7 +804,7 @@ a:hover, a:focus {
   font-size: 14px;
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
 }
-.home_banner_area .banner_inner .banner_content .halemet_img {
+.banner_area .banner_inner .banner_content .halemet_img {
   text-align: right;
 }
 
@@ -823,66 +860,6 @@ a:hover, a:focus {
   margin: auto;
 }
 
-.banner_area {
-  position: relative;
-  z-index: 1;
-  min-height: 395px;
-}
-.banner_area .banner_inner {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  min-height: 395px;
-  background: url("../../public/img/banner/banner.jpg") no-repeat center bottom;
-  background-size: cover;
-  z-index: 1;
-}
-.banner_area .banner_inner .overlay {
-  background: rgba(0, 0, 0, 0.33);
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-.banner_area .banner_inner .banner_content {
-  position: relative;
-  z-index: 10;
-}
-.banner_area .banner_inner .banner_content h1 {
-  color: #ffffff;
-  font-size: 48px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-}
-.banner_area .banner_inner .banner_content .page_link a {
-  font-size: 14px;
-  color: #ffffff;
-  font-family: "Poppins", sans-serif;
-  margin-right: 32px;
-  position: relative;
-}
-.banner_area .banner_inner .banner_content .page_link a:before {
-  content: "\E87A";
-  font-family: "Linearicons-Free";
-  font-size: 14px;
-  position: absolute;
-  right: -25px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.banner_area .banner_inner .banner_content .page_link a:last-child {
-  margin-right: 0px;
-}
-.banner_area .banner_inner .banner_content .page_link a:last-child:before {
-  display: none;
-}
-.banner_area .banner_inner .banner_content .page_link a:hover {
-  color: #206fa1;
-}
-
-/* End Home Banner Area css
-============================================================================================ */
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 /* Latest Blog Area css

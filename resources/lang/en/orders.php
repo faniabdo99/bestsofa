@@ -66,6 +66,9 @@ return [
     'payment_failed' => 'Sorry, Payment Failed !',
     'print' => 'Print This Page',
     'view_orders' => 'View Your Orders',
+    'secure_and_reliable' => 'Secure and Reliable Paymnet Methods',
+    'your_order_data' => 'Your Order Data',
+    'one_more_step' => 'One More Step to Go',
     // Titles
     'cart_remove' => 'Remove From Cart',
     'choose_country_first' => 'Please Choose Country First',
