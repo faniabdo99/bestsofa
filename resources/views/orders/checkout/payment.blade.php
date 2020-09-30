@@ -6,8 +6,9 @@
         <div class="banner_inner">
             <div class="container">
                 <div class="banner_content text-center">
-                    <h1>Payments</h1>
-                    <p>Secure and Reliable Paymnet Methods</p>
+                    
+                    <h1>@lang('orders.payments')</h1>
+                    <p>@lang('orders.secure_and_reliable')</p>
                 </div>
             </div>
         </div>
@@ -20,14 +21,14 @@
             <div class="billing_details">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3>Order Summary</h3>
+                        <h3>@lang('orders.order_summary')</h3>
                         <table class="table mb-5">
                             <thead>
                                 <tr>
-                                    <th>Item</th>
-                                    <th>Quantity</th>
-                                    <th>Unit Price</th>
-                                    <th>Total</th>
+                                    <th>@lang('orders.product')</th>
+                                    <th>@lang('orders.qty')</th>
+                                    <th>@lang('orders.unit_price')</th>
+                                    <th>@lang('orders.total')</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,43 +46,43 @@
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <th>Order Total</th>
+                                    <th>@lang('orders.order_total')</th>
                                     <td>{{formatPrice($TheOrder->total).getCurrency()['symbole']}}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <th>Order Tax</th>
+                                    <th>@lang('orders.order_tax')</th>
                                     <td>{{formatPrice($TheOrder->total_tax).getCurrency()['symbole']}}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <th>Order Shipping Cost</th>
+                                    <th>@lang('orders.order_shipping_cost')</th>
                                     <td>{{formatPrice($TheOrder->total_shipping).getCurrency()['symbole']}}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <th>Total</th>
+                                    <th>@lang('orders.total')</th>
                                     <td>{{formatPrice($TheOrder->final_total).getCurrency()['symbole']}}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <h3>Payments Details</h3>
+                        <h3>@lang('orders.payments_details')</h3>
                         <form class="row contact_form pl-0" action="{{route('checkout.payment.post' , $TheOrder->id)}}" method="post">
                             <div class="col-md-12 form-group">
                                 @csrf
                                 <input hidden name="user_id" value="{{$TheOrder->user_id}}" required>
                                 <div class="form-group">
-                                    <label for="pm">Choose Payment Method</label>
+                                    <label for="pm">@lang('orders.choose_payment_method')</label>
                                     <select class="form-control" name="payment_method" id="pm" required>
-                                        <option value="">Select...</option>
+                                        <option value="">@lang('orders.select')...</option>
                                         {{getPaymentMethods($TheOrder->pickup_at_store)}}
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <button class="main_btn" type="submit">Submit</button>
+                                    <button class="main_btn" type="submit">@lang('orders.submit')</button>
                                 </div>
                             </div>
                         </form>

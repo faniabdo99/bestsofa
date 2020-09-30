@@ -7,7 +7,7 @@
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="banner_content text-center">
-					<h1>Checkout</h1>
+					<h1>@lang('orders.checkout')</h1>
 				</div>
 			</div>
 		</div>
@@ -20,117 +20,117 @@
 			<div class="billing_details">
 				<div class="row">
 					<div class="col-lg-7">
-						<h3>Billing Details</h3>
+						<h3>@lang('orders.bill')</h3>
 						<form class="row contact_form" action="{{route('checkout.post')}}" method="post">
 							@csrf
 							<div class="col-md-6 form-group p_star">
-								<label for="first">First Name: <span class="text-danger">*</span></label>
-								<input required type="text" class="form-control" placeholder="Enter Your First Name" id="first" name="first_name" value="@auth {{auth()->user()->first_name}} @endauth">
+								<label for="first">@lang('users.first_name'): <span class="text-danger">*</span></label>
+								<input required type="text" class="form-control" placeholder="@lang('users.first_name_ph')" id="first" name="first_name" value="@auth {{auth()->user()->first_name}} @endauth">
 							</div>
 							<div class="col-md-6 form-group p_star">
-								<label for="last">Last Name: <span class="text-danger">*</span></label>
-								<input required type="text" class="form-control" placeholder="Enter Your Last Name" id="last" name="last_name" value="@auth {{auth()->user()->last_name}} @endauth">
+								<label for="last">@lang('users.last_name'): <span class="text-danger">*</span></label>
+								<input required type="text" class="form-control" placeholder="@lang('users.last_name_ph')" id="last" name="last_name" value="@auth {{auth()->user()->last_name}} @endauth">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<label for="company_name">Company Name:</label>
-								<input type="text" class="form-control" id="company_name" value="@auth{{auth()->user()->company_name}}@endauth" name="company_name" placeholder="Enter Your Company Name">
+								<label for="company_name">@lang('users.company_name'):</label>
+								<input type="text" class="form-control" id="company_name" value="@auth{{auth()->user()->company_name}}@endauth" name="company_name" placeholder="@lang('users.company_name_ph')">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<label for="vat_number">VAT Number:</label>
-								<input type="text" class="form-control" id="vat_number" value="@auth{{auth()->user()->vat_number}}@endauth" name="vat_number" placeholder="Enter Your VAT To Get Tax Free Order">
+								<label for="vat_number">@lang('users.vat_num'):</label>
+								<input type="text" class="form-control" id="vat_number" value="@auth{{auth()->user()->vat_number}}@endauth" name="vat_number" placeholder="@lang('orders.vat_num')">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<label for="number">Phone Number: <span class="text-danger">*</span></label>
-								<input required type="text" class="form-control" id="number" value="@auth{{auth()->user()->phone_number}}@endauth" name="phone_number" placeholder="Enter Your Phone Number">
+								<label for="number">@lang('users.phone'): <span class="text-danger">*</span></label>
+								<input required type="text" class="form-control" id="number" value="@auth{{auth()->user()->phone_number}}@endauth" name="phone_number" placeholder="@lang('users.phone_ph')">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<label for="email">Email Address: <span class="text-danger">*</span></label>
-								<input required type="email" class="form-control" value="@auth{{auth()->user()->email}}@endauth" id="email" name="email" placeholder="Enter Your Email Address">
+								<label for="email">@lang('users.email'): <span class="text-danger">*</span></label>
+								<input required type="email" class="form-control" value="@auth{{auth()->user()->email}}@endauth" id="email" name="email" placeholder="@lang('users.email_ph')">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<label for="email_confirmation">Confirm Email Address: <span class="text-danger">*</span></label>
-								<input required type="email" class="form-control" autocomplete="disabled" id="email_confirmation" name="email_confirmation" placeholder="Enter Your Email Address Again">
+								<label for="email_confirmation">@lang('orders.email_confirm'): <span class="text-danger">*</span></label>
+								<input required type="email" class="form-control" autocomplete="disabled" id="email_confirmation" name="email_confirmation" placeholder="@lang('orders.email_confirm_ph')">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<label for="country">Shipping Country: <span class="text-danger">*</span></label>
+								<label for="country">@lang('orders.ship_country'): <span class="text-danger">*</span></label>
 								<select required name="country" id="country" class="form-control shipping-country">
-									<option value="">Choose Your Country</option>
+									<option value="">@lang('users.country_choose')</option>
 									@forelse ($ShippingCostCountries as $Country)
 									<option value="{{$Country}}">{{getCountryNameFromISO($Country)}}</option>
 									@empty
 									@endforelse
 								</select>
-								<p class="mt-3 mb-0">Can't See Your Country in the List? Discard this Page & <a href="{{route('contact.get')}}">Contact Us</a></p>
+								<p class="mt-3 mb-0">@lang('orders.no_see_country') <a href="{{route('contact.get')}}">@lang('orders.contact')</a></p>
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<label for="add1">Address: <span class="text-danger">*</span></label>
-								<input required type="text" value="@auth{{auth()->user()->street_address}}@endauth" placeholder="Enter Your Address Here" class="form-control" id="add1" name="address">
+								<label for="add1">@lang('orders.address'): <span class="text-danger">*</span></label>
+								<input required type="text" value="@auth{{auth()->user()->street_address}}@endauth" placeholder="@lang('orders.first_address')" class="form-control" id="add1" name="address">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<label for="add2">Address 2:</label>
-								<input type="text" placeholder="Enter Your Second Address Here" class="form-control" id="add2" name="address_2">
+								<label for="add2">@lang('orders.address') 2:</label>
+								<input type="text" placeholder="@lang('orders.second_address')" class="form-control" id="add2" name="address_2">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<label for="city">City: <span class="text-danger">*</span></label>
-								<input required type="text" value="@auth{{auth()->user()->city}}@endauth" class="form-control" id="city" name="city" placeholder="Please Enter Your City">
+								<label for="city">@lang('users.city'): <span class="text-danger">*</span></label>
+								<input required type="text" value="@auth{{auth()->user()->city}}@endauth" class="form-control" id="city" name="city" placeholder="@lang('users.city_ph')">
 							</div>
 							<div class="col-md-12 form-group mb-5">
-								<label for="city">ZIP Code: <span class="text-danger">*</span></label>
-								<input required type="text" class="form-control" value="@auth{{auth()->user()->zip_code}}@endauth" id="zip" name="zip_code" placeholder="Enter Your Postcode/ZIP">
+								<label for="city">@lang('users.z_code'): <span class="text-danger">*</span></label>
+								<input required type="text" class="form-control" value="@auth{{auth()->user()->zip_code}}@endauth" id="zip" name="zip_code" placeholder="@lang('users.z_code_ph')">
 							</div>
 							<div class="col-md-12">
-								<h3>Shipping Details</h3>
+								<h3>@lang('orders.ship_details')</h3>
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
-                                    <p class="pl-0">How You Want to Collect Your Order?</p>
-                                    <input type="radio" id="store_yes" required name="pickup_at_store" value="yes"> <label for="store_yes" class="mr-5">Pickup at Warhouse</label>
-									<input type="radio" id="store_no" required name="pickup_at_store" value="no"> <label for="store_no">Ship to My Country</label>
+                                    <p class="pl-0">@lang('orders.collect_order')</p>
+                                    <input type="radio" id="store_yes" required name="pickup_at_store" value="yes"> <label for="store_yes" class="mr-5">@lang('users.pickup')</label>
+									<input type="radio" id="store_no" required name="pickup_at_store" value="no"> <label for="store_no">@lang('orders.to_country')</label>
 								</div>
                             </div>
 							<div id="shipping_address" class="col-md-12 form-group d-none">
 								<div class="creat_account">
-                                    <p class="pl-0">Do You Have Diffrent Shipping Address ?</p>
-                                    <input type="radio" id="yes" name="diff_shipping_address" value="yes"> <label for="yes" class="mr-5">Yes</label>
-									<input type="radio" id="no" selected name="diff_shipping_address" value="no"> <label for="no">No</label>
+                                    <p class="pl-0">@lang('orders.diff_ship')</p>
+                                    <input type="radio" id="yes" name="diff_shipping_address" value="yes"> <label for="yes" class="mr-5">@lang('orders.yes')</label>
+									<input type="radio" id="no" selected name="diff_shipping_address" value="no"> <label for="no">@lang('orders.no')</label>
 								</div></div>
 							<div id="shipping_details" class="d-none">
 							<div class="col-md-12">
-								<h3>Shipping Details</h3>
+								<h3>@lang('orders.ship_details')</h3>
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<label for="shipping_add1">Address: <span class="text-danger">*</span></label>
-								<input type="text" value="@auth{{auth()->user()->street_address}}@endauth" placeholder="Enter Your Address Here" class="form-control" id="shipping_add1" name="shipping_address">
+								<label for="shipping_add1">@lang('orders.address'): <span class="text-danger">*</span></label>
+								<input type="text" value="@auth{{auth()->user()->street_address}}@endauth" placeholder="@lang('orders.first_address')" class="form-control" id="shipping_add1" name="shipping_address">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<label for="shipping_add2">Address 2:</label>
-								<input type="text" placeholder="Enter Your Second Address Here" class="form-control" id="shipping_add2" name="shipping_address_2">
+								<label for="shipping_add2">@lang('orders.address') 2:</label>
+								<input type="text" placeholder="@lang('orders.second_address')" class="form-control" id="shipping_add2" name="shipping_address_2">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<label for="shipping_city">City: <span class="text-danger">*</span></label>
-								<input type="text" value="@auth{{auth()->user()->city}}@endauth" class="form-control" id="shipping_city" name="shipping_city" placeholder="Please Enter Your City">
+								<label for="shipping_city">@lang('users.city'): <span class="text-danger">*</span></label>
+								<input type="text" value="@auth{{auth()->user()->city}}@endauth" class="form-control" id="shipping_city" name="shipping_city" placeholder="@lang('users.city_ph')">
 							</div>
 							<div class="col-md-12 form-group mb-5">
-								<label for="shipping_zip">ZIP Code: <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" value="@auth{{auth()->user()->zip_code}}@endauth" id="shipping_zip" name="shipping_zip_code" placeholder="Enter Your Postcode/ZIP">
+								<label for="shipping_zip">@lang('users.z_code'): <span class="text-danger">*</span></label>
+								<input type="text" class="form-control" value="@auth{{auth()->user()->zip_code}}@endauth" id="shipping_zip" name="shipping_zip_code" placeholder="@lang('users.z_code_ph')">
 							</div>
 						</div>
 							<div class="col-md-12 form-group">
-								<label for="message">Order Notes:</label>
-								<textarea class="form-control" name="order_notes" id="message" rows="1" placeholder="Please Add Any Additional Information to Your Order"></textarea>
+								<label for="message">@lang('orders.order_notes'):</label>
+								<textarea class="form-control" name="order_notes" id="message" rows="1" placeholder="@lang('orders.order_notes_ph')"></textarea>
 							</div>
 							@guest
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
 									<input type="checkbox" checked id="create_account" name="create_account">
-									<label for="create_account">Create an account?</label>
+									<label for="create_account">@lang('orders.create_account')</label>
 								</div>
 							</div>
 							@endguest
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
 									<input type="checkbox" id="toc" required name="accepted_toc">
-									<label for="toc">I've Read and Accepted <a href="{{route('privacyPolicy')}}" target="_blank">Privacy Policy</a> and <a href="{{route('toc')}}" target="_blank">Terms & Conditions</a></label>
+									<label for="toc">@lang('orders.read_n_accepted') <a href="{{route('privacyPolicy')}}" target="_blank">@lang('orders.privacy_policy')</a> @lang('orders.and') <a href="{{route('toc')}}" target="_blank">@lang('orders.terms')</a></label>
 								</div>
 							</div>
 							<input hidden name="order_weight" value="{{$OrderWeight}}">
@@ -140,13 +140,13 @@
 							<input hidden name="total_shipping_cost" value="0">
 							<input hidden name="total_shipping_tax" value="0">
 							<div class="col-md-12 form-group">
-								<button class="main_btn" type="submit" disabled title="Please Choose Country First">Porcced to Summary</button>
+								<button class="main_btn" type="submit" disabled title="@lang('orders.choose_country_first')">@lang('orders.to_summary')</button>
 							</div>
 						</form>
 					</div>
 					<div class="col-lg-5">
 						<div class="order_box p-3 mb-4">
-							<h2>Your Order</h2>
+							<h2>@lang('orders.ur_order')</h2>
 							<ul class="list">
 								@forelse ($CartItems as $CartItem)
 								<li>
@@ -158,19 +158,19 @@
 								@endforelse
 								@if($CouponDiscount)
 									<li>
-										<a href="#">Coupon Discount <span class="last text-success">- {{formatPrice($CouponDiscount).getCurrency()['symbole']}}</span></a>
+										<a href="#">@lang('orders.coupon_discount') <span class="last text-success">- {{formatPrice($CouponDiscount).getCurrency()['symbole']}}</span></a>
 									</li>
 								@endif
 							</ul>
 							<ul class="list list_2 mb-5">
-									<li><a href="#">Subtotal<span>{{formatPrice($TotalWithoutTax).getCurrency()['symbole']}}</span></a></li>
+									<li><a href="#">@lang('users.subtotal')<span>{{formatPrice($TotalWithoutTax).getCurrency()['symbole']}}</span></a></li>
 							</ul>
 						</div>
 						<div class="shipping-box order_box p-3">
-							<h2>Order Shpping</h2>
-							<p class="pl-0">Select the country you want us to ship the order to</p>
+							<h2>@lang('orders.order_shipping')</h2>
+							<p class="pl-0">@lang('orders.select_country_ship')</p>
 							<ul class="list list_2">
-								<li><a href="#">Shipping Total<span id="order_shipping_total">Select Country First</span></a></li>
+								<li><a href="#">@lang('orders.ship_total')<span id="order_shipping_total">@lang('orders.choose_country_first')</span></a></li>
 							</ul>
 						</div>
 					</div>
