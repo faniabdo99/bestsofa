@@ -381,6 +381,38 @@ a:hover, a:focus {
 ============================================================================================ */
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
+.error-page .error-illustration {
+  padding: 200px 30px;
+  height: 100vh;
+}
+.error-page .error-illustration .error-icon {
+  height: 300px;
+  width: 300px;
+  background: #be3a3a;
+  padding-top: 50px;
+  border-radius: 50%;
+  margin: 0 auto 35px auto;
+  text-align: center;
+}
+.error-page .error-illustration .error-icon img {
+  width: 200px;
+  height: 200px;
+}
+.error-page .error-illustration h2 {
+  text-align: center;
+  font-size: 80px;
+}
+.error-page .error-content {
+  background: #fff;
+  padding: 200px 30px;
+}
+.error-page .error-content h1 {
+  font-size: 90px;
+  color: #206fa1;
+}
+
+/*---------------------------------------------------- */
+/*----------------------------------------------------*/
 .active {
   color: #206fa1;
 }

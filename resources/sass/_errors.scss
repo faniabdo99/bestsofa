@@ -1,0 +1,33 @@
+.error-page{
+  .error-illustration{
+    padding: 200px 30px;
+    height: 100vh;
+    .error-icon{
+      height: 300px;
+      width: 300px;
+      background: $danger;
+      padding-top: 50px;
+      border-radius: 50%;
+      margin: 0 auto 35px auto;
+      text-align: center;
+
+      img{
+        width: 200px;
+        height: 200px;
+      }
+    }
+    h2{
+      text-align: center;
+      font-size: 80px;
+    }
+  }
+  .error-content{
+    background: #fff;
+    padding: 200px 30px;
+    h1{
+      font-size: 90px;
+      color:$baseColor;
+    }
+  }
+
+}
