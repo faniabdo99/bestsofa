@@ -33,10 +33,10 @@
                                                 <textarea class="form-control" name="description_value" rows="6"
                                                     placeholder="{{$Product->description}}">{{$CurrentLocalValues->description_value ?? ''}}</textarea>
                                             </div>
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label>{{$Single}} Body</label>
                                                 <textarea id="{{$Single}}" class="editor" name="body_value" placeholder="{{$Product->body}}">{{$CurrentLocalValues->body_value ?? ''}}</textarea>
-                                            </div>
+                                            </div> --}}
                                     </div>
                                     <button class="btn btn-primary submit-form" action-route="{{route('admin.products.postLocalize')}}">Submit {{$Single}} Translation</button>
                                     </form>

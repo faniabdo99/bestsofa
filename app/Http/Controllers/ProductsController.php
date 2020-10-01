@@ -202,7 +202,7 @@ class ProductsController extends Controller{
         $Rules = [
             'title_value' => 'required|min:5|max:255',
             'description_value' => 'required|min:25',
-            'body_value' => 'required|min:25',
+            // 'body_value' => 'required|min:25',
             'lang_code' => 'required',
             'product_id' => 'required'
         ];
@@ -217,6 +217,7 @@ class ProductsController extends Controller{
             //Check if this is existing and update it accordingly
             $LocalizedData = Product_Local::where('lang_code' , $r->lang_code)->where('product_id' , $r->product_id)->first();
             $LocalizedDataFromRequest = $r->all();
+            $LocalizedDataFromRequest['body_value'] = $r->description_value;
             if($LocalizedData != null){
                 //Update
                 $LocalizedData->update($LocalizedDataFromRequest);
