@@ -57,7 +57,7 @@
             var Elem = $(this);
             var ActionRoute = Elem.attr('action-route');
             var FormData = Elem.parent().find('form').serialize();
-            FormData = FormData + tinyMCE.activeEditor.getContent();
+            // FormData = FormData + tinyMCE.activeEditor.getContent();
             $.ajax({
                 method: 'POST',
                 url: ActionRoute,
