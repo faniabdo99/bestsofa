@@ -1,10 +1,10 @@
 <div style="padding:40px;">
-  <h1>Email Recived</h1>
-  <p>We have recived your email at UK Fashion Shop<br>
-  <b>Your Message :</b><br>
+  <h1>@lang('mails.pages.contact_email_received')</h1>
+  <p>@lang('mails.pages.contact_email_received_paragraph')<br>
+  <b>@lang('mails.pages.contact_email_received_your_message') :</b><br>
   {{$EmailData['message']}}
   <br>
   </p>
-  Thanks,<br>
-  UK Fashion Shop LLC
+  @lang('mails.mails.thanks'),<br>
+  @lang('mails.mails.sender')
 </div>

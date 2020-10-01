@@ -1,12 +1,12 @@
 @component('mail::message')
-# Reset Your Password
-Hello , {{$email_data->name}} , <br>
-You requested to reset your password on UK Fashion Shop , Please click the link below to do so . <br>
-if you don't know about this request , you can safley ignore this message and your account will be secure .
+# @lang('mails.users.reset_password')
+@lang('mails.mails.hello'), {{$email_data->name}} , <br>
+@lang('mails.users.reset_password_first_paragraph') <br>
+@lang('mails.users.reset_password_second_paragraph')
 @component('mail::button', ['url' => route('reset.finalStep' , $email_data->code)])
-Reset Your Password
+@lang('mails.users.reset_password')
 @endcomponent
 
-Thanks,<br>
+@lang('mails.mails.thanks'),<br>
 {{ config('app.name') }}
 @endcomponent

@@ -1,8 +1,8 @@
 @component('mail::message')
-# New Order in UK Fashion Shop
-Hello, this email is to inform you that you have new order at uk fashion shop <br><br>
-Please login to admin panel to view the order details
+# @lang('mails.orders.new_order')
+@lang('mails.orders.first_paragraph') <br><br>
+@lang('mails.orders.second_paragraph')
 <br><br>
-Thanks,<br>
+@lang('mails.mails.thanks'),<br>
 {{ config('app.name') }}
 @endcomponent

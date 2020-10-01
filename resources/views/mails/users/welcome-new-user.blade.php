@@ -1,10 +1,10 @@
 <div style="padding:40px;">
-  <h1>Welcome</h1>
-  <p>Welcome to UK Fashion Shop , <b>{{$EmailData['first_name']}}</b><br>
-  Please take a moment to confirm your email , you won't be able to place orders or buy any items unless you do this .</p>
+  <h1>@lang('mails.users.welcome')</h1>
+  <p>@lang('mails.mails.welcome'), <b>{{$EmailData['first_name']}}</b><br>
+    @lang('mails.users.new_user_first_paragraph')</p>
   @component('mail::button', ['url' => route('account.activate' , $EmailData['code'])])
-  Confirm My Account
+  @lang('mails.users.confirm')
   @endcomponent
-  Thanks,<br>
-  UK Fashion Shop LLC
+  @lang('mails.users.thanks'),<br>
+  @lang('mails.users.sender')
 </div>

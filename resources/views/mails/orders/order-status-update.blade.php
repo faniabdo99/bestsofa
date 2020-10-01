@@ -1,15 +1,15 @@
 @component('mail::message')
-# Order Status Updated
-Hello {{$TheOrder->first_name}}, Your Order Status Has Been Updated<br>
-Your Current Order Status is <b>{{$TheOrder->status}}</b>
+# @lang('mails.orders.status_updated')
+@lang('mails.mails.hello') {{$TheOrder->first_name}}, @lang('mails.orders.status_updated_first_paragraph')<br>
+@lang('mails.orders.status_updated_current_status') <b>{{$TheOrder->status}}</b>
 @if($TheOrder->tracking_link)
   <br>
-  You Can Track Your Order Shipping From This Link
+  @lang('mails.orders.status_updated_tracking_link')
 @component('mail::button', ['url' => $TheOrder->tracking_link])
-Track & Trace
+@lang('mails.orders.status_updated_track_and_trace')
 @endcomponent
 @endif
 
-Thanks,<br>
+@lang('mails.mails.thanks'),<br>
 {{ config('app.name') }}
 @endcomponent
