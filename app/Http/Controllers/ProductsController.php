@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use Mail;
+use DB;
 use Carbon\Carbon;
 //Models
 use App\Setting;
