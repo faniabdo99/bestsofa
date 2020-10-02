@@ -22,29 +22,29 @@ class CartController extends Controller{
         //Check if the product viable
         $Product = Product::find($r->product_id);
         if(!$Product || $Product->inventory_value <= 0 || $Product->status == 'Sold Out' || $Product->status == 'Invisible'){
-            return response("This item is not available for sell right now" , 404);
+            return response( __('controllers.cart_item_not_available') , 404);
         }else{
             //Check the current cart
             $UserCart = Cart::where('user_id' , $CartData['user_id'])->where('product_id' , $r->product_id)->where('status','active')->whereDate('created_at' , Carbon::today())->first();
             if($UserCart){
                 if($UserCart->qty >= $Product->inventory_value){
-                      return response("The Maximum Availabe Amount For This Product is " .$Product->inventory_value  , 404);
+                      return response(__('controllers.cart_max_amount') .$Product->inventory_value  , 404);
                 }
             }
             if($Product->inventory_value < $r->qty){
-                 return response("The Maximum Availabe Amount For This Product is " .$Product->inventory_value  , 404);
+                 return response(__('controllers.cart_max_amount') .$Product->inventory_value  , 404);
             }elseif($Product->min_order > $r->qty){
-                return response('The Minimum Order of This Product is '.$Product->min_order  , 404);
+                return response(__('controllers.cart_min_amount').$Product->min_order  , 404);
             }
             $CartData['qty'] = ($r->qty ? $r->qty : 1);
             $CurrentCart = Cart::where('product_id' , $CartData['product_id'])->where('user_id' , $CartData['user_id'])->whereDate('created_at' , Carbon::today())->where('status' , 'active')->first();
             if($CurrentCart){
                 $CurrentCart->update(['qty' => $CurrentCart->qty + $CartData['qty']]);
-                return "Item Added to Cart";
+                return __('controllers.cart_item_added');
             }else{
                 $CartData['product_id'] = $Product->id;
                 Cart::create($CartData);
-                return "Item Added to Cart";
+                return __('controllers.cart_item_added');
             }
         }
     }
@@ -54,24 +54,24 @@ class CartController extends Controller{
             $CartItem->update([
                 'status' => 'deleted'
             ]);
-            return redirect()->route('cart')->withSuccess('Cart Item Deleted Successfully');
+            return redirect()->route('cart')->withSuccess(__('controllers.cart_item_deleted'));
         }else{
-            return redirect()->route('cart')->withError('This Cart Item Doesn\'t Exist');
+            return redirect()->route('cart')->withError(__('controllers.cart_item_doesnt_exist'));
         }
     }
     public function postUpdate(Request $r){
         //Get the cart item
         $CartItem = Cart::where('id' , $r->item_id)->where('user_id' , $r->user_id)->where('status' , 'active')->whereDate('created_at' , Carbon::today())->first();
         if($CartItem->Product->inventory_value < $r->qty){
-            return response("The Maximum Availabe Amount For This Product is " .$CartItem->Product->inventory_value  , 404);
+            return response(__('controllers.cart_max_amount') .$CartItem->Product->inventory_value  , 404);
         }else{
             if($CartItem){
                 $CartItem->update([
                     'qty' => $r->qty
                 ]);
-                return response("Cart Value Updated");
+                return response(__('controllers.cart_value_updated'));
             }else{
-                return response("This cart item is not available" , 404);
+                return response(__('controllers.cart_item_not_available') , 404);
             }
         }
 

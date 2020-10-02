@@ -1,10 +1,10 @@
 @component('mail::message')
-# Welcome to UK Fashion Shop
-Welcome to UK Fashion Shop, Your are one step behind of getting your account, you just need to choose a password! <br>
-Click the link below to do so.
+# @lang('mails.mails.welcome')
+@lang('mails.mails.welcome'), @lang('mails.users.one_step_behind') <br>
+@lang('mails.users.click_the_link')
 @component('mail::button', ['url' => route('setPassword.get' , $EmailData->id)])
-Set Your Password
+@lang('mails.users.set_your_password')
 @endcomponent
-Thanks,<br>
+@lang('mails.mails.thanks'),<br>
 {{ config('app.name') }}
 @endcomponent

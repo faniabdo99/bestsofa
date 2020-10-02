@@ -22,15 +22,15 @@ class ContactUsController extends Controller{
         'message' => 'required'
       ];
       $ErrorMessages = [
-        'name.required' => 'Your name is required',
-        'name.min' => 'Your name can\'t be less than 4 letters',
-        'name.max' => 'Your name can\'t be longer than 50 letters',
-        'email.required' => 'Your email is required',
-        'email.email' => 'Your email is invalid',
-        'subject.required' => 'The Message Subject is Required',
-        'phone_number.required' => 'Your Phone Number is Required',
-        'country.required' => 'Your Country is Required',
-        'message.required' => 'The Message is Required'
+        'name.required' => __('controllers.contact_validation_name_required'),
+        'name.min' => __('controllers.contact_validation_name_min'),
+        'name.max' => __('controllers.contact_validation_name_max'),
+        'email.required' => __('controllers.contact_validation_email_required'),
+        'email.email' => __('controllers.contact_validation_email_email'),
+        'subject.required' => __('controllers.contact_validation_subject_required'),
+        'phone_number.required' => __('controllers.contact_validation_phone_number_required'),
+        'country.required' => __('controllers.contact_validation_country_required'),
+        'message.required' => __('controllers.contact_validation_message_required'),
       ];
       $validator = Validator::make($r->all() , $Rules , $ErrorMessages);
       if($validator->fails()){
@@ -39,7 +39,7 @@ class ContactUsController extends Controller{
         //Do the contact
         Mail::to('test@admin.com')->send(New ContactUsMail($r->all()));
         Mail::to($r->email)->send(New ContactEmailRecived($r->all()));
-        return back()->withSuccess('Your Message Has Been Recived , Thank You!');
+        return back()->withSuccess(__('controllers.contact_validation_message_received'),);
       }
     }
 }

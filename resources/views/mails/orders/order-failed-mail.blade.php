@@ -1,10 +1,10 @@
 @component('mail::message')
-# Order Failed
-We are sorry to tell you that the payment has failed, You may try again anytime you want<br>
-In case you are a registered user, You can find all your orders under your account page and try again there
+# @lang('mails.orders.order_failed')
+@lang('mails.orders.order_failed_first_paragraph')<br>
+@lang('mails.orders.order_failed_second_paragraph')
 @component('mail::button', ['url' => route('checkout.payment' , $TheOrder->id)])
-Try Payment Again
+@lang('mails.orders.order_failed_try_payment_again')
 @endcomponent
-Thanks,<br>
+@lang('mails.mails.thanks'),<br>
 {{ config('app.name') }}
 @endcomponent

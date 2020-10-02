@@ -13,15 +13,15 @@
         <h2>404</h2>
       </div>
       <div class="col-lg-6 col-12 error-content">
-        <h1>Lost You'r Way There?</h1>
-        <p>Error 404, This Page Cannot Be Found!</p>
-        <b>Possible Reasons</b>
+        <h1>@lang('errors.404_lost')</h1>
+        <p>@lang('errors.404_not_found')</p>
+        <b>@lang('errors.404_possible_reasons')</b>
         <ul>
-          <li>This Page Has Been Moved / Deleted</li>
-          <li>The Order You'r Looking For is not Available</li>
-          <li>There is Missing Data in the Chain</li>
+          <li>@lang('errors.404_moved_deleted')</li>
+          <li>@lang('errors.404_order_not_available')</li>
+          <li>@lang('errors.404_missing_data')</li>
         </ul>
-        <a class="main_btn" href="{{route('product.home')}}">Continue Shopping</a>
+        <a class="main_btn" href="{{route('product.home')}}">@lang('errors.continue_shopping')</a>
       </div>
     </div>
   </div>

@@ -1,9 +1,9 @@
 @component('mail::message')
-# Order Invoice
-Hello, {{$EmailData->first_name}}, Please find the attached invoice file for your order in UK Fashion Shop.<br>
+# @lang('mails.orders.order_invoice')
+@lang('mails.mails.hello'), {{$EmailData->first_name}}, @lang('mails.orders.order_invoice_first_paragraph')<br>
 <br>
-<b>Order ID:</b> {{$EmailData->serial_number}}<br>
-<b>Total:</b> {{$EmailData->total}}€<br>
-Thanks,<br>
+<b>@lang('mails.orders.order_invoice_order_id'):</b> {{$EmailData->serial_number}}<br>
+<b>@lang('mails.orders.order_invoice_total'):</b> {{$EmailData->total}}€<br>
+@lang('mails.mails.thanks'),<br>
 {{ config('app.name') }}
 @endcomponent

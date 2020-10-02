@@ -1,12 +1,12 @@
 <div style="padding:40px;">
-  <h1>New Email From UK Fashion Shop</h1>
-  <p>You have new message from UK Fashion Shop contact us page.<br>
+  <h1>@lang('mails.pages.contact_us')</h1>
+  <p>@lang('mails.pages.contact_us_paragraph')<br>
   <b>{{$EmailData['subject']}}</b><br>
   {{$EmailData['message']}}
   <br>
   <b style="margin-top:50px;display:block;">{{$EmailData['name']}}</b> {{$EmailData['email']}} <br>
   {{$EmailData['country']}} - {{$EmailData['phone_number']}}
   </p>
-  Thanks,<br>
-  UK Fashion Shop LLC
+  @lang('mails.mails.thanks'),<br>
+  @lang('mails.mails.sender')
 </div>
