@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use Mail;
+use DB;
 use Carbon\Carbon;
 //Models
 use App\Setting;
@@ -37,12 +38,8 @@ class ProductsController extends Controller{
     }
     public function getNew(){
         $AllCategories = Category::latest()->get();
-        $NextProductIdQuery = Product::latest()->first();
-        if($NextProductIdQuery == null){
-            $NextProductId = 1;
-        }else{
-            $NextProductId = $NextProductIdQuery->id + 1;
-        }
+        $id = DB::select("SHOW TABLE STATUS LIKE 'products'");
+        $NextProductId= $id[0]->Auto_increment;
         $ReadyToUseTagsArray = $this->getAllTags();
         $DiscountsList = Discount::whereDate('valid_until' , '>' , Carbon::today())->get();
         return view('admin.product.new' , compact('AllCategories' , 'NextProductId' , 'ReadyToUseTagsArray' , 'DiscountsList'));
