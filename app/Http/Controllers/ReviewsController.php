@@ -19,13 +19,13 @@ class ReviewsController extends Controller{
         $TheReview = Review::where('user_id',auth()->user()->id)->where('product_id',$r->product_id)->first();
         if($TheReview){
           $TheReview->update(['review' => $r->review , 'rate' => $r->rate]);
-          return back()->withSuccess('Your Review Have Been Updated');
+          return back()->withSuccess(__('controllers.review_updated'));
         }else{
           //Create the review
           $ReviewData = $r->all();
           $ReviewData['user_id'] = auth()->user()->id;
           Review::create($ReviewData);
-          return back()->withSuccess('Thank You For Your Review');
+          return back()->withSuccess(__('controllers.review_thanks'));
         }
       }
     }

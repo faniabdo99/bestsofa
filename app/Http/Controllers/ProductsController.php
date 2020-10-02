@@ -290,12 +290,12 @@ class ProductsController extends Controller{
             'message' => 'required'
         ];
         $Messages = [
-            'name.required' => 'Your name is required !',
-            'email.email' => 'Your Email is invalid !',
-            'email.required' => 'Your email is required !',
-            'phone_number.required' => 'Your number is required !',
-            'country.required' => 'Your country is required !',
-            'message.required' => 'Your message is required !',
+            'name.required' => __('controllers.product_Q_validation_name_required'),
+            'email.email' => __('controllers.product_Q_validation_email_email'),
+            'email.required' => __('controllers.product_Q_validation_email_required'),
+            'phone_number.required' => __('controllers.product_Q_validation_phone_number_required'),
+            'country.required' => __('controllers.product_Q_validation_country_required'),
+            'message.required' => __('controllers.product_Q_validation_message_required')
         ];
         $validator = Validator::make($r->all() , $Rules ,$Messages);
         if($validator->fails()){
@@ -303,7 +303,7 @@ class ProductsController extends Controller{
         }else{
             //Send Message to The Admin
             Mail::to('admin@ukfashioshop.com')->send(new QuestionAboutProduct($r->all()));
-            return response("Your Question was recived m you'll hear from us soon");
+            return response(__('controllers.product_Q_received'));
         }
     }
 }

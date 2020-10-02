@@ -37,15 +37,15 @@ class UsersController extends Controller{
         'password' => 'min:6|required_with:password-conf|same:password-conf'
       ];
       $ErrorMessages = [
-        'first_name.required' => 'Your name is required',
-        'first_name.min' => 'Your name can\'t be less than 4 letters',
-        'first_name.max' => 'Your name can\'t be longer than 50 letters',
-        'email.required' => 'Your email is required',
-        'email.email' => 'Your email is invalid',
-        'email.unique' => 'This email is already taken',
-        'password.required' => 'The password is required',
-        'password.min' => 'The password can\'t be less than 7 letters',
-        'password.same' => 'Password confirmation doesn\'t match',
+        'first_name.required' => __('controllers.signup_validation_first_name_required'),
+        'first_name.min' => __('controllers.signup_validation_first_name_min'),
+        'first_name.max' => __('controllers.signup_validation_first_name_max'),
+        'email.required' => __('controllers.signup_validation_email_required'),
+        'email.email' => __('controllers.signup_validation_email_email'),
+        'email.unique' => __('controllers.signup_validation_email_unique'),
+        'password.required' => __('controllers.signup_validation_password_required'),
+        'password.min' => __('controllers.signup_validation_password_min'),
+        'password.same' => __('controllers.signup_validation_password_same')
       ];
       $validator = Validator::make($r->all() , $Rules , $ErrorMessages);
       if($validator->fails()){
@@ -61,7 +61,7 @@ class UsersController extends Controller{
         Auth::loginUsingId($NewUser->id);
         //Send Confirmation Email to the user
         Mail::to($r->email)->send(new WelcomeNewUser($UserData));
-        return back()->withSuccess('User Has Been Created Successfully');
+        return back()->withSuccess(__('controllers.account_created'));
       }
     }
     /*============================ Handmade Login*/
@@ -75,9 +75,9 @@ class UsersController extends Controller{
         'password' => 'required'
       ];
       $ErrorMessages = [
-        'email.required' => 'Your Email is Required',
-        'email.email' => 'This Email is invalid',
-        'password.required' => 'Your Password is Required'
+        'email.required' => __('controllers.login_validation_email_required'),
+        'email.email' => __('controllers.login_validation_email_email'),
+        'password.required' => __('controllers.login_validation_password_required')
       ];
       $validator = Validator::make($r->all() , $Rules , $ErrorMessages);
       if($validator->fails()){
@@ -88,7 +88,7 @@ class UsersController extends Controller{
         if(auth()->attempt(['email' => $r->email , 'password' => $r->password] , $KeepLogin)){
                  return redirect()->route('home');
          }else{
-                return back()->withErrors('These info don\'t match our records !')->withInput();
+                return back()->withErrors(__('controllers.login_info_no_match'))->withInput();
           }
       }
     }
@@ -144,10 +144,10 @@ class UsersController extends Controller{
       if($TheUser != null){
         //Get the code and send it
         Mail::to($TheUser->email)->send(new ResetPasswordMail($TheUser));
-        return back()->withSuccess('If the email exists , You will recive an email from us shortly');
+        return back()->withSuccess(__('controllers.reset_password_will_receive_email'));
       }else{
         //Do Nothing Basically ...
-        return back()->withSuccess('If the email exists , You will recive an email from us shortly');
+        return back()->withSuccess(__('controllers.reset_password_will_receive_email'));
       }
     }
   }
@@ -173,7 +173,7 @@ class UsersController extends Controller{
       $TheUser->update([
         'password' => Hash::make($r->password),
       ]);
-      return redirect()->route('home')->withSuccess('Your Password Has Been Updated');
+      return redirect()->route('home')->withSuccess(__('controllers.reset_password_success'));
     }
   }
   public function resetFinalStep($code){
@@ -203,9 +203,9 @@ class UsersController extends Controller{
         //Life is good, keep going
         $TheUser->update(['password' => Hash::make($r->password)]);
         Auth::loginUsingId($TheUser->id);
-        return redirect()->route('home')->withSuccess('Your Password Has Been Changed !');
+        return redirect()->route('home')->withSuccess(__('controllers.reset_password_success'));
       }else{
-        return back()->withErrors('Please use your registered account email');
+        return back()->withErrors(__('controllers.reset_password_use_registered_email'));
       }
     }
   }
@@ -233,18 +233,18 @@ class UsersController extends Controller{
       $Rules['email'] = 'required|email|unique:users';
     }
     $ErrorMessages = [
-      'first_name.required' => 'Your name is required',
-      'first_name.min' => 'Your name can\'t be less than 4 letters',
-      'first_name.max' => 'Your name can\'t be longer than 50 letters',
-      'email.required' => 'Your email is required',
-      'email.required' => 'Your email is required',
-      'email.email' => 'Your email is invalid',
-      'email.unique' => 'This email is already taken',
-      'image.image' => 'This image file is invalid',
-      'image.max' => 'The image is too large , 5 MB is the Maximum amount',
-      'password.required' => 'The password is required',
-      'password.min' => 'The password can\'t be less than 7 letters',
-      'password.same' => 'Password confirmation doesn\'t match',
+      'first_name.required' => __('controllers.signup_validation_first_name_required'),
+      'first_name.min' => __('controllers.signup_validation_first_name_min'),
+      'first_name.max' => __('controllers.signup_validation_first_name_max'),
+      'email.required' => __('controllers.signup_validation_email_required'),
+      'email.email' => __('controllers.signup_validation_email_email'),
+      'email.unique' => __('controllers.signup_validation_email_unique'),
+      'password.required' => __('controllers.signup_validation_password_required'),
+      'password.min' => __('controllers.signup_validation_password_min'),
+      'password.same' => __('controllers.signup_validation_password_same'),
+
+      'image.image' => __('controllers.update_validation_image_image'),
+      'image.max' => __('controllers.update_validation_image_max')
     ];
     $validator = Validator::make($r->all() , $Rules , $ErrorMessages);
     if($validator->fails()){
@@ -267,11 +267,11 @@ class UsersController extends Controller{
             //The Current Pass is True , Update the password
             $UserData['password'] = Hash::make($r->password);
           }else{
-            return back()->withErrors("Current Password is not correct");
+            return back()->withErrors(__('controllers.update_wrong_current_password'));
           }
         }
         $TheUser->update($UserData);
-        return back()->withSuccess('Your Info Has Been Updated');
+        return back()->withSuccess(__('controllers.update_success'));
       }else{
         abort(403);
       }
@@ -283,9 +283,9 @@ class UsersController extends Controller{
     if(!$TheUser->confirmed){
       //Send The Email
       Mail::to($TheUser->email)->send(new WelcomeNewUser($TheUser));
-      return "We Sent You Activation Email !";
+      return __('controllers.activation_mail_sent');
     }else{
-      return "Your Account is Active";
+      return __('controllers.activation_mail_account_already_active');
     }
   }
   public function activateAccount($code){
