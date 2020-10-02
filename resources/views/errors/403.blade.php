@@ -13,14 +13,14 @@
         <h2>403</h2>
       </div>
       <div class="col-lg-6 col-12 error-content">
-        <h1>You Shouldn't be Here!</h1>
-        <p>Error 403, Access Forbidden</p>
-        <b>Possible Reasons</b>
+        <h1>@lang('errors.403_should_not_be_here')</h1>
+        <p>@lang('errors.403_access_forbidden')</p>
+        <b>@lang('errors.403_possible_reasons')</b>
         <ul>
-          <li>Your Are Not Logged in</li>
-          <li>The Data Your Trying to Access Belongs to Someone Else</li>
+          <li>@lang('errors.403_not_logged_in')</li>
+          <li>@lang('errors.403_data_access')</li>
         </ul>
-        <a class="main_btn" href="{{route('product.home')}}">Continue Shopping</a>
+        <a class="main_btn" href="{{route('product.home')}}">@lang('errors.continue_shopping')</a>
       </div>
     </div>
   </div>
