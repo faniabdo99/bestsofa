@@ -88,7 +88,7 @@ class CoupounsController extends Controller{
                 //Check if coupon is bigger than the actual cart
                 if($TheCoupon->discount_type == 'fixed'){
                     if($CartSubTotalArray->sum() < $TheCoupon->DiscountValue){
-                        return back()->withErrors('The Coupon Value is Bigger Than the Order Value !');
+                        return back()->withErrors(__('controllers.coupon_bigger_than_order'));
                     }
                 }
                 if($UserCart){
@@ -106,14 +106,14 @@ class CoupounsController extends Controller{
                     //Decrease The Coupon Amount By One
                     $TheCoupon->amount = $TheCoupon->amount - 1;
                     $TheCoupon->save();
-                    return back()->withSuccess('Coupon ' .$TheCoupon->coupoun_code.' Has Been Applied !');
+                    return back()->withSuccess(__('controllers.coupon') .$TheCoupon->coupoun_code. __('controllers.coupon_applied'));
                 }else{
-                    return back()->withErrors('You Don\'t Have Any Products in Your Cart !');
+                    return back()->withErrors(__('controllers.coupon_no_products'));
                 }
 
 
             }else{
-                return back()->withErrors('You Can\'t Use This Coupon Again !');
+                return back()->withErrors(__('controllers.coupon_cant_use'));
             }
         }else{
             abort(403);
