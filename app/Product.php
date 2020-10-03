@@ -7,10 +7,10 @@ class Product extends Model{
     //Relations Methods
     public function Category(){
         return $this->belongsTo(Category::class)->withDefault([
-            'title' => 'Deleted Category',
+            'title' => __('models.deleted_category'),
             'slug' => 'deleted-category',
             'image' => 'category.png',
-            'description' => 'Deleted Category'
+            'description' => __('models.deleted_category')
         ]);
     }
 

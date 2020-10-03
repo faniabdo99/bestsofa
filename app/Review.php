@@ -6,7 +6,7 @@ class Review extends Model{
     protected $guarded = [];
     public function User(){
       return $this->belongsTo(User::class , 'user_id')->withDefault([
-        'name' => 'Deleted User'
+        'name' => __('models.deleted_user')
       ]);
     }
 }

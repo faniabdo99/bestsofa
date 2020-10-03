@@ -10,7 +10,7 @@ class Favourite extends Model{
     }
     public function Product(){
         return $this->belongsTo(Product::class)->withDefault([
-            'title' => 'Deleted Product',
+            'title' => __('models.deleted_product'),
         ]);
     }
 }
