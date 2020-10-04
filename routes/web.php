@@ -4,7 +4,7 @@ Route::get('change-lang/{locale}', 'HomeController@changeLang')->name('changeLan
 Route::get('/' , 'HomeController@getHome')->name('home');
 Route::get('/change-currency/{currency}/{currency_code}' , 'CurrencyController@setCurrency')->name('currency.change');
 Route::get('/success' , 'OrdersController@orderSuccess')->name('order.success');
-Route::get('privay-policy' , 'PagesController@getPrivacyPolicy')->name('privacyPolicy');
+Route::get('privacy-policy' , 'PagesController@getPrivacyPolicy')->name('privacyPolicy');
 Route::get('terms-and-conditions' , 'PagesController@getTOC')->name('toc');
 //Not Logged In Routes
 Route::middleware('guest')->group(function(){
