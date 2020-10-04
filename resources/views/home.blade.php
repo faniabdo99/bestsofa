@@ -1,4 +1,5 @@
 @include('layout.header', ['PageTitle' => __('titles.home')])
+
 <body>
 	<!--================Header Menu Area =================-->
 	@include('layout.navbar')
@@ -6,14 +7,17 @@
 	<!--================Home Banner Area =================-->
 	<section class="banner_area" id="homepage-hero">
 		<div class="banner_inner">
-				<div class="container">
-						<div class="banner_content text-center">
-							<h1>@lang('homepage.header')</h1>
-							<p>@lang('homepage.subheader')</p>
-							<a class="white_bg_btn" href="{{route('product.home')}}">@lang('homepage.cta')</a>
-						</div>
+			<div class="container">
+				<div class="banner_content text-center">
+					<h1>
+						@lang('homepage.header')</h1>
+							<p>
+								@lang('homepage.subheader')</p>
+									<a class="white_bg_btn" href="{{route('product.home')}}">
+										@lang('homepage.cta')</a>
 				</div>
 			</div>
+		</div>
 	</section>
 	<!--================End Home Banner Area =================-->
 	<!--================Feature Product Area =================-->
@@ -22,8 +26,10 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="main_title">
-						<h2>@lang('homepage.featured-products-header')</h2>
-						<p>@lang('homepage.featured-products-subheader')</p>
+						<h2>
+							@lang('homepage.featured-products-header')</h2>
+								<p>
+									@lang('homepage.featured-products-subheader')</p>
 					</div>
 				</div>
 				<div class="row">
@@ -77,8 +83,9 @@
 						</div>
 						@endif
 						@empty
-						<p>@lang('homepage.featured-products-no-items')</p>
-						@endforelse
+						<p>
+							@lang('homepage.featured-products-no-items')</p>
+								@endforelse
 				</div>
 			</div>
 		</div>
@@ -92,8 +99,10 @@
 					<div class="hot_deal_box">
 						<img class="img-fluid" src="{{url('public/img')}}/product/hot_deals/deal1.jpg" alt="">
 						<div class="content">
-							<h2>@lang('homepage.deal-1-header')</h2>
-							<p>@lang('homepage.deal-1-subheader')</p>
+							<h2>
+								@lang('homepage.deal-1-header')</h2>
+									<p>
+										@lang('homepage.deal-1-subheader')</p>
 						</div>
 						<a class="hot_deal_link" href="{{route('signup.get')}}"></a>
 					</div>
@@ -103,8 +112,10 @@
 					<div class="hot_deal_box">
 						<img class="img-fluid" src="{{url('public/img')}}/product/hot_deals/deal1.jpg" alt="">
 						<div class="content">
-							<h2>@lang('homepage.deal-2-header')</h2>
-							<p>@lang('homepage.deal-2-subheader')</p>
+							<h2>
+								@lang('homepage.deal-2-header')</h2>
+									<p>
+										@lang('homepage.deal-2-subheader')</p>
 						</div>
 						<a class="hot_deal_link" href="{{route('product.home')}}"></a>
 					</div>
@@ -118,9 +129,12 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12 col-lg-6">
-					<h2 class="text-dark">@lang('homepage.about-us-header')</h2>
-					<p class="text-muted">@lang('homepage.about-us-subheader')</p>
-					<p>@lang('homepage.about-us-content')</p>
+					<h2 class="text-dark">
+						@lang('homepage.about-us-header')</h2>
+							<p class="text-muted">
+								@lang('homepage.about-us-subheader')</p>
+									<p>
+										@lang('homepage.about-us-content')</p>
 				</div>
 				<div class="col-12 col-lg-6">
 					<iframe src="//www.youtube.com/embed/rRFIoI1sBMw" frameborder="0" allowfullscreen=""></iframe>
@@ -135,19 +149,40 @@
 		<div class="container-fluid">
 			<div class="clients_slider owl-carousel">
 				<div class="item">
-					<img src="{{url('public/img')}}/clients-logo/c-logo-1.png" alt="">
+					<img src="{{url('public/img')}}/clients-logo/abercrombie-fitch.png" alt="abercrombie-fitch">
 				</div>
 				<div class="item">
-					<img src="{{url('public/img')}}/clients-logo/c-logo-2.png" alt="">
+					<img src="{{url('public/img')}}/clients-logo/addidas.png" alt="addidas">
 				</div>
 				<div class="item">
-					<img src="{{url('public/img')}}/clients-logo/c-logo-3.png" alt="">
+					<img src="{{url('public/img')}}/clients-logo/animal.png" alt="animal">
 				</div>
 				<div class="item">
-					<img src="{{url('public/img')}}/clients-logo/c-logo-4.png" alt="">
+					<img src="{{url('public/img')}}/clients-logo/apricot.png" alt="Apricot">
 				</div>
 				<div class="item">
-					<img src="{{url('public/img')}}/clients-logo/c-logo-5.png" alt="">
+					<img src="{{url('public/img')}}/clients-logo/asos.png" alt="Asos">
+				</div>
+				<div class="item">
+					<img src="{{url('public/img')}}/clients-logo/boohoo.png" alt="Boohoo">
+				</div>
+				<div class="item">
+					<img src="{{url('public/img')}}/clients-logo/boss.png" alt="Boss">
+				</div>
+				<div class="item">
+					<img src="{{url('public/img')}}/clients-logo/burton-logo.png" alt="Burton">
+				</div>
+				<div class="item">
+					<img src="{{url('public/img')}}/clients-logo/f_f.png" alt="F&F">
+				</div>
+				<div class="item">
+					<img src="{{url('public/img')}}/clients-logo/h_m.png" alt="H&M">
+				</div>
+				<div class="item">
+					<img src="{{url('public/img')}}/clients-logo/tommy-hilfiger.png" alt="Tommy Hilfiger">
+				</div>
+				<div class="item">
+					<img src="{{url('public/img')}}/clients-logo/zara.png" alt="Zara">
 				</div>
 			</div>
 		</div>

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Validator;
 use Mail;
@@ -37,9 +35,9 @@ class ContactUsController extends Controller{
         return back()->withErrors($validator->errors()->all())->withInput();
       }else{
         //Do the contact
-        Mail::to('test@admin.com')->send(New ContactUsMail($r->all()));
+        Mail::to('faniabdo99@gmail.com')->send(New ContactUsMail($r->all()));
         Mail::to($r->email)->send(New ContactEmailRecived($r->all()));
-        return back()->withSuccess(__('controllers.contact_validation_message_received'),);
+        return back()->withSuccess(__('controllers.contact_message_received'));
       }
     }
 }
