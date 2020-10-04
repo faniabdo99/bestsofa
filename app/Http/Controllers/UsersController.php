@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 //Packages
 use Illuminate\Http\Request;
 use Validator;
+use App;
+
 use Auth;
 use Hash;
 use Mail;
@@ -275,7 +277,6 @@ class UsersController extends Controller{
       }else{
         abort(403);
       }
-
     }
   }
   public function sendActivateEmail(Request $r){
