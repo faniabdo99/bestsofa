@@ -78,7 +78,7 @@
                 </tr>
                 </tbody>
             </table>
-            <h3>@lang('orders.shipping_details')</h3>
+            <h3>@lang('orders.ship_details')</h3>
             @if($TheOrder->pickup_at_store == 'yes')
             <p class="pl-0">@lang('orders.collect_from_warehouse')</p>
             <p class="pl-0">@lang('orders.warehouse_address')</p>

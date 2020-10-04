@@ -161,7 +161,7 @@
                 @if(!isset(request()->route()->parameters()['processed']))
                     <div class="row">
                         <div class="col-12">
-                            <a href="{{route('checkout.payment' , $TheOrder->id)}}" class="btn btn-primary" id="next_step">@lang('users.next_step')</a>
+                            <a href="{{route('checkout.payment' , $TheOrder->id)}}" class="btn btn-primary" id="next_step">@lang('orders.next_step')</a>
                         </div>
                     </div>
                     @endif

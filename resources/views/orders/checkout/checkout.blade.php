@@ -162,7 +162,7 @@
 								@endif
 							</ul>
 							<ul class="list list_2 mb-5">
-									<li><a href="#">@lang('users.subtotal')<span>{{formatPrice($TotalWithoutTax).getCurrency()['symbole']}}</span></a></li>
+									<li><a href="#">@lang('orders.subtotal')<span>{{formatPrice($TotalWithoutTax).getCurrency()['symbole']}}</span></a></li>
 							</ul>
 						</div>
 						<div class="shipping-box order_box p-3">
