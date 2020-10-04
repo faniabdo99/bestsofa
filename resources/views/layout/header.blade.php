@@ -24,7 +24,7 @@
 	@auth
 	<meta name="user_id" content="{{auth()->user()->id}}">
 	@endauth
-	<meta name="base_url" content="{{route('home')}}">
+	<meta name="base_url" content="{{secure_url(route('home'))}}">
 	<meta name="csrf_token" content="{{ csrf_token() }}" />
 	<!-- Google Tag Manager -->
 	<script>

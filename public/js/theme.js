@@ -416,7 +416,7 @@ $('.like_item').click(function(){
     var UserId = $('meta[name=user_id]').attr("content");
     $.ajax({
         'method':'post',
-        'url' : window.location.origin + '/api/like-item',
+        'url' : $('meta[name=base_url]').attr('content') + '/api/like-item',
         'data' : {
             'user_id' : UserId ,
             'product_id' : ProductId
@@ -441,7 +441,7 @@ $('.add-to-cart').click(function(){
     var UserId = $('meta[name=user_id]').attr('content');
     $.ajax({
         'method':'get',
-        'url' : window.location.origin + '/api/add-item-to-cart',
+        'url' : $('meta[name=base_url]').attr('content') + '/api/add-item-to-cart',
         'data' : {
             '_token' : $('meta[name=csrf_token]').attr('content'),
             'product_id' : ProductId,
@@ -488,7 +488,7 @@ $('.cart-qty').change(function(){
     });
 });
 $('#calculate-shipping-cost').click(function(){
-  var ActionRoute = window.location.origin + '/api/calculate-shipping-cost';
+  var ActionRoute = $('meta[name=base_url]').attr('content') + '/api/calculate-shipping-cost';
   var CountryName = $('select[name="country_name"]').val();
   var Weight  = $('input[name="order_weight"]').val();
   var CartTax = $('input[name="cart_tax_avg"]').val();
