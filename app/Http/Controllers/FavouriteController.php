@@ -13,18 +13,18 @@ class FavouriteController extends Controller{
         ];
         $validator = Validator::make($r->all() , $Rules);
         if($validator->fails()){
-            return response("Something Went Wrong , We Are Sorry !" , 403);
+            return response(__('controllers.something_wrong') , 403);
         }else{
             //Check if the record exists
             $FavRecord = Favourite::where('user_id' , $r->user_id)->where('product_id' , $r->product_id)->first();
             if($FavRecord == null){
                 //Add a Like
                 Favourite::create($r->all());
-                return response("Product Added to Wishlist!");
+                return response(__('controllers.favorite_product_added'));
             }else{
                 //Remove the Like
                 $FavRecord->delete();
-                return response("Product Removed from Wishlist!");
+                return response(__('controllers.favorite_product_removed'));
 
             }
         }

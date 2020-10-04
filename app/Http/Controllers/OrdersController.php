@@ -33,7 +33,7 @@ class OrdersController extends Controller{
     //2- Get the cart items
     $CartItems = Cart::where('user_id' , $UserId)->where('status','active')->whereDate('created_at' , Carbon::today())->get();
     if($CartItems->count() == 0){
-      return redirect()->route('product.home')->withError('You Don\'t Have Any Items in Your Cart');
+      return redirect()->route('product.home')->withError(__('controllers.orders_no_items'));
     }
     //Generate the total price without a tax
     $CartSubTotalArray = $CartItems->map(function($item) {
@@ -222,12 +222,12 @@ class OrdersController extends Controller{
           'vat_number' => $r->vat_number,
           'is_vat_valid' => $r->is_vat_valid
         ]);
-        return response("Order Updated" , 200);
+        return response(__('controllers.orders_updated') , 200);
       }else{
-        return response("This is Not Your Order !" , 403);
+        return response(__('controllers.orders_not_yours') , 403);
       }
     }else{
-      return response("The Order Can't be Found !" , 404);
+      return response(__('controllers.orders_not_found') , 404);
     }
   }
   public function getPaymentPage($id){
@@ -257,7 +257,7 @@ class OrdersController extends Controller{
         if($TheOrder->user_id == $r->user_id){
          //Check if the order already paid
           if($TheOrder->AlreadyPaid()){
-            return redirect()->route('home')->withErrors('Order Already Paid, You Track the Order Progress in Your Orders Page');
+            return redirect()->route('home')->withErrors(__('controllers.orders_already_paid'));
           }
           if($r->payment_method == 'banktransfer'){
             //Send the Email to User
@@ -293,7 +293,7 @@ class OrdersController extends Controller{
                 ]);
                 return view('orders.checkout.thank-you' , compact('TheOrder' , 'OrderItems'));
               }else{
-                return back()->withError('You Can\'t Pay on Collection on Shipping Orders!');
+                return back()->withError(__('controllers.orders_cant_pay_on_collection'));
               }
             }
           }

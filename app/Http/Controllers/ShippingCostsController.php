@@ -68,9 +68,9 @@ class ShippingCostsController extends Controller{
       'country_name' => 'required'
     ];
     $ErrorMessages = [
-      'order_weight.required' => 'Something is Wrong !',
-      'order_weight.numeric' => 'Something is Wrong !',
-      'country_name.required' => 'Plese Choose a Country from the list',
+      'order_weight.required' => __('controllers.shipping_cost_validation_weight_required'),
+      'order_weight.numeric' => __('controllers.shipping_cost_validation_weight_numeric'),
+      'country_name.required' => __('controllers.shipping_cost_validation_country_name_required')
     ];
     $validator = Validator::make($r->all() ,$Rules,$ErrorMessages);
     if($validator->fails()){
@@ -92,7 +92,7 @@ class ShippingCostsController extends Controller{
         ];
         return response($ResponseArray , 200);
       }else{
-        return response("We Don\'t Have a Record For That Yet , Sorry" , 404);
+        return response(__('controllers.shipping_cost_no_record'), 404);
       }
     }
   }
