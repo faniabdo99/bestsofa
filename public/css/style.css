@@ -217,6 +217,10 @@
   background: url("../img/banner/contact-us.jpg") no-repeat center top;
 }
 
+#checkout-hero {
+  background: url("../img/banner/order-summary.jpg") no-repeat center top;
+}
+
 #orders-hero {
   background: url("../img/banner/order-payment.jpg") no-repeat center top;
 }
