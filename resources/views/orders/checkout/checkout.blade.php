@@ -2,9 +2,8 @@
 <body>
 	@include('layout.navbar')
 	<!--================Home Banner Area =================-->
-	<section class="banner_area section_gap">
-		<div class="banner_inner d-flex align-items-center">
-			<div class="overlay"></div>
+	<section class="banner_area" id="checkout-hero">
+		<div class="banner_inner">
 			<div class="container">
 				<div class="banner_content text-center">
 					<h1>@lang('orders.checkout')</h1>
