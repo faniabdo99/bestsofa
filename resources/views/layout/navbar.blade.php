@@ -205,6 +205,7 @@
     {{session('success')}}
 </div>
 @endif
+
 @if ($errors->any())
 <div class="noto noto-danger">
     @foreach ($errors->all() as $error)
