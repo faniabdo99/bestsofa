@@ -1,6 +1,8 @@
 <?php
 return [
     'welcome' => 'Welcome',
+    'thanks' => 'Thanks',
+    'sender' => 'UK Fashion Shop',
     // Order Signup Password
     'one_step_behind' => 'Your are one step behind of getting your account, you just need to choose a password!',
     'click_the_link' => 'Click the link below to do so.',
