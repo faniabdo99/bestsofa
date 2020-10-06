@@ -306,6 +306,7 @@ class OrdersController extends Controller{
             $OrderTotalAddition = ($TheOrder->final_total * $GetPaymentMethod->percentage_fee) / 100;
             $OrderFixedFee = $GetPaymentMethod->fixed_fee;
             $OrderFinalTotal = $TheOrder->final_total + $OrderTotalAddition + $OrderFixedFee;
+            try {
             $payment = Mollie::api()->payments->create([
               "amount" => [
                   "currency" => "$TheOrder->order_currency",
@@ -322,6 +323,10 @@ class OrdersController extends Controller{
               ],
               "redirectUrl" => route('order.success' , ['id' => $TheOrder->id])
               ]);
+            } catch (Exception $e){
+              dd($e);
+            }
+
               //Update the order with mollie id and status
               $TheOrder->update([
                 'payment_method' => $payment->method,
