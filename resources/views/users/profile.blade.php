@@ -418,10 +418,6 @@
     <!--================ start footer Area  =================-->
     @include('layout.footer')
     <!--================ End footer Area  =================-->
-
-
-
-    <!-- Optional JavaScript -->
     @include('layout.scripts')
 </body>
 

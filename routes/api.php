@@ -3,8 +3,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 //*********Admin API Routes
 //Categories
-Route::group(['scheme' => 'https'], function () {
-
 Route::post('delete-category' , 'CategoriesController@delete')->name('admin.category.delete');
 Route::post('/category/localize' , 'CategoriesController@postLocalize')->name('admin.categories.postLocalize');
 //Products
@@ -29,4 +27,3 @@ Route::post('update-order-vat/{id}' , 'OrdersController@updateVatNumber')->name(
 Route::post('send-activate-link' , 'UsersController@sendActivateEmail')->name('user.sendActivateLink');
 Route::post('ask-question-about-product' , 'ProductsController@askQuestion')->name('product.askQuestion');
 Route::post('like-item' , 'FavouriteController@ToggleFavourite')->name('favourite.toggle');
-});
