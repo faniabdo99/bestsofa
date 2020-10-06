@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+Route::group(['scheme' => 'https'], function () {
 Route::get('change-lang/{locale}', 'HomeController@changeLang')->name('changeLang');
 Route::get('/' , 'HomeController@getHome')->name('home');
 Route::get('/change-currency/{currency}/{currency_code}' , 'CurrencyController@setCurrency')->name('currency.change');
@@ -124,6 +125,4 @@ Route::get('order-summary/{id}/{processed?}', 'OrdersController@getSummaryPage')
 Route::get('order-payment/{id}', 'OrdersController@getPaymentPage')->name('checkout.payment');
 Route::post('order-payment/{id}', 'OrdersController@postPaymentPage')->name('checkout.payment.post');
 Route::post('apply-coupon' , 'CoupounsController@applyCoupon')->name('coupon.apply');
-
-
-Route::get('test' , 'UsersController@test');
+});
