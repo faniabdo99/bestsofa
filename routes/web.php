@@ -1,5 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Route;
+if (env('APP_ENV') === 'production') {
+    URL::forceSchema('https');
+    Route::forceSchema('https');
+}
 Route::get('change-lang/{locale}', 'HomeController@changeLang')->name('changeLang');
 Route::get('/' , 'HomeController@getHome')->name('home');
 Route::get('/change-currency/{currency}/{currency_code}' , 'CurrencyController@setCurrency')->name('currency.change');
