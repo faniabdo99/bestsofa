@@ -45,9 +45,9 @@
                                         <input name="email" type="email" placeholder="@lang('users.email_ph')" value="{{$TheUser->email}}" required>
                                         @if($TheUser->auth_provider == 'Signup')
                                         <label>@lang('users.current_pass'): </label>
-                                        <input name="password_current" autocomplete="off" type="password" placeholder="@lang('users.current_pass_ph')">
+                                        <input name="password_current" autocomplete="new-password" type="password" placeholder="@lang('users.current_pass_ph')">
                                         <label>@lang('users.password'): </label>
-                                        <input name="password" autocomplete="off" type="password" placeholder="@lang('users.new_pass_ph')">
+                                        <input name="password" autocomplete="new-password" type="password" placeholder="@lang('users.new_pass_ph')">
                                         @endif
                                         <label>@lang('users.profile_img'): </label>
                                         <input name="image" type="file">
