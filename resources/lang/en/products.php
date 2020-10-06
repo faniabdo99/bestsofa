@@ -48,6 +48,7 @@ return [
     'email' => 'Email Address',
     'phone' => 'Phone Number',
     'message' => 'Message',
-    'review_placeholder' => 'What Do You Think About This Product?' //Bad Product, BAAAAAAD PRODUUUUUUUCT.
+    'review_placeholder' => 'What Do You Think About This Product?',
+    'send' => 'Send Question'
 
 ];

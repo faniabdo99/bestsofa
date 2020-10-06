@@ -9,5 +9,5 @@ return [
     'contact_us' => 'New Email From UK Fashion Shop',
     'contact_us_paragraph' => 'You have new message from UK Fashion Shop contact us page.',
 
-    
+
 ];

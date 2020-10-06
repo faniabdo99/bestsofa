@@ -299,7 +299,8 @@ class ProductsController extends Controller{
             return response($validator->errors()->all() , 403);
         }else{
             //Send Message to The Admin
-            Mail::to('admin@ukfashioshop.com')->send(new QuestionAboutProduct($r->all()));
+            app()->setLocale($r->site_locale);
+            Mail::to('faniabdo99@gmail.com')->send(new QuestionAboutProduct($r->all()));
             return response(__('controllers.product_Q_received'));
         }
     }

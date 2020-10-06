@@ -86,7 +86,6 @@
                                             <i class="lnr lnr lnr-heart"></i>
                                             </a>
                                             @endauth
-
                             </div>
                     </div>
                 </div>
@@ -128,8 +127,7 @@
                                     </td>
                                     <td>
                                         <h5>
-                                            @if($TheProduct->width){{$TheProduct->width}}CM
-                                                @else @lang('products.not_available') @endif</h5>
+                                            @if($TheProduct->width){{$TheProduct->width}}CM @else @lang('products.not_available') @endif</h5>
                                     </td>
                                 </tr>
                                 <tr>
@@ -161,9 +159,10 @@
                         <div class="col-lg-12">
                             <div class="review_box">
                                 <h4>@lang('products.question_us')</h4>
-                                <form class="row contact_form">
+                                <form class="row contact_form" style="max-width:100%;">
                                     <input hidden name="product_id" value="{{$TheProduct->id}}">
                                     <input hidden name="product_slug" value="{{$TheProduct->slug}}">
+                                    <input hidden name="site_locale" value="{{app()->getLocale()}}">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="name" name="name" placeholder="@lang('products.name')" required>
