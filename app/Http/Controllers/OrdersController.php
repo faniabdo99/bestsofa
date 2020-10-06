@@ -333,9 +333,6 @@ class OrdersController extends Controller{
                     return back()->withErrors("The Payments Server is Being Fixed, Please Try Again Later");
                     break;
                   case 422:
-                    return back()->withErrors("This Payment Method is Temporarily Unavailable");
-                    break;
-                  case 422:
                     return back()->withErrors("This Payment Method / Currency is Unavailable");
                     break;
 
