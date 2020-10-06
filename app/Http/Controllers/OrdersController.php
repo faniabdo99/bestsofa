@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Mollie\Laravel\Facades\Mollie;
+use Mollie\Api\Exceptions\ApiException;
+
 use Cookie;
 use Carbon\Carbon;
 use Validator;
@@ -306,27 +308,42 @@ class OrdersController extends Controller{
             $OrderTotalAddition = ($TheOrder->final_total * $GetPaymentMethod->percentage_fee) / 100;
             $OrderFixedFee = $GetPaymentMethod->fixed_fee;
             $OrderFinalTotal = $TheOrder->final_total + $OrderTotalAddition + $OrderFixedFee;
-            try {
-            $payment = Mollie::api()->payments->create([
-              "amount" => [
-                  "currency" => "$TheOrder->order_currency",
-                  "value" => sprintf("%.2f",$OrderFinalTotal) // You must send the correct number of decimals, thus we enforce the use of strings
-              ],
-              "description" => "Order #$TheOrder->serial_number",
-              "locale" => "$TheOrder->lang"."_us",
-              "method" => "$r->payment_method",
-              "billingEmail" => "$TheOrder->email",
-              "metadata" => [
-                  'customer_name' => $TheOrder->first_name .' '.$TheOrder->last_name,
-                  'customer_id' => 'cst_'.$r->user_id,
-                  'products_list' => $ProductsListArray
-              ],
-              "redirectUrl" => route('order.success' , ['id' => $TheOrder->id])
-              ]);
-            } catch (Exception $e){
-              dd($e);
-            }
 
+              try{
+                $payment = Mollie::api()->payments->create([
+                  "amount" => [
+                      "currency" => "$TheOrder->order_currency",
+                      "value" => sprintf("%.2f",$OrderFinalTotal)
+                  ],
+                  "description" => "Order #$TheOrder->serial_number",
+                  "locale" => "$TheOrder->lang"."_us",
+                  "method" => "$r->payment_method",
+                  "billingEmail" => "$TheOrder->email",
+                  "metadata" => [
+                      'customer_name' => $TheOrder->first_name .' '.$TheOrder->last_name,
+                      'customer_id' => 'cst_'.$r->user_id,
+                      'products_list' => $ProductsListArray
+                  ],
+                  "redirectUrl" => route('order.success' , ['id' => $TheOrder->id])
+                  ]);
+              } catch(ApiException $ee){
+                $StatusCode = $ee->getResponse()->getStatusCode();
+                switch ($StatusCode) {
+                  case 401:
+                    return back()->withErrors("The Payments Server is Being Fixed, Please Try Again Later");
+                    break;
+                  case 422:
+                    return back()->withErrors("This Payment Method is Temporarily Unavailable");
+                    break;
+                  case 422:
+                    return back()->withErrors("This Payment Method / Currency is Unavailable");
+                    break;
+
+                  default:
+                    return back()->withErrors("Something Went Wrong, Please Try Again");
+                    break;
+                }
+              }
               //Update the order with mollie id and status
               $TheOrder->update([
                 'payment_method' => $payment->method,
