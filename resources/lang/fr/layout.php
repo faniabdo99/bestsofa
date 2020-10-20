@@ -13,6 +13,7 @@
     'home' => 'Home',
     'shop' => 'Shop',
     'contact' => 'Contact',
+    'blog' => 'Blog',
     'login' => 'Login',
     'my-account' => 'My Account',
     'my-orders' => 'My Orders',

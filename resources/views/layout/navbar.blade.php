@@ -59,6 +59,7 @@
                               <li class="nav-item @if(request()->path() == '/') active @endif"><a class="nav-link" href="{{route('home')}}">@lang('layout.home')</a></li>
                               <li class="nav-item @if(request()->path() == 'about') active @endif"><a class="nav-link" href="{{route('about')}}">@lang('layout.about-us')</a></li>
                               <li class="nav-item @if(str_contains(request()->path() , 'products')) active @endif"><a href="{{route('product.home')}}" class="nav-link">@lang('layout.shop')</a></li>
+                              <li class="nav-item @if(str_contains(request()->path() , 'blog')) active @endif"><a href="{{route('blog.index')}}" class="nav-link">@lang('layout.blog')</a></li>
                                 {{-- <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                         aria-haspopup="true" aria-expanded="false">Blog</a>
