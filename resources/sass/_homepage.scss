@@ -1,3 +1,24 @@
+.full-width-carousel{
+  .banner_area{
+    width: 100%;
+  }
+  .owl-nav{
+    width: 100%;
+    display: flex;
+    position: absolute;
+    top: 50%;
+  }
+  .owl-next,.owl-prev{
+    position: absolute;
+    padding: 15px;
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+  }
+  .owl-next{
+    position: absolute;
+    right: 0;
+  }
+}
 //Hero Image
 #homepage-hero{
   background: url('../img/banner/homepage.jpg') no-repeat center top;

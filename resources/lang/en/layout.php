@@ -4,7 +4,7 @@
     'about-us' => 'About Us',
     'about-us-text' => 'We are a company that has more than 25 years experience in import & export of second-hand clothing & shoes.',
     'follow-us' => 'Follow Us',
-    'follow-us-sub-text' => 'Let us be social',
+    'follow-us-sub-text' => 'Follow Us on Social Media',
     'copyright' => 'Copyright',
     'copyright-2' => 'Global Trading Co All rights reserved',
     //navbar.blade.php

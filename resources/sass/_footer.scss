@@ -5,10 +5,12 @@
 		color: $pfont;
 		max-width: 235px;
     }
-    ul{
+    ul.contact-information-footer{
+        list-style: none;
+        padding-inline-start: 0px;
         li{
             a{
-                line-height: 25px;
+                line-height: 20px;
                 display: inline-block;
                 color: #777;
                 transition: all 0.3s linear;

@@ -4,9 +4,6 @@
 <header class="header_area">
     <div class="top_menu row m0">
         <div class="container-fluid">
-            <div class="float-left">
-                <p>@lang('layout.call-us'): <a href="tel:+3252201018">+32 52 20 10 18</a></p>
-            </div>
             <div class="float-right">
                 <ul class="right_side">
                     <li class="dropdown">
@@ -57,28 +54,17 @@
                         <div class="col-lg-7 pr-0">
                             <ul class="nav navbar-nav center_nav pull-right">
                               <li class="nav-item @if(request()->path() == '/') active @endif"><a class="nav-link" href="{{route('home')}}">@lang('layout.home')</a></li>
-                              <li class="nav-item @if(request()->path() == 'about') active @endif"><a class="nav-link" href="{{route('about')}}">@lang('layout.about-us')</a></li>
                               <li class="nav-item @if(str_contains(request()->path() , 'products')) active @endif"><a href="{{route('product.home')}}" class="nav-link">@lang('layout.shop')</a></li>
-                              <li class="nav-item @if(str_contains(request()->path() , 'blog')) active @endif"><a href="{{route('blog.index')}}" class="nav-link">@lang('layout.blog')</a></li>
-                                {{-- <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="blog.html">Blog</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="single-blog.html">Blog Details</a>
-                                        </li>
-                                    </ul>
-                                </li> --}}
-                                <li class="nav-item @if(str_contains(request()->path() , 'contact')) active @endif"><a class="nav-link" href="{{route('contact.get')}}">@lang('layout.contact')</a></li>
-                                  @guest
-                                    <li class="nav-item"><a class="nav-link" href="{{route('login.get')}}">@lang('layout.login')</a></li>
-                                  @endguest
-                                  @auth
-                                    <li class="nav-item @if(str_contains(request()->path() , 'profile')) active @endif"><a class="nav-link" href="{{route('profile')}}">@lang('layout.my-account')</a></li>
-                                  @endauth
+                              <li class="nav-item @if(request()->path() == '/offers') active @endif"><a class="nav-link" href="{{route('home')}}">Offers</a></li>
+                              <li class="nav-item @if(request()->path() == 'about') active @endif"><a class="nav-link" href="{{route('about')}}">@lang('layout.about-us')</a></li>
+                              <li class="nav-item @if(request()->path() == '/shipping') active @endif"><a class="nav-link" href="{{route('home')}}">Shipping</a></li>
+                              <li class="nav-item @if(str_contains(request()->path() , 'contact')) active @endif"><a class="nav-link" href="{{route('contact.get')}}">@lang('layout.contact')</a></li>
+                              @guest
+                                  <li class="nav-item"><a class="nav-link" href="{{route('login.get')}}">@lang('layout.login')</a></li>
+                              @endguest
+                              @auth
+                                  <li class="nav-item @if(str_contains(request()->path() , 'profile')) active @endif"><a class="nav-link" href="{{route('profile')}}">@lang('layout.my-account')</a></li>
+                              @endauth
                             </ul>
                         </div>
                         <div class="col-lg-5">

@@ -1,13 +1,18 @@
 <footer class="footer-area section_gap">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="single-footer-widget">
-                    <h6 class="footer_title">@lang('layout.about-us')</h6>
-                    <p>@lang('layout.about-us-text')</p>
+                    <h6 class="footer_title">Contact Information</h6>
+                    <ul class="contact-information-footer">
+                        <li><i class="fas fa-envelope"></i> <a href="#">admin@company.com</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="#">00123 4456 7787</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <a href="#">Company Address</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="#">admin@company.com</a></li>
+                    </ul>
                 </div>
             </div>
-            {{-- <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="single-footer-widget">
                     <h6 class="footer_title">Newsletter</h6>
                     <p>Stay updated with our latest trends</p>
@@ -23,8 +28,8 @@
                         </form>
                     </div>
                 </div>
-            </div> --}}
-            <div class="col-lg-6 col-md-6 col-sm-6">
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="single-footer-widget f_social_wd">
                   <h6 class="footer_title">@lang('layout.follow-us')</h6>
                     <p>@lang('layout.follow-us-sub-text')</p>

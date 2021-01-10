@@ -3,7 +3,7 @@
     'header' => 'Fashion for Upcoming Winter',
     'subheader' => 'Are Your Ready For The New Year Sales?',
     'cta' => 'Visit Our Shop',
-    'featured-products-header' => 'Featured Products',
+    'featured-products-header' => 'Products',
     'featured-products-subheader' => 'Get Your Goods of These Hot Products',
     'featured-products-no-items' => 'No Promoted Products Yet',
     'deal-1-header' => '20% Off For New Users',

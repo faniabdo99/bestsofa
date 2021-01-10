@@ -200,6 +200,26 @@
   height: 140px;
 }
 
+.full-width-carousel .banner_area {
+  width: 100%;
+}
+.full-width-carousel .owl-nav {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  top: 50%;
+}
+.full-width-carousel .owl-next, .full-width-carousel .owl-prev {
+  position: absolute;
+  padding: 15px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.full-width-carousel .owl-next {
+  position: absolute;
+  right: 0;
+}
+
 #homepage-hero {
   background: url("../img/banner/homepage.jpg") no-repeat center top;
 }
@@ -864,6 +884,25 @@ a:hover, a:focus {
   margin: auto;
 }
 
+@media screen and (max-width: 768px) {
+  .banner_area {
+    height: 400px;
+  }
+  .banner_area .banner_inner {
+    padding-top: 130px;
+    height: 400px;
+  }
+  .banner_area .banner_inner .banner_content h1 {
+    font-size: 33px;
+    line-height: 50px;
+  }
+  .banner_area .banner_inner .banner_content p {
+    margin-bottom: 10px;
+  }
+  .banner_area .banner_inner .banner_content .white_bg_btn {
+    margin-top: 0px;
+  }
+}
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 /* Latest Blog Area css
@@ -5324,14 +5363,19 @@ p {
   color: #777777;
   max-width: 235px;
 }
-.single-footer-widget ul li a {
-  line-height: 25px;
+.single-footer-widget ul.contact-information-footer {
+  list-style: none;
+  -webkit-padding-start: 0px;
+          padding-inline-start: 0px;
+}
+.single-footer-widget ul.contact-information-footer li a {
+  line-height: 20px;
   display: inline-block;
   color: #777;
   transition: all 0.3s linear;
   margin-bottom: 13px;
 }
-.single-footer-widget ul li a:hover {
+.single-footer-widget ul.contact-information-footer li a:hover {
   color: #206fa1;
 }
 .single-footer-widget .instafeed {

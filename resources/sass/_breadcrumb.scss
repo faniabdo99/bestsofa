@@ -96,3 +96,24 @@
     max-width: 1620px;
     margin: auto;
 }
+@media screen and (max-width:768px){
+    .banner_area {
+        height: 400px;
+        .banner_inner {
+            padding-top: 130px;
+            height: 400px;
+            .banner_content {
+                h1 {
+                    font-size: 33px;
+                    line-height: 50px;
+                }
+                p {
+                    margin-bottom: 10px;
+                }
+                .white_bg_btn {
+                    margin-top: 0px;
+                }
+            }
+        }
+    }
+}

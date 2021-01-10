@@ -133,6 +133,21 @@ function makeid(length) {
     }
     clients_slider();
 
+    /*----------------------------------------------------*/
+    /*  Hero Section Slide
+    /*----------------------------------------------------*/
+    function hero_section_slider(){
+        $('.full-width-carousel').owlCarousel({
+            loop:true,
+            items: 1,
+            autoplay: true,
+            smartSpeed: 1500,
+            stopOnHover: true,
+            nav: true,
+            navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+        });
+    }
+    hero_section_slider();
 	/*----------------------------------------------------*/
     /*  Jquery Ui slider js
     /*----------------------------------------------------*/
