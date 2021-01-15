@@ -19,5 +19,5 @@ return [
   'signup' => 'Signup',
   'user-orders' => 'My Orders',
   'whishlist' => 'Whislist',
-  'home' => 'UK Fashion shop Second hand clothing - UK Fashion shop'
+  'home' => 'Best Sofa Second hand clothing - Best Sofa'
 ];

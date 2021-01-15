@@ -5,8 +5,8 @@ return [
     'already_activated' => 'Account Already Activated !', // xDD
     'already_account' => 'Already have an account ?',
     'create_account' => 'Create an Account ?',
-    'active' => 'Congratulations! Your Account is Active , You Have Access to All UK Fashion Shop Feauters !',
-    'now_active' => 'Congratulations! Your Account is Now Active , You Have Access to All UK Fashion Shop Feauters !', // xDDDD
+    'active' => 'Congratulations! Your Account is Active , You Have Access to All Best Sofa Feauters !',
+    'now_active' => 'Congratulations! Your Account is Now Active , You Have Access to All Best Sofa Feauters !', // xDDDD
     'browse_products' => 'Browse Products',
     'no_account' => 'Don\'t have an account yet ?',
     'signup' => 'Signup',
@@ -78,5 +78,5 @@ return [
     'password' => 'Password',
     'password_confirm' => 'Password Confirmation',
     // Alt
-    'login_image' => 'Login to UK Fashion Shop'
+    'login_image' => 'Login to Best Sofa'
 ];

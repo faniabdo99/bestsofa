@@ -69,7 +69,7 @@
         </div>
         <div class="full-width-container smaller-font">
             <div class="half-width">
-                <h4>GLOBALE TRADING</h4>
+                <h4>Best Sofa</h4>
                 <p class="mb-0">CHAUSSÉE DE JETTE 324</p>
                 <p class="mb-0">1081 KOEKELBERG</p>
                 <p class="mb-0">België</p>
@@ -151,8 +151,8 @@
             <div class="col-12 mt-5" style="width: 100%;">
                 <p><b class="text-dark">GENERAL</b><br>
                     Art.1 These terms and conditions apply to any sale agreement by a visitor to this site, hereinafter
-                    "customer", concluded with UK Fashion Shop,
-                    GLOBALE TRADING private company with limited liability. Company number: BE0827774244. These terms
+                    "customer", concluded with Best Sofa,
+                    Best Sofa private company with limited liability. Company number: BE0827774244. These terms
                     and conditions take precedence over all
                     other terms and conditions of the customer. Additional conditions are excluded from the customer,
                     unless the prior, written and expressly
@@ -183,7 +183,7 @@
                     contract. When paying by bank transfer you will receive the ordered products only after receipt of
                     the sum due.
                     <br>
-                    <b style="margin-right:40px;">BENEFICIARY</b> Globale trading<br>
+                    <b style="margin-right:40px;">BENEFICIARY</b> Best Sofa<br>
                     <b style="margin-right:40px;">IBAN</b> BE76 1431 0026 8395<br>
                     <b style="margin-right:40px;">BIC</b> GEBABEBB<br>
                 </p>

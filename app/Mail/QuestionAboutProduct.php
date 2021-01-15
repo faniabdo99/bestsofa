@@ -17,7 +17,7 @@ class QuestionAboutProduct extends Mailable
     public function build()
     {
         return $this->markdown('mails/products/question-about-product')
-                    ->subject('Question About Product | UK Fashion Shop');
+                    ->subject('Question About Product | Best Sofa');
 
     }
 }

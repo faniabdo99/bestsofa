@@ -15,6 +15,6 @@ class OrderReceiptMail extends Mailable{
     }
     public function build()
     {
-        return $this->markdown('mails/orders/order-receipt-mail')->subject("Your Order Receipt - UK Fashion Shop");
+        return $this->markdown('mails/orders/order-receipt-mail')->subject("Your Order Receipt - Best Sofa");
     }
 }

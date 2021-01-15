@@ -17,6 +17,6 @@ class ContactEmailRecived extends Mailable
     public function build()
     {
         return $this->markdown('mails/pages/contact/contact-email-recived')
-                    ->subject('We Recived Your Email | UK Fashion Shop');
+                    ->subject('We Recived Your Email | Best Sofa');
     }
 }

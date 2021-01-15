@@ -14,6 +14,6 @@ class BankTransferMail extends Mailable{
         $this->EmailData = $EmailData;
     }
     public function build(){
-        return $this->markdown('mails.orders.bank-transfer-mail')->subject('Complete Your Order - UK Fashion Shop');
+        return $this->markdown('mails.orders.bank-transfer-mail')->subject('Complete Your Order - Best Sofa');
     }
 }

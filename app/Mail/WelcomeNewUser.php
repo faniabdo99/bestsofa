@@ -23,6 +23,6 @@ class WelcomeNewUser extends Mailable
     public function build()
     {
         return $this->markdown('mails/users/welcome-new-user')
-                     ->subject('Welcome to UK Fashion Shop');
+                     ->subject('Welcome to Best Sofa');
     }
 }

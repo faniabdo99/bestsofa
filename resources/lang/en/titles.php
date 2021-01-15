@@ -19,5 +19,5 @@ return [
   'signup' => 'Signup',
   'user-orders' => 'My Orders',
   'whishlist' => 'Whislist',
-  'home' => 'UK Fashion shop Second hand clothing - UK Fashion shop'
+  'home' => 'Furniture Made in Denmark'
 ];

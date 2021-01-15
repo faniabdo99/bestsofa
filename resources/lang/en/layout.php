@@ -6,7 +6,7 @@
     'follow-us' => 'Follow Us',
     'follow-us-sub-text' => 'Follow Us on Social Media',
     'copyright' => 'Copyright',
-    'copyright-2' => 'Global Trading Co All rights reserved',
+    'copyright-2' => 'Best Sofa Co All rights reserved',
     //navbar.blade.php
     'call-us' => 'Call Us',
     'admin-panel' => 'Admin Panel',

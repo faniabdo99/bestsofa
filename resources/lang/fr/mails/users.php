@@ -2,7 +2,7 @@
 return [
     'welcome' => 'Welcome',
     'thanks' => 'Thanks',
-    'sender' => 'UK Fashion Shop',
+    'sender' => 'Best Sofa',
     // Order Signup Password
     'one_step_behind' => 'Your are one step behind of getting your account, you just need to choose a password!',
     'click_the_link' => 'Click the link below to do so.',
@@ -10,7 +10,7 @@ return [
 
     // Reset Password
     'reset_password' => 'Reset Your Password',
-    'reset_password_first_paragraph' => 'You requested to reset your password on UK Fashion Shop , Please click the link below to do so . ',
+    'reset_password_first_paragraph' => 'You requested to reset your password on Best Sofa , Please click the link below to do so . ',
     'reset_password_second_paragraph' => 'if you don\'t know about this request , you can safley ignore this message and your account will be secure .',
 
     // New User

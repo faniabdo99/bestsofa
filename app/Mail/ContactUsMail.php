@@ -23,6 +23,6 @@ class ContactUsMail extends Mailable
     public function build()
     {
         return $this->markdown('mails/pages/contact/contact-us')
-                    ->subject('New Email From UK Fashion Shop');
+                    ->subject('New Email From Best Sofa');
     }
 }

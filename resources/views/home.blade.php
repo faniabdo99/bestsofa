@@ -1,5 +1,4 @@
 @include('layout.header', ['PageTitle' => __('titles.home')])
-
 <body>
     <!--================Header Menu Area =================-->
     @include('layout.navbar')

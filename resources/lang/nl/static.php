@@ -3,7 +3,7 @@
       //About us page
       'about-us-header' => 'About Us',
       'about-us-subheader' => 'The Wholesale industry revamped!',
-      'about-us-header-1' => 'Welcome to UK Fashion Shop',
+      'about-us-header-1' => 'Welcome to Best Sofa',
       'about-us-body-1' => '<p>Our range includes trendy affordable clothing, shoes, handballs andaccessories for men, women and children atcompetitive prices.</p>
                             <p>The goods are accurately checked according to the wishes of the customer. This is done before packingand sendingto destinations, per package, pallet, containers. All goods are manually checked for quality, pleasekeep in mind ifthere are irregularities.</p>
                             <p>Our goal is to organize each customer\'s specific order as well as possible in order to have the desiredorder forshipment. We do our best to always provide the stock and the availability of the goods.</p>
@@ -12,8 +12,8 @@
                             <p>Customers who want to order from 10 tons can state this in the "<a href="https://www.globale-trading.be/contact-us/" target="_blank">contact form</a>" and we will assist.</p>
                             <p>Also view our weekly offers on different articles and don\'t forget our promotions on the website, youwillcertainly find a top deal that suits you.</p>
                             <p>The published photos are randomly drawn from our daily production and show the item how it looks beforeor afterpacking.</p>',
-        'about-us-header-2' => 'UK Fashion Shop is a Global Trading Company',
-        'about-us-contact-gt' => 'Contact Global Trading as Needed',
+        'about-us-header-2' => 'Best Sofa is a Best Sofa Company',
+        'about-us-contact-gt' => 'Contact Best Sofa as Needed',
         'about-us-gt-contact-vat' => '<b>VAT :</b> BE0827774244',
         'about-us-gt-contact-location' => '<b>Location :</b> Chaussée de Jette 324 , 1081 Koekelberg , Belgium',
         'about-us-gt-contact-phone-number' => '<b>Call Us :</b> <a href="tel:3252201018">3252201018</a>',
@@ -26,7 +26,7 @@
         'toc-subheader' => 'Last Update on 9/2/2020',
         'toc-body' => '<p><h3>GENERAL</h3>
                             Art. 1
-                            These terms and conditions apply to any sale agreement by a visitor to this site, hereinafter "customer", concluded with UK Fashion Shop, GLOBALE TRADING private company with limited liability. Company number: BE0827774244. These terms and conditions take precedence over all other terms and conditions of the customer. Additional conditions are excluded from the customer, unless the prior, written and expressly accepted by us.
+                            These terms and conditions apply to any sale agreement by a visitor to this site, hereinafter "customer", concluded with Best Sofa, Best Sofa private company with limited liability. Company number: BE0827774244. These terms and conditions take precedence over all other terms and conditions of the customer. Additional conditions are excluded from the customer, unless the prior, written and expressly accepted by us.
                             <br><br>
                             <h3>ORDER</h3>
                             Art. 2

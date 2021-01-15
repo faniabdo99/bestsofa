@@ -9,9 +9,11 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" id="languagesDropdown" data-toggle="dropdown" >{{app()->getLocale()}}</a>
                         <div class="dropdown-menu navbar-dropdown-menu" aria-labelledby="languagesDropdown">
-                            <a class="dropdown-item" href="{{route('changeLang' ,'en')}}">EN</a>
-                            <a class="dropdown-item" href="{{route('changeLang' ,'fr')}}">FR</a>
-                            <a class="dropdown-item" href="{{route('changeLang' ,'nl')}}">NL</a>
+                            <a class="dropdown-item" href="{{route('changeLang' ,'en')}}">English</a>
+                            <a class="dropdown-item" href="{{route('changeLang' ,'sw')}}">Sweden</a>
+                            <a class="dropdown-item" href="{{route('changeLang' ,'du')}}">Dutch</a>
+                            <a class="dropdown-item" href="{{route('changeLang' ,'dk')}}">Denmark</a>
+                            <a class="dropdown-item" href="{{route('changeLang' ,'ge')}}">German</a>
                           </div>
                     </li>
                     <li class="dropdown">

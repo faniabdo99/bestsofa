@@ -18,6 +18,6 @@ class ResetPasswordMail extends Mailable
     public function build()
     {
         return $this->markdown('mails/users/reset-password')
-                    ->subject('Reset Your Password | UK Fashion Shop');
+                    ->subject('Reset Your Password | Best Sofa');
     }
 }

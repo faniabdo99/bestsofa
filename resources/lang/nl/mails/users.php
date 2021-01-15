@@ -8,7 +8,7 @@ return [
 
     // Reset Password
     'reset_password' => 'Reset Your Password',
-    'reset_password_first_paragraph' => 'You requested to reset your password on UK Fashion Shop , Please click the link below to do so . ',
+    'reset_password_first_paragraph' => 'You requested to reset your password on Best Sofa , Please click the link below to do so . ',
     'reset_password_second_paragraph' => 'if you don\'t know about this request , you can safley ignore this message and your account will be secure .',
 
     // New User

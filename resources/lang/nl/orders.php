@@ -60,7 +60,7 @@ return [
     'your_details' => 'Your Details',
     'is_vat_valid' => 'is VAT Number Valid ?',
     'collect_from_warehouse' => 'Collect From Warehouse (Be Sure to call one day ahead)',
-    'warehouse_address' => 'Globale trading Zone 5 Mollem 13 1730 Asse , Belgium +32 487 24 45 99',
+    'warehouse_address' => 'Best Sofa Zone 5 Mollem 13 1730 Asse , Belgium +32 487 24 45 99',
     'next_step' => 'Looks Good , Next Step',
     'order_received' => 'Thank you. Your order has been received.',
     'payment_failed' => 'Sorry, Payment Failed !',

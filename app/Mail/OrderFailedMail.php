@@ -15,6 +15,6 @@ class OrderFailedMail extends Mailable{
     }
     public function build()
     {
-        return $this->markdown('mails/orders/order-failed-mail')->subject("Order Failed - UK Fashion Shop");
+        return $this->markdown('mails/orders/order-failed-mail')->subject("Order Failed - Best Sofa");
     }
 }

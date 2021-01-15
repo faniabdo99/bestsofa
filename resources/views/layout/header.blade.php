@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="{{url('public')}}/img/logo.png" type="image/png">
-	<title>UK Fashion Shop - {{$PageTitle ?? 'Home'}}</title>
+	<title>Best Sofa - {{$PageTitle ?? 'Home'}}</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="{{url('public/css')}}/bootstrap.css">
 	<link rel="stylesheet" href="{{url('public/assets')}}/linericon/style.css">
