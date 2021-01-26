@@ -200,19 +200,25 @@
 					//Apply The Data to the View
 					//total_shipping_cost
 					//total_shipping_tax
-					if(SiteCurrency == 'GBP'){
-					 	$('#order_shipping_cost').html(response.actual_cost_gbp + '{{getCurrency()['symbole']}}');
-						$('input[name="total_shipping_cost"]').val(response.actual_cost_gbp);
-						$('#order_shipping_tax').html(response.shipping_tax_gbp + '{{getCurrency()['symbole']}}');
-						$('input[name="total_shipping_tax"]').val(response.shipping_tax_gbp);
-						$('#order_shipping_total').html(response.final_cost_gbp + '{{getCurrency()['symbole']}}');
+					if(SiteCurrency == 'EUR'){
+						console.log(response.actual_cost_eur);
+					 	$('#order_shipping_cost').html(response.actual_cost_eur + '{{getCurrency()['symbole']}}');
+						$('input[name="total_shipping_cost"]').attr('value',response.actual_cost_eur);
+						$('#order_shipping_tax').html(response.shipping_tax_eur + '{{getCurrency()['symbole']}}');
+						$('input[name="total_shipping_tax"]').attr('value',response.shipping_tax_eur);
+						$('#order_shipping_total').html(response.final_cost_eur + '{{getCurrency()['symbole']}}');
+					}else if(SiteCurrency == 'SEK'){
+						$('#order_shipping_cost').html(response.actual_cost_sek + '{{getCurrency()['symbole']}}');
+						$('input[name="total_shipping_cost"]').attr('value',response.actual_cost_sek);
+						$('#order_shipping_tax').html(response.shipping_tax_sek + '{{getCurrency()['symbole']}}');
+						$('input[name="total_shipping_tax"]').attr('value',response.shipping_tax_sek);
+						$('#order_shipping_total').html(response.final_cost_sek + '{{getCurrency()['symbole']}}');
 					}else{
-						console.log(response.actual_cost_euro);
-						$('#order_shipping_cost').html(response.actual_cost_euro + '{{getCurrency()['symbole']}}');
-						$('input[name="total_shipping_cost"]').val(response.actual_cost_euro);
-						$('#order_shipping_tax').html(response.shipping_tax_euro + '{{getCurrency()['symbole']}}');
-						$('input[name="total_shipping_tax"]').val(response.shipping_tax_euro);
-						$('#order_shipping_total').html(response.final_cost_euro + '{{getCurrency()['symbole']}}');
+						$('#order_shipping_cost').html(response.actual_cost_dkk + '{{getCurrency()['symbole']}}');
+						$('input[name="total_shipping_cost"]').attr('value',response.actual_cost_dkk);
+						$('#order_shipping_tax').html(response.shipping_tax_dkk + '{{getCurrency()['symbole']}}');
+						$('input[name="total_shipping_tax"]').attr('value',response.shipping_tax_dkk);
+						$('#order_shipping_total').html(response.final_cost_dkk + '{{getCurrency()['symbole']}}');
 					}
 					$('button[type="submit"]').removeAttr('disabled').removeAttr('title');
 				},

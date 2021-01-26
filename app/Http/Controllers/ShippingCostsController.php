@@ -83,12 +83,15 @@ class ShippingCostsController extends Controller{
         $ShippingTax = $ShippingCost->FinalCost * $r->cart_tax_avg;
         $ResponseArray = [
           'country' => $ShippingCost->country_name,
-          'actual_cost_euro' => formatPrice($ShippingCost->FinalCost),
-          'shipping_tax_euro' => formatPrice($ShippingTax),
-          'final_cost_euro' =>formatPrice( $ShippingCost->FinalCost+$ShippingTax),
-          'actual_cost_gbp' => convertCurrency(formatPrice($ShippingCost->FinalCost),'EUR','GBP'),
-          'shipping_tax_gbp' => convertCurrency(formatPrice($ShippingTax),'EUR','GBP'),
-          'final_cost_gbp' => convertCurrency(formatPrice($ShippingCost->FinalCost+$ShippingTax),'EUR','GBP')
+          'actual_cost_dkk' => formatPrice($ShippingCost->FinalCost),
+          'shipping_tax_dkk' => formatPrice($ShippingTax),
+          'final_cost_dkk' =>formatPrice( $ShippingCost->FinalCost+$ShippingTax),
+          'actual_cost_eur' => convertCurrency(formatPrice($ShippingCost->FinalCost),'DKK','EUR'),
+          'shipping_tax_eur' => convertCurrency(formatPrice($ShippingTax),'DKK','EUR'),
+          'final_cost_eur' => convertCurrency(formatPrice($ShippingCost->FinalCost+$ShippingTax),'DKK','EUR'),
+          'actual_cost_sek' => convertCurrency(formatPrice($ShippingCost->FinalCost),'DKK','SEK'),
+          'shipping_tax_sek' => convertCurrency(formatPrice($ShippingTax),'DKK','SEK'),
+          'final_cost_sek' => convertCurrency(formatPrice($ShippingCost->FinalCost+$ShippingTax),'DKK','SEK')
         ];
         return response($ResponseArray , 200);
       }else{

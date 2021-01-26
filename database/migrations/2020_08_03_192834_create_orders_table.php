@@ -34,7 +34,7 @@ class CreateOrdersTable extends Migration
             $table->string('country')->default('Default Shipping Country');
             $table->string('city')->default('Default City');
             $table->string('zip_code')->default('Default Zip Code');
-            $table->string('vat_number')->default('Default VAT Number');
+            $table->string('vat_number')->nullable();
             $table->string('is_vat_valid')->default('no');
             //Shipping Data
             $table->string('shipping_address')->nullable();

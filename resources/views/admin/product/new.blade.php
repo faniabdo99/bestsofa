@@ -48,8 +48,8 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label>Price in EUR</label>
-                                                <input type="text" class="form-control" name="price" value="{{ old('price') ?? ''}}" placeholder="Please Enter The Item Price in EUR" required>
+                                                <label>Price in Kron</label>
+                                                <input type="text" class="form-control" name="price" value="{{ old('price') ?? ''}}" placeholder="Please Enter The Item Price in Kron" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Count in Inventory</label>

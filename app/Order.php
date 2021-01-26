@@ -4,23 +4,23 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model{
     protected $guarded = [];
     public function getTotalAttribute(){
-        $PriceTo = session()->has('currency') ? session()->get('currency') : 'EUR';
-        return convertCurrency($this->total_amount , 'EUR' , $PriceTo);
+        $PriceTo = session()->has('currency') ? session()->get('currency') : 'DKK';
+        return convertCurrency($this->total_amount , 'DKK' , $PriceTo);
     }
     public function getTotalTaxAttribute(){
         if($this->vat_number && $this->is_vat_valid == 'yes'){
             return 0;
         }else{
-            $PriceTo = session()->has('currency') ? session()->get('currency') : 'EUR';
-            return convertCurrency($this->total_tax_amount , 'EUR' , $PriceTo);
+            $PriceTo = session()->has('currency') ? session()->get('currency') : 'DKK';
+            return convertCurrency($this->total_tax_amount , 'DKK' , $PriceTo);
         }
     }
     public function getTotalShippingAttribute(){
-        $PriceTo = session()->has('currency') ? session()->get('currency') : 'EUR';
+        $PriceTo = session()->has('currency') ? session()->get('currency') : 'DKK';
         if($this->vat_number && $this->is_vat_valid == 'yes'){
-            return convertCurrency(($this->total_shipping_cost) , 'EUR' , $PriceTo);
+            return convertCurrency(($this->total_shipping_cost) , 'DKK' , $PriceTo);
         }else{
-            return convertCurrency(($this->total_shipping_cost+$this->total_shipping_tax) , 'EUR' , $PriceTo);
+            return convertCurrency(($this->total_shipping_cost+$this->total_shipping_tax) , 'DKK' , $PriceTo);
         }
     }
     public function getFinalTotalAttribute(){

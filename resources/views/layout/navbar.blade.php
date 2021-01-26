@@ -17,10 +17,11 @@
                           </div>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" id="currencyDropdown" data-toggle="dropdown">@if(session()->has('currency')) {{session()->get('currency') .' '. session()->get('currency_code')}} @else EUR € @endif</a>
+                        <a href="#" class="dropdown-toggle" id="currencyDropdown" data-toggle="dropdown">@if(session()->has('currency')) {{session()->get('currency') .' '. session()->get('currency_code')}} @else DKK kr @endif</a>
                         <div class="dropdown-menu navbar-dropdown-menu" aria-labelledby="currencyDropdown">
+                            <a class="dropdown-item" href="{{route('currency.change' , ['DKK' , '€'])}}">DKK kr</a>
                             <a class="dropdown-item" href="{{route('currency.change' , ['EUR' , '€'])}}">EUR €</a>
-                            <a class="dropdown-item" href="{{route('currency.change' , ['GBP' , '£'])}}">GBP £</a>
+                            <a class="dropdown-item" href="{{route('currency.change' , ['SEK' , 'öre'])}}">SEK öre</a>
                           </div>
                     </li>
                     @auth

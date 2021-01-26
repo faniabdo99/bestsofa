@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 class ShippingCost extends Model{
     protected $guarded = [];
     public function getFinalCostAttribute(){
-      $PriceTo = session()->has('currency') ? session()->get('currency') : 'EUR';
-      return convertCurrency($this->cost , 'EUR' , $PriceTo);
+      $PriceTo = session()->has('currency') ? session()->get('currency') : 'DKK';
+      return convertCurrency($this->cost , 'DKK' , $PriceTo);
     }
 }

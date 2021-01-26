@@ -30,33 +30,32 @@ function getCurrency(){
     if(session()->get('currency') == 'EUR'){
       $CurrencySymbole = '€';
       $CurrencyCode = 'EUR';
-    }elseif(session()->get('currency') == 'GBP'){
-      $CurrencySymbole = '£';
-      $CurrencyCode = 'GBP';
+    }elseif(session()->get('currency') == 'SEK'){
+      $CurrencySymbole = 'öre';
+      $CurrencyCode = 'SEK';
+    }elseif(session()->get('currency') == 'DKK'){
+      $CurrencySymbole = 'kr';
+      $CurrencyCode = 'DKK';
     }
   }else{
-    $CurrencySymbole = '€';
-    $CurrencyCode = 'EUR';
+    $CurrencySymbole = 'kr';
+    $CurrencyCode = 'DKK';
   }
   return ['symbole' => $CurrencySymbole,'code' => $CurrencyCode];
 }
 function convertCurrency($amount , $from , $to){
+  // dd($amount.'-'.$from.'-'.$to);
   //Check Old Data
-  if($to == 'EUR'){
-    return $amount;
-  }
-  if(Cookie::get('exchange_rate')){
-    return sprintf("%.2f",$amount * Cookie::get('exchange_rate'));
-  }else{
+    if($to == 'DKK'){
+      return $amount;
+    }
     $client = new GuzzleHttp\Client();
-    $res = $client->get('http://data.fixer.io/api/latest?access_key=c7e1f33c4184fbb2083a1ae5364f9da6&base='.$from.'&symbols='.$to);
+    $res = $client->get('http://api.exchangeratesapi.io/latest?base='.$from.'&symbols='.$to);
     if($res->getStatusCode() != 200){
       return "Error !" . $res->getStatusCode();
     }
     $ResponseAsArray = json_decode($res->getBody(), true);
-    cookie()->queue(cookie()->make('exchange_rate', $ResponseAsArray['rates']['GBP'] , 60));
-    return sprintf("%.2f",$amount *  $ResponseAsArray['rates']['GBP']);
-  }
+    return sprintf("%.2f",$amount *  $ResponseAsArray['rates'][$to]);
 }
 function changeDateFormate($date,$date_format){
     return \Carbon\Carbon::createFromFormat('Y-m-d', $date)->format($date_format);

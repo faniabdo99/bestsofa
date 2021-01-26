@@ -401,6 +401,7 @@ $('#send_activate_link').click(function(){
 //Ask Question about a Product
 $("#submit-ask-question-about-product-form").click(function(e){
     e.preventDefault();
+    $(this).html('<i class="fas fa-spinner fa-spin"></i>');
     var ActionRoute = $(this).attr('action-route');
     var FormData = $(this).parent().parent().serialize();
     $.ajax({
@@ -409,6 +410,10 @@ $("#submit-ask-question-about-product-form").click(function(e){
         data : FormData,
         success : function(response){
             ShowNoto('noto-success' , response , 'Success');
+            $("#submit-ask-question-about-product-form").parent().parent().each(function(){
+                this.reset();
+            });
+            $("#submit-ask-question-about-product-form").html('Send Question');
         },
         error: function(response){
             ShowNoto('noto-danger' , response.responseJSON[0] , 'Error');

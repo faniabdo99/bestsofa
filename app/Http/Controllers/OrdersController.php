@@ -138,7 +138,6 @@ class OrdersController extends Controller{
           $Item->update(['user_id' => $TheUser->id]);
         });
         //Send Password Creation Email
-
         Mail::to($r->email)->send(new OrderSignupPassword($TheUser));
         //Log the User in
         Auth::loginUsingId($TheUser->id);
@@ -295,7 +294,7 @@ class OrdersController extends Controller{
                 ]);
                 return view('orders.checkout.thank-you' , compact('TheOrder' , 'OrderItems'));
               }else{
-                return back()->withError(__('controllers.orders_cant_pay_on_collection'));
+                return back()->withErrors(__('controllers.orders_cant_pay_on_collection'));
               }
             }
           }
@@ -304,52 +303,50 @@ class OrdersController extends Controller{
           $ProductsListArray = $ProductsListObject->map(function($item){
             return "Title: ".$item->Product->title." | ID: ".$item->product_id." | Quantity: ".$item->qty;
           });
-            $GetPaymentMethod = Payment_Method::where('code_name' , $r->payment_method)->first();
-            $OrderTotalAddition = ($TheOrder->final_total * $GetPaymentMethod->percentage_fee) / 100;
-            $OrderFixedFee = $GetPaymentMethod->fixed_fee;
-            $OrderFinalTotal = $TheOrder->final_total + $OrderTotalAddition + $OrderFixedFee;
-
-              try{
-                $payment = Mollie::api()->payments->create([
-                  "amount" => [
-                      "currency" => "$TheOrder->order_currency",
-                      "value" => sprintf("%.2f",$OrderFinalTotal)
-                  ],
-                  "description" => "Order #$TheOrder->serial_number",
-                  "locale" => "$TheOrder->lang"."_us",
-                  "method" => "$r->payment_method",
-                  "billingEmail" => "$TheOrder->email",
-                  "metadata" => [
-                      'customer_name' => $TheOrder->first_name .' '.$TheOrder->last_name,
-                      'customer_id' => 'cst_'.$r->user_id,
-                      'products_list' => $ProductsListArray
-                  ],
-                  "redirectUrl" => route('order.success' , ['id' => $TheOrder->id])
-                  ]);
-              } catch(ApiException $ee){
-                $StatusCode = $ee->getResponse()->getStatusCode();
-                switch ($StatusCode) {
-                  case 401:
-                    return back()->withErrors("The Payments Server is Being Fixed, Please Try Again Later");
-                    break;
-                  case 422:
-                    return back()->withErrors("This Currency is Not Supported For This Payment Method");
-                    break;
-
-                  default:
-                    return back()->withErrors("Something Went Wrong, Please Try Again");
-                    break;
-                }
-              }
-              //Update the order with mollie id and status
-              $TheOrder->update([
-                'payment_method' => $payment->method,
-                'status' => 'Order received',
-                'payment_id' => $payment->id,
-                'is_paid' => $payment->status
+          $GetPaymentMethod = Payment_Method::where('code_name' , $r->payment_method)->first();
+          $OrderTotalAddition = ($TheOrder->final_total * $GetPaymentMethod->percentage_fee) / 100;
+          $OrderFixedFee = $GetPaymentMethod->fixed_fee;
+          $OrderFinalTotal = $TheOrder->final_total + $OrderTotalAddition + $OrderFixedFee;
+          // try{
+            $payment = Mollie::api()->payments->create([
+              "amount" => [
+                  "currency" => "$TheOrder->order_currency",
+                  "value" => sprintf("%.2f",$OrderFinalTotal)
+              ],
+              "description" => "Order #$TheOrder->serial_number",
+              "locale" => "$TheOrder->lang"."_us",
+              "method" => "$r->payment_method",
+              "billingEmail" => "$TheOrder->email",
+              "metadata" => [
+                  'customer_name' => $TheOrder->first_name .' '.$TheOrder->last_name,
+                  'customer_id' => 'cst_'.$r->user_id,
+                  'products_list' => $ProductsListArray
+              ],
+              "redirectUrl" => route('order.success' , ['id' => $TheOrder->id])
               ]);
-              // redirect customer to Mollie checkout page
-              return redirect($payment->getCheckoutUrl(), 303);
+          // } catch(ApiException $ee){
+          //   $StatusCode = $ee->getResponse()->getStatusCode();
+          //   switch ($StatusCode) {
+          //     case 401:
+          //       return back()->withErrors("The Payments Server is Being Fixed, Please Try Again Later");
+          //       break;
+          //     case 422:
+          //       return back()->withErrors("This Currency is Not Supported For This Payment Method");
+          //       break;
+          //     default:
+          //       return back()->withErrors("Something Went Wrong, Please Try Again");
+          //       break;
+          //   }
+          // }
+          //Update the order with mollie id and status
+          $TheOrder->update([
+            'payment_method' => $payment->method,
+            'status' => 'Order received',
+            'payment_id' => $payment->id,
+            'is_paid' => $payment->status
+          ]);
+          // redirect customer to Mollie checkout page
+          return redirect($payment->getCheckoutUrl(), 303);
         }else{
           abort(403);
         }

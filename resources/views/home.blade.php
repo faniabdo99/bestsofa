@@ -42,8 +42,7 @@
                 </div>
                 <div class="row">
                     @forelse($PromotedProducts as $Product)
-                    @if($Product->status == 'Customers only')
-                    @auth
+                 
                     <div class="col col10">
                         <div class="f_p_item">
                             <div class="f_p_img">
@@ -55,31 +54,6 @@
                                         <i class="lnr lnr lnr-heart"></i>
                                     </a>
                                     @endauth
-                                    <a href="javascript:;" class="add-to-cart" data-id="{{$Product->id}}"><i
-                                            class="lnr lnr-cart"></i></a>
-                                </div>
-                            </div>
-                            <a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
-                                <h4>{{$Product->local_title}}</h4>
-                            </a>
-                            <h5 class="product-price-before-discount">{{$Product->price}}</h5>
-                        </div>
-                    </div>
-                    @endauth
-                    @else
-                    <div class="col col10">
-                        <div class="f_p_item">
-                            <div class="f_p_img">
-                                <img class="img-fluid" src="{{$Product->main_image}}" alt="{{$Product->title}}">
-                                <div class="p_icon">
-                                    @auth
-                                    <a class="icon_btn like_item @if($Product->LikedByUser()) bg-primary text-white @endif"
-                                        product-id="{{$Product->id}}" href="javascript:;">
-                                        <i class="lnr lnr lnr-heart"></i>
-                                    </a>
-                                    @endauth
-                                    <a href="javascript:;" class="add-to-cart" data-id="{{$Product->id}}"><i
-                                            class="lnr lnr-cart"></i></a>
                                 </div>
                             </div>
                             <a href="{{route('product.single' , [$Product->id , $Product->local_slug])}}">
@@ -93,7 +67,6 @@
                             @endif
                         </div>
                     </div>
-                    @endif
                     @empty
                     <p>
                         @lang('homepage.featured-products-no-items')</p>
