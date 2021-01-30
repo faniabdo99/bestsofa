@@ -81,24 +81,10 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label>For Season</label>
+                                                <label>Fabric Type</label>
                                                 <select class="form-control mb-4" name="season" required>
-                                                        <option value="winter">Winter</option>
-                                                        <option value="summer">Summer</option>
-                                                        <option value="fall">Fall</option>
-                                                        <option value="spring">Spring</option>
-                                                        <option value="all">All</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>For Gender</label>
-                                                <select class="form-control mb-4" name="gender" required>
-                                                        <option value="men">Men</option>
-                                                        <option value="women">Women</option>
-                                                        <option value="children">Children</option>
-                                                        <option value="adults">Adults</option>
-                                                        <option value="young">Young</option>
-                                                        <option value="all">All</option>
+                                                        <option value="facbric">Fabric</option>
+                                                        <option value="fabric-with-leather">Fabric With Leather</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -167,7 +153,7 @@
              paramName: "image",
              params: {'product_id':$('input[name="id"]').val()},
              acceptedFiles: 'image/*',
-             maxFiles: 5,
+             maxFiles: 7,
              dictDefaultMessage: "Drag Images or Click to Upload",
      });
     </script>

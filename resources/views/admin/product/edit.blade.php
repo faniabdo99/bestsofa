@@ -85,22 +85,8 @@
                                             <div class="form-group">
                                                 <label>For Season</label>
                                                 <select class="form-control mb-4" name="season">
-                                                        <option @if($ProductData->season == 'winter') selected @endif value="winter">Winter</option>
-                                                        <option @if($ProductData->season == 'summer') selected @endif value="summer">Summer</option>
-                                                        <option @if($ProductData->season == 'fall') selected @endif value="fall">Fall</option>
-                                                        <option @if($ProductData->season == 'spring') selected @endif value="spring">Spring</option>
-                                                        <option @if($ProductData->season == 'all') selected @endif value="all">All</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>For Gender</label>
-                                                <select class="form-control mb-4" name="gender">
-                                                        <option @if($ProductData->gender == 'men') selected @endif value="men">Men</option>
-                                                        <option @if($ProductData->gender == 'women') selected @endif value="women">Women</option>
-                                                        <option @if($ProductData->gender == 'children') selected @endif  value="children">Children</option>
-                                                        <option @if($ProductData->gender == 'adults') selected @endif  value="adults">Adults</option>
-                                                        <option @if($ProductData->gender == 'young') selected @endif  value="young">Young</option>
-                                                        <option @if($ProductData->gender == 'all') selected @endif value="all">All</option>
+                                                    <option @if($ProductData->season == 'winter') selected @endif value="winter">Winter</option>
+                                                    <option @if($ProductData->season == 'summer') selected @endif value="summer">Summer</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -171,7 +157,7 @@
              paramName: "image",
              params: {'product_id':$('input[name="id"]').val()},
              acceptedFiles: 'image/*',
-             maxFiles: 5,
+             maxFiles: 7,
              dictDefaultMessage: "Drag Images or Click to Upload",
      });
     </script>

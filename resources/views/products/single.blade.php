@@ -47,9 +47,9 @@
                             <h2>{{$TheProduct->FinalPrice.getCurrency()['symbole']}} </h2>
                             @endif
                             <ul class="list">
-                                <li>
+                                {{-- <li>
                                     <a class="active" href="{{route('product.home')}}?category_filters={{$TheProduct->Category->slug}}"><span class="font-weight-bold">@lang('products.category')</span> {{$TheProduct->Category->local_title}}</a>
-                                </li>
+                                </li> --}}
                                 @if($TheProduct->status == 'Available' || $TheProduct->status == 'Sold Out' || $TheProduct->status == 'Pre-Oreder')
                                     <li>
                                         <a href="#">

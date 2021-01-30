@@ -54,7 +54,6 @@ class ProductsController extends Controller{
             'inventory' => 'required|numeric',
             'min_order' => 'required|numeric',
             'season' => 'required',
-            'gender' => 'required',
             'weight' => 'numeric',
             'height' => 'nullable|numeric',
             'width' => 'nullable|numeric',

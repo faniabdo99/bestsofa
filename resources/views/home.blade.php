@@ -26,9 +26,41 @@
 					</div>
 				</div>
 			</div>
+        </div>
+        <div class="banner_area  owl-item" id="homepage-hero">
+			<div class="banner_inner">
+				<div class="container">
+					<div class="banner_content text-center">
+						<h1>Straight From Factory</h1>
+						<p>From Factory to Your Home!</p>
+						<a class="white_bg_btn" href="{{route('product.home')}}">@lang('homepage.cta')</a>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="banner_area  owl-item" id="homepage-hero">
+			<div class="banner_inner">
+				<div class="container">
+					<div class="banner_content text-center">
+						<h1>Straight From Factory</h1>
+						<p>From Factory to Your Home!</p>
+						<a class="white_bg_btn" href="{{route('product.home')}}">@lang('homepage.cta')</a>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="banner_area  owl-item" id="homepage-hero">
+			<div class="banner_inner">
+				<div class="container">
+					<div class="banner_content text-center">
+						<h1>Straight From Factory</h1>
+						<p>From Factory to Your Home!</p>
+						<a class="white_bg_btn" href="{{route('product.home')}}">@lang('homepage.cta')</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
-
     <!--================End Home Banner Area =================-->
     <!--================Feature Product Area =================-->
     <section class="feature_product_area section_gap">
