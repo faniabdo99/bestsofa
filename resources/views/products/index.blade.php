@@ -89,7 +89,7 @@
                     <div class="left_sidebar_area">
                         <aside class="left_widgets cat_widgets">
                             <div class="l_w_title">
-                                <h3>@lang('products.browse_categories')</h3>
+                                <h3>Products</h3>
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
@@ -120,7 +120,7 @@
                         </aside>
                         <aside class="left_widgets cat_widgets">
                             <div class="l_w_title">
-                                <h3>Product For</h3>
+                                <h3>Price</h3>
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
