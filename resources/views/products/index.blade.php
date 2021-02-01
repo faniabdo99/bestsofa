@@ -8,6 +8,17 @@
         <div class="container-fluid">
             <div class="row flex-row-reverse">
                 <div class="col-lg-9">
+                    <div class="form-group row mt-3 mb-2">
+                        <div class="col-md-2">
+                            <h3>Sort by Price</h3>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-control" name="order">
+                                <option selected value="1">lowest first</option>
+                                <option value="2">highest first </option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="latest_product_inner row">
                         @forelse ($Products as $Product)
                         <div class="col-lg-3 col-md-3 col-sm-6">
@@ -95,19 +106,15 @@
                         </aside>
                         <aside class="left_widgets cat_widgets">
                             <div class="l_w_title">
-                                <h3>@lang('products.product_season')</h3>
+                                <h3>@lang('products.product_fabrics')</h3>
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
-                                    <li><input class="mr-3" name="season_filters" checked type="radio" value="">@lang('products.all')</li>
-                                    <li><input class="mr-3" name="season_filters" @if(request()->has('season_filters') && request()->season_filters == 'winter') checked
-                                        @endif type="radio" value="winter">@lang('products.winter')</li>
-                                    <li><input class="mr-3" name="season_filters" @if(request()->has('season_filters') && request()->season_filters == 'summer') checked
-                                        @endif type="radio" value="summer">@lang('products.summer')</li>
-                                    <li><input class="mr-3" name="season_filters" @if(request()->has('season_filters') && request()->season_filters == 'fall') checked
-                                        @endif type="radio" value="fall">@lang('products.fall')</li>
-                                    <li><input class="mr-3" name="season_filters" @if(request()->has('season_filters') && request()->season_filters == 'spring') checked
-                                        @endif type="radio" value="spring">@lang('products.spring')</li>
+                                    <li><input class="mr-3" name="product_fabrics" checked type="radio" value="">@lang('products.all')</li>
+                                    <li><input class="mr-3" name="product_fabrics" @if(request()->has('product_fabrics') && request()->product_fabrics == 'leather') checked
+                                        @endif type="radio" value="leather">@lang('products.leather')</li>
+                                    <li><input class="mr-3" name="product_fabrics" @if(request()->has('product_fabrics') && request()->product_fabrics == 'mix_leather_with_fabric') checked
+                                        @endif type="radio" value="mix_leather_with_fabric">@lang('products.mix_leather_with_fabric')</li>
                                 </ul>
                             </div>
                         </aside>
@@ -117,12 +124,10 @@
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
-                                    <li><input class="mr-3" name="gender_filters" checked type="radio" value="">All</li>
-                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'men') checked @endif type="radio" value="men">@lang('products.men')</li>
-                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'women') checked @endif type="radio" value="women">@lang('products.women')</li>
-                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'children') checked @endif type="radio" value="children">@lang('products.children')</li>
-                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'adults') checked @endif type="radio" value="adults">@lang('products.adults')</li>
-                                    <li><input class="mr-3" name="gender_filters" @if(request()->has('gender_filters') && request()->gender_filters == 'young') checked @endif type="radio" value="young">@lang('products.young')</li>
+                                    <li><input class="mr-3" name="price_filters" checked type="radio" value="">All</li>
+                                    <li><input class="mr-3" name="price_filters" @if(request()->has('price_filters') && request()->price_filters == 'under') checked @endif type="radio" value="under">Under 3750kr</li>
+                                    <li><input class="mr-3" name="price_filters" @if(request()->has('price_filters') && request()->price_filters == 'between') checked @endif type="radio" value="between">Between 3750kr-5000kr</li>
+                                    <li><input class="mr-3" name="price_filters" @if(request()->has('price_filters') && request()->price_filters == 'above') checked @endif type="radio" value="above">Above 5000kr</li>
                                 </ul>
                             </div>
 

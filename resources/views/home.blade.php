@@ -74,7 +74,7 @@
                 </div>
                 <div class="row">
                     @forelse($PromotedProducts as $Product)
-                 
+
                     <div class="col col10">
                         <div class="f_p_item">
                             <div class="f_p_img">
@@ -113,15 +113,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-lg-6">
-                    <h2 class="text-dark">
-                        @lang('homepage.about-us-header')</h2>
-                    <p class="text-muted">
-                        @lang('homepage.about-us-subheader')</p>
-                    <p>
-                        @lang('homepage.about-us-content')</p>
+                    <h2 class="text-dark">@lang('homepage.about-us-header')</h2>
+                    <p>@lang('homepage.about-us-content')</p>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <iframe src="//www.youtube.com/embed/rRFIoI1sBMw" frameborder="0" allowfullscreen=""></iframe>
+                    <img  style="height:300px;width:500px" class="img-fluid" src="{{ asset('public/img/banner/order-payment.jpg') }}" alt="hi">
                 </div>
             </div>
         </div>

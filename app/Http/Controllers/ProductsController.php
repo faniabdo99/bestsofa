@@ -53,7 +53,7 @@ class ProductsController extends Controller{
             'price' => 'required|numeric',
             'inventory' => 'required|numeric',
             'min_order' => 'required|numeric',
-            'season' => 'required',
+            'fabrics' => 'required',
             'weight' => 'numeric',
             'height' => 'nullable|numeric',
             'width' => 'nullable|numeric',
@@ -102,6 +102,7 @@ class ProductsController extends Controller{
         $DiscountsList = Discount::whereDate('valid_until' , '>' , Carbon::today())->get();
         return view('admin.product.edit' , compact('ProductData' ,'AllCategories' , 'ReadyToUseTagsArray' , 'DiscountsList'));
     }
+
     public function postEdit(Request $r , $id){
         $TheProduct = Product::find($id);
         //Validate the request
@@ -113,47 +114,46 @@ class ProductsController extends Controller{
             'price' => 'required|numeric',
             'inventory' => 'required|numeric',
             'min_order' => 'required|numeric',
-            'season' => 'required',
-            'gender' => 'required',
+            'fabrics' => 'required',
             'weight' => 'numeric',
             'height' => 'nullable|numeric',
             'width' => 'nullable|numeric',
             'tax_rate' => 'required',
             'image' => 'image|max:45000000'
-    ];
-    $validator = Validator::make($r->all() , $Rules);
-    if($validator->fails()){
-        return back()->withErrors($validator->errors()->all())->withInput();
-    }else{
-        //Prepare The Data For Uploading
-        $ProductData = $r->except('custom_tags');
-        //Check the Discount
-        if($r->has('discount_id') && $r->discount_id != null){
-            //Get the discount
-            $TheDiscount = Discount::find($r->discount_id);
-            if($TheDiscount->type == 'fixed'){
-                if($TheDiscount->amount >= $r->price){
-                    return back()->withErrors('The Discount is Bigger Than The Item Price')->withInput();
+        ];
+        $validator = Validator::make($r->all() , $Rules);
+        if($validator->fails()){
+            return back()->withErrors($validator->errors()->all())->withInput();
+        }else{
+            //Prepare The Data For Uploading
+            $ProductData = $r->except('custom_tags');
+            //Check the Discount
+            if($r->has('discount_id') && $r->discount_id != null){
+                //Get the discount
+                $TheDiscount = Discount::find($r->discount_id);
+                if($TheDiscount->type == 'fixed'){
+                    if($TheDiscount->amount >= $r->price){
+                        return back()->withErrors('The Discount is Bigger Than The Item Price')->withInput();
+                    }
                 }
             }
+            //Handle The Image
+            if($r->has('image')){
+                $ProductData['image'] = $TheProduct->slug.'.'.$r->image->getClientOriginalExtension();
+                $r->image->storeAs('images/products' , $ProductData['image']);
+            }else{
+                $ProductData['image'] = $TheProduct->image;
+            }
+            $ProductData['show_inventory'] = ($r->show_inventory == 'on') ? 1 : 0;
+            $ProductData['is_promoted'] = ($r->is_promoted == 'on') ? 1 : 0;
+            $ProductData['allow_reviews'] = ($r->allow_reviews == 'on') ? 1 : 0;
+            $ProductData['allow_reservations'] = ($r->allow_reservations == 'on') ? 1 : 0;
+            $ProductData['user_id'] = auth()->user()->id;
+            $ProductData['price'] = sprintf("%.2f",$r->price);
+            $TheProduct->update($ProductData);
+            return redirect()->route('admin.products.home')->withSuccess('Product Updated Successfully !');
         }
-        //Handle The Image
-        if($r->has('image')){
-            $ProductData['image'] = $TheProduct->slug.'.'.$r->image->getClientOriginalExtension();
-            $r->image->storeAs('images/products' , $ProductData['image']);
-        }else{
-            $ProductData['image'] = $TheProduct->image;
-        }
-        $ProductData['show_inventory'] = ($r->show_inventory == 'on') ? 1 : 0;
-        $ProductData['is_promoted'] = ($r->is_promoted == 'on') ? 1 : 0;
-        $ProductData['allow_reviews'] = ($r->allow_reviews == 'on') ? 1 : 0;
-        $ProductData['allow_reservations'] = ($r->allow_reservations == 'on') ? 1 : 0;
-        $ProductData['user_id'] = auth()->user()->id;
-        $ProductData['price'] = sprintf("%.2f",$r->price);
-        $TheProduct->update($ProductData);
-        return redirect()->route('admin.products.home')->withSuccess('Product Updated Successfully !');
     }
-}
     //Delete
     public function delete(Request $r){
         Product::findOrFail($r->item_id)->delete();
@@ -181,6 +181,7 @@ class ProductsController extends Controller{
             return response('Image Uploaded');
         }
     }
+
     public function deleteGalleryImages($product_id){
       Product_Image::where('product_id' , $product_id)->delete();
       return back()->withSuccess('Product Gallery Images Deleted');
@@ -241,14 +242,22 @@ class ProductsController extends Controller{
             $TheCategory = Category::where('slug' , $r->category_filters)->first();
             $FiltersCode = "->where('category_id' , \$TheCategory->id)";
         }
-        if($r->has('season_filters') && !empty($r->season_filters) && $r->season_filters != null){
-            $Season = $r->season_filters;
-            $FiltersCode = $FiltersCode . "->where('season' , \$Season)";
+        if($r->has('product_fabrics') && !empty($r->product_fabrics) && $r->product_fabrics != null){
+            $fabric = $r->product_fabrics;
+            $FiltersCode = $FiltersCode . "->where('fabrics' , \$fabric)";
         }
-        if($r->has('gender_filters') && !empty($r->gender_filters) && $r->gender_filters != null){
-            $Gender = $r->gender_filters;
-            $FiltersCode = $FiltersCode . "->where('gender' , \$Gender)";
+        if($r->has('price_filters') && !empty($r->price_filters) && $r->price_filters != null){
+            $price = $r->price_filters;
+            if($price=='under')
+                $FiltersCode = $FiltersCode . "->where('price' ,'<', 3750)";
+            else if($price=='between')
+                $FiltersCode = $FiltersCode . "->whereBetween('price' , array(3750,5000))";
+            else if($price=='above')
+                $FiltersCode = $FiltersCode . "->where('price' ,'>', 5000)";
         }
+        // dd($r->order);
+        if($r->order==1)
+        $FiltersCode=$FiltersCode.'sortBy("price","ASC")';
         $Query = '$Products = App\Product::orderBy("id" , "desc")'.$FiltersCode.'->get();';
         eval($Query);
         //Must Use Vars

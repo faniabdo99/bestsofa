@@ -10,12 +10,11 @@
     'deal-1-subheader' => 'Signup NOW',
     'deal-2-header' => 'New Website Offers',
     'deal-2-subheader' => 'shop now',
-    'about-us-header' => 'Best Sofa',
-    'about-us-subheader' => 'a <a class="font-weight-bold" href="https://www.globale-trading.be" target="_blank">Best Sofa</a> Company',
-    'about-us-content' => 'We are a company that has more than 25 years experience in import & export of second-hand clothing & shoes.<br>
-                            We are wholesale specialized, one of the major leaders in this sector and the only company that  works with high quality UK C4C original in Belgium.<br>
-                            We share our worldwide experience through business relationships with our regular customers. We have created this webshop to be able to easily and efficiently fulfill the needs of the  customer based in Europe. (for other countries please contact us for more information)<br>
-                            All our goods are the best cash 4 clothes collections from in/around London area.<br>
-                            We wish you a lot of shopping pleasure.',
-    
+    'about-us-header' => 'XL Sofa',
+    'about-us-content' => '- xl sofa means the cheapest price and the best quality<br>
+- our factory has been established in Denmark since 2015<br>
+- we entered the market at very competitive prices, as we deal with the main suppliers of raw materials in Denmark and European Union<br>
+- you get a sofa at the wholesale price from our factory and showrooms<br>
+- customers satisfaction is our goal',
+
   ];

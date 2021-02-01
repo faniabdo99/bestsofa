@@ -7,12 +7,13 @@ use App;
 use App\Product;
 class HomeController extends Controller{
     public function getHome(){
-        $PromotedProducts = Product::where('is_promoted' , 1)->where('status' , '!=' , 'Invisible')->latest()->limit(10)->get();
+        $PromotedProducts = Product::where('is_promoted' , 1)->where('status' , '!=' , 'Invisible')->latest()->limit(15)->get();
         return view('home' , compact('PromotedProducts'));
     }
+
     public function changeLang($locale){
-      App::setLocale($locale);
-     session()->put('locale', $locale);
-     return redirect()->back();
+        App::setLocale($locale);
+        session()->put('locale', $locale);
+        return redirect()->back();
     }
 }

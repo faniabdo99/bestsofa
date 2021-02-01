@@ -83,10 +83,10 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label>For Season</label>
-                                                <select class="form-control mb-4" name="season">
-                                                    <option @if($ProductData->season == 'winter') selected @endif value="winter">Winter</option>
-                                                    <option @if($ProductData->season == 'summer') selected @endif value="summer">Summer</option>
+                                                <label>Fabric Type</label>
+                                                <select class="form-control mb-4" name="fabrics" required>
+                                                        <option value="facbric">Fabric</option>
+                                                        <option value="fabric-with-leather">Fabric With Leather</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">

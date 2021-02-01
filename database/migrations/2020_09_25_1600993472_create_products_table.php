@@ -32,8 +32,7 @@ class CreateProductsTable extends Migration
 		$table->integer('allow_reviews')->default('1');
 		$table->integer('allow_reservations')->default('1');
 		$table->integer('user_id');
-		$table->string('season')->nullable();
-		$table->string('gender');
+		$table->string('fabrics')->nullable();
     $table->timestamps();
 
 

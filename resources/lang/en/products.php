@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'product_season' => 'PRODUCT SEASON',
+    'product_fabrics' => 'Fabrics',
     'product_for' => 'PRODUCT FOR',
     'no_products' => 'No Products in this search term',
     'no_categories' => 'No Categories Yet',
     'browse_categories' => 'BROWSE CATEGORIES',
-    'winter' => 'Winter',
-    'summer' => 'Summer',
+    'leather' => 'Leather',
+    'mix_leather_with_fabric' => 'Mix Leather With Fabric',
     'fall' => 'Fall',
     'spring' => 'Spring',
     'men' => 'Men',

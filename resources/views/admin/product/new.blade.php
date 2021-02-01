@@ -82,7 +82,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Fabric Type</label>
-                                                <select class="form-control mb-4" name="season" required>
+                                                <select class="form-control mb-4" name="fabrics" required>
                                                         <option value="facbric">Fabric</option>
                                                         <option value="fabric-with-leather">Fabric With Leather</option>
                                                 </select>

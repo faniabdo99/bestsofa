@@ -58,7 +58,7 @@
                             <ul class="nav navbar-nav center_nav pull-right">
                               <li class="nav-item @if(request()->path() == '/') active @endif"><a class="nav-link" href="{{route('home')}}">@lang('layout.home')</a></li>
                               <li class="nav-item @if(str_contains(request()->path() , 'products')) active @endif"><a href="{{route('product.home')}}" class="nav-link">@lang('layout.shop')</a></li>
-                              <li class="nav-item @if(request()->path() == '/offers') active @endif"><a class="nav-link" href="{{route('home')}}">Offers</a></li>
+                              <li class="nav-item @if(request()->path() == 'offer') active @endif"><a class="nav-link" href="{{route('offer')}}">Offers</a></li>
                               <li class="nav-item @if(request()->path() == 'about') active @endif"><a class="nav-link" href="{{route('about')}}">@lang('layout.about-us')</a></li>
                               <li class="nav-item @if(request()->path() == '/shipping') active @endif"><a class="nav-link" href="{{route('home')}}">Shipping</a></li>
                               <li class="nav-item @if(str_contains(request()->path() , 'contact')) active @endif"><a class="nav-link" href="{{route('contact.get')}}">@lang('layout.contact')</a></li>

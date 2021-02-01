@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function(){
 Route::get('contact' , 'ContactUsController@getContact')->name('contact.get');
 Route::post('contact' , 'ContactUsController@postContact')->name('contact.post');
 Route::get('about' , 'PagesController@getAboutUs')->name('about');
+Route::get('/offer/{filter?}' , 'PagesController@getOffer')->name('offer');
 //Products Routes
 Route::group(['prefix'=>'products'] , function (){
   Route::get('/{filter?}' , 'ProductsController@getAll')->name('product.home');
@@ -98,15 +99,6 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'] , function () {
     Route::post('/edit/{id}' , 'ShippingCostsController@postEdit')->name('admin.shippingCosts.postEdit');
   });
 
-    //Blog System
-    Route::prefix('blog')->group(function(){
-        Route::get('/' , 'BlogController@admin_posts')->name('admin.blog.index');
-        Route::get('/new' , 'BlogController@create')->name('admin.blog.create');
-        Route::post('/new' , 'BlogController@store')->name('admin.blog.store');
-        Route::get('/edit/{id}' , 'BlogController@edit')->name('admin.blog.edit');
-        Route::post('/edit/{id}' , 'BlogController@update')->name('admin.blog.update');
-        Route::get('/delete/{id}' , 'BlogController@destroy')->name('admin.blog.delete');
-    });
 
     //Orders System
     Route::prefix('orders')->group(function(){
@@ -136,7 +128,3 @@ Route::get('order-summary/{id}/{processed?}', 'OrdersController@getSummaryPage')
 Route::get('order-payment/{id}', 'OrdersController@getPaymentPage')->name('checkout.payment');
 Route::post('order-payment/{id}', 'OrdersController@postPaymentPage')->name('checkout.payment.post');
 Route::post('apply-coupon' , 'CoupounsController@applyCoupon')->name('coupon.apply');
-
-// blog Routes
-Route::resource('blog', 'BlogController');
-Route::post('add_comment','BlogController@create_comment')->name('admin.create_comment');
