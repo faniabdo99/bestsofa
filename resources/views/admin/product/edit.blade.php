@@ -90,6 +90,10 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
+                                                <label>Shipping Status</label>
+                                                <input type="text" class="form-control" name="shipping_status" value="{{ old('shipping_status') ?? $ProductData->shipping_status }}" placeholder="Please Enter Product Shipping Status">
+                                            </div>
+                                            <div class="form-group">
                                                 <label>Product Gallery</label>
                                                 <div id="drop-zone" class="dropzone"></div>
                                                 <a class="btn btn-danger" href="{{route('admin.galleryImages.delete' , $ProductData->id)}}">Delete Current Gallery Images ({{$ProductData->GalleryImages->count()}})</a>

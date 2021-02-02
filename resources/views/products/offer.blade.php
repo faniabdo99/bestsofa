@@ -6,16 +6,18 @@
             <div class="form-group col-lg-3">
                 <form action="{{ route('offer') }}" method="get">
                     <h3>Sort by Price</h3>
-                    <select class="form-control" name="filter">
-                        <option value="1" @if(request()->has('filter') && request()->filter == 1) selected @endif>lowest first</option>
-                        <option value="2" @if(request()->has('filter') && request()->filter == 2) selected @endif>highest first </option>
-                    </select>
-                    <span>
-                        <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
-                    </span>
+                    <div class="row">
+                        <select class="form-control col-md-8" name="filter">
+                            <option value="1" @if(request()->has('filter') && request()->filter == 1) selected @endif>lowest first</option>
+                            <option value="2" @if(request()->has('filter') && request()->filter == 2) selected @endif>highest first </option>
+                        </select>
+                        <span class="col-md-4">
+                            <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                        </span>
+                    </div>
                 </form>
             </div>
-            
+
             <div class="col-lg-9">
                 <div class="latest_product_inner row">
                     @forelse ($Products as $Product)

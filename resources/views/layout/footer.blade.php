@@ -5,49 +5,52 @@
                 <div class="single-footer-widget">
                     <h6 class="footer_title">Contact Information</h6>
                     <ul class="contact-information-footer">
-                        <li><i class="fas fa-envelope"></i> <a href="#">admin@company.com</a></li>
-                        <li><i class="fas fa-phone"></i> <a href="#">00123 4456 7787</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:admin@company.com">admin@company.com</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:00123 4456 7787">00123 4456 7787</a></li>
                         <li><i class="fas fa-map-marker-alt"></i> <a href="#">Company Address</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="#">admin@company.com</a></li>
                     </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6 class="footer_title">Newsletter</h6>
-                    <p>Stay updated with our latest trends</p>
-                    <div id="mc_embed_signup">
-                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative">
-                            <div class="input-group d-flex flex-row">
-                                <input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
-                                <button class="btn sub-btn">
-                                    <span class="lnr lnr-arrow-right"></span>
-                                </button>
-                            </div>
-                            <div class="mt-10 info"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-footer-widget f_social_wd">
-                  <h6 class="footer_title">@lang('layout.follow-us')</h6>
                     <p>@lang('layout.follow-us-sub-text')</p>
                     <div class="f_social">
                         <a href="#">
                             <i class="fa fa-facebook"></i>
-                        </a>
+                        </a>&nbsp;
                         <a href="#">
                             <i class="fa fa-twitter"></i>
-                        </a>
+                        </a>&nbsp;
                         <a href="#">
                             <i class="fa fa-dribbble"></i>
-                        </a>
+                        </a>&nbsp;
                         <a href="#">
                             <i class="fa fa-behance"></i>
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6 class="footer_title">Address</h6>
+                    <p>XL Sofa</p>
+                    <p>Vestergade 72</p>
+                    <p>7870 Roslev</p>
+                    <p>Denmmark</p>
+                    <p>CRK</p>
+                    <br>
+                    <a href="/bestsofa/contact" style="font-weight:bold;font-size:18px">Contact Us</a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="single-footer-widget f_social_wd">
+                  <h6 class="footer_title">Showroom Opening Hours</h6>
+                    <p>We always offer our customers to open the showroom outside the opening hours, contact us to arrange a visit to our showroom 
+                        Monday : open after appointment
+                    </p>
+                </div>
+                <div class="my-map">
+                        <iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3548.962477765227!2d31.166406114889405!3d27.188916083009325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14450bfb7a5cb539%3A0x38d71298729ac58a!2sAssiut%20University!5e0!3m2!1sen!2seg!4v1592511927963!5m2!1sen!2seg"
+                            frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
             </div>
         </div>
         <div class="row footer-bottom d-flex justify-content-between align-items-center">

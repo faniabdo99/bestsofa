@@ -1,25 +1,14 @@
 @include('layout.header', ['PageTitle' => __('titles.contact-us')])
 <body>
-    <!--================Header Menu Area =================-->
     @include('layout.navbar')
-    <!--================Header Menu Area =================-->
-    <!--================Home Banner Area =================-->
-    <section class="banner_area" id="contact-us-hero">
-        <div class="banner_inner">
-            <div class="container">
-                <div class="banner_content text-center">
-                    <h1>@lang('pages.contact-us-header')</h1>
-                    <p>@lang('pages.contact-us-subheader')</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Home Banner Area =================-->
-    <!--================Contact Area =================-->
-    <section class="contact_area p_120">
+
+    <section class="contact_area p_120 mt-5">
         <div class="container">
+            <div class="row justify-content-center mb-4">
+                <h1>Contact Us</h1>
+            </div>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-4" id="contact1">
                     <div class="contact_info">
                         <div class="info_item">
                             <i class="lnr lnr-home"></i>
@@ -320,7 +309,7 @@
             </div>
         </div>
     </section>
-    <!--================Contact Area =================-->
+    
     @include('layout.footer')
     @include('layout.scripts')
 </body>

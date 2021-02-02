@@ -88,6 +88,10 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
+                                                <label>Shipping Status</label>
+                                                <input type="text" class="form-control" name="shipping_status" value="{{ old('shipping_status') ?? ''}}" placeholder="Please Enter Product Shipping Status">
+                                            </div>
+                                            <div class="form-group">
                                                 <label>Product Gallery</label>
                                                 <div id="drop-zone" class="dropzone"></div>
                                             </div>

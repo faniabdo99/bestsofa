@@ -1,9 +1,7 @@
 @include('layout.header',['PageTitle' => $TheProduct->local_title])
 <body>
-    <!--================Header Menu Area =================-->
     @include('layout.navbar')
-    <!--================Header Menu Area =================-->
-    <!--================Single Product Area =================-->
+
     <div class="product_image_area mt-5">
         <div class="container">
             <div class="row s_product_inner">
@@ -52,13 +50,18 @@
                                 </li> --}}
                                 @if($TheProduct->status == 'Available' || $TheProduct->status == 'Sold Out' || $TheProduct->status == 'Pre-Oreder')
                                     <li>
-                                        <a href="#">
-                                            <span class="font-weight-bold">@lang('products.status')</span> <span class=" @if($TheProduct->status != 'Available') {{$TheProduct->status_class['text']}} @endif ">{{$TheProduct->status}}</span></a>
+                                        <a href="#"><span class="font-weight-bold">@lang('products.status')</span> <span class=" @if($TheProduct->status != 'Available') {{$TheProduct->status_class['text']}} @endif ">{{$TheProduct->status}}</span></a>
                                     </li>
-                                    @endif
-                                    @if($TheProduct->show_inventory)
-                                        <li><a href="#"><span class="font-weight-bold">@lang('products.in_stock')</span> {{$TheProduct->inventory_value}}</a></li>
-                                    @endif
+                                @endif
+                                <li>
+                                    <a href="#">
+                                        <span class="font-weight-bold">Shipping Status</span>
+                                        <span>{{$TheProduct->shipping_status}}</span>
+                                    </a>
+                                </li>
+                                @if($TheProduct->show_inventory)
+                                    <li><a href="#"><span class="font-weight-bold">@lang('products.in_stock')</span> {{$TheProduct->inventory_value}}</a></li>
+                                @endif
                             </ul>
                             <p>{!! $TheProduct->local_description !!}</p>
                             <div class="product_count">
@@ -92,9 +95,7 @@
             </div>
         </div>
     </div>
-    <!--================End Single Product Area =================-->
 
-    <!--================Product Description Area =================-->
     <section class="product_description_area">
         <div class="container">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -513,46 +514,9 @@
             </div>
         </div>
     </section>
-    <!--================End Product Description Area =================-->
 
-    <!--================ Subscription Area ================-->
-    {{-- <section class="subscription-area section_gap">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title text-center">
-                        <h2>Subscribe for Our Newsletter</h2>
-                        <span>We won’t send any kind of spam</span>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div id="mc_embed_signup">
-                        <form target="_blank" novalidate action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&id=92a4423d01" method="get" class="subscription relative">
-                            <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="">
-                            <!-- <div style="position: absolute; left: -5000px;">
-									<input type="text" name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="">
-								</div> -->
-                            <button type="submit" class="newsl-btn">Get Started</button>
-                            <div class="info"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!--================ End Subscription Area ================-->
-
-    <!--================ start footer Area  =================-->
     @include('layout.footer')
-    <!--================ End footer Area  =================-->
 
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     @include('layout.scripts')
 </body>
 

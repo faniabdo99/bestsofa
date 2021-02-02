@@ -1,11 +1,9 @@
 @include('layout.header', ['PageTitle' => __('titles.home')])
 <body>
-    <!--================Header Menu Area =================-->
     @include('layout.navbar')
-    <!--================Header Menu Area =================-->
-	<!--================Home Banner Area =================-->
+
 	<section class="owl-carousel full-width-carousel">
-		<div class="banner_area owl-item" id="homepage-hero">
+		<div class="banner_area owl-item" id="homepage-hero1">
 			<div class="banner_inner">
 				<div class="container">
 					<div class="banner_content text-center">
@@ -16,7 +14,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="banner_area  owl-item" id="homepage-hero">
+		<div class="banner_area  owl-item" id="homepage-hero2">
 			<div class="banner_inner">
 				<div class="container">
 					<div class="banner_content text-center">
@@ -27,7 +25,7 @@
 				</div>
 			</div>
         </div>
-        <div class="banner_area  owl-item" id="homepage-hero">
+        <div class="banner_area  owl-item" id="homepage-hero3">
 			<div class="banner_inner">
 				<div class="container">
 					<div class="banner_content text-center">
@@ -38,7 +36,7 @@
 				</div>
 			</div>
         </div>
-        <div class="banner_area  owl-item" id="homepage-hero">
+        <div class="banner_area  owl-item" id="homepage-hero4">
 			<div class="banner_inner">
 				<div class="container">
 					<div class="banner_content text-center">
@@ -49,7 +47,7 @@
 				</div>
 			</div>
         </div>
-        <div class="banner_area  owl-item" id="homepage-hero">
+        <div class="banner_area  owl-item" id="homepage-hero5">
 			<div class="banner_inner">
 				<div class="container">
 					<div class="banner_content text-center">
@@ -117,7 +115,7 @@
                     <p>@lang('homepage.about-us-content')</p>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <img  style="height:300px;width:500px" class="img-fluid" src="{{ asset('public/img/banner/order-payment.jpg') }}" alt="hi">
+                    <img  style="height:300px;width:500px" class="img-fluid" src="{{ asset('public/img/banner/home.jpg') }}" alt="hi">
                 </div>
             </div>
         </div>
