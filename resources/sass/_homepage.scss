@@ -23,6 +23,34 @@
 #homepage-hero{
   background: url('../img/banner/homepage.jpg') no-repeat center top;
 }
+#homepage-hero1 {
+  background: url("../img/banner/slide1.jpg") no-repeat center top;
+}
+
+#homepage-hero2 {
+  background: url("../img/banner/slide2.jpg") no-repeat center top;
+}
+
+#homepage-hero3 {
+  background: url("../img/banner/slide3.jpg") no-repeat center top;
+}
+
+#homepage-hero4 {
+  background: url("../img/banner/slide4.jpg") no-repeat center top;
+}
+
+#homepage-hero5 {
+  background: url("../img/banner/slide5.jpg") no-repeat center top;
+}
+
+#contact1 {
+  background: url("../img/banner/contact.jpg") no-repeat center top;
+  background-size: cover;
+  padding-top:50px;
+  p{
+    color:#000;
+  }
+}
 //About us Section
 .about_us_section{
   iframe{
