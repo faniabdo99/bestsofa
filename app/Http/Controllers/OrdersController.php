@@ -177,6 +177,18 @@ class OrdersController extends Controller{
     }
     $OrderData['status'] = 'Pre-Payments';
     $OrderData['order_currency'] = getCurrency()['code'];
+    if($OrderData['order_currency'] != 'DKK'){
+      $OrderData['total_amount'] = convertCurrency($r->total_amount,$OrderData['order_currency'],'DKK');
+      $OrderData['total_amount'] = convertCurrency($r->total_amount,$OrderData['order_currency'],'DKK');
+      $OrderData['total_tax_amount'] = convertCurrency($r->total_tax_amount,$OrderData['order_currency'],'DKK');
+      $OrderData['total_shipping_cost'] = convertCurrency($r->total_shipping_cost,$OrderData['order_currency'],'DKK');
+    }else{
+      $OrderData['total_amount'] = $r->total_amount;
+      $OrderData['total_amount'] = $r->total_amount;
+      $OrderData['total_tax_amount'] = $r->total_tax_amount;
+      $OrderData['total_shipping_cost'] = $r->total_shipping_cost;
+    }
+
     $OrderData['user_id'] = $UserId;
     $TheNewOrder = Order::create($OrderData);
     //Add the Cart Items to the table
@@ -197,7 +209,7 @@ class OrdersController extends Controller{
         'qty' => $item->qty
       ]);
     });
-    Mail::to('admin@ukfashionshop.be')->send(New NewOrderMail);
+    Mail::to('faniabdo99@gmail.com')->send(New NewOrderMail);
     return redirect()->route('checkout.summary' , $TheNewOrder->id);
   }
 }
@@ -306,7 +318,7 @@ class OrdersController extends Controller{
           $GetPaymentMethod = Payment_Method::where('code_name' , $r->payment_method)->first();
           $OrderTotalAddition = ($TheOrder->final_total * $GetPaymentMethod->percentage_fee) / 100;
           $OrderFixedFee = $GetPaymentMethod->fixed_fee;
-          $OrderFinalTotal = $TheOrder->final_total + $OrderTotalAddition + $OrderFixedFee;
+          $OrderFinalTotal = $TheOrder->final_total;
           // try{
             $payment = Mollie::api()->payments->create([
               "amount" => [

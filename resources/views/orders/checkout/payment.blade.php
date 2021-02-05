@@ -78,7 +78,7 @@
                                     <label for="pm">@lang('orders.choose_payment_method')</label>
                                     <select class="form-control" name="payment_method" id="pm" required>
                                         <option value="">@lang('orders.select')...</option>
-                                        {{getPaymentMethods($TheOrder->pickup_at_store)}}
+                                        {{getPaymentMethods()}}
                                     </select>
                                 </div>
                                 <div class="form-group">

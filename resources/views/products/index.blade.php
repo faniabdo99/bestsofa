@@ -10,12 +10,12 @@
                 <div class="col-lg-9">
                     <div class="form-group row mt-3 mb-2">
                         <div class="col-md-2">
-                            <h3>Sort by Price</h3>
+                            <h5>Sort by Price</h5>
                         </div>
                         <div class="col-md-4">
                             <select class="form-control" name="order">
-                                <option selected value="1">lowest first</option>
-                                <option value="2">highest first </option>
+                                <option selected value="1">Lowest first</option>
+                                <option value="2">Highest first </option>
                             </select>
                         </div>
                     </div>
@@ -51,39 +51,6 @@
                         </div>
                         @endforelse
                     </div>
-                    {{-- <div class="row">
-                        <div class="col-12">
-                            <nav class="cat_page mx-auto mt-5">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">
-                                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <a class="page-link" href="#">01</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">02</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">03</a>
-                                    </li>
-                                    <li class="page-item blank">
-                                        <a class="page-link" href="#">...</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">09</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">
-                                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div> --}}
                 </div>
                 <div class="col-lg-3">
                     <div class="left_sidebar_area">
@@ -111,10 +78,9 @@
                             <div class="widgets_inner">
                                 <ul class="list">
                                     <li><input class="mr-3" name="product_fabrics" checked type="radio" value="">@lang('products.all')</li>
-                                    <li><input class="mr-3" name="product_fabrics" @if(request()->has('product_fabrics') && request()->product_fabrics == 'leather') checked
-                                        @endif type="radio" value="leather">@lang('products.leather')</li>
-                                    <li><input class="mr-3" name="product_fabrics" @if(request()->has('product_fabrics') && request()->product_fabrics == 'mix_leather_with_fabric') checked
-                                        @endif type="radio" value="mix_leather_with_fabric">@lang('products.mix_leather_with_fabric')</li>
+                                    <li><input class="mr-3" name="product_fabrics" @if(request()->has('product_fabrics') && request()->product_fabrics == 'leather') checked @endif type="radio" value="leather">@lang('products.leather')</li>
+                                    <li><input class="mr-3" name="product_fabrics" @if(request()->has('product_fabrics') && request()->product_fabrics == 'fabric') checked @endif type="radio" value="leather">@lang('products.fabric')</li>
+                                    <li><input class="mr-3" name="product_fabrics" @if(request()->has('product_fabrics') && request()->product_fabrics == 'mix_leather_with_fabric') checked @endif type="radio" value="mix_leather_with_fabric">@lang('products.mix_leather_with_fabric')</li>
                                 </ul>
                             </div>
                         </aside>

@@ -14,7 +14,6 @@ class ContactUsController extends Controller{
       $Rules = [
         'name' => 'required|min:4|max:50',
         'email' => 'required|email',
-        'subject' => 'required',
         'phone_number' => 'required',
         'country' => 'required',
         'message' => 'required'
@@ -25,7 +24,6 @@ class ContactUsController extends Controller{
         'name.max' => __('controllers.contact_validation_name_max'),
         'email.required' => __('controllers.contact_validation_email_required'),
         'email.email' => __('controllers.contact_validation_email_email'),
-        'subject.required' => __('controllers.contact_validation_subject_required'),
         'phone_number.required' => __('controllers.contact_validation_phone_number_required'),
         'country.required' => __('controllers.contact_validation_country_required'),
         'message.required' => __('controllers.contact_validation_message_required'),

@@ -86,6 +86,7 @@
                                                 <label>Fabric Type</label>
                                                 <select class="form-control mb-4" name="fabrics" required>
                                                         <option value="facbric">Fabric</option>
+                                                        <option value="leather">Leather</option>
                                                         <option value="fabric-with-leather">Fabric With Leather</option>
                                                 </select>
                                             </div>
@@ -128,6 +129,7 @@
                                                 <label>Tax Rate</label>
                                                 <select class="form-control" name="tax_rate">
                                                     <option value="{{$ProductData->tax_rate}}" selected>Tax Rate : {{$ProductData->tax_rate}}%</option>
+                                                    <option value="0.25">Tax rate 1: 25%</option>
                                                     <option value="0.21">Tax rate 1: 21%</option>
                                                     <option value="0.12">Tax rate 2: 12%</option>
                                                     <option value="0.6">Tax rate 3: 6%</option>

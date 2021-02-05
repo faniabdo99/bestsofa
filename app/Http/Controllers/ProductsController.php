@@ -289,7 +289,6 @@ class ProductsController extends Controller{
             'name' => 'required',
             'email' => 'required|email',
             'phone_number' => 'required',
-            'country' => 'required',
             'message' => 'required'
         ];
         $Messages = [
@@ -297,7 +296,6 @@ class ProductsController extends Controller{
             'email.email' => __('controllers.product_Q_validation_email_email'),
             'email.required' => __('controllers.product_Q_validation_email_required'),
             'phone_number.required' => __('controllers.product_Q_validation_phone_number_required'),
-            'country.required' => __('controllers.product_Q_validation_country_required'),
             'message.required' => __('controllers.product_Q_validation_message_required')
         ];
         $validator = Validator::make($r->all() , $Rules ,$Messages);

@@ -39,26 +39,25 @@
                     <div class="s_product_text">
                         <h3>{{$TheProduct->local_title}}</h3>
                         @if($TheProduct->HasDiscount())
-                            <h2 class="product-price-before-discount d-inline">{{$TheProduct->price}}</h2>
-                            <h2 class="text-success ml-4 d-inline">{{$TheProduct->FinalPrice.getCurrency()['symbole']}}</h2>
+                            <h2 class="product-price-before-discount d-inline">{{($TheProduct->price+$TheProduct->TaxAmount)}}</h2>
+                            <h2 class="text-success ml-4 d-inline">{{($TheProduct->FinalPrice+$TheProduct->TaxAmount).getCurrency()['symbole']}}</h2>
                             @else
-                            <h2>{{$TheProduct->FinalPrice.getCurrency()['symbole']}} </h2>
+                            <h2>{{($TheProduct->FinalPrice+$TheProduct->TaxAmount).getCurrency()['symbole']}}</h2>
                             @endif
                             <ul class="list">
-                                {{-- <li>
-                                    <a class="active" href="{{route('product.home')}}?category_filters={{$TheProduct->Category->slug}}"><span class="font-weight-bold">@lang('products.category')</span> {{$TheProduct->Category->local_title}}</a>
-                                </li> --}}
                                 @if($TheProduct->status == 'Available' || $TheProduct->status == 'Sold Out' || $TheProduct->status == 'Pre-Oreder')
                                     <li>
                                         <a href="#"><span class="font-weight-bold">@lang('products.status')</span> <span class=" @if($TheProduct->status != 'Available') {{$TheProduct->status_class['text']}} @endif ">{{$TheProduct->status}}</span></a>
                                     </li>
                                 @endif
+                                @if($TheProduct->shipping_status)
                                 <li>
                                     <a href="#">
-                                        <span class="font-weight-bold">Shipping Status</span>
+                                        <span class="font-weight-bold">Shipping</span>
                                         <span>{{$TheProduct->shipping_status}}</span>
                                     </a>
                                 </li>
+                                @endif
                                 @if($TheProduct->show_inventory)
                                     <li><a href="#"><span class="font-weight-bold">@lang('products.in_stock')</span> {{$TheProduct->inventory_value}}</a></li>
                                 @endif
@@ -179,7 +178,7 @@
                                             <input type="text" class="form-control" id="number" name="phone_number" placeholder="@lang('products.phone')" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    {{-- <div class="col-md-12">
                                         <div class="form-group">
                                             <select class="form-control" name="country" required>
                                                 <option value="">@lang('products.country_choose')</option>
@@ -428,7 +427,7 @@
                                                 <option value="Zimbabwe">Zimbabwe</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <textarea class="form-control" name="message" id="message" rows="1" placeholder="@lang('products.message')" required></textarea>

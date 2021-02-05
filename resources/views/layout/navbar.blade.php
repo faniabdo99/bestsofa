@@ -42,7 +42,7 @@
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <a class="navbar-brand logo_h" href="{{route('home')}}">
-                    <img src="{{url('public/img')}}/logo.png" alt="">
+                    <img src="{{url('public/img')}}/icons/logo.jpg" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

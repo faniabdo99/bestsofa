@@ -153,6 +153,12 @@
 										<span class="last">{{formatPrice($CartItem->total_price).getCurrency()['symbole']}}</span>
 									</a>
 								</li>
+								<li>
+									<a href="#">
+										Tax
+										<span class="last">{{formatPrice($CartTax).getCurrency()['symbole']}}</span>
+									</a>
+								</li>
 								@empty
 								@endforelse
 								@if($CouponDiscount)
@@ -162,7 +168,7 @@
 								@endif
 							</ul>
 							<ul class="list list_2 mb-5">
-									<li><a href="#">@lang('orders.subtotal')<span>{{formatPrice($TotalWithoutTax).getCurrency()['symbole']}}</span></a></li>
+									<li><a href="#">@lang('orders.subtotal')<span>{{formatPrice($TotalWithoutTax+$CartTax).getCurrency()['symbole']}}</span></a></li>
 							</ul>
 						</div>
 						<div class="shipping-box order_box p-3">

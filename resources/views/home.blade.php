@@ -27,35 +27,14 @@
         </div>
         <div class="banner_area  owl-item" id="homepage-hero3">
 			<div class="banner_inner">
-				<div class="container">
-					<div class="banner_content text-center">
-						<h1>Straight From Factory</h1>
-						<p>From Factory to Your Home!</p>
-						<a class="white_bg_btn" href="{{route('product.home')}}">@lang('homepage.cta')</a>
-					</div>
-				</div>
 			</div>
         </div>
         <div class="banner_area  owl-item" id="homepage-hero4">
 			<div class="banner_inner">
-				<div class="container">
-					<div class="banner_content text-center">
-						<h1>Straight From Factory</h1>
-						<p>From Factory to Your Home!</p>
-						<a class="white_bg_btn" href="{{route('product.home')}}">@lang('homepage.cta')</a>
-					</div>
-				</div>
 			</div>
         </div>
         <div class="banner_area  owl-item" id="homepage-hero5">
 			<div class="banner_inner">
-				<div class="container">
-					<div class="banner_content text-center">
-						<h1>Straight From Factory</h1>
-						<p>From Factory to Your Home!</p>
-						<a class="white_bg_btn" href="{{route('product.home')}}">@lang('homepage.cta')</a>
-					</div>
-				</div>
 			</div>
 		</div>
 	</section>
@@ -67,7 +46,6 @@
                 <div class="row">
                     <div class="main_title">
                         <h2>@lang('homepage.featured-products-header')</h2>
-                        <p>@lang('homepage.featured-products-subheader')</p>
                     </div>
                 </div>
                 <div class="row">

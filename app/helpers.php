@@ -18,6 +18,7 @@ function getCountryNameFromISO($ISO = null){
       "IT" => 'Italy',"LI" => 'Liechtenstein',
       "LU" => 'Luxembourg',"MK" => 'Macedonia',
       "MT" => 'Malta',"MD" => 'Moldova',
+      "SYD" => 'Denmark, SYD',"OST" => 'Denmark, OST',"VEST" => 'Denmark, OST',
       "MC" => 'Monaco',"ME" => 'Montenegro',"NL" => 'Netherlands',"PL" => 'Poland',"PT" => 'Portugal',"RO" => 'Romania',"SM" => 'San Marino',"RS" => 'Serbia',"SK" => 'Slovakia',"SI" => 'Slovenia',"ES" => "Spain","UA" => "Ukraine","DK" => "Denmark","EE" => "Estonia","FO" => "Faroe Islands","FI" => "Finland","GL" => "Greenland","IS" => "Iceland","IE" => "Ireland","LV" => "Latvia","LT" => "Lithuania","NO" => "Norway","SJ" => "Svalbard and Jan Mayen Islands","SE" => "Sweden","CH" => "Switzerland","TR" => "Turkey"];
     return $CountrCodeName[$ISO];
   }else{
@@ -44,11 +45,8 @@ function getCurrency(){
   return ['symbole' => $CurrencySymbole,'code' => $CurrencyCode];
 }
 function convertCurrency($amount , $from , $to){
-  // dd($amount.'-'.$from.'-'.$to);
-  //Check Old Data
-    if($to == 'DKK'){
-      return $amount;
-    }
+    // dd($amount.'-'.$from.'-'.$to);
+    //Check Old Data
     $client = new GuzzleHttp\Client();
     $res = $client->get('http://api.exchangeratesapi.io/latest?base='.$from.'&symbols='.$to);
     if($res->getStatusCode() != 200){
@@ -72,6 +70,6 @@ function getPaymentMethods($PickUpStore = null , $order_payment = null){
   foreach($PaymentMethods as $Single){
     $PercentagFee = ($Single->percentage_fee == 1) ? '-' : $Single->percentage_fee;
     $FixedFee = ($Single->fixed_fee == 0) ? '-' : $Single->fixed_fee;
-    echo '<option'; ?> <?php if($order_payment == $Single->code_name){echo 'selected';} echo' value="'.$Single->code_name.'">'.$Single->name.' ('.$PercentagFee.'%) + ('.$FixedFee.'€)</option>';
+    echo '<option'; ?> <?php if($order_payment == $Single->code_name){echo 'selected';} echo' value="'.$Single->code_name.'">'.$Single->name.'</option>';
   }
 }

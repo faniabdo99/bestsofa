@@ -1,7 +1,6 @@
 <?php
 return [
     'something_wrong' => 'Something Went Wrong , We Are Sorry !',
-
     // Cart
     'cart_item_not_available' => 'This item is not available for sale right now ',
     'cart_max_amount' => 'The Maximum Amount Availabe For This Product is ',
@@ -10,7 +9,6 @@ return [
     'cart_item_deleted' => 'Cart Item Deleted Successfully',
     'cart_item_doesnt_exist' => 'This Cart Item Doesn\'t Exist',
     'cart_value_updated' => 'Cart Value Updated',
-
     // Contact Us
     'contact_validation_name_required' => 'Your name is required',
     'contact_validation_name_min' => 'Your name can\'t be less than 4 letters',

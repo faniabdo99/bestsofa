@@ -83,6 +83,7 @@
                                             <div class="form-group">
                                                 <label>Fabric Type</label>
                                                 <select class="form-control mb-4" name="fabrics" required>
+                                                        <option value="leather">Leather</option>
                                                         <option value="facbric">Fabric</option>
                                                         <option value="fabric-with-leather">Fabric With Leather</option>
                                                 </select>
@@ -124,7 +125,8 @@
                                             <div class="form-group">
                                                 <label>Tax Rate</label>
                                                 <select class="form-control" name="tax_rate" required>
-                                                    <option selected value="0.21">Tax rate 1: 21%</option>
+                                                    <option selected value="0.25">Tax rate 1: 25%</option>
+                                                    <option value="0.21">Tax rate 1: 21%</option>
                                                     <option value="0.12">Tax rate 2: 12%</option>
                                                     <option value="0.06">Tax rate 3: 6%</option>
                                                     <option value="1">Tax rate 4: 0%</option>

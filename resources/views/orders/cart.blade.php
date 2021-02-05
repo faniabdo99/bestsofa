@@ -12,12 +12,13 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th style="width:35%">@lang('orders.product')</th>
+									<th style="width:30%">@lang('orders.product')</th>
 									<th style="width:15%">@lang('orders.price')</th>
 									<th style="width:15%">@lang('orders.qty')</th>
 									<th style="width:10%">@lang('orders.act')</th>
-									<th style="width:10%">@lang('orders.unit_price')</th>
-									<th style="width:15%">@lang('orders.total')</th>
+									<th style="width:15%">@lang('orders.unit_price')</th>
+									<th style="width:5%">Unit Tax</th>
+									<th style="width:10%">@lang('orders.total')</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -46,11 +47,13 @@
 										<a href="{{route('cart')}}" class="text-success update-cart-icon d-none" title="@lang('orders.update_cart')"><i class="fas fa-refresh"></i></a>
 									</td>
 									<td><h5>{{formatPrice($Item->Product->final_price).getCurrency()['symbole']}}</h5></td>
-									<td><h5>{{formatPrice($Item->total_price).getCurrency()['symbole'] }}</h5></td>
+									<td><h5>{{formatPrice($Item->Product->TaxAmount).getCurrency()['symbole']}}</h5></td>
+									<td><h5>{{formatPrice($Item->total_price+$Item->TotalTax).getCurrency()['symbole'] }}</h5></td>
 								</tr>
 								@endforeach
 								<tr class="bottom_button">
 									<td>@lang('orders.have_coupon')</td>
+									<td></td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -75,19 +78,22 @@
 									<td style="width:0%"></td>
 									<td style="width:0%"></td>
 									<td style="width:0%"></td>
+									<td style="width:0%"></td>
 									<td style="width:50%;">
-										@if($CouponDiscount)
 										<h5 class="mb-4">@lang('orders.total')</h5>
-										<h5 class="mb-4 text-success">@lang('orders.coupon') : {{$CartItems->first()->applied_coupon}}</h5>
+										<h5 class="mb-4">Order Tax</h5>
+										@if($CouponDiscount)
+											<h5 class="mb-4 text-success">@lang('orders.coupon') : {{$CartItems->first()->applied_coupon}}</h5>
 										@endif
 										<h5>@lang('orders.subtotal')</h5>
 									</td>
-									<td style="width:35%;">
-										@if($CouponDiscount)
+									<td style="width:40%;">
 										<h5 class="mb-4">{{formatPrice($Total).getCurrency()['symbole']}}</h5>
-										<h5 class="mb-4 text-success">-{{formatPrice($CouponDiscount).getCurrency()['symbole']}}</h5>
+										<h5 class="mb-4">{{formatPrice($CartTax).getCurrency()['symbole']}}</h5>
+										@if($CouponDiscount)
+											<h5 class="mb-5 text-success">-{{formatPrice($CouponDiscount).getCurrency()['symbole']}}</h5>
 										@endif
-										<h5>{{formatPrice($SubTotal).getCurrency()['symbole']}}</h5>
+										<h5>{{formatPrice($SubTotal+$CartTax).getCurrency()['symbole']}}</h5>
 									</td>
 								</tr>
 							</tbody>
