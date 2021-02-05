@@ -238,10 +238,12 @@
 
 #homepage-hero4 {
   background: url("../img/banner/slide4.jpg") no-repeat center top;
+  background-size: cover;
 }
 
 #homepage-hero5 {
   background: url("../img/banner/slide5.jpg") no-repeat center top;
+  background-size: cover;
 }
 
 #contact1 {
@@ -260,18 +262,22 @@
 
 #about-us-hero {
   background: url("../img/banner/slide3.jpg") no-repeat center top;
+  background-size: cover;
 }
 
 #contact-us-hero {
   background: url("../img/banner/contact-us.jpg") no-repeat center top;
+  background-size: cover;
 }
 
 #checkout-hero {
   background: url("../img/banner/order-summary.jpg") no-repeat center top;
+  background-size: cover;
 }
 
 #orders-hero {
   background: url("../img/banner/order-payment.jpg") no-repeat center top;
+  background-size: cover;
 }
 
 /*----------------------------------------------------*/
@@ -521,7 +527,7 @@ a:hover, a:focus {
   }
 }
 .header_area .navbar .nav .nav-item {
-  margin-right: 45px;
+  margin-right: 30px;
 }
 .header_area .navbar .nav .nav-item .nav-link {
   font: 500 12px/80px "Poppins", sans-serif;
