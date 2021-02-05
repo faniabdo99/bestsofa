@@ -1,7 +1,6 @@
 @include('layout.header', ['PageTitle' => __('titles.home')])
 <body>
     @include('layout.navbar')
-
 	<section class="owl-carousel full-width-carousel">
 		<div class="banner_area owl-item" id="homepage-hero1">
 			<div class="banner_inner">

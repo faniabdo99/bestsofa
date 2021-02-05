@@ -122,13 +122,8 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <h5>@lang('products.width')</h5>
-                                    </td>
-                                    <td>
-                                        <h5>
-                                            @if($TheProduct->width){{$TheProduct->width}}CM @else @lang('products.not_available') @endif</h5>
-                                    </td>
+                                    <td><h5>@lang('products.width')</h5></td>
+                                    <td><h5>@if($TheProduct->width){{$TheProduct->width}}CM @else @lang('products.not_available') @endif</h5></td>
                                 </tr>
                                 <tr>
                                     <td>

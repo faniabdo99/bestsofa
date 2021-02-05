@@ -31,7 +31,7 @@
                     <h6 class="footer_title">Address</h6>
                     <p>XL Sofa</p>
                     <p>Vestergade 27, 7870 Roslev</p>
-                    <p>Denmmark</p>
+                    <p>Denmark</p>
                     <p>CVR</p>
                     <br>
                     <a href="{{route('contact.get')}}" class="font-weight-bold">Write to Us</a>
