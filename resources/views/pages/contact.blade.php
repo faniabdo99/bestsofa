@@ -5,11 +5,11 @@
     <section class="contact_area p_120 mt-5">
         <div class="container">
             <div class="row justify-content-center mb-4">
-                <h1>Contact Us</h1>
+                <h1>@lang('homepage.contact_us')</h1>
             </div>
             <div class="row">
                 <div class="col-lg-4" id="contact1">
-                  
+
                 </div>
                 <div class="col-lg-8">
                     <form class="row contact_form" action="{{route('contact.post')}}" method="post">
@@ -78,7 +78,7 @@
             </div>
         </div>
     </section>
-    
+
     @include('layout.footer')
     @include('layout.scripts')
 </body>

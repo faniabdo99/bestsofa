@@ -7,6 +7,9 @@ return [
     'act' => 'Actions',
     'unit_price' => 'Unit Price',
     'total' => 'Total',
+    'tax' => 'Order Tax',
+    'order_tax' => 'Tax',
+    'unit_tax' => 'Unit Tax',
     'subtotal' => 'Subtotal',
     'have_coupon' => 'Do You Have a Coupon Code?',
     'login_to_coupon' => 'Please Login to Use Coupon Codes !',
@@ -72,7 +75,7 @@ return [
     // Titles
     'cart_remove' => 'Remove From Cart',
     'choose_country_first' => 'Please Choose Country First',
-    
+
     // placeholders
     'order_notes_ph' => 'Please Add Any Additional Information to Your Order',
     'vat_num' => 'Enter Your VAT To Get Tax Free Order',

@@ -5,11 +5,11 @@
         <div class="row flex-row-reverse">
             <div class="form-group col-lg-3">
                 <form action="{{ route('offer') }}" method="get">
-                    <h3>Sort by Price</h3>
+                    <h3>@lang('homepage.sort_by_price')</h3>
                     <div class="row">
                         <select class="form-control col-md-8" name="filter">
-                            <option value="1" @if(request()->has('filter') && request()->filter == 1) selected @endif>lowest first</option>
-                            <option value="2" @if(request()->has('filter') && request()->filter == 2) selected @endif>highest first </option>
+                            <option value="1" @if(request()->has('filter') && request()->filter == 1) selected @endif>@lang('homepage.lowest_first')</option>
+                            <option value="2" @if(request()->has('filter') && request()->filter == 2) selected @endif>@lang('homepage.heightest_first')</option>
                         </select>
                         <span class="col-md-4">
                             <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>

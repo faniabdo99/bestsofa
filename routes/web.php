@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function(){
 Route::get('contact' , 'ContactUsController@getContact')->name('contact.get');
 Route::post('contact' , 'ContactUsController@postContact')->name('contact.post');
 Route::get('about' , 'PagesController@getAboutUs')->name('about');
+Route::get('shipping' , 'PagesController@shipping')->name('shipping');
 Route::get('/offer/{filter?}' , 'PagesController@getOffer')->name('offer');
 //Products Routes
 Route::group(['prefix'=>'products'] , function (){

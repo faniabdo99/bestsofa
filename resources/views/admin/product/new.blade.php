@@ -121,6 +121,41 @@
                                                 <label>Width</label>
                                                 <input type="number" class="form-control" value="{{old('width') ?? ''}}" name="width" placeholder="Please Enter a Number in CM">
                                             </div>
+
+                                            <div class="form-group">
+                                                <label>Length</label>
+                                                <input type="text" class="form-control" value="{{old('length') ??''}}" name="length" placeholder="Please Enter the Length">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Persons</label>
+                                                <input type="text" class="form-control" value="{{old('persons') ?? ''}}" name="persons" placeholder="Please Enter Persons Number">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Seat height</label>
+                                                <input type="text" class="form-control" value="{{old('seat_height') ?? ''}}" name="seat_height" placeholder="Please Enter Seat Height">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Legs</label>
+                                                <input type="text" class="form-control" value="{{old('legs') ?? ''}}" name="legs" placeholder="Please Enter Legs Number">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Right or left direction</label>
+                                                <input type="text" class="form-control" value="{{old('direction') ?? ''}}" name="direction" placeholder="Please Enter Direction">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Excl</label>
+                                                <input type="text" class="form-control" value="{{old('excl') ?? ''}}" name="excl" placeholder="Please Enter Excl">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Cover</label>
+                                                <input type="text" class="form-control" value="{{old('cover') ?? ''}}" name="cover" placeholder="Please Enter Cover">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Item number</label>
+                                                <input type="text" class="form-control" value="{{old('item_number') ?? ''}}" name="item_number" placeholder="Please Enter Item Number">
+                                            </div>
+
+
                                             <h6 class="c-grey-900 mT-40 mB-40">Taxes</h6>
                                             <div class="form-group">
                                                 <label>Tax Rate</label>

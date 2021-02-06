@@ -1,21 +1,18 @@
 @include('layout.header', ['PageTitle' => __('titles.products-all')])
 <body>
-    <!--================Header Menu Area =================-->
     @include('layout.navbar')
-    <!--================Header Menu Area =================-->
-    <!--================Category Product Area =================-->
     <section class="cat_product_area section_gap mt-5">
         <div class="container-fluid">
             <div class="row flex-row-reverse">
                 <div class="col-lg-9">
                     <div class="form-group row mt-3 mb-2">
                         <div class="col-md-2">
-                            <h5>Sort by Price</h5>
+                            <h5>@lang('homepage.sort_by_price')</h5>
                         </div>
                         <div class="col-md-4">
                             <select class="form-control" name="order">
-                                <option selected value="1">Lowest first</option>
-                                <option value="2">Highest first </option>
+                                <option selected value="1">@lang('homepage.lowest_first')</option>
+                                <option value="2">@lang('homepage.heightest_first')</option>
                             </select>
                         </div>
                     </div>
@@ -56,7 +53,7 @@
                     <div class="left_sidebar_area">
                         <aside class="left_widgets cat_widgets">
                             <div class="l_w_title">
-                                <h3>Products</h3>
+                                <h3>@lang('products.products')</h3>
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
@@ -86,7 +83,7 @@
                         </aside>
                         <aside class="left_widgets cat_widgets">
                             <div class="l_w_title">
-                                <h3>Price</h3>
+                                <h3>@lang('products.price')</h3>
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
@@ -107,38 +104,8 @@
             </div>
         </div>
     </section>
-    <!--================End Category Product Area =================-->
-    <!--================ Subscription Area ================-->
-    {{-- <section class="subscription-area section_gap">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title text-center">
-                        <h2>Subscribe for Our Newsletter</h2>
-                        <span>We won’t send any kind of spam</span>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div id="mc_embed_signup">
-                        <form target="_blank" novalidate action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&id=92a4423d01" method="get" class="subscription relative">
-                            <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="">
-                            <!-- <div style="position: absolute; left: -5000px;">
-									<input type="text" name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="">
-								</div> -->
-                            <button type="submit" class="newsl-btn">Get Started</button>
-                            <div class="info"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!--================ End Subscription Area ================-->
+
     @include('layout.footer')
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     @include('layout.scripts')
 </body>
 
