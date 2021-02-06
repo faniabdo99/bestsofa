@@ -25,13 +25,13 @@
                           </div>
                     </li>
                     @auth
-                    @if (auth()->user()->role == 2)
-                    <li>
-                        <a href="{{route('admin.home')}}">
-                            @lang('layout.admin-panel')
-                        </a>
-                    </li>
-                    @endif
+                        @if (auth()->user()->role == 2)
+                        <li>
+                            <a href="{{route('admin.home')}}">
+                                @lang('layout.admin-panel')
+                            </a>
+                        </li>
+                        @endif
                     @endauth
                 </ul>
             </div>
