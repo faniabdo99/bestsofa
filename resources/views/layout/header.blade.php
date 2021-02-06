@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang="en">
-
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="{{url('public')}}/img/logo.png" type="image/png">
+	<link rel="icon" href="{{url('public')}}/img/icons/logo.png" type="image/png">
 	<title>Best Sofa - {{$PageTitle ?? 'Home'}}</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="{{url('public/css')}}/bootstrap.css">
@@ -26,4 +25,12 @@
 	@endauth
 	<meta name="base_url" content="{{url('/')}}">
 	<meta name="csrf_token" content="{{csrf_token()}}" />
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-7JPVM0NSBC"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-7JPVM0NSBC');
+	</script>
 </head>
