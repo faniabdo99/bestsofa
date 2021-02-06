@@ -6,8 +6,8 @@
 			<div class="banner_inner">
 				<div class="container">
 					<div class="banner_content text-center">
-						<h1>Made in Denmark</h1>
-						<p>Great Stuff Made in Denmark, Other Stuff Here</p>
+						<h1>@lang('homepage.made_denemark')</h1>
+						<p>@lang('homepage.great_stuff')</p>
 						<a class="white_bg_btn" href="{{route('product.home')}}">@lang('homepage.cta')</a>
 					</div>
 				</div>
@@ -17,8 +17,8 @@
 			<div class="banner_inner">
 				<div class="container">
 					<div class="banner_content text-center">
-						<h1>Straight From Factory</h1>
-						<p>From Factory to Your Home!</p>
+						<h1>@lang('homepage.straight_factory')</h1>
+						<p>@lang('homepage.factory_to_home')</p>
 						<a class="white_bg_btn" href="{{route('product.home')}}">@lang('homepage.cta')</a>
 					</div>
 				</div>

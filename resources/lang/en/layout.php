@@ -15,6 +15,8 @@
     'contact' => 'Contact',
     'blog' => 'Blog',
     'login' => 'Login',
+    'offer' => 'Offers',
+    'shipping' => 'Shipping',
     'my-account' => 'My Account',
     'my-orders' => 'My Orders',
     'logout' => 'Logout',

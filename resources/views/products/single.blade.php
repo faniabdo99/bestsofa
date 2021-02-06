@@ -126,14 +126,8 @@
                                     <td><h5>@if($TheProduct->width){{$TheProduct->width}}CM @else @lang('products.not_available') @endif</h5></td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <h5>@lang('products.height')</h5>
-                                    </td>
-                                    <td>
-                                        <h5>
-                                            @if($TheProduct->height){{$TheProduct->height}}CM
-                                                @else @lang('products.not_available') @endif</h5>
-                                    </td>
+                                    <td><h5>@lang('products.height')</h5></td>
+                                    <td><h5>@if($TheProduct->height){{$TheProduct->height}}CM@else @lang('products.not_available') @endif</h5></td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -145,6 +139,61 @@
                                                 @else @lang('products.not_available') @endif</h5>
                                     </td>
                                 </tr>
+
+
+
+
+                                @if($TheProduct->length)
+                                    <tr>
+                                        <td><h5>@lang('products.length')</h5></td>
+                                        <td><h5>{{$TheProduct->length}}</h5></td>
+                                    </tr>
+                                @endif
+                                @if($TheProduct->persons)
+                                    <tr>
+                                        <td><h5>@lang('products.persons')</h5></td>
+                                        <td><h5>{{$TheProduct->persons}}</h5></td>
+                                    </tr>
+                                @endif
+                                @if($TheProduct->seat_height)
+                                    <tr>
+                                        <td><h5>@lang('products.seat_height')</h5></td>
+                                        <td><h5>{{$TheProduct->seat_height}}</h5></td>
+                                    </tr>
+                                @endif
+                                @if($TheProduct->legs)
+                                    <tr>
+                                        <td><h5>@lang('products.legs')</h5></td>
+                                        <td><h5>{{$TheProduct->legs}}</h5></td>
+                                    </tr>
+                                @endif
+                                @if($TheProduct->direction)
+                                    <tr>
+                                        <td><h5>@lang('products.direction')</h5></td>
+                                        <td><h5>{{$TheProduct->direction}}</h5></td>
+                                    </tr>
+                                @endif
+                                @if($TheProduct->excl)
+                                    <tr>
+                                        <td><h5>@lang('products.excl')</h5></td>
+                                        <td><h5>{{$TheProduct->excl}}</h5></td>
+                                    </tr>
+                                @endif
+                                @if($TheProduct->cover)
+                                    <tr>
+                                        <td><h5>@lang('products.cover')</h5></td>
+                                        <td><h5>{{$TheProduct->cover}}</h5></td>
+                                    </tr>
+                                @endif
+                                @if($TheProduct->item_number)
+                                    <tr>
+                                        <td><h5>@lang('products.item_number')</h5></td>
+                                        <td><h5>{{$TheProduct->item_number}}</h5></td>
+                                    </tr>
+                                @endif
+
+
+
                             </tbody>
                         </table>
                     </div>

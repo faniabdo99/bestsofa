@@ -155,7 +155,7 @@
 								</li>
 								<li>
 									<a href="#">
-										Tax
+										@lang('orders.order_tax')
 										<span class="last">{{formatPrice($CartTax).getCurrency()['symbole']}}</span>
 									</a>
 								</li>

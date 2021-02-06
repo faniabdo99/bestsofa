@@ -2,7 +2,8 @@
 
 return [
     'product_fabrics' => 'Fabrics',
-    'product_for' => 'PRODUCT FOR',
+    'products' => 'Products',
+    'price' => 'Price',
     'no_products' => 'No Products in this search term',
     'no_categories' => 'No Categories Yet',
     'browse_categories' => 'BROWSE CATEGORIES',
@@ -42,6 +43,22 @@ return [
     'width' => 'Width',
     'weight' => 'Weight',
     'height' => 'Height',
+
+
+
+    'length' => 'Length',
+    'persons' => 'Persons',
+    'seat_height' => 'Seat Height',
+    'legs' => 'Legs',
+    'direction' => 'Right or left direction',
+    'excl' => 'Excl',
+    'cover' => 'Cover',
+    'item_number' => 'Item Number',
+
+
+
+
+
     'country_choose' => 'Choose Your Country',
     'rate_choose' => 'Choose a Rate',
     // Place Holders

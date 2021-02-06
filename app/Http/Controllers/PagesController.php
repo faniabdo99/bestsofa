@@ -22,4 +22,8 @@ class PagesController extends Controller{
 
         return view('products.offer',compact('Products' ));
     }
+
+    public function shipping(){
+        return view('pages.shipping');
+    }
 }

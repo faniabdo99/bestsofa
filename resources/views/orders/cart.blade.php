@@ -17,7 +17,7 @@
 									<th style="width:15%">@lang('orders.qty')</th>
 									<th style="width:10%">@lang('orders.act')</th>
 									<th style="width:15%">@lang('orders.unit_price')</th>
-									<th style="width:5%">Unit Tax</th>
+									<th style="width:5%">@lang('orders.unit_tax')</th>
 									<th style="width:10%">@lang('orders.total')</th>
 								</tr>
 							</thead>
@@ -81,7 +81,7 @@
 									<td style="width:0%"></td>
 									<td style="width:50%;">
 										<h5 class="mb-4">@lang('orders.total')</h5>
-										<h5 class="mb-4">Order Tax</h5>
+										<h5 class="mb-4">@lang('orders.tax')</h5>
 										@if($CouponDiscount)
 											<h5 class="mb-4 text-success">@lang('orders.coupon') : {{$CartItems->first()->applied_coupon}}</h5>
 										@endif
